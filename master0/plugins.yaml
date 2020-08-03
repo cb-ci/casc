@@ -1,4 +1,3 @@
----- plugins.yaml
 plugins:
 - {id: blueocean-git-pipeline}
 - {id: notification-api}

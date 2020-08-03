@@ -5,6 +5,6 @@ version: "1"
 plugins:
   - "plugins.yaml"
 jcasc:
-  - "all_jenkins.yaml"
+  - "jenkins.yaml"
 catalog:
   - "plugin-catalog.yaml"

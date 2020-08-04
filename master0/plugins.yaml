@@ -108,3 +108,4 @@ plugins:
   - {id: momentjs}
   - {id: cloudbees-support}
   - {id: pipeline-rest-api}
+  - {id: chucknorris}

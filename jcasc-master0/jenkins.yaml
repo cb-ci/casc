@@ -120,6 +120,6 @@ tool:
       - home: "git"
         name: "Default"
 plugins:
-  required:
+required:
     beer:latest
     chucknorris:latest

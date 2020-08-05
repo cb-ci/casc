@@ -119,7 +119,7 @@ tool:
     installations:
       - home: "git"
         name: "Default"
-plugins
+plugins:
   required:
     beer:latest
     chucknorris:latest

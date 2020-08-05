@@ -34,84 +34,84 @@ jenkins:
     - all:
         name: "all"
   viewsTabBar: "standard"
-  beekeeper:
-    enabled: true
-    securityWarnings:
-      enabledForCore: true
-      enabledForPlugins: true
-    upgrades:
-      autoDowngradePlugins: false
-      autoUpgradePlugins: false
-  security:
-    anonymizeSupportBundle:
-      enabled: false
-    apiToken:
-      creationOfLegacyTokenEnabled: false
-      tokenGenerationOnCreationEnabled: false
-      usageStatisticsEnabled: true
-    sSHD:
-      port: -1
-  unclassified:
-    artifactManager:
-      artifactManagerFactories:
-        - "jSync"
-    buildDiscarders:
-      configuredBuildDiscarders:
-        - "jobBuildDiscarder"
-    defaultFolderConfiguration:
-      healthMetrics:
-        - worstChildHealthMetric:
-            recursive: true
-        - "averageChildHealthMetric"
-        - jobStatusHealthMetric:
-            countVirginJobs: false
-            failure: true
-            success: true
-            unbuilt: true
-            unstable: true
-        - "projectEnabledHealthMetric"
-    experimentalPlugins:
-      enabled: false
-    extendedEmailPublisher:
-      adminRequiredForTemplateTesting: false
-      allowUnregisteredEnabled: false
-      charset: "UTF-8"
-      debugMode: false
-      defaultBody: |-
-        $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  artifactManager:
+    artifactManagerFactories:
+      - "jSync"
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  defaultFolderConfiguration:
+    healthMetrics:
+      - worstChildHealthMetric:
+          recursive: true
+      - "averageChildHealthMetric"
+      - jobStatusHealthMetric:
+          countVirginJobs: false
+          failure: true
+          success: true
+          unbuilt: true
+          unstable: true
+      - "projectEnabledHealthMetric"
+  experimentalPlugins:
+    enabled: false
+  extendedEmailPublisher:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
-        Check console output at $BUILD_URL to view the results.
-      defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
-      maxAttachmentSize: -1
-      maxAttachmentSizeMb: 0
-      precedenceBulk: false
-      useSsl: false
-      watchingEnabled: false
-    gitHubConfiguration:
-      apiRateLimitChecker: ThrottleForNormalize
-    gitHubPluginConfig:
-      hookUrl: "https://cb-core.caternberg.eu/master0/github-webhook/"
-    gitSCM:
-      createAccountBasedOnEmail: false
-      showEntireCommitSummaryInChanges: false
-      useExistingAccountWithSameEmail: false
-    location:
-      adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
-      url: "https://cb-core.caternberg.eu/master0/"
-    mailer:
-      charset: "UTF-8"
-      useSsl: false
-      useTls: false
-    operationsCenterRootAction:
-      connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3KSQ7CMAwAwL/4jLMgiyb9TeykLAoEZekF8XdSrqP5wLWGV4cVPPnNRr7gYskh\r\
-      \nbewxGFqQnWchZ40LZzjBPc5r8RlaT9VMGDVPufX+XrWWRxEluYzIKTWUUpNq+0Hj+CoXCfm/NHx/\r\
-      \n2DCuhHwAAAA=\r\n----- END CONNECTION DETAILS -----\n"
-    pollSCM:
-      pollingThreadCount: 10
-    usageStatisticsCloudBees:
-      usageStatisticsCollected: true
-  tool:
-    git:
-      installations:
-        - home: "git"
-          name: "Default"
+      Check console output at $BUILD_URL to view the results.
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: 0
+    precedenceBulk: false
+    useSsl: false
+    watchingEnabled: false
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://cb-core.caternberg.eu/master3/github-webhook/"
+  gitSCM:
+    createAccountBasedOnEmail: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  location:
+    adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
+    url: "https://cb-core.caternberg.eu/master3/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3KSw7CIBAA0LvM2gEpTS29DTMMfoJi+HRjvLvU7cv7wLX4V4MN2EW3knUYjY04\r\
+      \nk7FIji64GJI1nqclmAlOcA/jzvj0tUmxA3pJQ26tvTet+ZFZcco9kEhFzkVU3Q/qx1cps0//peH7\r\
+      \nAyVYQr58AAAA\r\n----- END CONNECTION DETAILS -----\n"
+  pollSCM:
+    pollingThreadCount: 10
+  usageStatisticsCloudBees:
+    usageStatisticsCollected: true
+tool:
+  git:
+    installations:
+      - home: "git"
+        name: "Default

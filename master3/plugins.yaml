@@ -109,3 +109,4 @@ plugins:
   - {id: cloudbees-ssh-slaves}
   - {id: pipeline-stage-tags-metadata}
   - {id: cloudbees-uc-data-api}
+  - {id: beer}

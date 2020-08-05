@@ -7,3 +7,4 @@ configurations:
     includePlugins:
       pam-auth: {version: '1.6'}
       beer: {version: '1.2'}
+      chucknorris: {version: '1.3'}

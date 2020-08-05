@@ -28,6 +28,10 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
+      - id: "core-mm-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+      - id: "cap-core-mm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
       - id: "default"
         url: "http://jenkins-updates.cloudbees.com/update-center/envelope-cjoc/update-center.json"
   views:
@@ -40,8 +44,8 @@ beekeeper:
     enabledForCore: true
     enabledForPlugins: true
   upgrades:
-    autoDowngradePlugins: false
-    autoUpgradePlugins: false
+    autoDowngradePlugins: true
+    autoUpgradePlugins: true
 security:
   anonymizeSupportBundle:
     enabled: false
@@ -114,4 +118,4 @@ tool:
   git:
     installations:
       - home: "git"
-        name: "Defaultgit
+        name: "Default"

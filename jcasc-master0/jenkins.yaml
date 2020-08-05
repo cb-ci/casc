@@ -121,5 +121,5 @@ tool:
         name: "Default"
 plugins:
 required:
-    beer:latest
+    beer:1.1
     chucknorris:latest

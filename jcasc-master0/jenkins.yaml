@@ -99,7 +99,7 @@ unclassified:
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
   location:
-    adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
+    adminAddress: "acaternberg@cloudbees.com"
     url: "https://cb-core.caternberg.eu/master0/"
   mailer:
     charset: "UTF-8"

@@ -1,155 +1,155 @@
 plugins:
-- {id: blueocean-git-pipeline}
-- {id: notification-api}
-- {id: ldap}
-- {id: branch-api}
-- {id: handlebars}
-- {id: docker-workflow}
-- {id: blueocean-autofavorite}
-- {id: cloudbees-administrative-monitors}
-- {id: workflow-cps-checkpoint}
-- {id: blueocean-pipeline-api-impl}
-- {id: unique-id}
-- {id: variant}
-- {id: pipeline-input-step}
-- {id: operations-center-cloud}
-- {id: cloudbees-folder}
-- {id: credentials-binding}
-- {id: blueocean-personalization}
-- {id: script-security}
-- {id: apache-httpcomponents-client-4-api}
-- {id: pipeline-event-step}
-- {id: operations-center-agent}
-- {id: nectar-license}
-- {id: kube-agent-management}
-- {id: workflow-scm-step}
-- {id: mailer}
-- {id: blueocean-web}
-- {id: pipeline-build-step}
-- {id: cloudbees-assurance}
-- {id: pipeline-model-definition}
-- {id: jquery-detached}
-- {id: jquery}
-- {id: github-branch-source}
-- {id: matrix-project}
-- {id: pipeline-stage-tags-metadata}
-- {id: job-dsl}
-- {id: pipeline-maven}
-- {id: extensible-choice-parameter}
-- {id: cloudbees-view-creation-filter}
-- {id: workflow-api}
-- {id: workflow-step-api}
-- {id: pipeline-milestone-step}
-- {id: workflow-aggregator}
-- {id: workflow-durable-task-step}
-- {id: nectar-rbac}
-- {id: credentials}
-- {id: pipeline-model-api}
-- {id: cloudbees-support}
-- {id: bouncycastle-api}
-- {id: sse-gateway}
-- {id: async-http-client}
-- {id: blueocean-core-js}
-- {id: blueocean}
-- {id: display-url-api}
-- {id: infradna-backup}
-- {id: pipeline-stage-view}
-- {id: workflow-cps-global-lib}
-- {id: github-api}
-- {id: blueocean-commons}
-- {id: blueocean-display-url}
-- {id: trilead-api}
-- {id: pipeline-github-lib}
-- {id: jdk-tool}
-- {id: configuration-as-code}
-- {id: jira}
-- {id: structs}
-- {id: htmlpublisher}
-- {id: blueocean-events}
-- {id: blueocean-dashboard}
-- {id: pipeline-graph-analysis}
-- {id: plain-credentials}
-- {id: git}
-- {id: snakeyaml-api}
-- {id: jackson2-api}
-- {id: cloudbees-groovy-view}
-- {id: blueocean-rest}
-- {id: okhttp-api}
-- {id: extended-choice-parameter}
-- {id: cloudbees-uc-data-api}
-- {id: aws-java-sdk}
-- {id: workflow-basic-steps}
-- {id: cloudbees-monitoring}
-- {id: blueocean-github-pipeline}
-- {id: ace-editor}
-- {id: pipeline-github}
-- {id: blueocean-bitbucket-pipeline}
-- {id: cloudbees-workflow-template}
-- {id: blueocean-i18n}
-- {id: kubernetes}
-- {id: pipeline-model-declarative-agent}
-- {id: blueocean-jwt}
-- {id: pipeline-rest-api}
-- {id: blueocean-pipeline-editor}
-- {id: workflow-cps}
-- {id: gradle}
-- {id: github}
-- {id: cloudbees-nodes-plus}
-- {id: oauth-credentials}
-- {id: git-server}
-- {id: pubsub-light}
-- {id: scm-api}
-- {id: cloudbees-bitbucket-branch-source}
-- {id: metrics}
-- {id: token-macro}
-- {id: favorite}
-- {id: cloudbees-template}
-- {id: jaxb}
-- {id: git-client}
-- {id: cloudbees-jsync-archiver}
-- {id: pipeline-model-extensions}
-- {id: cloudbees-analytics}
-- {id: authentication-tokens}
-- {id: cloudbees-workflow-ui}
-- {id: aws-credentials}
-- {id: pipeline-stage-step}
-- {id: blueocean-pipeline-scm-api}
-- {id: workflow-job}
-- {id: groovy}
-- {id: cloudbees-license}
-- {id: docker-commons}
-- {id: cloudbees-ssh-slaves}
-- {id: blueocean-config}
-- {id: durable-task}
-- {id: mercurial}
-- {id: mapdb-api}
-- {id: workflow-support}
-- {id: blueocean-jira}
-- {id: config-file-provider}
-- {id: email-ext}
-- {id: cloudbees-blueocean-default-theme}
-- {id: workflow-cps-global-lib-http}
-- {id: form-element-path}
-- {id: operations-center-client}
-- {id: wikitext}
-- {id: kubernetes-credentials}
-- {id: ssh-credentials}
-- {id: momentjs}
-- {id: pipeline-utility-steps}
-- {id: workflow-multibranch}
-- {id: node-iterator-api}
-- {id: kubernetes-client-api}
-- {id: command-launcher}
-- {id: jenkins-design-language}
-- {id: antisamy-markup-formatter}
-- {id: cloudbees-folders-plus}
-- {id: support-core}
-- {id: operations-center-context}
-- {id: blueocean-rest-impl}
-- {id: pipeline-cps-http}
-- {id: google-oauth-plugin}
-- {id: h2-api}
-- {id: jsch}
-- {id: handy-uri-templates-2-api}
-- {id: junit}
-- {id: jira-steps}
+  - {id: blueocean-git-pipeline}
+  - {id: notification-api}
+  - {id: ldap}
+  - {id: branch-api}
+  - {id: handlebars}
+  - {id: docker-workflow}
+  - {id: blueocean-autofavorite}
+  - {id: cloudbees-administrative-monitors}
+  - {id: workflow-cps-checkpoint}
+  - {id: blueocean-pipeline-api-impl}
+  - {id: unique-id}
+  - {id: variant}
+  - {id: pipeline-input-step}
+  - {id: operations-center-cloud}
+  - {id: cloudbees-folder}
+  - {id: credentials-binding}
+  - {id: blueocean-personalization}
+  - {id: script-security}
+  - {id: apache-httpcomponents-client-4-api}
+  - {id: pipeline-event-step}
+  - {id: operations-center-agent}
+  - {id: nectar-license}
+  - {id: kube-agent-management}
+  - {id: workflow-scm-step}
+  - {id: mailer}
+  - {id: blueocean-web}
+  - {id: pipeline-build-step}
+  - {id: cloudbees-assurance}
+  - {id: pipeline-model-definition}
+  - {id: jquery-detached}
+  - {id: jquery}
+  - {id: github-branch-source}
+  - {id: matrix-project}
+  - {id: pipeline-stage-tags-metadata}
+  - {id: job-dsl}
+  - {id: pipeline-maven}
+  - {id: extensible-choice-parameter}
+  - {id: cloudbees-view-creation-filter}
+  - {id: workflow-api}
+  - {id: workflow-step-api}
+  - {id: pipeline-milestone-step}
+  - {id: workflow-aggregator}
+  - {id: workflow-durable-task-step}
+  - {id: nectar-rbac}
+  - {id: credentials}
+  - {id: pipeline-model-api}
+  - {id: cloudbees-support}
+  - {id: bouncycastle-api}
+  - {id: sse-gateway}
+  - {id: async-http-client}
+  - {id: blueocean-core-js}
+  - {id: blueocean}
+  - {id: display-url-api}
+  - {id: infradna-backup}
+  - {id: pipeline-stage-view}
+  - {id: workflow-cps-global-lib}
+  - {id: github-api}
+  - {id: blueocean-commons}
+  - {id: blueocean-display-url}
+  - {id: trilead-api}
+  - {id: pipeline-github-lib}
+  - {id: jdk-tool}
+  - {id: configuration-as-code}
+  - {id: jira}
+  - {id: structs}
+  - {id: htmlpublisher}
+  - {id: blueocean-events}
+  - {id: blueocean-dashboard}
+  - {id: pipeline-graph-analysis}
+  - {id: plain-credentials}
+  - {id: git}
+  - {id: snakeyaml-api}
+  - {id: jackson2-api}
+  - {id: cloudbees-groovy-view}
+  - {id: blueocean-rest}
+  - {id: okhttp-api}
+  - {id: extended-choice-parameter}
+  - {id: cloudbees-uc-data-api}
+  - {id: aws-java-sdk}
+  - {id: workflow-basic-steps}
+  - {id: cloudbees-monitoring}
+  - {id: blueocean-github-pipeline}
+  - {id: ace-editor}
+  - {id: pipeline-github}
+  - {id: blueocean-bitbucket-pipeline}
+  - {id: cloudbees-workflow-template}
+  - {id: blueocean-i18n}
+  - {id: kubernetes}
+  - {id: pipeline-model-declarative-agent}
+  - {id: blueocean-jwt}
+  - {id: pipeline-rest-api}
+  - {id: blueocean-pipeline-editor}
+  - {id: workflow-cps}
+  - {id: gradle}
+  - {id: github}
+  - {id: cloudbees-nodes-plus}
+  - {id: oauth-credentials}
+  - {id: git-server}
+  - {id: pubsub-light}
+  - {id: scm-api}
+  - {id: cloudbees-bitbucket-branch-source}
+  - {id: metrics}
+  - {id: token-macro}
+  - {id: favorite}
+  - {id: cloudbees-template}
+  - {id: jaxb}
+  - {id: git-client}
+  - {id: cloudbees-jsync-archiver}
+  - {id: pipeline-model-extensions}
+  - {id: cloudbees-analytics}
+  - {id: authentication-tokens}
+  - {id: cloudbees-workflow-ui}
+  - {id: aws-credentials}
+  - {id: pipeline-stage-step}
+  - {id: blueocean-pipeline-scm-api}
+  - {id: workflow-job}
+  - {id: groovy}
+  - {id: cloudbees-license}
+  - {id: docker-commons}
+  - {id: cloudbees-ssh-slaves}
+  - {id: blueocean-config}
+  - {id: durable-task}
+  - {id: mercurial}
+  - {id: mapdb-api}
+  - {id: workflow-support}
+  - {id: blueocean-jira}
+  - {id: config-file-provider}
+  - {id: email-ext}
+  - {id: cloudbees-blueocean-default-theme}
+  - {id: workflow-cps-global-lib-http}
+  - {id: form-element-path}
+  - {id: operations-center-client}
+  - {id: wikitext}
+  - {id: kubernetes-credentials}
+  - {id: ssh-credentials}
+  - {id: momentjs}
+  - {id: pipeline-utility-steps}
+  - {id: workflow-multibranch}
+  - {id: node-iterator-api}
+  - {id: kubernetes-client-api}
+  - {id: command-launcher}
+  - {id: jenkins-design-language}
+  - {id: antisamy-markup-formatter}
+  - {id: cloudbees-folders-plus}
+  - {id: support-core}
+  - {id: operations-center-context}
+  - {id: blueocean-rest-impl}
+  - {id: pipeline-cps-http}
+  - {id: google-oauth-plugin}
+  - {id: h2-api}
+  - {id: jsch}
+  - {id: handy-uri-templates-2-api}
+  - {id: junit}
+  - {id: jira-steps}

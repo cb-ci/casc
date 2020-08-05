@@ -108,3 +108,10 @@ plugins:
   - {id: momentjs}
   - {id: cloudbees-support}
   - {id: pipeline-rest-api}
+  - {id: windows-slaves}
+  - {id: ant}
+  - {id: matrix-auth}
+  - {id: javadoc}
+  - {id: pam-auth}
+  - {id: external-monitor-job}
+  - {id: beer}

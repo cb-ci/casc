@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.10 - mm1."
+  systemMessage: "Jenkins configured using CasC v.11 - mm1."
   numExecutors: 0
   mode: NORMAL
   crumbIssuer:
@@ -22,3 +22,162 @@ jenkins:
       description: "My naming strategy"
       forceExistingJobs: false
       namePattern: ".*"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+notificationConfiguration:
+  enabled: false
+kube:
+  podTemplatesConfiguration:
+    templates:
+      - containers:
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "maven:3.3.9-jdk-8-alpine"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "maven"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "appropriate/curl"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "curl"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "gradle"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "gradle"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "lachlanevenson/k8s-kubectl:latest"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "kubectl"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "lachlanevenson/k8s-helm:latest"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "helm"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+        hostNetwork: false
+        instanceCap: 10
+        instanceCapStr: "10"
+        label: "cloudbees-core"
+        name: "cloudbees-core"
+        slaveConnectTimeout: 10000
+        slaveConnectTimeoutStr: "10000"
+        volumes:
+          - persistentVolumeClaim:
+              claimName: "maven-repo"
+              mountPath: "/tmp/cache"
+              readOnly: false
+        yamlMergeStrategy: "override"
+      - containers:
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "maven:3.3.9-jdk-8-alpine"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "maven"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+        hostNetwork: false
+        label: "cb-core-maven"
+        name: "cb-core-maven"
+        nodeUsageMode: NORMAL
+        volumes:
+          - hostPathVolume:
+              hostPath: "/var/run/docker.sock"
+              mountPath: "/var/run/docker.sock"
+        yamlMergeStrategy: "override"
+      - containers:
+          - args: "cat"
+            command: "/bin/sh -c"
+            image: "benhall/dind-jenkins-agent"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "dind"
+            ttyEnabled: true
+            workingDir: "/home/jenkins/agent"
+        hostNetwork: false
+        name: "dind-podtemplate"
+        volumes:
+          - hostPathVolume:
+              hostPath: "/var/run/docker.sock"
+              mountPath: "/var/run/docker.sock"
+        yamlMergeStrategy: "override"
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedSignatures:
+      - "method com.cloudbees.jenkins.plugins.sshcredentials.SSHUserPrivateKey getPrivateKey"
+      - "method com.cloudbees.plugins.credentials.common.IdCredentials getId"
+      - "method com.cloudbees.plugins.credentials.common.PasswordCredentials getPassword"
+      - "method com.cloudbees.plugins.credentials.common.UsernameCredentials getUsername"
+      - "method hudson.model.ItemGroup getAllItems java.lang.Class"
+      - "method hudson.model.Job getLastBuild"
+      - "method org.apache.maven.model.Model getGroupId"
+      - "new com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition\
+      \ java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String\
+      \ java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String\
+      \ java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String\
+      \ java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String\
+      \ java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String\
+      \ java.lang.String boolean boolean int java.lang.String java.lang.String"
+      - "staticMethod com.cloudbees.plugins.credentials.CredentialsProvider lookupCredentials\
+      \ java.lang.Class hudson.model.ItemGroup org.acegisecurity.Authentication java.util.List"
+

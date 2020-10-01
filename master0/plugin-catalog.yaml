@@ -17,5 +17,3 @@ configurations:
       url: http://jenkins-updates.cloudbees.com/download/plugins/prometheus/2.0.6/prometheus.hpi
     job-dsl:
       url: http://jenkins-updates.cloudbees.com/download/plugins/job-dsl/1.77/job-dsl.hpi
-    beer:
-      url: https://updates.jenkins.io/download/plugins/beer/1.1/beer.hpi

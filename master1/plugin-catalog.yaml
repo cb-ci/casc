@@ -16,3 +16,4 @@ configurations:
       pipeline-cps-http: {version: 0.2.1}
       h2-api: {version: 1.4.199}
       jira-steps: {version: 1.6.0}
+      beer: {url: "https://updates.jenkins.io/download/plugins/beer/1.1/beer.hpi"}

@@ -5,14 +5,14 @@ jenkins:
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
-  securityRealm:
-    local:
-      allowsSignup: false
-      users:
-       - id: admin
-         password: letme1n2
-       - id: newuser
-         password: newuser
+  securityRealm: "operationsCenter"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "cap-core-mm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+      - id: "core-mm-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
   myViewsTabBar: "standard"
   primaryView:
     all:

@@ -1,3 +1,4 @@
+# jenkins.yaml
 credentials:
   system:
     domainCredentials:
@@ -59,10 +60,10 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-      - id: "core-mm-offline"
-        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
       - id: "cap-core-mm"
         url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+      - id: "core-mm-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
   views:
     - all:
         name: "all"
@@ -225,11 +226,81 @@ security:
       \ java.lang.String boolean boolean int java.lang.String java.lang.String"
       - "staticMethod com.cloudbees.plugins.credentials.CredentialsProvider lookupCredentials\
       \ java.lang.Class hudson.model.ItemGroup org.acegisecurity.Authentication java.util.List"
-      - "staticMethod java.lang.System getProperty java.lang.String"
-      - "staticMethod jenkins.model.Jenkins getInstance"
-      - "staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getProperties\
-      \ java.lang.Object"
 unclassified:
+  ansiColorBuildWrapper:
+    colorMaps:
+      - black: "#000000"
+        blackB: "#4C4C4C"
+        blue: "#1E90FF"
+        blueB: "#4682B4"
+        cyan: "#00CDCD"
+        cyanB: "#00FFFF"
+        green: "#00CD00"
+        greenB: "#00FF00"
+        magenta: "#CD00CD"
+        magentaB: "#FF00FF"
+        name: "xterm"
+        red: "#CD0000"
+        redB: "#FF0000"
+        white: "#E5E5E5"
+        whiteB: "#FFFFFF"
+        yellow: "#CDCD00"
+        yellowB: "#FFFF00"
+      - black: "#000000"
+        blackB: "#555555"
+        blue: "#0000AA"
+        blueB: "#5555FF"
+        cyan: "#00AAAA"
+        cyanB: "#55FFFF"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#00AA00"
+        greenB: "#55FF55"
+        magenta: "#AA00AA"
+        magentaB: "#FF55FF"
+        name: "vga"
+        red: "#AA0000"
+        redB: "#FF5555"
+        white: "#AAAAAA"
+        whiteB: "#FFFFFF"
+        yellow: "#AA5500"
+        yellowB: "#FFFF55"
+      - black: "black"
+        blackB: "black"
+        blue: "blue"
+        blueB: "blue"
+        cyan: "cyan"
+        cyanB: "cyan"
+        green: "green"
+        greenB: "green"
+        magenta: "magenta"
+        magentaB: "magenta"
+        name: "css"
+        red: "red"
+        redB: "red"
+        white: "white"
+        whiteB: "white"
+        yellow: "yellow"
+        yellowB: "yellow"
+      - black: "#2E3436"
+        blackB: "#2E3436"
+        blue: "#3465A4"
+        blueB: "#3465A4"
+        cyan: "#06989A"
+        cyanB: "#06989A"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#4E9A06"
+        greenB: "#4E9A06"
+        magenta: "#75507B"
+        magentaB: "#75507B"
+        name: "gnome-terminal"
+        red: "#CC0000"
+        redB: "#CC0000"
+        white: "#D3D7CF"
+        whiteB: "#D3D7CF"
+        yellow: "#C4A000"
+        yellowB: "#C4A000"
   artifactManager:
     artifactManagerFactories:
       - "jSync"
@@ -271,9 +342,15 @@ unclassified:
     precedenceBulk: false
     useSsl: false
     watchingEnabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
+    configs:
+      - credentialsId: "githubaccesstoken"
+        name: "githubpublic"
     hookUrl: "https://cb-core.caternberg.eu/master2/github-webhook/"
   gitSCM:
     createAccountBasedOnEmail: false
@@ -294,6 +371,17 @@ unclassified:
                 remote: "git@github.com:pipeline-demo-caternberg/workflowLibs.git"
                 traits:
                   - "gitBranchDiscovery"
+      - defaultVersion: "master"
+        name: "_github_com_pipeline-templates-apps_pipeline-library"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                credentialsId: "githubssh"
+                id: "cd6bce98-3ba0-41bb-9d5a-e1320630babf"
+                remote: "git@github.com:pipeline-template-apps/pipeline-library.git"
+                traits:
+                  - "gitBranchDiscovery"
   groovy:
     installations:
       - name: "groovy"
@@ -302,6 +390,12 @@ unclassified:
               installers:
                 - groovyInstaller:
                     id: "3.0.2"
+  hibernationConfiguration:
+    activities:
+      - "build"
+      - "web"
+    enabled: true
+    gracePeriod: 120
   location:
     adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
     url: "https://cb-core.caternberg.eu/master2/"
@@ -309,12 +403,25 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3KSw4CIQwA0Lt0bYEwOIa5TS2tn6AYPm6Md5dx+/I+cKn07LBBWHWJi3rkxBED\r\
-      \nScB4dB5VHbE/Jbc6hQPc0rwOH9S6VD9h1Dzl2vtrs5bvhQ3nMtJZpCGXKqa9dxr7N7kw5f+y8P0B\r\
-      \nTmZoiXwAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
+  prometheusConfiguration:
+    collectingMetricsPeriodInSeconds: 10
+    countAbortedBuilds: true
+    countFailedBuilds: true
+    countNotBuiltBuilds: true
+    countSuccessfulBuilds: true
+    countUnstableBuilds: true
+    defaultNamespace: "default"
+    fetchTestResults: true
+    jobAttributeName: "jenkins_job"
+    path: "prometheus"
+    processingDisabledBuilds: false
+    useAuthenticatedEndpoint: false
+  timestamperConfig:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
   usageStatisticsCloudBees:
     usageStatisticsCollected: true
 tool:
@@ -345,5 +452,5 @@ tool:
     triggerDownstreamUponResultSuccess: true
     triggerDownstreamUponResultUnstable: false
 
-
-
+---
+# plugins.yaml

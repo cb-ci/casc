@@ -30,7 +30,7 @@ credentials:
 
 jenkins:
   systemMessage: "Jenkins configured using CasC v.16 - master0"
-  numExecutors: 0
+  numExecutors: 1
   mode: NORMAL
   crumbIssuer:
     standard:

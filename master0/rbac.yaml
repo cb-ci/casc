@@ -18,14 +18,14 @@ roles:
 groups:
   - members:
       users:
-        - jane-doe
+        - dev1
       internal_groups:
-        - "Manager group"
+        - "Developers"
       external_groups:
-        - "ldap-developers"
+        - "Developers"
     roles:
       - name: administer
-        filterable: "false"
+        filterable: 'false'
         grantedAt: current
     name: Administrators
   - roles:

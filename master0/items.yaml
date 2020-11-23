@@ -28,5 +28,7 @@ items:
             name: "cjoc-ath"
           - kind: "folder"
             name: "cje-ath"
+          - kind: "folder"
+            name: "mytest"
   - kind: "folder"
     name: "Plugins"

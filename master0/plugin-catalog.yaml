@@ -18,5 +18,5 @@ configurations:
     job-dsl:
       #url: http://jenkins-updates.cloudbees.com/download/plugins/job-dsl/1.77/job-dsl.hpi
       url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/job-dsl//1.77/job-dsl-1.77.hpi
-    #beer:
-      #url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi
+    beer:
+      url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi

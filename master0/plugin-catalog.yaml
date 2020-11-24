@@ -15,8 +15,8 @@ configurations:
       url: http://jenkins-updates.cloudbees.com/download/plugins/resource-disposer/0.14/resource-disposer.hpi
     prometheus:
       url: http://jenkins-updates.cloudbees.com/download/plugins/prometheus/2.0.6/prometheus.hpi
-    job-dsl:
-      url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/job-dsl//1.77/job-dsl-1.77.hpi
-      #url: http://jenkins-updates.cloudbees.com/download/plugins/job-dsl/1.77/job-dsl.hpi
     beer:
       url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi
+    #job-dsl:
+    #  url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/job-dsl//1.77/job-dsl-1.77.hpi
+      #url: http://jenkins-updates.cloudbees.com/download/plugins/job-dsl/1.77/job-dsl.hpi

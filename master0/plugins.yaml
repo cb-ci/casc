@@ -148,4 +148,4 @@ plugins:
 - id: "cloudbees-pipeline-policies"
 - id: "managed-master-hibernation"
 - id: "beer"
-#- id: "prometheus"
+- id: "prometheus"

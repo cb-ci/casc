@@ -10,4 +10,5 @@ https://cb-core.caternberg.eu/master3/'"
 
 http://jenkins-updates.cloudbees.com/download/plugins/beer/1.1/beer.hpi
 
-curl -v -o beer-1.1.hpi http://nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/beer/1.1/beer.hpi
+
+curl -v -o beer-1.1.hpi http://nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi

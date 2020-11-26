@@ -16,7 +16,7 @@ configurations:
     prometheus:
       url: http://jenkins-updates.cloudbees.com/download/plugins/prometheus/2.0.6/prometheus.hpi
     beer:
-      url: http://nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi
+      url: http://nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.2/beer-1.2.hpi
 
      # url: http://admin:admin123@nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.1/beer-1.1.hpi
     #job-dsl:

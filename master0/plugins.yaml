@@ -5,6 +5,7 @@ plugins:
 - id: "blueocean-autofavorite"
 - id: "github-branch-source"
 - id: "cloudbees-administrative-monitors"
+- id: "cloudbees-casc-api"
 - id: "blueocean-i18n"
 - id: "cloudbees-ssh-slaves"
 - id: "junit"

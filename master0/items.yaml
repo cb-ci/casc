@@ -10,7 +10,7 @@ items:
       - name: "ATH Administrators"
         members:
           users:
-            - "jane-doe"
+            - "dev1"
         roles:
           - name: "administer"
     items:
@@ -20,7 +20,7 @@ items:
           - name: "Test A Administrators"
             members:
               users:
-                - "john-doe"
+                - "dev1"
             roles:
               - name: "administer"
         items:

@@ -1,6 +1,6 @@
 apiVersion: "1"
 id: "0-master0"
-version: "62"
+version: "63"
 description: "A simple bundle that sets up a master with the git-client plugin"
 plugins:
   - "plugins.yaml"

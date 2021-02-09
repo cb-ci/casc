@@ -82,7 +82,7 @@ plugins:
   - {id: jdk-tool}
   - {id: jenkins-design-language}
   - {id: jira}
- # - {id: job-dsl}
+  - {id: job-dsl}
   - {id: jquery-detached}
   - {id: jquery3-api}
   - {id: jsch}

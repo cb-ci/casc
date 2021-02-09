@@ -29,7 +29,7 @@ credentials:
               secret: "{AQAAABAAAAAwipg8KdyRmb8PtI3zA7Edksm/sKS/cLQ/6fqfydMLRA0fjTHqB71mVRP3HlV+xLqhFhSPKqRx14HK2s2XKE7+1w==}"
 
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.64 - master0"
+  systemMessage: "Jenkins configured using CasC v.65 - master0"
   numExecutors: 0
   mode: NORMAL
   crumbIssuer:
@@ -52,16 +52,16 @@ jenkins:
       description: "My naming strategy"
       forceExistingJobs: false
       namePattern: ".*"
-#jobs:
-#  - script: |
-#      multibranchPipelineJob('configuration-as-code') {
-#          branchSources {
-#              git {
-#                  id = 'configuration-as-code'
-#                  remote('https://github.com/jenkinsci/configuration-as-code-plugin.git')
-#              }
-#          }
-#      }
+jobs:
+  - script: |
+      multibranchPipelineJob('configuration-as-code') {
+          branchSources {
+              git {
+                  id = 'configuration-as-code'
+                  remote('https://github.com/jenkinsci/configuration-as-code-plugin.git')
+              }
+          }
+      }
 beekeeper:
   enabled: true
   securityWarnings:

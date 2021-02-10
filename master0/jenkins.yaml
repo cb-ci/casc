@@ -29,7 +29,7 @@ credentials:
               secret: "{AQAAABAAAAAwipg8KdyRmb8PtI3zA7Edksm/sKS/cLQ/6fqfydMLRA0fjTHqB71mVRP3HlV+xLqhFhSPKqRx14HK2s2XKE7+1w==}"
 
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.68 - master0"
+  systemMessage: "Jenkins configured using CasC v.69 - master0"
   numExecutors: 0
   mode: NORMAL
   crumbIssuer:
@@ -63,9 +63,9 @@ jobs:
           }
       }
 
-      organizationFolder('GH-Andreas') {
-          description('This contains branch source jobs for GH-Andreas GitHub')
-          displayName('GH-Andreas')
+      organizationFolder('GH-jenkinsci') {
+          description('This contains branch source jobs for GH-jenkinsci GitHub')
+          displayName('GH-jenkinsci')
           triggers {
             periodic(2400)
           }

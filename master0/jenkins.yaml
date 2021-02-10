@@ -29,7 +29,7 @@ credentials:
               secret: "{AQAAABAAAAAwipg8KdyRmb8PtI3zA7Edksm/sKS/cLQ/6fqfydMLRA0fjTHqB71mVRP3HlV+xLqhFhSPKqRx14HK2s2XKE7+1w==}"
 
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.67 - master0"
+  systemMessage: "Jenkins configured using CasC v.68 - master0"
   numExecutors: 0
   mode: NORMAL
   crumbIssuer:
@@ -62,6 +62,31 @@ jobs:
               }
           }
       }
+
+      organizationFolder('GH-Andreas') {
+          description('This contains branch source jobs for GH-Andreas GitHub')
+          displayName('GH-Andreas')
+          triggers {
+            periodic(2400)
+          }
+          organizations {
+            github {
+              repoOwner("cccaternberg")
+              apiUri("https://api.github.com")
+              credentialsId('githubaccesstoken')
+              traits {
+                publicRepoPullRequestFilterTrait()
+              }
+            }
+          }
+
+          projectFactories {
+            workflowMultiBranchProjectFactory {
+              // Relative location within the checkout of your Pipeline script.
+              scriptPath("Jenkinsfile")
+            }
+          }
+        }
 beekeeper:
   enabled: true
   securityWarnings:

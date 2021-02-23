@@ -33,3 +33,11 @@ items:
             name: mytest
   - kind: folder
     name: Plugins
+    groups:
+      - members:
+          external_groups:
+            - dev1
+        roles:
+          - name: developr
+            grantedAt: current
+        name: Plugins developer

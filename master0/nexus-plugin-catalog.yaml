@@ -13,8 +13,8 @@ configurations:
       url: http://jenkins-updates.cloudbees.com/download/plugins/ws-cleanup/0.38/ws-cleanup.hpi
     resource-disposer:
       url: http://jenkins-updates.cloudbees.com/download/plugins/resource-disposer/0.14/resource-disposer.hpi
-    #prometheus:
-      #url: http://jenkins-updates.cloudbees.com/download/plugins/prometheus/2.0.6/prometheus.hpi
+    prometheus:
+      url: http://jenkins-updates.cloudbees.com/download/plugins/prometheus/2.0.6/prometheus.hpi
     beer:
       url: http://nexus.34.98.108.14.xip.io/repository/jenkins-ci-plugins/org/jenkins-ci/plugins/beer/1.2/beer-1.2.hpi
     job-dsl:

@@ -9,6 +9,6 @@ jcasc:
 items:
   - "items.yaml"
 catalog:
-  - "nexus-plugin-catalog.yaml"
+  - "plugin-catalog.yaml"
 #rbac:
 #  - "rbac.yaml"

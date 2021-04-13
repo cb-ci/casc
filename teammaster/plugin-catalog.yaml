@@ -7,7 +7,5 @@ configurations:
   includePlugins:
     github-organization-folder: {version: '1.6'}
     job-dsl: {version: '1.77'}
-    artifactory: {version: '3.10.6'}
-    ivy: {version: '2.1'}
     beer:
       url: http://nexus.34.98.108.14.xip.io/repository/jenkins-plugins/org/jenkins-ci/plugins/beer/1.2/beer-1.2.hpi

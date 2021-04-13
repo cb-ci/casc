@@ -140,3 +140,5 @@ plugins:
 - {id: workflow-scm-step}
 - {id: workflow-step-api}
 - {id: workflow-support}
+- {id: beer}
+- {id: job-dsl}

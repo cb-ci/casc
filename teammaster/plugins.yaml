@@ -142,3 +142,5 @@ plugins:
 - {id: workflow-support}
 - {id: beer}
 - {id: job-dsl}
+- {id: artifactory}
+- {id: ivy}

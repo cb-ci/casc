@@ -8,9 +8,8 @@ configurations:
       #cloudbees-casc-api: {version: '0.7'}
       job-dsl: {version: '1.77'}
       beer:
-        url: http://nexus.34.98.108.14.nip.io/repository/jenkins-plugins/org/jenkins-ci/plugins/beer/1.2/beer-1.2.hpi
-
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/beer/1.1/beer.hpi'
       #prometheus: {version: '2.0.9'}
 settings:
-    repository: { layout: maven2, url: 'http://nexus.34.98.108.14.nip.io/repository/jenkins-plugins' }
+    repository: { url: 'http://nexus.34.98.108.14.nip.io/repository/jenkins-plugins' }
 

@@ -24,7 +24,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "Jenkins configured using CasC v.115"
+  systemMessage: "Jenkins configured using CasC v.118"
   updateCenter:
     sites:
       - id: "cap-core-mm"

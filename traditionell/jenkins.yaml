@@ -1,3 +1,13 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              description: "password"
+              id: "password"
+              password: "{AQAAABAAAAAQW2Lg7VRbLZrgIas6TVWzOuiygO9lhfSR6sJ+g+K5TaQ=}"
+              scope: GLOBAL
+              username: "user"
 jenkins:
   agentProtocols:
     - "Diagnostic-Ping"
@@ -66,10 +76,7 @@ unclassified:
     allowUnregisteredEnabled: false
     charset: "UTF-8"
     debugMode: false
-    defaultBody: |-
-      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
-
-      Check console output at $BUILD_URL to view the results.
+    defaultBody: "Hello"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
       - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"

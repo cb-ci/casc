@@ -1,29 +1,16 @@
-credentials:
-  system:
-    domainCredentials:
-    - credentials:
-      - usernamePassword:
-          description: "password"
-          id: "password"
-          password: "{AQAAABAAAAAQW2Lg7VRbLZrgIas6TVWzOuiygO9lhfSR6sJ+g+K5TaQ=}"
-          scope: GLOBAL
-          username: "user"
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.2 - master0"
   agentProtocols:
-  - "Diagnostic-Ping"
-  - "JNLP4-connect"
-  - "OperationsCenter2"
-  - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+    - "Diagnostic-Ping"
+    - "JNLP4-connect"
+    - "OperationsCenter2"
+    - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-  - name: "master"
+    - name: "master"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -36,31 +23,17 @@ jenkins:
   remotingSecurity:
     enabled: true
   scmCheckoutRetryCount: 0
-  securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-        name: "acaternberg"
-        properties:
-        - "myView"
-        - preferredProvider:
-            providerId: "default"
-        - "timezone"
-        - mailer:
-            emailAddress: "acaternberg@cloudbees.com"
-        - "apiToken"
+  securityRealm: "operationsCenter"
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-cm-offline"
-      url: "file:/var/jenkins_home/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-cm"
-      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-cm/update-center.json"
+      - id: "core-cm-offline"
+        url: "file:/var/jenkins_home/war/WEB-INF/plugins/update-center.json"
+      - id: "cap-core-cm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-cm/update-center.json"
   views:
-  - all:
-      name: "all"
+    - all:
+        name: "all"
   viewsTabBar: "standard"
 beekeeper:
   enabled: true
@@ -82,10 +55,10 @@ security:
 unclassified:
   artifactManager:
     artifactManagerFactories:
-    - "jSync"
+      - "jSync"
   buildDiscarders:
     configuredBuildDiscarders:
-    - "jobBuildDiscarder"
+      - "jobBuildDiscarder"
   cloudBeesSCMReporting:
     enabled: true
   email-ext:
@@ -99,7 +72,7 @@ unclassified:
       Check console output at $BUILD_URL to view the results.
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
-    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -112,7 +85,7 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "http://localhost:8080/github-webhook/"
+    hookUrl: "http://master1:8080/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -129,11 +102,15 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://localhost:8080/"
+    url: "http://master1:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAA2MSw4CIRBE79LrIbTyDdfwBNg0MyqKYTAujHef3lRSr17qB+vIrwkJCmbvyBjl\r\
+      \nmFFZfw4qBiNxqkS2cuBqYIFbERfVM++Th/TPaAK2Od9Ja7p3ShEjalm+fL10erCc19x2/h+84Qsp\r\
+      \nbAAAAA==\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:
@@ -143,8 +120,8 @@ tool:
     enabled: true
   git:
     installations:
-    - home: "git"
-      name: "Default"
+      - home: "git"
+        name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

@@ -24,7 +24,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "Jenkins configured using CasC v.118"
+  systemMessage: "Jenkins configured using CasC v.119"
   updateCenter:
     sites:
       - id: "cap-core-mm"
@@ -119,21 +119,6 @@ unclassified:
       \nt0xPX0LHxDfp5wFjkc8XvL5XvIwAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
-  prometheusConfiguration:
-    appendParamLabel: false
-    appendStatusLabel: false
-    collectingMetricsPeriodInSeconds: 120
-    countAbortedBuilds: true
-    countFailedBuilds: true
-    countNotBuiltBuilds: true
-    countSuccessfulBuilds: true
-    countUnstableBuilds: true
-    defaultNamespace: "cloudbees-core"
-    fetchTestResults: true
-    jobAttributeName: "jenkins_job"
-    path: "prometheus"
-    processingDisabledBuilds: false
-    useAuthenticatedEndpoint: false
   timestamper:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"

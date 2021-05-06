@@ -121,7 +121,7 @@ plugins:
   - {id: plain-credentials}
   - {id: plugin-util-api}
   - {id: popper-api}
-  - {id: prometheus}
+ # - {id: prometheus}
   - {id: pubsub-light}
   - {id: scm-api}
   - {id: script-security}

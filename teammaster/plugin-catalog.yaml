@@ -7,7 +7,7 @@ configurations:
     includePlugins:
       job-dsl: {version: '1.77'}
       cloudbees-disk-usage-simple: {version: '0.10'}
-      prometheus: {version: 2.0.9}
+    #  prometheus: {version: 2.0.9}
       github-organization-folder: {version: '1.6'}
       beer: {version: '1.2'}
       extended-read-permission: {version: '3.2'}

@@ -1,20 +1,19 @@
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.115"
   agentProtocols:
-  - "Diagnostic-Ping"
-  - "JNLP4-connect"
-  - "OperationsCenter2"
-  - "Ping"
+    - "Diagnostic-Ping"
+    - "JNLP4-connect"
+    - "OperationsCenter2"
+    - "Ping"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-  - name: "master"
+    - name: "master"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
-  numExecutors: 0
+  numExecutors: 1
   primaryView:
     all:
       name: "all"
@@ -25,15 +24,16 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
+  systemMessage: "Jenkins configured using CasC v.115"
   updateCenter:
     sites:
-    - id: "core-mm-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-mm"
-      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+      - id: "cap-core-mm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+      - id: "core-mm-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
   views:
-  - all:
-      name: "all"
+    - all:
+        name: "all"
   viewsTabBar: "standard"
 beekeeper:
   enabled: true
@@ -50,22 +50,43 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
   sSHD:
     port: -1
 unclassified:
   artifactManager:
     artifactManagerFactories:
-    - "jSync"
+      - "jSync"
   bitbucketEndpointConfiguration:
     endpoints:
-    - bitbucketCloudEndpoint:
-        enableCache: false
-        manageHooks: false
-        repositoriesCacheDuration: 0
-        teamCacheDuration: 0
+      - bitbucketCloudEndpoint:
+          enableCache: false
+          manageHooks: false
+          repositoriesCacheDuration: 0
+          teamCacheDuration: 0
   buildDiscarders:
     configuredBuildDiscarders:
-    - "jobBuildDiscarder"
+      - "jobBuildDiscarder"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpPassword: "{AQAAABAAAAAQmB+QVqY/VZMyb5ojXjqVSUwMFfFj4IJZHrvF1NkqHHc=}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
   experimentalPlugins:
     enabled: false
   fingerprints:
@@ -87,17 +108,36 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://cb-core.caternberg.eu/teams-teammaster/"
+    url: "https://cb-core.caternberg.eu/teams-team1/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
   operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSw4CIRCE4buwtsHIjCNzDU/QNOWTEcNDF8a7y7j981VSH3XO/KhqVmGC7EY3\r\
-      \nkXPiabDTSM6KkLd7RsCwPQjURl1Dt5YqeFm4VOTeWo49Xmp9zsbILYmWmFrwQCFJGbq81tRWrmMS\r\
-      \njn9l+vQNf0xyR39w4ljw/QH/AQM+kQAAAA==\r\n----- END CONNECTION DETAILS -----\n"
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB2NSRLCMAwE/+Iz8pLEFcg3eIGkyGwGp7zAgeLvGI491V3zVqeMj6oW5ckSz8GB\r\
+      \ntcHDNKPAnoRgQjq4dRzc4Ent1GXt7ghV8O46thw7n2vdFmP4mlhzTG0lkQKcsujy/E2tVMk6Jsb4\r\
+      \nt0xPX0LHxDfp5wFjkc8XvL5XvIwAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
+  prometheusConfiguration:
+    appendParamLabel: false
+    appendStatusLabel: false
+    collectingMetricsPeriodInSeconds: 120
+    countAbortedBuilds: true
+    countFailedBuilds: true
+    countNotBuiltBuilds: true
+    countSuccessfulBuilds: true
+    countUnstableBuilds: true
+    defaultNamespace: "cloudbees-core"
+    fetchTestResults: true
+    jobAttributeName: "jenkins_job"
+    path: "prometheus"
+    processingDisabledBuilds: false
+    useAuthenticatedEndpoint: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
   usageStatisticsCloudBees:
     usageStatisticsCollected: true
 tool:
@@ -105,8 +145,8 @@ tool:
     enabled: true
   git:
     installations:
-    - home: "git"
-      name: "Default"
+      - home: "git"
+        name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

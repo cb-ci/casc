@@ -10,4 +10,9 @@ configurations:
       configuration-as-code-groovy:
         url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/configuration-as-code-groovy/1.1/configuration-as-code-groovy.hpi'
       beer:
-        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/beer/1.1/beer.hpi'      #prometheus: {version: '2.0.9'}
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/beer/1.1/beer.hpi'
+      #prometheus: {version: '2.0.9'}
+      hashicorp-vault-plugin:
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-plugin/latest/hashicorp-vault-plugin.hpi'
+      hashicorp-vault-pipeline:
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-pipeline/latest/hashicorp-vault-pipeline.hpi'

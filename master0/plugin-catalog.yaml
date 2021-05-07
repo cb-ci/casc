@@ -8,7 +8,7 @@ configurations:
       #cloudbees-casc-api: {version: '0.7'}
       job-dsl: {version: '1.77'}
       configuration-as-code-groovy:
-        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/configuration-as-code-groovy/1.1/configuration-as-code-groovy.hpi'
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/configuration-as-code/latest/configuration-as-code.hpi'
       beer:
         url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/beer/1.1/beer.hpi'
       #prometheus: {version: '2.0.9'}

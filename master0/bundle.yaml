@@ -1,7 +1,7 @@
 apiVersion: "1"
 id: "0-master0"
-version: "103"
-description: "A simple bundle that sets up a master with the git-client plugin"
+version: "104"
+description: "A simple bundle that sets up a master with the basic configuration"
 plugins:
   - "plugins.yaml"
 jcasc:

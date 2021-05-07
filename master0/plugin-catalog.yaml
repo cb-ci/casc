@@ -12,9 +12,9 @@ configurations:
       beer:
         url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/beer/1.1/beer.hpi'
       #prometheus: {version: '2.0.9'}
-      #jira-steps: { version: '1.6.0' }
+      jira-steps: { version: '1.6.0' }
       #github-organization-folder: { version: '1.6' }
-      #hashicorp-vault-plugin:
-      #  url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-plugin/latest/hashicorp-vault-plugin.hpi'
-      #hashicorp-vault-pipeline:
-      #  url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-pipeline/latest/hashicorp-vault-pipeline.hpi'
+      hashicorp-vault-plugin:
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-plugin/latest/hashicorp-vault-plugin.hpi'
+      hashicorp-vault-pipeline:
+        url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-pipeline/latest/hashicorp-vault-pipeline.hpi'

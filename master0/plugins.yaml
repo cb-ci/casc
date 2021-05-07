@@ -1,6 +1,5 @@
 plugins:
   - {id: ace-editor}
-  - {id: active-directory}
   - {id: antisamy-markup-formatter}
   - {id: apache-httpcomponents-client-4-api}
   - {id: async-http-client}
@@ -47,14 +46,10 @@ plugins:
   - {id: cloudbees-monitoring}
   - {id: cloudbees-nodes-plus}
   - {id: cloudbees-pipeline-policies}
-  - {id: cloudbees-platform-common}
-  - {id: cloudbees-platform-data}
-  - {id: cloudbees-plugin-usage}
   - {id: cloudbees-ssh-slaves}
   - {id: cloudbees-support}
   - {id: cloudbees-template}
   - {id: cloudbees-uc-data-api}
-  - {id: cloudbees-unified-ui}
   - {id: cloudbees-view-creation-filter}
   - {id: cloudbees-workflow-template}
   - {id: cloudbees-workflow-ui}
@@ -70,18 +65,16 @@ plugins:
   - {id: email-ext}
   - {id: favorite}
   - {id: font-awesome-api}
+  - {id: form-element-path}
   - {id: git}
   - {id: git-client}
   - {id: git-server}
   - {id: github}
   - {id: github-api}
   - {id: github-branch-source}
-  - {id: github-organization-folder}
   - {id: gradle}
   - {id: handlebars}
   - {id: handy-uri-templates-2-api}
-  - {id: hashicorp-vault-pipeline}
-  - {id: hashicorp-vault-plugin}
   - {id: htmlpublisher}
   - {id: infradna-backup}
   - {id: jackson2-api}
@@ -89,9 +82,8 @@ plugins:
   - {id: jdk-tool}
   - {id: jenkins-design-language}
   - {id: jira}
-  - {id: jira-steps}
-  - {id: jjwt-api}
   - {id: job-dsl}
+  - {id: jquery-detached}
   - {id: jquery3-api}
   - {id: jsch}
   - {id: junit}
@@ -120,7 +112,6 @@ plugins:
   - {id: operations-center-notification}
   - {id: pipeline-build-step}
   - {id: pipeline-event-step}
-  - {id: pipeline-github-lib}
   - {id: pipeline-graph-analysis}
   - {id: pipeline-input-step}
   - {id: pipeline-milestone-step}

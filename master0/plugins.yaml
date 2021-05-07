@@ -2,8 +2,10 @@ plugins:
   - {id: ace-editor}
   - {id: active-directory}
   - {id: ansicolor}
+  - {id: ant}
   - {id: antisamy-markup-formatter}
   - {id: apache-httpcomponents-client-4-api}
+  - {id: artifactory}
   - {id: async-http-client}
   - {id: authentication-tokens}
   - {id: aws-credentials}
@@ -60,6 +62,7 @@ plugins:
   - {id: cloudbees-workflow-template}
   - {id: cloudbees-workflow-ui}
   - {id: command-launcher}
+  - {id: config-file-provider}
   - {id: configuration-as-code}
   - {id: credentials}
   - {id: credentials-binding}
@@ -77,7 +80,6 @@ plugins:
   - {id: github}
   - {id: github-api}
   - {id: github-branch-source}
-  - {id: github-organization-folder}
   - {id: gradle}
   - {id: handlebars}
   - {id: handy-uri-templates-2-api}
@@ -85,7 +87,9 @@ plugins:
   - {id: hashicorp-vault-plugin}
   - {id: htmlpublisher}
   - {id: infradna-backup}
+  - {id: ivy}
   - {id: jackson2-api}
+  - {id: javadoc}
   - {id: jaxb}
   - {id: jdk-tool}
   - {id: jenkins-design-language}
@@ -105,6 +109,7 @@ plugins:
   - {id: managed-master-hibernation}
   - {id: mapdb-api}
   - {id: matrix-project}
+  - {id: maven-plugin}
   - {id: mercurial}
   - {id: metrics}
   - {id: momentjs}
@@ -137,6 +142,7 @@ plugins:
   - {id: plugin-util-api}
   - {id: popper-api}
   - {id: pubsub-light}
+  - {id: run-condition}
   - {id: scm-api}
   - {id: script-security}
   - {id: snakeyaml-api}

@@ -28,7 +28,7 @@ credentials:
               scope: GLOBAL
               secret: "{AQAAABAAAABwy+JlMuRBsTgnqKU1rfoaaPhWwSSgkvVrKdC5aLUtiivCyKcjg2yLVXemcgi3MJ1pf/R0Iq8d30X+285iRjyNdzjkBVduuukZ8y8obxYOlDoO+2hJ/Bp9y7A8xPFUSv96di1dJW9qKLWccPbpLbgz7X1AMyP+6cQ4n08seCciTWw=}"
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.104 - ${MASTER_DOMAIN}"
+  systemMessage: "Jenkins configured using CasC v.105 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"
@@ -283,7 +283,7 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://cb-core.caternberg.eu/test-master0/github-webhook/"
+    hookUrl: "https://cb-core.caternberg.eu/${MASTER_DOMAIN}/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -302,15 +302,11 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://cb-core.caternberg.eu/test-master0/"
+    url: "https://cb-core.caternberg.eu/${MASTER_DOMAIN}/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSxLCIBBF0b0wtiF+SJtswxVA0/GHkoJGB5Z7F5zeOq/qfdQ5u6eoWY1+78Ni\r\
-      \nLSBOHg42BHDHiYAYhwFHxK0d1EZdQ7M7EC4CD1eEc681x5YvIutsDN0SaYqpBs9cgFJmXV491e51\r\
-      \nTOTiX5k2fbM/Jbpz+7C4WPj7AyxgeduTAAAA\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:

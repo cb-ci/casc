@@ -177,7 +177,7 @@ kube:
             name: "helm"
             ttyEnabled: true
             workingDir: "/home/jenkins/agent"
-        id: "ff1a0545-a870-49f6-a858-3e2848041c42"
+        hostNetwork: false
         instanceCap: 10
         instanceCapStr: "10"
         label: "cloudbees-core"
@@ -203,7 +203,7 @@ kube:
             name: "maven"
             ttyEnabled: true
             workingDir: "/home/jenkins/agent"
-        id: "5dd97088-529c-475f-aac4-821c3ca21138"
+        hostNetwork: false
         label: "cb-core-maven"
         name: "cb-core-maven"
         nodeUsageMode: NORMAL
@@ -225,7 +225,7 @@ kube:
             name: "dind"
             ttyEnabled: true
             workingDir: "/home/jenkins/agent"
-        id: "26cfd837-9c04-4dd6-9a35-f56bd96c0fa3"
+        hostNetwork: false
         name: "dind-podtemplate"
         volumes:
           - hostPathVolume:
@@ -275,7 +275,7 @@ unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
       - "jobBuildDiscarder"
-   experimentalPlugins:
+  experimentalPlugins:
     enabled: false
   fingerprints:
     fingerprintCleanupDisabled: false

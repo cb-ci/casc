@@ -33,6 +33,7 @@ credentials:
               scope: SYSTEM
               secret: "{AQAAABAAAAAwnFQOoB0K41UBHEG9OWpLJGmprJD1omewz4OOWOUZFJUjTfPZX7HM1BJIpMQq7WGlVoEveoVaSOs4FXje7cpRDA==}"
 jenkins:
+  systemMessage: "Jenkins configured using CasC v.1 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"

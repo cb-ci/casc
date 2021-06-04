@@ -34,6 +34,7 @@ plugins:
   - {id: bootstrap4-api}
   - {id: bouncycastle-api}
   - {id: branch-api}
+  - {id: caffeine-api}
   - {id: checks-api}
   - {id: cloudbees-administrative-monitors}
   - {id: cloudbees-analytics}
@@ -148,6 +149,7 @@ plugins:
   - {id: snakeyaml-api}
   - {id: sse-gateway}
   - {id: ssh-credentials}
+  - {id: sshd}
   - {id: structs}
   - {id: support-core}
   - {id: token-macro}

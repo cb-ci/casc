@@ -1,0 +1,457 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              description: "githubuserssh"
+              id: "githubuserssh"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{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}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - usernamePassword:
+              description: "githubuserpw"
+              id: "githubuserpw"
+              password: "{AQAAABAAAAAQ98ll4qGPcM3nPFRdWByDDby1yPBye3f/yjFJM+IHgmA=}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - usernamePassword:
+              description: "githubuseraccesstoken"
+              id: "githubuseraccesstoken"
+              password: "{AQAAABAAAAAwh3gRZSwSh4a9pOvMkOthXy+6fWsw2BQvY2V+pamtbogd1XQ6vCLmX++jPIOkdweZsNFHsWqoctqUfFbgfeu6PQ==}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - string:
+              description: "githubaccesstoken"
+              id: "githubaccesstoken"
+              scope: GLOBAL
+              secret: "{AQAAABAAAAAw655NYw03krf88IyOQTrgpZA4vVGj5ENmTOaV9122gSuJB53aOUl9LWgjwFLk7uoEYpFKOmyUciNYMjyF4EJElA==}"
+          - string:
+              description: "Webhook secret for https://github.com/apps/pipeline-demo-caternberg1"
+              id: "63fcee06-74ca-4a3a-9138-043af8e0c8d4"
+              scope: SYSTEM
+              secret: "{AQAAABAAAAAwnFQOoB0K41UBHEG9OWpLJGmprJD1omewz4OOWOUZFJUjTfPZX7HM1BJIpMQq7WGlVoEveoVaSOs4FXje7cpRDA==}"
+jenkins:
+  agentProtocols:
+    - "Diagnostic-Ping"
+    - "JNLP4-connect"
+    - "OperationsCenter2"
+    - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+    - "hudson.diagnosis.TooManyJobsButNoView"
+  labelAtoms:
+    - name: "master"
+    - name: "test"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  nodes:
+    - permanent:
+        launcher:
+          jnlp:
+            webSocket: true
+            workDirSettings:
+              disabled: false
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+        name: "test"
+        remoteFS: "C:\\temp"
+        retentionStrategy: "always"
+  numExecutors: 1
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm: "operationsCenter"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "core-mm-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+      - id: "cap-core-mm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+  views:
+    - all:
+        name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
+  sSHD:
+    port: -1
+unclassified:
+  ansiColorBuildWrapper:
+    colorMaps:
+      - black: "#000000"
+        blackB: "#4C4C4C"
+        blue: "#1E90FF"
+        blueB: "#4682B4"
+        cyan: "#00CDCD"
+        cyanB: "#00FFFF"
+        green: "#00CD00"
+        greenB: "#00FF00"
+        magenta: "#CD00CD"
+        magentaB: "#FF00FF"
+        name: "xterm"
+        red: "#CD0000"
+        redB: "#FF0000"
+        white: "#E5E5E5"
+        whiteB: "#FFFFFF"
+        yellow: "#CDCD00"
+        yellowB: "#FFFF00"
+      - black: "#000000"
+        blackB: "#555555"
+        blue: "#0000AA"
+        blueB: "#5555FF"
+        cyan: "#00AAAA"
+        cyanB: "#55FFFF"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#00AA00"
+        greenB: "#55FF55"
+        magenta: "#AA00AA"
+        magentaB: "#FF55FF"
+        name: "vga"
+        red: "#AA0000"
+        redB: "#FF5555"
+        white: "#AAAAAA"
+        whiteB: "#FFFFFF"
+        yellow: "#AA5500"
+        yellowB: "#FFFF55"
+      - black: "black"
+        blackB: "black"
+        blue: "blue"
+        blueB: "blue"
+        cyan: "cyan"
+        cyanB: "cyan"
+        green: "green"
+        greenB: "green"
+        magenta: "magenta"
+        magentaB: "magenta"
+        name: "css"
+        red: "red"
+        redB: "red"
+        white: "white"
+        whiteB: "white"
+        yellow: "yellow"
+        yellowB: "yellow"
+      - black: "#2E3436"
+        blackB: "#2E3436"
+        blue: "#3465A4"
+        blueB: "#3465A4"
+        cyan: "#06989A"
+        cyanB: "#06989A"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#4E9A06"
+        greenB: "#4E9A06"
+        magenta: "#75507B"
+        magentaB: "#75507B"
+        name: "gnome-terminal"
+        red: "#CC0000"
+        redB: "#CC0000"
+        white: "#D3D7CF"
+        whiteB: "#D3D7CF"
+        yellow: "#C4A000"
+        yellowB: "#C4A000"
+  artifactManager:
+    artifactManagerFactories:
+      - "jSync"
+  bitbucketEndpointConfiguration:
+    endpoints:
+      - bitbucketCloudEndpoint:
+          enableCache: false
+          manageHooks: false
+          repositoriesCacheDuration: 0
+          teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  cloudBeesSCMReporting:
+    enabled: true
+  cloudbeesPlatform:
+    server:
+      ignoreSslConnectionErrors: true
+    url: "https://cb-core.caternberg.eu/"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpPassword: "{AQAAABAAAAAQS0rcw4QNteHMQNMGnrHDd1DelhdBbs0DbDEtfq5P3/k=}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  experimentalPlugins:
+    enabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookSecretConfigs:
+      - credentialsId: "63fcee06-74ca-4a3a-9138-043af8e0c8d4"
+    hookUrl: "https://cb-core.caternberg.eu/master2-demo/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  globalConfigFiles:
+    configs:
+      - mavenSettings:
+          comment: "User settings"
+          content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<settings>\n       \
+          \ <servers>\n                <server>\n                        <id>nexus-snapshots</id>\n\
+          \                        <username>admin</username>\n                \t\t\
+          <password>blablabla123</password>\n                </server>\n         \
+          \       <server>\n                        <id>nexus-releases</id>\n    \
+          \                    <username>admin</username>\n                      \
+          \  <password>blablabla123</password>\n                </server>\n      \
+          \          <server>\n                        <id>nexus</id>\n          \
+          \              <username>admin</username>\n                         <password>blablabla123</password>\n\
+          \                </server>\n        </servers>\n        <mirrors>\n    \
+          \            <mirror>\n                        <!--This sends everything\
+          \ else to /public -->\n                        <id>nexus</id>\n        \
+          \                <mirrorOf>*</mirrorOf>\n                  <url>http://nexus.34.98.108.14.nip.io/repository/maven-central/</url>\n\
+          \                </mirror>\n        </mirrors>\n        <profiles>\n   \
+          \             <profile>\n                        <id>nexus</id>\n      \
+          \                  <!--Enable snapshots for the built in central repo to\
+          \ direct -->\n                        <!--all requests to nexus via the\
+          \ mirror -->\n                        <repositories>\n                 \
+          \               <repository>\n                                        <id>central</id>\n\
+          \                                        <url>http://central</url>\n   \
+          \                                     <releases>\n                     \
+          \                           <enabled>true</enabled>\n                  \
+          \                      </releases>\n                                   \
+          \     <snapshots>\n                                                <enabled>true</enabled>\n\
+          \                                        </snapshots>\n                \
+          \                </repository>\n                        </repositories>\n\
+          \                        <pluginRepositories>\n                        \
+          \        <pluginRepository>\n                                        <id>central</id>\n\
+          \                                        <url>http://central</url>\n   \
+          \                                     <releases>\n                     \
+          \                           <enabled>true</enabled>\n                  \
+          \                      </releases>\n                                   \
+          \     <snapshots>\n                                                <enabled>true</enabled>\n\
+          \                                        </snapshots>\n                \
+          \                </pluginRepository>\n                        </pluginRepositories>\n\
+          \                </profile>\n        </profiles>\n        <activeProfiles>\n\
+          \                <!--make the profile active all the time -->\n        \
+          \        <activeProfile>nexus</activeProfile>\n        </activeProfiles>\n\
+          </settings>\n\n"
+          id: "cd-maven-settings"
+          isReplaceAll: true
+          name: "cd-maven-settings"
+          providerId: "org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig"
+      - mavenSettings:
+          comment: "User settings"
+          content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<!--\nLicensed to\
+          \ the Apache Software Foundation (ASF) under one\nor more contributor license\
+          \ agreements.  See the NOTICE file\ndistributed with this work for additional\
+          \ information\nregarding copyright ownership.  The ASF licenses this file\n\
+          to you under the Apache License, Version 2.0 (the\n\"License\"); you may\
+          \ not use this file except in compliance\nwith the License.  You may obtain\
+          \ a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\
+          \nUnless required by applicable law or agreed to in writing,\nsoftware distributed\
+          \ under the License is distributed on an\n\"AS IS\" BASIS, WITHOUT WARRANTIES\
+          \ OR CONDITIONS OF ANY\nKIND, either express or implied.  See the License\
+          \ for the\nspecific language governing permissions and limitations\nunder\
+          \ the License.\n-->\n\n<!--\n | This is the configuration file for Maven.\
+          \ It can be specified at two levels:\n |\n |  1. User Level. This settings.xml\
+          \ file provides configuration for a single user,\n |                 and\
+          \ is normally provided in ^${user.home}/.m2/settings.xml.\n |\n |      \
+          \           NOTE: This location can be overridden with the CLI option:\n\
+          \ |\n |                 -s /path/to/user/settings.xml\n |\n |  2. Global\
+          \ Level. This settings.xml file provides configuration for all Maven\n |\
+          \                 users on a machine (assuming they're all using the same\
+          \ Maven\n |                 installation). It's normally provided in\n |\
+          \                 ^${maven.conf}/settings.xml.\n |\n |                 NOTE:\
+          \ This location can be overridden with the CLI option:\n |\n |         \
+          \        -gs /path/to/global/settings.xml\n |\n | The sections in this sample\
+          \ file are intended to give you a running start at\n | getting the most\
+          \ out of your Maven installation. Where appropriate, the default\n | values\
+          \ (values used when the setting is not specified) are provided.\n |\n |-->\n\
+          <settings xmlns=\"http://maven.apache.org/SETTINGS/1.0.0\"\n          xmlns:xsi=\"\
+          http://www.w3.org/2001/XMLSchema-instance\"\n          xsi:schemaLocation=\"\
+          http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd\"\
+          >\n  <!-- localRepository\n   | The path to the local repository maven will\
+          \ use to store artifacts.\n   |\n   | Default: ^${user.home}/.m2/repository\n\
+          \  <localRepository>/path/to/local/repo</localRepository>\n  -->\n\n  <!--\
+          \ interactiveMode\n   | This will determine whether maven prompts you when\
+          \ it needs input. If set to false,\n   | maven will use a sensible default\
+          \ value, perhaps based on some other setting, for\n   | the parameter in\
+          \ question.\n   |\n   | Default: true\n  <interactiveMode>true</interactiveMode>\n\
+          \  -->\n\n  <!-- offline\n   | Determines whether maven should attempt to\
+          \ connect to the network when executing a build.\n   | This will have an\
+          \ effect on artifact downloads, artifact deployment, and others.\n   |\n\
+          \   | Default: false\n  <offline>false</offline>\n  -->\n\n  <!-- pluginGroups\n\
+          \   | This is a list of additional group identifiers that will be searched\
+          \ when resolving plugins by their prefix, i.e.\n   | when invoking a command\
+          \ line like \"mvn prefix:goal\". Maven will automatically add the group\
+          \ identifiers\n   | \"org.apache.maven.plugins\" and \"org.codehaus.mojo\"\
+          \ if these are not already contained in the list.\n   |-->\n  <pluginGroups>\n\
+          \    <!-- pluginGroup\n     | Specifies a further group identifier to use\
+          \ for plugin lookup.\n    <pluginGroup>com.your.plugins</pluginGroup>\n\
+          \    -->\n  </pluginGroups>\n\n  <!-- proxies\n   | This is a list of proxies\
+          \ which can be used on this machine to connect to the network.\n   | Unless\
+          \ otherwise specified (by system property or command-line switch), the first\
+          \ proxy\n   | specification in this list marked as active will be used.\n\
+          \   |-->\n  <proxies>\n    <!-- proxy\n     | Specification for one proxy,\
+          \ to be used in connecting to the network.\n     |\n    <proxy>\n      <id>optional</id>\n\
+          \      <active>true</active>\n      <protocol>http</protocol>\n      <username>proxyuser</username>\n\
+          \      <password>proxypass</password>\n      <host>proxy.host.net</host>\n\
+          \      <port>80</port>\n      <nonProxyHosts>local.net|some.host.com</nonProxyHosts>\n\
+          \    </proxy>\n    -->\n  </proxies>\n\n  <!-- servers\n   | This is a list\
+          \ of authentication profiles, keyed by the server-id used within the system.\n\
+          \   | Authentication profiles can be used whenever maven must make a connection\
+          \ to a remote server.\n   |-->\n        <servers>\n                <server>\n\
+          \                        <id>nexus-snapshots</id>\n                    \
+          \    <username>admin</username>\n                \t\t<password>blablabla123</password>\n\
+          \                </server>\n                <server>\n                 \
+          \       <id>nexus-releases</id>\n                        <username>admin</username>\n\
+          \                        <password>blablabla123</password>\n           \
+          \     </server>\n                <server>\n                        <id>nexus</id>\n\
+          \                        <username>admin</username>\n                  \
+          \       <password>blablabla123</password>\n                </server>\n \
+          \       </servers>\n\n  <!-- mirrors\n   | This is a list of mirrors to\
+          \ be used in downloading artifacts from remote repositories.\n   |\n   |\
+          \ It works like this: a POM may declare a repository to use in resolving\
+          \ certain artifacts.\n   | However, this repository may have problems with\
+          \ heavy traffic at times, so people have mirrored\n   | it to several places.\n\
+          \   |\n   | That repository definition will have a unique id, so we can\
+          \ create a mirror reference for that\n   | repository, to be used as an\
+          \ alternate download site. The mirror site will be the preferred\n   | server\
+          \ for that repository.\n   |-->\n     <mirrors>\n                <mirror>\n\
+          \                        <!--This sends everything else to /public -->\n\
+          \                        <id>nexus</id>\n                        <mirrorOf>*</mirrorOf>\n\
+          \                  <url>http://nexus.34.98.108.14.nip.io/repository/maven-public/</url>\n\
+          \                </mirror>\n        </mirrors>\n        <profiles>\n   \
+          \             <profile>\n                        <id>nexus</id>\n      \
+          \                  <!--Enable snapshots for the built in central repo to\
+          \ direct -->\n                        <!--all requests to nexus via the\
+          \ mirror -->\n                        <repositories>\n                 \
+          \               <repository>\n                                        <id>central</id>\n\
+          \                                        <url>http://central</url>\n   \
+          \                                     <releases>\n                     \
+          \                           <enabled>true</enabled>\n                  \
+          \                      </releases>\n                                   \
+          \     <snapshots>\n                                                <enabled>true</enabled>\n\
+          \                                        </snapshots>\n                \
+          \                </repository>\n                        </repositories>\n\
+          \                        <pluginRepositories>\n                        \
+          \        <pluginRepository>\n                                        <id>central</id>\n\
+          \                                        <url>http://central</url>\n   \
+          \                                     <releases>\n                     \
+          \                           <enabled>true</enabled>\n                  \
+          \                      </releases>\n                                   \
+          \     <snapshots>\n                                                <enabled>true</enabled>\n\
+          \                                        </snapshots>\n                \
+          \                </pluginRepository>\n                        </pluginRepositories>\n\
+          \                </profile>\n        </profiles>\n        <activeProfiles>\n\
+          \                <!--make the profile active all the time -->\n        \
+          \        <activeProfile>nexus</activeProfile>\n        </activeProfiles>\n\
+          </settings>"
+          id: "global-maven-settings"
+          isReplaceAll: true
+          name: "global-maven-settings"
+          providerId: "org.jenkinsci.plugins.configfiles.maven.MavenSettingsConfig"
+  globalLibraries:
+    libraries:
+      - defaultVersion: "master"
+        implicit: true
+        name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                credentialsId: "githubuserssh"
+                id: "d603e473-3867-427e-a5fa-18919a4d7ecf"
+                remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
+                traits:
+                  - "gitBranchDiscovery"
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://cb-core.caternberg.eu/master2-demo/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB2OWw7CIBAA78K3C7XWCL2GJ4DdxRd1Gx76Yby71N/JTDIfdcn+WdWsIkXiQEc4\r\
+      \nYSSYaNiDC46BJjvag7XODaR26kbdHWDxpXIegXiRTltOHV9rXWdj8C6oMUmjwFwAJbMurw21LdJJ\r\
+      \n0Ke/ZXr65nAWfHB/iD4V/v4AJlftlJMAAAA=\r\n----- END CONNECTION DETAILS -----\n"
+  pollSCM:
+    pollingThreadCount: 10
+  prometheusConfiguration:
+    appendParamLabel: false
+    appendStatusLabel: false
+    collectDiskUsage: true
+    collectingMetricsPeriodInSeconds: 120
+    countAbortedBuilds: true
+    countFailedBuilds: true
+    countNotBuiltBuilds: true
+    countSuccessfulBuilds: true
+    countUnstableBuilds: true
+    defaultNamespace: "cloudbees-core"
+    fetchTestResults: true
+    jobAttributeName: "jenkins_job"
+    path: "prometheus"
+    processingDisabledBuilds: false
+    useAuthenticatedEndpoint: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  usageStatisticsCloudBees:
+    usageStatisticsCollected: true
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

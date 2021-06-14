@@ -10,6 +10,7 @@ plugins:
   - {id: authentication-tokens}
   - {id: aws-credentials}
   - {id: aws-java-sdk}
+  - {id: beer}
   - {id: blueocean}
   - {id: blueocean-autofavorite}
   - {id: blueocean-bitbucket-pipeline}
@@ -109,6 +110,7 @@ plugins:
   - {id: mailer}
   - {id: managed-master-hibernation}
   - {id: mapdb-api}
+  - {id: matrix-auth}
   - {id: matrix-project}
   - {id: maven-plugin}
   - {id: mercurial}
@@ -116,6 +118,7 @@ plugins:
   - {id: momentjs}
   - {id: nectar-license}
   - {id: nectar-rbac}
+  - {id: nexus-jenkins-plugin}
   - {id: node-iterator-api}
   - {id: notification-api}
   - {id: oauth-credentials}
@@ -169,4 +172,3 @@ plugins:
   - {id: workflow-scm-step}
   - {id: workflow-step-api}
   - {id: workflow-support}
-  - {id: beer}

@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.124 - ${MASTER_DOMAIN}"
+  systemMessage: "Jenkins configured using CasC v.125 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"

@@ -33,7 +33,7 @@ credentials:
               scope: SYSTEM
               secret: "{AQAAABAAAABwYKDl4ThxAhlepu3/BstFv8wChcsyXZPcFOPVHTuz0/SyfFNhTP1aH9D9CVA09tnJknS86YBu7sj1cmHuNAmC3AMvxUaAiy3IoEJKJqRvppiN4MHYY0ofSmugh1ryQq54170o3GOd9L73fHnonZfMC1BiNZkud8EcMV/ootGIXOM=}"
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.137 - ${MASTER_DOMAIN}"
+  systemMessage: "Jenkins configured using CasC v.138 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"
@@ -390,7 +390,7 @@ unclassified:
     server:
       apiUrl: "https://flow-server.cloudbees-core:8443/"
       ignoreSslConnectionErrors: true
-    url: "https://cb-core.caternberg.eu/"
+    url: "https://sda.meckermail.de/"
   defaultFolderConfiguration:
     healthMetrics:
       - jobStatusHealthMetric:
@@ -426,7 +426,7 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://cb-core.caternberg.eu/${MASTER_DOMAIN}/github-webhook/"
+    hookUrl: "https://sda.meckermail.de/${MASTER_DOMAIN}/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -455,25 +455,11 @@ unclassified:
     gracePeriod: 120
   ivyBuildTrigger:
     extendedVersionMatching: false
-  globalLibraries:
-    libraries:
-      - defaultVersion: "master"
-        implicit: true
-        name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
-        retriever:
-          modernSCM:
-            scm:
-              git:
-                credentialsId: "githubuserssh"
-                id: "d603e473-3867-427e-a5fa-18919a4d7ecf"
-                remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
-                traits:
-                  - "gitBranchDiscovery"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://cb-core.caternberg.eu/${MASTER_DOMAIN}/"
+    url: "https://sda.meckermail.de/${MASTER_DOMAIN}/"
   mailer:
     charset: "UTF-8"
     useSsl: false

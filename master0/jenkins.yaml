@@ -1,5 +1,39 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              description: "githubuserssh"
+              id: "githubuserssh"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{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}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - usernamePassword:
+              description: "githubuserpw"
+              id: "githubuserpw"
+              password: "{AQAAABAAAAAQ98ll4qGPcM3nPFRdWByDDby1yPBye3f/yjFJM+IHgmA=}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - usernamePassword:
+              description: "githubuseraccesstoken"
+              id: "githubuseraccesstoken"
+              password: "{AQAAABAAAAAwh3gRZSwSh4a9pOvMkOthXy+6fWsw2BQvY2V+pamtbogd1XQ6vCLmX++jPIOkdweZsNFHsWqoctqUfFbgfeu6PQ==}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - string:
+              description: "githubaccesstoken"
+              id: "githubaccesstoken"
+              scope: GLOBAL
+              secret: "{AQAAABAAAAAw655NYw03krf88IyOQTrgpZA4vVGj5ENmTOaV9122gSuJB53aOUl9LWgjwFLk7uoEYpFKOmyUciNYMjyF4EJElA==}"
+          - string:
+              description: "Webhook secret for https://github.com/apps/pipeline-demo-caternberg1"
+              id: "63fcee06-74ca-4a3a-9138-043af8e0c8d4"
+              scope: SYSTEM
+              secret: "{AQAAABAAAAAwnFQOoB0K41UBHEG9OWpLJGmprJD1omewz4OOWOUZFJUjTfPZX7HM1BJIpMQq7WGlVoEveoVaSOs4FXje7cpRDA==}"
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.133 - ${MASTER_DOMAIN}"
+  systemMessage: "Jenkins configured using CasC v.134 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"

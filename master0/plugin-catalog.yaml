@@ -14,5 +14,5 @@ configurations:
         hashicorp-vault-pipeline: { url: 'http://nexus.34.98.108.14.nip.io/repository/cloudbees-raw/hashicorp-vault-pipeline/latest/hashicorp-vault-pipeline.hpi' }
         ansicolor: { version: 1.0.0 }
         ivy: { version: '2.1' }
-        artifactory: { version: 3.11.4 }
-        nexus-jenkins-plugin: { version: 3.11.20210420-142258.bdfc332 }
+        artifactory: { version: 3.12.5 }
+        nexus-jenkins-plugin: { version: 3.11.20210729-123253.8df0e2b }

@@ -28,7 +28,7 @@ credentials:
               scope: GLOBAL
               secret: "{AQAAABAAAAAwbm39B/T8zP0R5JrFzmd6ErZZbxOZ4aAsw3Wbx8cIoWkyGd5DJrDyfLIsfxShs0dwjiVqpnb5s36FzxO7bKcAWA==}"
 jenkins:
-  systemMessage: "Jenkins configured using CasC v.140 - ${MASTER_DOMAIN}"
+  systemMessage: "Jenkins configured using CasC v.141 - ${MASTER_DOMAIN}"
   agentProtocols:
     - "Diagnostic-Ping"
     - "JNLP4-connect"

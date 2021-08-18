@@ -1,32 +1,3 @@
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-          - basicSSHUserPrivateKey:
-              description: "githubuserssh"
-              id: "githubuserssh"
-              privateKeySource:
-                directEntry:
-                  privateKey: "{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}"
-              scope: GLOBAL
-              username: "cccaternberg"
-          - usernamePassword:
-              description: "githubuserpw"
-              id: "githubuserpw"
-              password: "{AQAAABAAAAAQLvZHPqB5dMud27qEwm3LtZXsMzYDOIy4jIzrCsHzX+Q=}"
-              scope: GLOBAL
-              username: "cccaternberg"
-          - usernamePassword:
-              description: "githubuseraccesstoken"
-              id: "githubuseraccesstoken"
-              password: "{AQAAABAAAABAoHzezBBDpDAAAHmYKbK5sjp/d8bzZc3K3SlrnTGXpwu1mSL9I8pXL/WuD1DiYwigvLCiP8HL+zYx7mosfMjZhf7UPmy1V2MsPwn4nIPgTKM=}"
-              scope: GLOBAL
-              username: "cccaternberg"
-          - string:
-              description: "githubaccesstoken"
-              id: "githubaccesstoken"
-              scope: GLOBAL
-              secret: "{AQAAABAAAAAwbm39B/T8zP0R5JrFzmd6ErZZbxOZ4aAsw3Wbx8cIoWkyGd5DJrDyfLIsfxShs0dwjiVqpnb5s36FzxO7bKcAWA==}"
 jenkins:
   systemMessage: "Jenkins configured using CasC v.144 - ${MASTER_DOMAIN}"
   agentProtocols:
@@ -92,7 +63,7 @@ jobs:
             github {
               repoOwner("cccaternberg")
               apiUri("https://api.github.com")
-              credentialsId('githubaccesstoken')
+              credentialsId('github-accesstoken')
               traits {
                 publicRepoPullRequestFilterTrait()
               }

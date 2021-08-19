@@ -3,7 +3,7 @@
 BUNDLE_DIR=$JENKINS_HOME/jcasc-bundles-store
 
 
-rm -Rf $BUNDLE_DIR
+#rm -Rf $BUNDLE_DIR
 mkdir -p $BUNDLE_DIR
 
 #cp casc/core-casc-security.xml ${JENKINS_HOME}/

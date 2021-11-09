@@ -1,0 +1,351 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          description: "bitbucket"
+          id: "bitbucket"
+          password: "{AQAAABAAAAAgtaft77C1gFTs3NSn7S1MQSf1RTnlGlrDnFv+Vu7l8LghSuUVKdi/ZEqqF5ACfnkw}"
+          scope: GLOBAL
+          username: "acaternberg@cloudbees.com"
+      - usernamePassword:
+          description: "bitbuckettoken"
+          id: "bitbuckettoken"
+          password: "{AQAAABAAAABAvMh8x7b2WAUWMOV0hbDR/b2PImC2dBO4gu3a1dxNsyIyP779q/VYthNcTxoNIwv53FZSBGnjyI8iGZM8CQY9BOvjM2e1au2boxty08E3qWI=}"
+          scope: GLOBAL
+          username: "acaternberg@cloudbees.com"
+      - basicSSHUserPrivateKey:
+          description: "bbssh"
+          id: "bbssh"
+          privateKeySource:
+            directEntry:
+              privateKey: "{AQAAABAAAAyw1jcZmn3IB/qqtjKT1UBS9vkOliBrMFJSwuYJCUj78rfmcAZxZQ4mCQ0h+x/UjKq1Tsh19IoQDSG/gHvV6UOGGmVg5koOKexR7wXnlfnm+pq/gMZE2At8yKDBaNF7lqssLXf+L7PGeOiyDZqYeNDeNWLRPo7w1TMGZlnnCiPdF15vKM5rO1D6bDc4J3Kz5XRxezVERUneIuOktnz/+X6InsxY4uGWa2Yn+74laNp+A87jJM8wl9the26ZEFJdlZh1HWVmfn9Dx9XdtdkBXdXLa3hgvWxA5chvj++gvkZ0GowiRviGP3T/eF5JJO+L6sxEQFb68Ufxb5m40TosUMt8MX+HxURLubiGaH55rVZzmA2l9Z30cYfeNpPsBFaH0Cv/0S9zyuwyWSwotpXO/K5XNWvxx+AMcHH6qdmODI6LZ5HbQslTFtkpUftOkvFO2ZZbJBzWAWofPVv8+IQOglvKvaR2LY7iy7ygTlJC7UZ9PcjHuMQhhO4Dm0TZ7rQ/Vfvc+MsysYk75VdTZUfUes/tZkVvuuN9elQ/aefmFA2Rhxkv59TjTI+IrHzNlFnxFW9lyTb9a/MOWSIJGrMliOBoXhhxJpdbQ+QJxRU3zas7OIzqDgpG/ic/VzxFxnyAmWzWahYaZvoBcBWnVQ4UgVE3oalX5zZHJ8sGs3EEqZsmmAKf5cn9+vyLu4aYLFRqSG2osfYQtaxOW1MhlFMh2Al0/nGq+quB1DgHEb3w+M4Xs2bgQIskWzk4h9/fLeKYwPcmtPra42xUiVLHQjCoDu2aUrm1I1AaZB22jueGqY6iB4PGRVweSW1ZCliqInlXOmuBj57xWi4GUuCUww3SkZJ2QmbikHExVHujEuW6mHtkb2t/za7YjwyXj2Ukv5/lHGqLA/CGjtkOH53NiXpXKEbyzSfOliO+lHsI+zHRycUI53ZVQoRrNXNCm9P4DdYDgAbNlV2+taX20n3TH9+tGoJyQTy2KyW5ij8+rP/VyLmakkMmtcQut4t3xixgYuYpBTp4ANMnYTeIr7/dVZuFkOe4GUiT2FYRz9hFlBK7xdsS3c/IRi1FtoRXMp+jxgqTwU1Bwi4+gufXqq1TW0TLS663QFeISR99ukfCRuoFxbHj3FZTRtIekVsMsdrBz60zEMOecSwy7nM1OxfgzsciF92fdC38EfUcPvjBV2TKmpm5wqIq3RU8uJ0M4k1h05wJDZ4RlvAOE/O5M13mpTY9cgCCYoIGWyMrD20HCfH/tjdNTShey+UTIsFXEjIK3CiqTetGUz/fBJ4Ws9VGhR6lOWEcM0fkCftDFhUbW+CaMpO/wGyMZzU5SoGjvHi0G7imWIhBX80kqDMJVkZ6aKL7mq0gVgrYwyzIrGcq9QvP3DrPfhu5KqngkNxRb+T/F68Yq8UC2gwhd6OulozsRjR8vob4LjC7M0FBVYqsacZzFBEnnEX5iitEL9CFTOxYRnTrcSCx+DFQArjy1r6I0YSmqPhWQVZj7RUt4gSAMrNQWMlu+XW8Rnuq+G7D9HFCXUgsxTNyZ2WUz2Sy5YM+mUVzYDRz7GB4GiQDDNjSFBQ7u/xbWM0EBWJiZ8lZGCaBOMafVXKNGX/IiqevwiSVRLtt4NdLdyiDxgv0tJN4VIsix80X6pKVeY1gMdWR5MoEa2ie/M5XVjhQeoK2gVfsgUgYdsjh9ODBkFM0mpIq2wMTS7PlqVX/T9KcLNdW4LuqtQxLvfPF8U1ag2MXRUtEk2Hb6Jdb5npm5bFueR9SK3iFjtc87JMYTMEpY9PJLP2XFpiwMLRqaPvxOnrHMl0Lfxiqqsk5X8pNWIcEFick6he85tBfSxXfaWIhETbPZmFpf4McCbYVmSqVbvqCtnVQ8rNj3C/l1DnwRHlDwaPsnAXHy2vJNP6e+CAnuu3HJmq1IYT4S1hEVVoRWs5JdrSqJfR0pe/wOovh7Bi486YiZ4yo36L9BvS53oHQt4ydPBL6IZxsrqSwKWhWNuBQ2nZ3CL8uWAapOpvNdTUFpE3+jeVyZJoa7HUJzVRHkPvtlTEFzlsxzzFiOE3/nNL3uNxBuVa7m571+jEnZ19Q76+hDnKMh3X1O9Gxc/2dzO3q4v8wJLWJLcCYPvv2NZCvSFmHCDpiYAiB4RhcTLFkZw2VGtrOTsSQBUygH82tr7YMsv7hL1z/kFLO52Qs0sb4wbe38PU992Iqg3sd7s+JXmCtPELmyGrhBs1ZP9URRBVxMteZXAEXzvlR1LsiO1k21YrPTYbNBx8X6redoAbb5LUdIk6L9ryD9GS6/G9p5UiBtYF3tRBZlccy55OxKiDFOdBEO25Ogj5WBqo1d5knthNSGO4o3a2DTLOinEkXkhb8/yPtiINZh+0B/k4teqJxXoY9yYcuM6V5KP1aZ/0Ikt4Ni93RWJXaKEXKd1+vt9e6Qip1BkweeRWocYviWBfH6tMyBhcfs3HC+IR65xjfhF1NCoPGGwZ+I2jYYPB8qJWwp4/XydvmIQVOooWvTyzVku9xb5RbX1g4z21cgmsgt099U1bEtAeZ4xOJpPMU3H0QgwbTOczjClm9v2HHHSEPg8YRGXsFJhafi/j4a5Bj3uEYLRz1LrKAMS7NntN5veQpQdAQ+VH0aNWHnqauiHIOgw/Y8vR40HBOWmM4Z551EnizLrJr36wpGhR5/iupXxvtE+lzDgRl1N2Y8GuP570O1s7CPsDnc79uRD7XpWSQEZLGrDp2uq0k0qLicm60Ln6CR3BRdYPH1lvRcDKmcmRaUsLRXElHQyhx/vp3i5xA8ksQVVTgkS2CKoCIBKuNiFXCG1JufCvRYhYoz37DO3kcMMX1o7SZ3MteTNNYWWEd75LiOTrxUpELD7l9NX/+WseCfvpu9b8w0L4sNjZ7Om5bO36ywaGVhTHR0mBEsyWf8+0xolSZkFOliguH4ff8PZfOyY9u1vQzOESn7U+v/1KBzYkslzVkeQdG3yRr0J9zsX2G+ifqI8CS/H8v3yAJaWuJkCwGXNtJSYR1+T+GL1PeVFX3JBbLHvbJHpQGOnv8nMCC93/h8TYzOCITK8iNQv1gS0lQNeJWSMbb+NgXtwPr2pmaJDNXDWPzFQ9DsrSE0+AeKRyWhNP5XXmxhMbiyAaUKVGnFF73F/eonyRRrZm6c4tZvMcbiEEptTUygroA7+WW0OyqHX5LrtQBJdAGImSR76saXTvdLf1ZW5DYAg1kMMBcjX+sbRbTuzIpBbO0deYmdFg6duOFVm3ejtTKPHMGPF/n/FwucTlttFhpqAd0GW5Gmisitp8lfrFymUvk9PGYwuqF/8IHnP8s28K3y4c6Rlf9yohT/GmKSlbsFLAMNfGxec+0EhC4rAK6+5j2YZgmYsfjKP5r+7QoB3i075jTdH6irawDQoIkjCD5WQ4MApF5MuqyOT6LxxVlDn8aGLqEGrOt4IakWy+Ug/GUQ9vQfAqwm+CJSTYd597Ke/3e3lhuuZ7wMdD7+ty9f6UROjVqBIMnFgkqQYS7d9o15ZvCtgYZzsSglDFj300O3n4GBha1WD5um/UC/go1rT6+8G632vvVWe5ugBYZ9JZgBsRw6oM1Gld/AYh1BbOfJw4tOBWhTO64Lpm7kX2CWFvDNJ1yrpRcksRZ6vnow/Fw/2sn1NFCBGNUqzRf2ASpV/Ex5MRZ7x7L65zRrzed135sRAQaGal2XASBG4tzrFlTGIapuijispcynHrRQCOKaAVzKClfAUaQ7ObMW25An+MTj4E4mevAyI4JbCVStNtTaGa5oyZ5atvCUnoargs360kU1zad8ZjAUOxpLCENI857E8Ol98QPNiTKYvxGksU59TCGpWaoaohauIlNBt0Zfg+pdtA79/7k9eac/i9WTgQsydOeakf8ELpJXpvQTU7LJ8BJGox+2Kg7FagCX20yZWdKQUxYC848RY3ETmRyG4rqdiGhWlOWseYKRfVvlkHfwwdLAWheWV+1XqEZAI0DLOgASuqWLzqTZ3drGV/t9TkTbL1PDpP6NErlgTW569eB5sUTeQ3AXOr3ElqlbphEvlTEl0O7FKLTgfH8t93XmFLYIs2M561i1HjIyRckfXM01Q9gnQlMcMy/KKQ0l0KEoFpfgO7uSMHNAbO6pzHoE5YnSZjrCegvaHDKkOr16ibXYf0y1rvVAefX+dYJUj/BlIlpbNQMpeNyDIlpBQBfdSp9bwZuL0qUeoIO9HBsQSmpqc/Ne30VWu8pWsT9RhELGR6DujmdqzBfh7AdIf1ttnj3d5OHqdJhdLvBJQKjzIxWM2B/Gr+Z3e577n1wtZX2I78maVBV4osjNAdP0yFcKrvWjMxtzfT/rrybYk4blYko603D8e4SwlIYgJjy}"
+          scope: GLOBAL
+          username: "acaternberg@cloudbees.com"
+      - fileSystemServiceAccountCredential:
+          id: "558e0a99-4f2b-4e1e-9847-44ad3df7d9cc"
+          scope: GLOBAL
+      - string:
+          description: "botsa"
+          id: "botsa"
+          scope: GLOBAL
+          secret: "{AQAAABAAAANwd4ydZGydXMkqotgFOr3W1Ocj7JbAkWYunE/39LIZvJtE3aAPZcmGauzQDAxNQMJLGBt4PzAyJ22tlXx7rZRJzPXr44kR2GKlU33hXp91viTDBk7otQhh0lCpDvuqsXXJq9ZDXHY2S+LPPj7YyBRgxRijGgnS4BFKwow6n+Yjoqin8473xinzwys8fMrLlhLEhlQ78qQ7hMs4yriXLNbAitI+hWZNxH4+TV2WpNn1T9CAF4vdWoxS5BD0VAgNThE/qTh9vLoBgU66koxJa+43evqAXPbYoLcCDpXvEpwmcbpvSG/uw1MBTl7eDnaeT154d2kcndh1i9zlJiTQW+zVzH0b1i2feVV9b76hGVprrdF6V0nq4PqJ7ZjhHP29Mqo6BDAOTe6DpvdEj78wxXVktQotWLwJEc5UhHwgV9JubZg8xWSPtgTHhb3nMzHPeR24QxJ4OuSpLJ4Aq5b/+PIsQu0ppvOUlJzBkOMNw3VJMixcvcaSbncKDeWCbm2iyTZmSHFB5tt77hf1XaBS8Fc6dg1+PbVuVd6Noxl6EBzHwYxBX3/yhk0YX50S8X90d66eDxj3biaTwdR3VJsDcwFQDyG7pG1cSAvmygLVTVLydcFz1S8mHLsXoGQPJCSZe1sjXVs4gsUpStHnGkRHnj+c3LEVA+lpYcZf1vTfkNX/as358Wqfo1Z+0uc6dCznXTAl6c33VyAyiLJoShkWFuFQ9+fwxiUZBfhq+xO+aYvfz3ZjkObg5skYeBFx/CAqlw4nxeRt89ErCoShH+GByJLNvLVzepyVcQiwvSfQ5NtN92VQ4O5gJAY+lWG2CxJKp8ML1EjCXwjt2za7zFMLjPZx4mZULup7b0oFdCJoV2VRN/7vpXFd1wtiPHHGfPDszqT4R+mCguXWWtwVf5m6GZnNX0b0DgaHSPWfG5DRQkEQGO04s9JpEYGrDpytd7xkFJjszaLPGMvaMOSPTtsCX3rkze4aSEP/bdWnQLtrpsZ4HVNb5B+qoWDk0B9k8kGmm6H/OpiroMxH4fKHAD4GcqBPAmxW4LjIV1Yb3I4g6eKIlutwHOpRznRagnp4v4OEr6XzhuHmCzkyEfsoznIdM036YL/lf5zELfBBAoIi1mYIIz0xMtcH/2SwJeCQE4zt7vITUJSqL5P0wr5z45i4O9UerT4u1cmetpFbhRh3OpCN0vI=}"
+      - string:
+          description: "sonarqubetoken"
+          id: "sonarqubetoken"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwdjulsBS2v6ZUfRRempAeixVVlKXPu1NlwAgUnkrvVZgVv8l3r5S9ljJuCSt2KDbBZzVQXGmqaTY9DYDpwyD4FA==}"
+      - usernamePassword:
+          description: "atlassiantoken"
+          id: "atlassiantoken"
+          password: "{AQAAABAAAAAgRPETE9cmLj8yfl4g2b24T/33g6halP6s1DcTKV9CtfYfNodFK1kJaCjXo7cNL4gc}"
+          scope: GLOBAL
+          username: "acaternberg@cloudbees.com"
+jenkins:
+  agentProtocols:
+  - "Diagnostic-Ping"
+  - "JNLP4-connect"
+  - "OperationsCenter2"
+  - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm: "operationsCenter"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+    - id: "core-mm-offline"
+      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+    - id: "cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+support:
+  automatedBundleConfiguration:
+    componentIds:
+    - "CloudBeesAssuranceSupport"
+    - "CloudBeesCasCBundlesSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "ComponentImpl"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "OperationsCenterSupportComponent"
+    - "PipelineTimings"
+    - "PipelineThreadDump"
+    enabled: true
+    period: 1
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  ansiColorBuildWrapper:
+    colorMaps:
+    - black: "#000000"
+      blackB: "#4C4C4C"
+      blue: "#1E90FF"
+      blueB: "#4682B4"
+      cyan: "#00CDCD"
+      cyanB: "#00FFFF"
+      green: "#00CD00"
+      greenB: "#00FF00"
+      magenta: "#CD00CD"
+      magentaB: "#FF00FF"
+      name: "xterm"
+      red: "#CD0000"
+      redB: "#FF0000"
+      white: "#E5E5E5"
+      whiteB: "#FFFFFF"
+      yellow: "#CDCD00"
+      yellowB: "#FFFF00"
+    - black: "#000000"
+      blackB: "#555555"
+      blue: "#0000AA"
+      blueB: "#5555FF"
+      cyan: "#00AAAA"
+      cyanB: "#55FFFF"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#00AA00"
+      greenB: "#55FF55"
+      magenta: "#AA00AA"
+      magentaB: "#FF55FF"
+      name: "vga"
+      red: "#AA0000"
+      redB: "#FF5555"
+      white: "#AAAAAA"
+      whiteB: "#FFFFFF"
+      yellow: "#AA5500"
+      yellowB: "#FFFF55"
+    - black: "black"
+      blackB: "black"
+      blue: "blue"
+      blueB: "blue"
+      cyan: "cyan"
+      cyanB: "cyan"
+      green: "green"
+      greenB: "green"
+      magenta: "magenta"
+      magentaB: "magenta"
+      name: "css"
+      red: "red"
+      redB: "red"
+      white: "white"
+      whiteB: "white"
+      yellow: "yellow"
+      yellowB: "yellow"
+    - black: "#2E3436"
+      blackB: "#2E3436"
+      blue: "#3465A4"
+      blueB: "#3465A4"
+      cyan: "#06989A"
+      cyanB: "#06989A"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#4E9A06"
+      greenB: "#4E9A06"
+      magenta: "#75507B"
+      magentaB: "#75507B"
+      name: "gnome-terminal"
+      red: "#CC0000"
+      redB: "#CC0000"
+      white: "#D3D7CF"
+      whiteB: "#D3D7CF"
+      yellow: "#C4A000"
+      yellowB: "#C4A000"
+  bitbucketEndpointConfiguration:
+    endpoints:
+    - bitbucketCloudEndpoint:
+        credentialsId: "bitbucket"
+        enableCache: true
+        manageHooks: true
+        repositoriesCacheDuration: 0
+        teamCacheDuration: 0
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  cloudBeesSCMReporting:
+    enabled: true
+  defaultFolderConfiguration:
+    healthMetrics:
+    - worstChildHealthMetric:
+        recursive: true
+    - "averageChildHealthMetric"
+    - jobStatusHealthMetric:
+        countVirginJobs: false
+        failure: true
+        success: true
+        unbuilt: true
+        unstable: true
+    - "primaryBranchHealthMetric"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpPassword: "{AQAAABAAAABAF/+xVpZ8h4N7OdBS7xzd1BwA0C81S2X7m31Qm/LsP4i/dhzVY0D9Qof4QezcmXgCYkZX88WrTtYHZmYJEENhpg7uhTEZEr9M/mmsp4h2ueE=}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  experimentalPlugins:
+    enabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/team1/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  jiraGlobalConfiguration:
+    sites:
+    - alternativeUrl: "https://acaternberg-jira.atlassian.net/"
+      appendChangeTimestamp: true
+      credentialsId: "atlassiantoken"
+      updateJiraIssueForAllStatus: true
+      url: "https://acaternberg-jira.atlassian.net/"
+      userPattern: "DEV.*"
+  jiraStepsConfig:
+    sites:
+    - credentialsId: "atlassiantoken"
+      loginType: "CREDENTIAL"
+      name: "jirasteps"
+      password: "{AQAAABAAAAAQ3+aMwiapvdo5jJ7bUyQdNnt4pTVIg+qHLLPZE7LxRfI=}"
+      readTimeout: 10000
+      secret: "{AQAAABAAAAAQvSrYbnau+TDYFLJmalhOkWSqeUQVbbtvcR5dWCTGag8=}"
+      timeout: 10000
+      token: "{AQAAABAAAAAQs0bw5iNORNMsdpolgmB47fAGh9SRkpxYJuV+pJxa+8w=}"
+      url: "https://acaternberg-jira.atlassian.net/"
+  jiraTriggerGlobalConfiguration:
+    jiraCommentReply: false
+    jiraPassword: "{AQAAABAAAAAQcRyVcMu0CvOBI+OR2hKcpB2wf+28EMs8smJg4eW9WcM=}"
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/team1/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB2NSQ7CMBAE/+IzYyeKI6J8gxfMtCdsBiMvcED8HcOxWlXqtzlmvlezmsUH5XED\r\
+      \nedaZvEwzLQIQ9hsGmTxDvNmZc+juQFX5NnZsOXY+1fpYncMlwSKmFkS1EFJWW56/qZWq2cYEjn/L\r\
+      \n9fSlcki4aj/fOBb9fAHnYk16jAAAAA==\r\n----- END CONNECTION DETAILS -----\n"
+  pollSCM:
+    pollingThreadCount: 10
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: true
+    installations:
+    - credentialsId: "sonarqubetoken"
+      name: "sonarqube"
+      serverUrl: "http://sonarqube.acaternberg.flow-training.beescloud.com"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  usageStatisticsCloudBees:
+    disabledJenkinsUsageStatistics: true
+    usageStatisticsCollected: false
+  warningsParsers:
+    consoleLogScanningPermitted: false
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

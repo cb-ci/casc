@@ -119,19 +119,6 @@ items:
                   daysToKeep: -1
                   numToKeep: 4
     properties:
-      - jiraFolderProperty:
-          sites:
-            - jiraSite:
-                threadExecutorNumber: 10
-                appendChangeTimestamp: false
-                recordScmChanges: true
-                supportsWikiStyleComment: false
-                updateJiraIssueForAllStatus: true
-                useHTTPAuth: false
-                readTimeout: 30
-                disableChangelogAnnotations: false
-                credentialsId: atlassiantoken
-                timeout: 10
       - organizationChildHealthMetricsProperty:
           templates:
             - worstChildHealthMetric:

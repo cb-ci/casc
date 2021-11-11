@@ -1,35 +1,32 @@
 removeStrategy:
-  rbac: SYNC
-  items: NONE
+  items: "none"
+  rbac: "sync"
+
 items:
-  - concurrentBuild: true
-    kind: pipeline
-    displayName: GolangAppExample
-    resumeBlocked: false
-    name: GolangAppExample
-    description: ''
+  - kind: "pipeline"
+    name: "project-beta-pipeline-job"
+    displayName: "Project Beta Pipeline job"
+    description: "This is Project Beta's Pipeline job!"
     definition:
       cpsScmFlowDefinition:
-        scriptPath: pipelines/Jenkinsfile-golang.groovy
+        scriptPath: "Jenkinsfile"
         scm:
           gitSCM:
+            gitTool: "git"
             userRemoteConfigs:
               - userRemoteConfig:
-                  credentialsId: github-user-ssh
-                  url: git@github.com:cccaternberg/cloudbees-ci-config.git
+                  name: "developer-b"
+                  credentialsId: "credentials-id"
+                  url: "git@github.com:company/project-beta.git"
+            extensions:
+              - checkoutOption:
+                  timeout: 2
+              - cloneOption:
+                  reference: "/workspace/git"
+                  noTags: false
+                  honorRefspec: false
+                  shallow: true
+                  timeout: 5
             branches:
               - branchSpec:
-                  name: '*/main'
-        lightweight: false
-    disabled: false
-  - healthMetrics:
-      - worstChildHealthMetric:
-          recursive: true
-      - averageChildHealthMetric: {}
-      - jobStatusHealthMetric:
-          unstable: true
-          countVirginJobs: false
-          failure: true
-          success: true
-          unbuilt: true
-      - primaryBranchHealthMetric: {}
+                  name: "*/main"

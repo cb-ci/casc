@@ -12,10 +12,21 @@ items:
         scriptPath: pipelines/Jenkinsfile-golang.groovy
         scm:
           gitSCM:
+            gitTool: "git"
             userRemoteConfigs:
               - userRemoteConfig:
+                  name: "developer-b"
                   credentialsId: github-user-ssh
                   url: git@github.com:cccaternberg/cloudbees-ci-config.git
+            extensions:
+              - checkoutOption:
+                  timeout: 2
+              - cloneOption:
+                  reference: "/workspace/git"
+                  noTags: false
+                  honorRefspec: false
+                  shallow: true
+                  timeout: 5
             branches:
               - branchSpec:
                   name: "*/main"

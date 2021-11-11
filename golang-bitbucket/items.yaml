@@ -2,138 +2,48 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- orphanedItemStrategy:
-    defaultOrphanedItemStrategy:
-      pruneDeadBranches: true
-      daysToKeep: -1
-      numToKeep: 1
-  SCMSources:
-  - bitbucket:
-      autoRegisterHook: true
-      excludes: ''
-      traits:
-      - bitbucketBranchDiscovery:
-          strategyId: 3
-      - bitbucketPullRequestDiscovery:
-          strategyId: 2
-      - bitbucketForkDiscovery:
-          trust:
-            bitbucketTrustTeam: {}
-          strategyId: 1
-      - bitbucketBuildStatusNotifications:
-          sendSuccessNotificationForUnstableBuild: false
-      - cloudBeesSCMReporting:
-          visibleLinesOnly: false
-          handlers:
-          - endBuildError:
-              maxLogLines: 100
-          - stage:
-              verbosity:
-                all: {}
-          - junit: {}
-          - warningsNG: {}
-      - cleanBeforeCheckoutTrait:
-          extension:
-            cleanBeforeCheckout:
-              deleteUntrackedNestedRepositories: true
-      repoOwner: acaternberg
-      serverUrl: https://bitbucket.org
-      includes: '*'
-      checkoutCredentialsId: SAME
-      credentialsId: bitbucket
-      id: com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMNavigator::https://bitbucket.org::acaternberg::app_go1
-      repository: app_go1
-  healthMetrics:
-  - worstChildHealthMetric:
-      recursive: true
-  - averageChildHealthMetric: {}
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
-  - projectEnabledHealthMetric: {}
-  kind: organizationFolder
-  displayName: Andreas Caternberg
-  name: go-team-project
-  navigators:
-  - bitbucket:
-      traits:
-      - bitbucketBranchDiscovery:
-          strategyId: 3
-      - bitbucketPullRequestDiscovery:
-          strategyId: 2
-      - bitbucketForkDiscovery:
-          trust:
-            bitbucketTrustTeam: {}
-          strategyId: 1
-      - bitbucketBuildStatusNotifications:
-          sendSuccessNotificationForUnstableBuild: false
-      - cloudBeesSCMReporting:
-          visibleLinesOnly: false
-          handlers:
-          - endBuildError:
-              maxLogLines: 100
-          - stage:
-              verbosity:
-                all: {}
-          - junit: {}
-          - warningsNG: {}
-      - cleanBeforeCheckoutTrait:
-          extension:
-            cleanBeforeCheckout:
-              deleteUntrackedNestedRepositories: true
-      repoOwner: acaternberg
-      serverUrl: https://bitbucket.org
-      credentialsId: bitbucket
-  projectFactories:
-  - customMultiBranchProjectFactory:
-      factory:
-        customBranchProjectFactory:
-          marker: build-go-bin.sh
-          definition:
-            cpsScmFlowDefinition:
-              scriptPath: resources/pipelines/Jenkinsfile.go.groovy
-              scm:
-                gitSCM:
-                  userRemoteConfigs:
-                  - userRemoteConfig:
-                      credentialsId: bitbucketssh
-                      url: git@bitbucket.org:acaternberg/shared_libs.git
-                  branches:
-                  - branchSpec:
-                      name: '*/main'
-              lightweight: false
-  trigger:
-    periodicFolderTrigger:
-      interval: 1h
-  strategy:
-    allBranchesSame:
-      props:
-      - buildRetention:
-          buildDiscarder:
-            logRotator:
-              artifactDaysToKeep: -1
-              artifactNumToKeep: -1
-              daysToKeep: -1
-              numToKeep: 4
-  properties:
-  - jiraFolderProperty:
-      sites:
-      - jiraSite:
-          threadExecutorNumber: 10
-          appendChangeTimestamp: false
-          recordScmChanges: true
-          supportsWikiStyleComment: false
-          updateJiraIssueForAllStatus: true
-          useHTTPAuth: false
-          readTimeout: 30
-          disableChangelogAnnotations: false
-          credentialsId: atlassiantoken
-          timeout: 10
-  - organizationChildHealthMetricsProperty:
-      templates:
+  - orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: 1
+    SCMSources:
+      - bitbucket:
+          autoRegisterHook: true
+          excludes: ''
+          traits:
+            - bitbucketBranchDiscovery:
+                strategyId: 3
+            - bitbucketPullRequestDiscovery:
+                strategyId: 2
+            - bitbucketForkDiscovery:
+                trust:
+                  bitbucketTrustTeam: {}
+                strategyId: 1
+            - bitbucketBuildStatusNotifications:
+                sendSuccessNotificationForUnstableBuild: false
+            - cloudBeesSCMReporting:
+                visibleLinesOnly: false
+                handlers:
+                  - endBuildError:
+                      maxLogLines: 100
+                  - stage:
+                      verbosity:
+                        all: {}
+                  - junit: {}
+                  - warningsNG: {}
+            - cleanBeforeCheckoutTrait:
+                extension:
+                  cleanBeforeCheckout:
+                    deleteUntrackedNestedRepositories: true
+          repoOwner: acaternberg
+          serverUrl: https://bitbucket.org
+          includes: '*'
+          checkoutCredentialsId: SAME
+          credentialsId: bitbucket
+          id: com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMNavigator::https://bitbucket.org::acaternberg::app_go1
+          repository: app_go1
+    healthMetrics:
       - worstChildHealthMetric:
           recursive: true
       - averageChildHealthMetric: {}
@@ -144,365 +54,361 @@ items:
           success: true
           unbuilt: true
       - projectEnabledHealthMetric: {}
-  - organizationChildOrphanedItemsProperty:
-      strategy:
-        inherit: {}
-  - organizationChildTriggersProperty:
-      templates:
-      - periodicFolderTrigger:
-          interval: 1d
-  - folderCredentialsProperty:
-      credentials:
-      - basicSSHUserPrivateKey:
-          privateKeySource:
-            directEntryPrivateKeySource:
-              privateKey: '{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}'
-              privateKeys:
-              - |
-                -----BEGIN RSA PRIVATE KEY-----
-                MIIJKgIBAAKCAgEAtLJrEceAA9AHpN0yqeA9hv0o0ugZt0h5yNG6ATxi134DAz+4
-                2jVo24BM0u/YTeh3BV2UvruMzKLTe4AOX9uh5fx91zxHKrcqHXsJSAtCQdUBTGwI
-                t5Oz69Iq4fC9G5hYDkW9WB1fF8GXK851zT3Un8yqJxFe87lzkStZ/VVpkLOlqS+A
-                MuuONLuol1723Emr9ZdbgLyeJTH3avyjlk8meESB3o4KrKfPJefGQLQhmw16/NYG
-                4wmy07hsVgVeTdsIDESUP7qKr12bvq5B7cH/OtVr0N409aG4sF8JYy8+OlpVorJt
-                6/mVf9ips9VWH3N3Zf6dos3g0TlKR4liBayAHLH6+1pOgD/B3YOd94HhS0u9i5zK
-                8x19c2C9QBJh9n8t4aVgqDPF9RPNbIwl6GGS50p4aarlFg1U2b2M5MwZm1QUfcW9
-                RIPsETc+w1ZA8+NHfpRxG7rVj43U9QUmBeniSYXvq1BoWA+9Dm5rYaOYBGydqzDy
-                5EzzNP/rvjnq83iKcjDnTFiqEV+0V0+ht8hU2L9O2seXZ3wj2qqKVd5+UlZTPt3M
-                y+v0W/FNgv6Xe9G1Ka6WF3wGh+/n7a7LE9Rd6QaH+nv5lY1ma2XCSvC8rxbhRpG/
-                IGeiFcZ9lROXZIkFI2iaSY0P9d9qgfYtdlGdXfOd0QlJncyQb24JkD54FYMCAwEA
-                AQKCAgEAoCGVHPZtDfPnMkUMRtr/64aiDPW/BFvoAP1LFxlKhqmXRePMjyPRvuPe
-                MPh3+eLOxyR9UuGmDxsky0dadbyPpt6xLnKupr4XRnTobr37g5eeRPlgaD8urQdd
-                FUlgbPn+3vcSqumsgcL/ksSuRKpMqSiYiXKtcNOiBL4kS4rLuH5biqkbtQRmy3ia
-                GTsBDYsEJupxHo8InvG+z0MAPY37C426gV3jO8qimnbhjCmVtnCl0zZgeAb6QQIo
-                j7rGLbyzTxvfPPK1QF92S+7lYiwPYTYNC9Y/nIYqw7IVAZ62SMQRK9Nv8jUGNXvu
-                N/4RCmIrJ2oSjFpip0db+jVXdqu+AzFsfsYVa5hOHf1uLmFIDNgpulygRUqNr9wv
-                P2MdmSMNiDZTOG6u53MNC5EjW+NPWlVhr97YBiv3ZP5Lfj+pQNsLv6OGjErw2XcC
-                PKTrist10J9jNIj7iuQmlFnNytkx4ZtNyRmvynbbQck8MlD0wzjU+YdhPN3M/G/S
-                9Np/fuRdAabpLoaryRLZYLsrfcd2qvy0IoFTEyEPcuCgVRGyxVhx9O1LVpvtcTqJ
-                PZdyOMj5lEhWxi3HMofU4uwvhUWkjqPKCMs5iXyMLH9DxVfgj6LHhUMWy73zx7zp
-                JdyGtM75hSQTXoU0qZeExi/NlrK3agymh1gLIpBjIpmQNlrVMPECggEBAOoVUgDG
-                jiFWF73mUNZkbYUJYBlS4RF/RKZNNXoi2hbzNllq70gD2TcN6ibPN962vz8+Qtav
-                mEK8eVdALCE7YMNOiAQgj5SAHZs8gh/VC1u2ubj6+UBnw3cE5ZguY/rqxcK+X1AC
-                /eRHoUeTXrP9yrF7SLc5hcRD2BrquhAkfTPq/t183pubUBXjAZVYNXqReLS6jsyH
-                z3SuFZIa7jyCfOpo43CEB3oR5dI3++AJTJziDdfj6RCGXlpxcRedXOVk4nqSt8R0
-                Qs9Rk1KTY2tjKUqK4Ux+dQMiYZz2NMjVIuYSUBJHF4b9OjE934T3mfw72WNaaU+t
-                aBT7RZZuVNJDS/8CggEBAMWdfr2h/2fE5fXnRkNvDS+t0gGBNnhFr2K3XM8BaJb+
-                Ya+diQaGlZ3WO8x2Adwa34N7gYgabC+47cdim8FuAtTGcRv0dZiyQVjemL0myRIT
-                WOK+d9TQ9QWbVMb+MEbWvjtjj/kguJnb/Fovyqs7UIe/HjIy3dib7FKqX0139elh
-                Z8KNTmGwpfKuWNrXuF3OS73Q1oExsOyWTx08AqzEHRjNx4CSZ9R9A4IZrfDYvzA6
-                5AtUgMqrUGdeMi5ZSMjc9H2V3zDHmwW18mj1h2ePz+N0v3qs+dTmyZcYessmC2mQ
-                xIUOD1BL4co7s7ErZOoOx2CuqEn3NkHJx7qXGRAsBn0CggEBAMrUjIi1g6RpKAtZ
-                TURoIun61LU8tl7l60M6dZMOLfFi7v4OBaZeB1KIERNtzJiDuzV+qoXCA2oYTAAJ
-                T/O/srmpC3ygBimD1aOUi6AvhzcCHu2lMmLXRmyT5qm10NYzpgZ31LjMztiGJL6T
-                eKT3zTF6hOiWxEzrCI9SQsUICSD6h7q9n1ov+vXsDIwusbAx6uiXGnMpXt5YlcJS
-                6Ymu+7RWDHWLQbtJVN2RuwNGq4bo7VvbVTEHbSxrTbZLmZn/j6rsBKYKo3Vm1wPf
-                SG9drgK0UkJo9NUxbmmGgPhgjmvTBGTCCyXhuBHA7jQWI+yGo3hOeCAdPqmnjIWr
-                tn226FsCggEAHqUMyXV8uOfUzWxe/ggToGgxH+CcxMvxpbpPnx5VzMyH84bXf/aQ
-                7xgQz+Ug5rQYIzic3rFSQ5hG71uAUd+werSHR9GCBvrlnVVvlC2WksIDT64/wPXi
-                eUscO3uhmuqkN2t6ISUM23c8y/OLV0BsfZCKqzguJPARFsSq4MWQke9z+ryVAhs1
-                sMuOpek8AvgB0N641PISwK2SeTMcKxSCep02qd6KUW5Ng/hde/Lwuxb21Db3ffZR
-                EqaN25gm7FcvZuY95T+e76TGgbZJmCq6D0jEhM6cM4LSkibOrAArVuSHRSboAwix
-                a/4UII5dKNq/2mNbX5UBifQzj+DslxBstQKCAQEAs01VDvuPXwWet6frf1fXNmiY
-                XkonTexE8VAaYagMiZTBAInq5GmcaIaeSGur3XUg0eMpW1FvJ1f10Zfy85+y64aC
-                Zl2gkiCj/nsOWlmaIOymfYQ+JBiiL2yL0FmLlN3v0udpFZIH6OO6vRT3SIM3hA4n
-                Qtwac3QXR84lDoJX+uD1axs7eWtUWgdogdWrBIC7zN6DK7jctq1vSBjgeje0+cme
-                U2pAMla3lG1oKDZhDZojpCUIg965C0UuIJdNwQE2z5C7xeYccOB7HCmXZ7QdAvRQ
-                ZEn7IFrlmcyyauTcOgQCy9PybF5nNEySu/9U+954ZmvGJ5LlLREVl8iXhkCo4w==
-                -----END RSA PRIVATE KEY-----
-          privateKeys:
-          - |
-            -----BEGIN RSA PRIVATE KEY-----
-            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
-            -----END RSA PRIVATE KEY-----
-          description: bitbucketssh
-          id: bitbucketssh
-          usernameSecret: false
-          username: acaternberg
-  - envVars: {}
-  - folderLibraries:
-      libraries:
-      - libraryConfiguration:
-          implicit: false
-          allowVersionOverride: true
-          retriever:
-            modernSCM:
-              scm:
-                git:
-                  traits:
-                  - gitBranchDiscovery: {}
-                  credentialsId: bitbucketssh
-                  id: 6829cfaa-531a-4211-b33c-d93702f7e589
-                  remote: git@bitbucket.org:acaternberg/shared_libs.git
-          name: bitbucket.org-acaternberg-shared_libs
-          defaultVersion: main
-          includeInChangesets: true
-  - noTriggerOrganizationFolderProperty:
-      branches: .*
-- concurrentBuild: true
-  kind: pipeline
-  displayName: GolangAppExample
-  resumeBlocked: false
-  name: GolangAppExample
-  description: ''
-  definition:
-    cpsScmFlowDefinition:
-      scriptPath: pipelines/Jenkinsfile-golang.groovy
-      scm:
-        gitSCM:
-          userRemoteConfigs:
-          - userRemoteConfig:
-              credentialsId: github-user-ssh
-              url: git@github.com:cccaternberg/cloudbees-ci-config.git
-          branches:
-          - branchSpec:
-              name: '*/main'
-      lightweight: false
-  disabled: false
-  properties:
-  - jiraProjectProperty: {}
-- healthMetrics:
-  - worstChildHealthMetric:
-      recursive: true
-  - averageChildHealthMetric: {}
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
-  - primaryBranchHealthMetric: {}
-  kind: folder
-  displayName: ops
-  name: ops
-  description: ''
-  items:
+    kind: organizationFolder
+    displayName: Andreas Caternberg
+    name: go-team-project
+    navigators:
+      - bitbucket:
+          traits:
+            - bitbucketBranchDiscovery:
+                strategyId: 3
+            - bitbucketPullRequestDiscovery:
+                strategyId: 2
+            - bitbucketForkDiscovery:
+                trust:
+                  bitbucketTrustTeam: {}
+                strategyId: 1
+            - bitbucketBuildStatusNotifications:
+                sendSuccessNotificationForUnstableBuild: false
+            - cloudBeesSCMReporting:
+                visibleLinesOnly: false
+                handlers:
+                  - endBuildError:
+                      maxLogLines: 100
+                  - stage:
+                      verbosity:
+                        all: {}
+                  - junit: {}
+                  - warningsNG: {}
+            - cleanBeforeCheckoutTrait:
+                extension:
+                  cleanBeforeCheckout:
+                    deleteUntrackedNestedRepositories: true
+          repoOwner: acaternberg
+          serverUrl: https://bitbucket.org
+          credentialsId: bitbucket
+    projectFactories:
+      - customMultiBranchProjectFactory:
+          factory:
+            customBranchProjectFactory:
+              marker: build-go-bin.sh
+              definition:
+                cpsScmFlowDefinition:
+                  scriptPath: resources/pipelines/Jenkinsfile.go.groovy
+                  scm:
+                    gitSCM:
+                      userRemoteConfigs:
+                        - userRemoteConfig:
+                            credentialsId: bitbucketssh
+                            url: git@bitbucket.org:acaternberg/shared_libs.git
+                      branches:
+                        - branchSpec:
+                            name: '*/main'
+                  lightweight: false
+    trigger:
+      periodicFolderTrigger:
+        interval: 1h
+    strategy:
+      allBranchesSame:
+        props:
+          - buildRetention:
+              buildDiscarder:
+                logRotator:
+                  artifactDaysToKeep: -1
+                  artifactNumToKeep: -1
+                  daysToKeep: -1
+                  numToKeep: 4
+    properties:
+      - jiraFolderProperty:
+          sites:
+            - jiraSite:
+                threadExecutorNumber: 10
+                appendChangeTimestamp: false
+                recordScmChanges: true
+                supportsWikiStyleComment: false
+                updateJiraIssueForAllStatus: true
+                useHTTPAuth: false
+                readTimeout: 30
+                disableChangelogAnnotations: false
+                credentialsId: atlassiantoken
+                timeout: 10
+      - organizationChildHealthMetricsProperty:
+          templates:
+            - worstChildHealthMetric:
+                recursive: true
+            - averageChildHealthMetric: {}
+            - jobStatusHealthMetric:
+                unstable: true
+                countVirginJobs: false
+                failure: true
+                success: true
+                unbuilt: true
+            - projectEnabledHealthMetric: {}
+      - organizationChildOrphanedItemsProperty:
+          strategy:
+            inherit: {}
+      - organizationChildTriggersProperty:
+          templates:
+            - periodicFolderTrigger:
+                interval: 1d
+      - folderCredentialsProperty:
+          credentials:
+            - basicSSHUserPrivateKey:
+                privateKeySource:
+                  directEntryPrivateKeySource:
+                    privateKey: '{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}'
+                    privateKeys:
+                      - |
+                        -----BEGIN RSA PRIVATE KEY-----
+                        MIIJKgIBAAKCAgEAtLJrEceAA9AHpN0yqeA9hv0o0ugZt0h5yNG6ATxi134DAz+4
+                        2jVo24BM0u/YTeh3BV2UvruMzKLTe4AOX9uh5fx91zxHKrcqHXsJSAtCQdUBTGwI
+                        t5Oz69Iq4fC9G5hYDkW9WB1fF8GXK851zT3Un8yqJxFe87lzkStZ/VVpkLOlqS+A
+                        MuuONLuol1723Emr9ZdbgLyeJTH3avyjlk8meESB3o4KrKfPJefGQLQhmw16/NYG
+                        4wmy07hsVgVeTdsIDESUP7qKr12bvq5B7cH/OtVr0N409aG4sF8JYy8+OlpVorJt
+                        6/mVf9ips9VWH3N3Zf6dos3g0TlKR4liBayAHLH6+1pOgD/B3YOd94HhS0u9i5zK
+                        8x19c2C9QBJh9n8t4aVgqDPF9RPNbIwl6GGS50p4aarlFg1U2b2M5MwZm1QUfcW9
+                        RIPsETc+w1ZA8+NHfpRxG7rVj43U9QUmBeniSYXvq1BoWA+9Dm5rYaOYBGydqzDy
+                        5EzzNP/rvjnq83iKcjDnTFiqEV+0V0+ht8hU2L9O2seXZ3wj2qqKVd5+UlZTPt3M
+                        y+v0W/FNgv6Xe9G1Ka6WF3wGh+/n7a7LE9Rd6QaH+nv5lY1ma2XCSvC8rxbhRpG/
+                        IGeiFcZ9lROXZIkFI2iaSY0P9d9qgfYtdlGdXfOd0QlJncyQb24JkD54FYMCAwEA
+                        AQKCAgEAoCGVHPZtDfPnMkUMRtr/64aiDPW/BFvoAP1LFxlKhqmXRePMjyPRvuPe
+                        MPh3+eLOxyR9UuGmDxsky0dadbyPpt6xLnKupr4XRnTobr37g5eeRPlgaD8urQdd
+                        FUlgbPn+3vcSqumsgcL/ksSuRKpMqSiYiXKtcNOiBL4kS4rLuH5biqkbtQRmy3ia
+                        GTsBDYsEJupxHo8InvG+z0MAPY37C426gV3jO8qimnbhjCmVtnCl0zZgeAb6QQIo
+                        j7rGLbyzTxvfPPK1QF92S+7lYiwPYTYNC9Y/nIYqw7IVAZ62SMQRK9Nv8jUGNXvu
+                        N/4RCmIrJ2oSjFpip0db+jVXdqu+AzFsfsYVa5hOHf1uLmFIDNgpulygRUqNr9wv
+                        P2MdmSMNiDZTOG6u53MNC5EjW+NPWlVhr97YBiv3ZP5Lfj+pQNsLv6OGjErw2XcC
+                        PKTrist10J9jNIj7iuQmlFnNytkx4ZtNyRmvynbbQck8MlD0wzjU+YdhPN3M/G/S
+                        9Np/fuRdAabpLoaryRLZYLsrfcd2qvy0IoFTEyEPcuCgVRGyxVhx9O1LVpvtcTqJ
+                        PZdyOMj5lEhWxi3HMofU4uwvhUWkjqPKCMs5iXyMLH9DxVfgj6LHhUMWy73zx7zp
+                        JdyGtM75hSQTXoU0qZeExi/NlrK3agymh1gLIpBjIpmQNlrVMPECggEBAOoVUgDG
+                        jiFWF73mUNZkbYUJYBlS4RF/RKZNNXoi2hbzNllq70gD2TcN6ibPN962vz8+Qtav
+                        mEK8eVdALCE7YMNOiAQgj5SAHZs8gh/VC1u2ubj6+UBnw3cE5ZguY/rqxcK+X1AC
+                        /eRHoUeTXrP9yrF7SLc5hcRD2BrquhAkfTPq/t183pubUBXjAZVYNXqReLS6jsyH
+                        z3SuFZIa7jyCfOpo43CEB3oR5dI3++AJTJziDdfj6RCGXlpxcRedXOVk4nqSt8R0
+                        Qs9Rk1KTY2tjKUqK4Ux+dQMiYZz2NMjVIuYSUBJHF4b9OjE934T3mfw72WNaaU+t
+                        aBT7RZZuVNJDS/8CggEBAMWdfr2h/2fE5fXnRkNvDS+t0gGBNnhFr2K3XM8BaJb+
+                        Ya+diQaGlZ3WO8x2Adwa34N7gYgabC+47cdim8FuAtTGcRv0dZiyQVjemL0myRIT
+                        WOK+d9TQ9QWbVMb+MEbWvjtjj/kguJnb/Fovyqs7UIe/HjIy3dib7FKqX0139elh
+                        Z8KNTmGwpfKuWNrXuF3OS73Q1oExsOyWTx08AqzEHRjNx4CSZ9R9A4IZrfDYvzA6
+                        5AtUgMqrUGdeMi5ZSMjc9H2V3zDHmwW18mj1h2ePz+N0v3qs+dTmyZcYessmC2mQ
+                        xIUOD1BL4co7s7ErZOoOx2CuqEn3NkHJx7qXGRAsBn0CggEBAMrUjIi1g6RpKAtZ
+                        TURoIun61LU8tl7l60M6dZMOLfFi7v4OBaZeB1KIERNtzJiDuzV+qoXCA2oYTAAJ
+                        T/O/srmpC3ygBimD1aOUi6AvhzcCHu2lMmLXRmyT5qm10NYzpgZ31LjMztiGJL6T
+                        eKT3zTF6hOiWxEzrCI9SQsUICSD6h7q9n1ov+vXsDIwusbAx6uiXGnMpXt5YlcJS
+                        6Ymu+7RWDHWLQbtJVN2RuwNGq4bo7VvbVTEHbSxrTbZLmZn/j6rsBKYKo3Vm1wPf
+                        SG9drgK0UkJo9NUxbmmGgPhgjmvTBGTCCyXhuBHA7jQWI+yGo3hOeCAdPqmnjIWr
+                        tn226FsCggEAHqUMyXV8uOfUzWxe/ggToGgxH+CcxMvxpbpPnx5VzMyH84bXf/aQ
+                        7xgQz+Ug5rQYIzic3rFSQ5hG71uAUd+werSHR9GCBvrlnVVvlC2WksIDT64/wPXi
+                        eUscO3uhmuqkN2t6ISUM23c8y/OLV0BsfZCKqzguJPARFsSq4MWQke9z+ryVAhs1
+                        sMuOpek8AvgB0N641PISwK2SeTMcKxSCep02qd6KUW5Ng/hde/Lwuxb21Db3ffZR
+                        EqaN25gm7FcvZuY95T+e76TGgbZJmCq6D0jEhM6cM4LSkibOrAArVuSHRSboAwix
+                        a/4UII5dKNq/2mNbX5UBifQzj+DslxBstQKCAQEAs01VDvuPXwWet6frf1fXNmiY
+                        XkonTexE8VAaYagMiZTBAInq5GmcaIaeSGur3XUg0eMpW1FvJ1f10Zfy85+y64aC
+                        Zl2gkiCj/nsOWlmaIOymfYQ+JBiiL2yL0FmLlN3v0udpFZIH6OO6vRT3SIM3hA4n
+                        Qtwac3QXR84lDoJX+uD1axs7eWtUWgdogdWrBIC7zN6DK7jctq1vSBjgeje0+cme
+                        U2pAMla3lG1oKDZhDZojpCUIg965C0UuIJdNwQE2z5C7xeYccOB7HCmXZ7QdAvRQ
+                        ZEn7IFrlmcyyauTcOgQCy9PybF5nNEySu/9U+954ZmvGJ5LlLREVl8iXhkCo4w==
+                        -----END RSA PRIVATE KEY-----
+                privateKeys:
+                  - |
+                    -----BEGIN RSA PRIVATE KEY-----
+                    MIIJKgIBAAKCAgEAtLJrEceAA9AHpN0yqeA9hv0o0ugZt0h5yNG6ATxi134DAz+4
+                    2jVo24BM0u/YTeh3BV2UvruMzKLTe4AOX9uh5fx91zxHKrcqHXsJSAtCQdUBTGwI
+                    t5Oz69Iq4fC9G5hYDkW9WB1fF8GXK851zT3Un8yqJxFe87lzkStZ/VVpkLOlqS+A
+                    MuuONLuol1723Emr9ZdbgLyeJTH3avyjlk8meESB3o4KrKfPJefGQLQhmw16/NYG
+                    4wmy07hsVgVeTdsIDESUP7qKr12bvq5B7cH/OtVr0N409aG4sF8JYy8+OlpVorJt
+                    6/mVf9ips9VWH3N3Zf6dos3g0TlKR4liBayAHLH6+1pOgD/B3YOd94HhS0u9i5zK
+                    8x19c2C9QBJh9n8t4aVgqDPF9RPNbIwl6GGS50p4aarlFg1U2b2M5MwZm1QUfcW9
+                    RIPsETc+w1ZA8+NHfpRxG7rVj43U9QUmBeniSYXvq1BoWA+9Dm5rYaOYBGydqzDy
+                    5EzzNP/rvjnq83iKcjDnTFiqEV+0V0+ht8hU2L9O2seXZ3wj2qqKVd5+UlZTPt3M
+                    y+v0W/FNgv6Xe9G1Ka6WF3wGh+/n7a7LE9Rd6QaH+nv5lY1ma2XCSvC8rxbhRpG/
+                    IGeiFcZ9lROXZIkFI2iaSY0P9d9qgfYtdlGdXfOd0QlJncyQb24JkD54FYMCAwEA
+                    AQKCAgEAoCGVHPZtDfPnMkUMRtr/64aiDPW/BFvoAP1LFxlKhqmXRePMjyPRvuPe
+                    MPh3+eLOxyR9UuGmDxsky0dadbyPpt6xLnKupr4XRnTobr37g5eeRPlgaD8urQdd
+                    FUlgbPn+3vcSqumsgcL/ksSuRKpMqSiYiXKtcNOiBL4kS4rLuH5biqkbtQRmy3ia
+                    GTsBDYsEJupxHo8InvG+z0MAPY37C426gV3jO8qimnbhjCmVtnCl0zZgeAb6QQIo
+                    j7rGLbyzTxvfPPK1QF92S+7lYiwPYTYNC9Y/nIYqw7IVAZ62SMQRK9Nv8jUGNXvu
+                    N/4RCmIrJ2oSjFpip0db+jVXdqu+AzFsfsYVa5hOHf1uLmFIDNgpulygRUqNr9wv
+                    P2MdmSMNiDZTOG6u53MNC5EjW+NPWlVhr97YBiv3ZP5Lfj+pQNsLv6OGjErw2XcC
+                    PKTrist10J9jNIj7iuQmlFnNytkx4ZtNyRmvynbbQck8MlD0wzjU+YdhPN3M/G/S
+                    9Np/fuRdAabpLoaryRLZYLsrfcd2qvy0IoFTEyEPcuCgVRGyxVhx9O1LVpvtcTqJ
+                    PZdyOMj5lEhWxi3HMofU4uwvhUWkjqPKCMs5iXyMLH9DxVfgj6LHhUMWy73zx7zp
+                    JdyGtM75hSQTXoU0qZeExi/NlrK3agymh1gLIpBjIpmQNlrVMPECggEBAOoVUgDG
+                    jiFWF73mUNZkbYUJYBlS4RF/RKZNNXoi2hbzNllq70gD2TcN6ibPN962vz8+Qtav
+                    mEK8eVdALCE7YMNOiAQgj5SAHZs8gh/VC1u2ubj6+UBnw3cE5ZguY/rqxcK+X1AC
+                    /eRHoUeTXrP9yrF7SLc5hcRD2BrquhAkfTPq/t183pubUBXjAZVYNXqReLS6jsyH
+                    z3SuFZIa7jyCfOpo43CEB3oR5dI3++AJTJziDdfj6RCGXlpxcRedXOVk4nqSt8R0
+                    Qs9Rk1KTY2tjKUqK4Ux+dQMiYZz2NMjVIuYSUBJHF4b9OjE934T3mfw72WNaaU+t
+                    aBT7RZZuVNJDS/8CggEBAMWdfr2h/2fE5fXnRkNvDS+t0gGBNnhFr2K3XM8BaJb+
+                    Ya+diQaGlZ3WO8x2Adwa34N7gYgabC+47cdim8FuAtTGcRv0dZiyQVjemL0myRIT
+                    WOK+d9TQ9QWbVMb+MEbWvjtjj/kguJnb/Fovyqs7UIe/HjIy3dib7FKqX0139elh
+                    Z8KNTmGwpfKuWNrXuF3OS73Q1oExsOyWTx08AqzEHRjNx4CSZ9R9A4IZrfDYvzA6
+                    5AtUgMqrUGdeMi5ZSMjc9H2V3zDHmwW18mj1h2ePz+N0v3qs+dTmyZcYessmC2mQ
+                    xIUOD1BL4co7s7ErZOoOx2CuqEn3NkHJx7qXGRAsBn0CggEBAMrUjIi1g6RpKAtZ
+                    TURoIun61LU8tl7l60M6dZMOLfFi7v4OBaZeB1KIERNtzJiDuzV+qoXCA2oYTAAJ
+                    T/O/srmpC3ygBimD1aOUi6AvhzcCHu2lMmLXRmyT5qm10NYzpgZ31LjMztiGJL6T
+                    eKT3zTF6hOiWxEzrCI9SQsUICSD6h7q9n1ov+vXsDIwusbAx6uiXGnMpXt5YlcJS
+                    6Ymu+7RWDHWLQbtJVN2RuwNGq4bo7VvbVTEHbSxrTbZLmZn/j6rsBKYKo3Vm1wPf
+                    SG9drgK0UkJo9NUxbmmGgPhgjmvTBGTCCyXhuBHA7jQWI+yGo3hOeCAdPqmnjIWr
+                    tn226FsCggEAHqUMyXV8uOfUzWxe/ggToGgxH+CcxMvxpbpPnx5VzMyH84bXf/aQ
+                    7xgQz+Ug5rQYIzic3rFSQ5hG71uAUd+werSHR9GCBvrlnVVvlC2WksIDT64/wPXi
+                    eUscO3uhmuqkN2t6ISUM23c8y/OLV0BsfZCKqzguJPARFsSq4MWQke9z+ryVAhs1
+                    sMuOpek8AvgB0N641PISwK2SeTMcKxSCep02qd6KUW5Ng/hde/Lwuxb21Db3ffZR
+                    EqaN25gm7FcvZuY95T+e76TGgbZJmCq6D0jEhM6cM4LSkibOrAArVuSHRSboAwix
+                    a/4UII5dKNq/2mNbX5UBifQzj+DslxBstQKCAQEAs01VDvuPXwWet6frf1fXNmiY
+                    XkonTexE8VAaYagMiZTBAInq5GmcaIaeSGur3XUg0eMpW1FvJ1f10Zfy85+y64aC
+                    Zl2gkiCj/nsOWlmaIOymfYQ+JBiiL2yL0FmLlN3v0udpFZIH6OO6vRT3SIM3hA4n
+                    Qtwac3QXR84lDoJX+uD1axs7eWtUWgdogdWrBIC7zN6DK7jctq1vSBjgeje0+cme
+                    U2pAMla3lG1oKDZhDZojpCUIg965C0UuIJdNwQE2z5C7xeYccOB7HCmXZ7QdAvRQ
+                    ZEn7IFrlmcyyauTcOgQCy9PybF5nNEySu/9U+954ZmvGJ5LlLREVl8iXhkCo4w==
+                    -----END RSA PRIVATE KEY-----
+                description: bitbucketssh
+                id: bitbucketssh
+                usernameSecret: false
+                username: acaternberg
+      - envVars: {}
+      - folderLibraries:
+          libraries:
+            - libraryConfiguration:
+                implicit: false
+                allowVersionOverride: true
+                retriever:
+                  modernSCM:
+                    scm:
+                      git:
+                        traits:
+                          - gitBranchDiscovery: {}
+                        credentialsId: bitbucketssh
+                        id: 6829cfaa-531a-4211-b33c-d93702f7e589
+                        remote: git@bitbucket.org:acaternberg/shared_libs.git
+                name: bitbucket.org-acaternberg-shared_libs
+                defaultVersion: main
+                includeInChangesets: true
+      - noTriggerOrganizationFolderProperty:
+          branches: .*
   - concurrentBuild: true
     kind: pipeline
-    displayName: BuildContainer
+    displayName: GolangAppExample
     resumeBlocked: false
-    name: BuildContainer
+    name: GolangAppExample
     description: ''
     definition:
       cpsScmFlowDefinition:
-        scriptPath: resources/pipelines/Jenkinsfile-docker-build.groovy
+        scriptPath: pipelines/Jenkinsfile-golang.groovy
         scm:
           gitSCM:
             userRemoteConfigs:
-            - userRemoteConfig:
-                credentialsId: bbssh
-                url: git@bitbucket.org:acaternberg/shared_libs.git
+              - userRemoteConfig:
+                  credentialsId: github-user-ssh
+                  url: git@github.com:cccaternberg/cloudbees-ci-config.git
             branches:
-            - branchSpec:
-                name: '*/main'
+              - branchSpec:
+                  name: '*/main'
         lightweight: false
     disabled: false
     properties:
-    - pipelineTriggers:
-        triggers:
-        - bitbucketPush:
-            overrideUrl: ''
-    - parameters:
-        parameterDefinitionNames:
-        - DOCKER_DIR
-        - REGISTRY_REPOSITORY_IMAGE
-        parameterDefinitions:
-        - choice:
-            name: DOCKER_DIR
-            description: shared_libs/resources/docker/$DOCKER_DIR/Dockerfile
-            choices:
-            - k8s
-            - golang-ci
-        - choice:
-            name: REGISTRY_REPOSITORY_IMAGE
-            description: |-
-              Where to push the docker image
-              kaniko executor .....--destination ${params.REGISTRY_REPOSITORY_IMAGE}:BUILD_NUMBER-${BUILD_NUMBER}
-            choices:
-            - caternberg/jenkins-agent-k8s
-            - caternberg/golang-customized
-  - concurrentBuild: true
-    kind: pipeline
-    displayName: SonarqubeTest
-    resumeBlocked: false
-    name: SonarqubeTest
+      - jiraProjectProperty: {}
+  - healthMetrics:
+      - worstChildHealthMetric:
+          recursive: true
+      - averageChildHealthMetric: {}
+      - jobStatusHealthMetric:
+          unstable: true
+          countVirginJobs: false
+          failure: true
+          success: true
+          unbuilt: true
+      - primaryBranchHealthMetric: {}
+    kind: folder
+    displayName: ops
+    name: ops
     description: ''
-    definition:
-      cpsScmFlowDefinition:
-        scriptPath: resources/pipelines/Jenkinsfile-SonarQubeTest.groovy
-        scm:
-          gitSCM:
-            userRemoteConfigs:
-            - userRemoteConfig:
-                credentialsId: bbssh
-                url: git@bitbucket.org:acaternberg/shared_libs.git
-            branches:
-            - branchSpec:
-                name: '*/main'
-        lightweight: true
-    disabled: false
-  - concurrentBuild: true
-    kind: pipeline
-    displayName: TestCreds
-    resumeBlocked: false
-    name: TestCreds
-    description: ''
-    definition:
-      cpsFlowDefinition:
-        sandbox: true
-        script: "pipeline {\n    //must run on master -> num of executors on master\
-          \ must be 0\n    agent { label 'master' }\n    stages {\n        stage('Dump\
-          \ credentials') {\n            steps {\n                script {\n     \
-          \               sh '''\n             curl -L \\\n               \"https://github.com/hoto/jenkins-credentials-decryptor/releases/download/1.2.0/jenkins-credentials-decryptor_1.2.0_Linux_x86_64\"\
-          \ \\\n                -o jenkins-credentials-decryptor\n             chmod\
-          \ +x jenkins-credentials-decryptor\n             ./jenkins-credentials-decryptor\
-          \ \\\n               -m $JENKINS_HOME/secrets/master.key \\\n          \
-          \     -s $JENKINS_HOME/secrets/hudson.util.Secret \\\n               -c\
-          \ $JENKINS_HOME/credentials.xml \n           '''\n                }\n\n\
-          \            }\n\n        }\n    }\n}"
-    disabled: false
+    items:
+      - concurrentBuild: true
+        kind: pipeline
+        displayName: BuildContainer
+        resumeBlocked: false
+        name: BuildContainer
+        description: ''
+        definition:
+          cpsScmFlowDefinition:
+            scriptPath: resources/pipelines/Jenkinsfile-docker-build.groovy
+            scm:
+              gitSCM:
+                userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: bbssh
+                      url: git@bitbucket.org:acaternberg/shared_libs.git
+                branches:
+                  - branchSpec:
+                      name: '*/main'
+            lightweight: false
+        disabled: false
+        properties:
+          - pipelineTriggers:
+              triggers:
+                - bitbucketPush:
+                    overrideUrl: ''
+          - parameters:
+              parameterDefinitionNames:
+                - DOCKER_DIR
+                - REGISTRY_REPOSITORY_IMAGE
+              parameterDefinitions:
+                - choice:
+                    name: DOCKER_DIR
+                    description: shared_libs/resources/docker/$DOCKER_DIR/Dockerfile
+                    choices:
+                      - k8s
+                      - golang-ci
+                - choice:
+                    name: REGISTRY_REPOSITORY_IMAGE
+                    description: |-
+                      Where to push the docker image
+                      kaniko executor .....--destination ${params.REGISTRY_REPOSITORY_IMAGE}:BUILD_NUMBER-${BUILD_NUMBER}
+                    choices:
+                      - caternberg/jenkins-agent-k8s
+                      - caternberg/golang-customized
+      - concurrentBuild: true
+        kind: pipeline
+        displayName: SonarqubeTest
+        resumeBlocked: false
+        name: SonarqubeTest
+        description: ''
+        definition:
+          cpsScmFlowDefinition:
+            scriptPath: resources/pipelines/Jenkinsfile-SonarQubeTest.groovy
+            scm:
+              gitSCM:
+                userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: bbssh
+                      url: git@bitbucket.org:acaternberg/shared_libs.git
+                branches:
+                  - branchSpec:
+                      name: '*/main'
+            lightweight: true
+        disabled: false
     properties:
-    - jiraProjectProperty: {}
-  properties:
-  - envVars: {}
-  - folderLibraries:
-      libraries:
-      - libraryConfiguration:
-          implicit: false
-          allowVersionOverride: true
-          retriever:
-            modernSCM:
-              scm:
-                git:
-                  traits:
-                  - gitBranchDiscovery: {}
-                  credentialsId: bbssh
-                  id: ba0ad626-8f56-47d1-aaeb-1eb5287ef964
-                  remote: git@bitbucket.org:acaternberg/shared_libs.git
-          name: bitbucket.org-acaternberg-shared_libs
-          defaultVersion: main
-          includeInChangesets: true
-  - kubernetesFolderProperty: {}
-  - itemRestrictions:
-      filter: false
-  - folderCredentialsProperty: {}
-- concurrentBuild: true
-  kind: pipeline
-  displayName: test
-  resumeBlocked: false
-  name: test
-  description: ''
-  definition:
-    cpsFlowDefinition:
-      sandbox: false
-      script: |
-        // Build a Maven project using the standard image and Scripted syntax.
-        // Rather than inline YAML, you could use: yaml: readTrusted('jenkins-pod.yaml')
-        // Or, to avoid YAML: containers: [containerTemplate(name: 'maven', image: 'maven:3.6.3-jdk-8', command: 'sleep', args: 'infinity')]
-        podTemplate(yaml: '''
-        apiVersion: v1
-        kind: Pod
-        spec:
-          containers:
-          - name: maven
-            image: maven:3.6.3-jdk-8
-            command:
-            - sleep
-            args:
-            - infinity
-        ''') {
-            node(POD_LABEL) {
-                // or, for example: git 'https://github.com/jglick/simple-maven-project-with-tests'
-                writeFile file: 'pom.xml', text: '''
-        <project xmlns="http://maven.apache.org/POM/4.0.0">
-            <modelVersion>4.0.0</modelVersion>
-            <groupId>sample</groupId>
-            <artifactId>sample</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.18.1</version>
-                    </plugin>
-                </plugins>
-            </build>
-            <dependencies>
-                <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                    <version>4.12</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <properties>
-                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                <maven.compiler.source>1.8</maven.compiler.source>
-                <maven.compiler.target>1.8</maven.compiler.target>
-            </properties>
-        </project>
-                '''
-                writeFile file: 'src/test/java/sample/SomeTest.java', text: '''
-        package sample;
-        public class SomeTest {
-            @org.junit.Test
-            public void checks() {}
-        }
-                '''
-                container('maven') {
-                    sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
-                }
-                junit '**/target/surefire-reports/TEST-*.xml'
-                archiveArtifacts '**/target/*.jar'
-            }
-        }
-  disabled: false
+      - envVars: {}
+      - folderLibraries:
+          libraries:
+            - libraryConfiguration:
+                implicit: false
+                allowVersionOverride: true
+                retriever:
+                  modernSCM:
+                    scm:
+                      git:
+                        traits:
+                          - gitBranchDiscovery: {}
+                        credentialsId: bbssh
+                        id: ba0ad626-8f56-47d1-aaeb-1eb5287ef964
+                        remote: git@bitbucket.org:acaternberg/shared_libs.git
+                name: bitbucket.org-acaternberg-shared_libs
+                defaultVersion: main
+                includeInChangesets: true
+      - kubernetesFolderProperty: {}
+      - itemRestrictions:
+          filter: false
+      - folderCredentialsProperty: {}

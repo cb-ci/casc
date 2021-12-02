@@ -1,0 +1,279 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          description: "bbdp"
+          id: "bbdp"
+          password: "{AQAAABAAAAAQ24o9rzfulJT19gxrywFlP/St2+zXfF/oxrAt0YN92IA=}"
+          scope: GLOBAL
+          username: "Andreas.Caternberg@dentsplysirona.com"
+      - file:
+          description: "sa-remote-cluster"
+          fileName: "sa-jenkins-remnote-controller.yaml"
+          id: "sa-remote-cluster"
+          scope: GLOBAL
+          secretBytes: "{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}"
+jenkins:
+  agentProtocols:
+  - "Diagnostic-Ping"
+  - "JNLP4-connect"
+  - "OperationsCenter2"
+  - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      name: "myk8s"
+      namespace: "default"
+      serverUrl: " https://34.73.254.21"
+      skipTlsVerify: true
+      webSocket: true
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  labelAtoms:
+  - name: "master"
+  - name: "test"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  nodes:
+  - permanent:
+      labelString: "test"
+      launcher:
+        jnlp:
+          workDirSettings:
+            disabled: false
+            failIfWorkDirIsMissing: false
+            internalDir: "remoting"
+      name: "test"
+      remoteFS: "/tmp"
+      retentionStrategy: "always"
+  numExecutors: 1
+  primaryView:
+    masters:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "manageMaster"
+      - "masterConfigurationStaleViewColumn"
+      - "totalJobsViewColumn"
+      - "queueSizeViewColumn"
+      - "jenkinsVersionViewColumn"
+      - "listSelectionColumn"
+      jobFilters:
+      - "connectedMasterViewFilter"
+      name: "Controllers"
+      recurse: true
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    mock:
+      data: |-
+        admin
+        dev1
+        dev2
+      groupIdStrategy: "caseInsensitive"
+      randomDelay: false
+      userIdStrategy: "caseInsensitive"
+  slaveAgentPort: 50000
+  systemMessage: "Operations Center configured using CasC. v.28"
+  updateCenter:
+    sites:
+    - id: "virtual-cap-core-oc"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
+  views:
+  - masters:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "manageMaster"
+      - "masterConfigurationStaleViewColumn"
+      - "totalJobsViewColumn"
+      - "queueSizeViewColumn"
+      - "jenkinsVersionViewColumn"
+      - "listSelectionColumn"
+      jobFilters:
+      - "connectedMasterViewFilter"
+      name: "Controllers"
+      recurse: true
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+cloudBeesCasCServer:
+  visibility: false
+masterprovisioning:
+  dockerImageDefinitionConfiguration:
+    images:
+    - imageTag: "cloudbees/cloudbees-core-mm:latest"
+      name: "CloudBees CI - Managed Master - latest"
+  kubernetes:
+    clusterEndpoints:
+    - id: "default"
+      ingressClass: "nginx"
+      jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
+      name: "kubernetes"
+    - credentialsId: "sa-remote-cluster"
+      id: "5fd6dbf0-f4db-47bb-9509-884f118e54da"
+      ingressClass: "nginx"
+      masterUrlPattern: "https://*-sda.acaternberg.flow-training.beescloud.com/*/"
+      name: "remote"
+      skipTlsVerify: true
+      url: "https://34.73.254.21"
+      webSocket: true
+    cpus: "1.0"
+    disk: 50
+    fsGroup: "1000"
+    globalJavaOptions: "-Djenkins.model.Jenkins.crumbIssuerProxyCompatibility=true\
+      \ -Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest\
+      \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
+      \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
+      https\" -Dcom.cloudbees.networking.hostname=\"sda.acaternberg.flow-training.beescloud.com\"\
+      \ -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName=\"\
+      cjoc\""
+    javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC\
+      \ -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0"
+    livenessInitialDelaySeconds: 300
+    livenessPeriodSeconds: 10
+    livenessTimeoutSeconds: 10
+    memory: 3072
+    readinessFailureThreshold: 100
+    readinessInitialDelaySeconds: 30
+    readinessTimeoutSeconds: 5
+    storageClassName: "ssd-cloudbees-ci-cloudbees-core"
+    terminationGracePeriodSeconds: 1200
+support:
+  automatedBundleConfiguration:
+    componentIds:
+    - "CloudBeesAssuranceSupport"
+    - "CloudBeesCasCBundlesSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "ComponentImpl"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "KubernetesMasterLogs"
+    - "KubernetesMasterManifests"
+    - "ConnectedMasterSupportComponent"
+    enabled: true
+    period: 1
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  controllerExecutorCount:
+    enforce:
+      canOverride: false
+      count: 0
+  sSHD:
+    port: -1
+  securitySettingsEnforcement:
+    global:
+      realmAndAuthorization:
+        canCustomMapping: false
+        canOverride: true
+        defaultMappingFactory: "restrictedEquivalentRAMF"
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  #cascAutoControllerProvisioning:
+    #provisionControllerOnCreation: false
+  experimentalPlugins:
+    enabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubPluginConfig:
+    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  operationsCenterSharedConfiguration:
+    enabled: false
+  pollSCM:
+    pollingThreadCount: 10
+  usageStatisticsCloudBees:
+    disabledJenkinsUsageStatistics: true
+    usageStatisticsCollected: false
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

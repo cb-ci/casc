@@ -1,0 +1,11 @@
+type: plugin-catalog
+version: '1'
+name: plugin-catalog-cjoc
+description: plugin catalog for cjoc
+configurations:
+- description: Exported plugins
+  includePlugins:
+    mock-security-realm: {version: '1.6'}
+    jobConfigHistory: {version: 2.28.1}
+    kubernetes-credentials-provider: {version: '0.20'}
+    aws-java-sdk: {version: 1.11.995}

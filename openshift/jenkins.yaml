@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Operations Center configured using CasC. v.2"
+  systemMessage: "Operations Center configured using CasC. v.3"
   agentProtocols:
   - "Diagnostic-Ping"
   - "JNLP4-connect"

@@ -1,7 +1,7 @@
 apiVersion: "1"
 id: "digen-tst2-nublar-de"
 description: "Manual Managed"
-version: "15"
+version: "16"
 jcasc:
   - "jenkins.yaml"
 plugins:

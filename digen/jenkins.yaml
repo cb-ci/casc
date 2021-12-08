@@ -203,7 +203,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
-    url: "https://digen-tst2-nublar-de-cloudbees.tst.digen.nublar.de/digen-tst2-nublar-de/"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/digen/"
   mailer:
     charset: "UTF-8"
     smtpHost: "mail-digen.services.nublar.de"
@@ -216,11 +216,6 @@ unclassified:
       name: "api.tst.digen.nublar.de"
       serverUrl: "https://api.tst.digen.nublar.de:8443/"
       skipTlsVerify: true
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAACWOQQ7CIBAA/8LZBau1SL/hC2B3xWpbCCzxYPy7JJ5nJpmPisXvomZFSI6G+xku\r\
-      \nV+dhtBOB5yEAobWTm4Jja9VBLdTdI9ASeQepcoK9hdUXIO60lbXjh0iuszG4pkaBuWqfc9Vb3EQn\r\
-      \nzKP2pP+VJjb4TGh6++ZwS/jiPiOl8fcHAjMK/JsAAAA=\r\n----- END CONNECTION DETAILS\
-      \ -----\n"
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:

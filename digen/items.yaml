@@ -3,10 +3,10 @@ removeStrategy:
   items: NONE
 items:
 - concurrentBuild: true
-  kind: pipeline
-  displayName: docker_in_openshift
+  kind: "pipeline"
+  displayName: "docker_in_openshift"
   resumeBlocked: false
-  name: docker_in_openshift
+  name: "docker_in_openshift"
   description: ''
   definition:
     cpsFlowDefinition:
@@ -58,10 +58,10 @@ items:
         }
   disabled: false
 - concurrentBuild: true
-  kind: pipeline
-  displayName: kustomize_test_pipeline
+  kind: "pipeline"
+  displayName: "kustomize_test_pipeline"
   resumeBlocked: false
-  name: kustomize_test_pipeline
+  name: "kustomize_test_pipeline"
   description: ''
   definition:
     cpsFlowDefinition:
@@ -109,10 +109,10 @@ items:
       lightweight: true
   disabled: false
 - concurrentBuild: true
-  kind: pipeline
-  displayName: test_gitlab_kustomize_pipeline
+  kind: "pipeline"
+  displayName: "test_gitlab_kustomize_pipeline"
   resumeBlocked: false
-  name: test_gitlab_kustomize_pipeline
+  name: "test_gitlab_kustomize_pipeline"
   description: ''
   definition:
     cpsScmFlowDefinition:
@@ -128,9 +128,9 @@ items:
               name: '*/master'
       lightweight: true
   disabled: false
-- kind: folder
-  displayName: Access only for Digen Users
-  name: tst
+- kind: "folder"
+  displayName: "Access only for Digen Users"
+  name: "tst"
   description: ''
   groups:
   - members:

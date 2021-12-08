@@ -60,10 +60,6 @@ jenkins:
     all:
       name: "all"
   projectNamingStrategy: "standard"
-  proxy:
-    name: "proxy.services.nublar.de"
-    port: 3128
-    secretPassword: "{abc}"
   quietPeriod: 5
   remotingSecurity:
     enabled: true

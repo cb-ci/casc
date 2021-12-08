@@ -1,0 +1,238 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - openShiftBearerTokenCredentialImpl:
+          id: "usr78061-openshift-user"
+          password: "{abc}"
+          scope: GLOBAL
+          username: "usr78061"
+      - basicSSHUserPrivateKey:
+          description: "ssh key sdoerr"
+          id: "usr78061_ssh_key"
+          privateKeySource:
+            directEntry:
+              privateKey: "{abc}"
+          scope: GLOBAL
+          username: "usr78061"
+      - usernamePassword:
+          description: "Readonly Gitlab user to fetch child dependencies"
+          id: "jenkins-token-ro-gitlab"
+          password: "{abc}"
+          scope: GLOBAL
+          username: "usr78061"
+      - string:
+          description: "uses sa deployer-service-account-token"
+          id: "digen-tst-jenkins-token"
+          scope: GLOBAL
+          secret: "{abc}"
+jenkins:
+  agentProtocols:
+  - "Diagnostic-Ping"
+  - "JNLP4-connect"
+  - "OperationsCenter2"
+  - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      credentialsId: "cloudbeesci-api-digen-tst-nublar.de"
+      jenkinsUrl: "http://digen-tst2-nublar-de/digen-tst2-nublar-de/"
+      name: "openshift"
+      skipTlsVerify: true
+      webSocket: true
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "com.cloudbees.jenkins.plugins.assurance.SecurityWarningsWatch"
+  - "hudson.diagnosis.ReverseProxySetupMonitor"
+  labelAtoms:
+  - name: "master"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  proxy:
+    name: "proxy.services.nublar.de"
+    port: 3128
+    secretPassword: "{abc}"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    mock:
+      data: |
+        cjocadmin
+        digendeveloper
+        digenadmin
+        epadeveloper
+      groupIdStrategy: "caseInsensitive"
+      randomDelay: false
+      userIdStrategy: "caseInsensitive"
+  slaveAgentPort: 50000
+  systemMessage: "Managed Controller configured using CasC. v.8"
+  updateCenter:
+    sites:
+    - id: "virtual-cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: false
+support:
+  automatedBundleConfiguration:
+    componentIds:
+    - "CloudBeesAssuranceSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "ComponentImpl"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "OperationsCenterSupportComponent"
+    - "PipelineTimings"
+    - "PipelineThreadDump"
+    enabled: true
+    period: 1
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  sSHD:
+    port: -1
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  cloudBeesSCMReporting:
+    enabled: true
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    mailAccount:
+      smtpHost: "mail-digen.services.nublar.de"
+      smtpPassword: "{abc}"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  experimentalPlugins:
+    enabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://digen-tst2-nublar-de-cloudbees.tst.digen.nublar.de/digen-tst2-nublar-de/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
+    url: "https://digen-tst2-nublar-de-cloudbees.tst.digen.nublar.de/digen-tst2-nublar-de/"
+  mailer:
+    charset: "UTF-8"
+    smtpHost: "mail-digen.services.nublar.de"
+    useSsl: false
+    useTls: false
+  openShift:
+    clusterConfigs:
+    - credentialsId: "oc-tmp-token"
+      defaultProject: "cloudbeesci-test"
+      name: "api.tst.digen.nublar.de"
+      serverUrl: "https://api.tst.digen.nublar.de:8443/"
+      skipTlsVerify: true
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAACWOQQ7CIBAA/8LZBau1SL/hC2B3xWpbCCzxYPy7JJ5nJpmPisXvomZFSI6G+xku\r\
+      \nV+dhtBOB5yEAobWTm4Jja9VBLdTdI9ASeQepcoK9hdUXIO60lbXjh0iuszG4pkaBuWqfc9Vb3EQn\r\
+      \nzKP2pP+VJjb4TGh6++ZwS/jiPiOl8fcHAjMK/JsAAAA=\r\n----- END CONNECTION DETAILS\
+      \ -----\n"
+  pollSCM:
+    pollingThreadCount: 10
+  usageStatisticsCloudBees:
+    disabledJenkinsUsageStatistics: true
+    usageStatisticsCollected: false
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

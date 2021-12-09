@@ -6,5 +6,5 @@ configurations:
 - description: Exported plugins
   includePlugins:
     #openshift-client: {url: 'https://nexus.acaternberg.flow-training.beescloud.com/repository/cloudbees-jenkins-upgrades-raw/openshift-client/1.0.35/openshift-client.hpi'}
-    openshift-client: {version: '1.0.35' }
+    openshift-client: {irl: 'http://jenkins-updates.cloudbees.com/download/plugins/openshift-client/1.0.35/openshift-client.hpi' }
     mock-security-realm: {version: '1.6'}

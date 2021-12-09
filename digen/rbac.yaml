@@ -97,11 +97,7 @@ groups:
   - name: administer
     grantedAt: current
   name: Administrators
-- members:
-    users:
-    - digendeveloper
-    - epadeveloper
-  roles:
+- roles:
   - name: develop
     grantedAt: current
   name: Developers
@@ -109,3 +105,17 @@ groups:
   - name: browse
     grantedAt: current
   name: Browsers
+- members:
+    internal_groups:
+    - digen-developer
+  roles:
+  - name: develop
+    grantedAt: current
+  name: digen-developer
+- members:
+    internal_groups:
+    - epa-developer
+  roles:
+  - name: develop
+    grantedAt: current
+  name: epa-developer

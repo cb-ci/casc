@@ -4,7 +4,7 @@ credentials:
     - credentials:
       - openShiftBearerTokenCredentialImpl:
           id: "usr78061-openshift-user"
-          password: "{abc}"
+          password: "{AQAAABAAAAAQ+rkjAWHDVYYPg2+w8wKGQemJDoo9FzUuSTCE0zSdC10=}"
           scope: GLOBAL
           username: "usr78061"
       - basicSSHUserPrivateKey:
@@ -12,20 +12,20 @@ credentials:
           id: "usr78061_ssh_key"
           privateKeySource:
             directEntry:
-              privateKey: "{abc}"
+              privateKey: "{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}"
           scope: GLOBAL
           username: "usr78061"
       - usernamePassword:
           description: "Readonly Gitlab user to fetch child dependencies"
           id: "jenkins-token-ro-gitlab"
-          password: "{abc}"
+          password: "{AQAAABAAAAAg1C4RPBZ1/YwjQBkji/fGFN5djQNXdtfBr6SRj5SoTAl8Sug2LPMs2qtBRrsBPJaO}"
           scope: GLOBAL
           username: "usr78061"
       - string:
           description: "uses sa deployer-service-account-token"
           id: "digen-tst-jenkins-token"
           scope: GLOBAL
-          secret: "{abc}"
+          secret: "{AQAAABAAAAOwx0fI9FRcToIdEcy65Gq5tRNgClSoqOPrmJWgocUB+Fq7YOxfWTB2GD51rNHpJtiIHKglmpSmqfDCeoKicyue8NKs1YivBPJSQ7EUQ0BKRxeESEEutYPXz6KmF5dR3il2HWUTAbQhGdixPaYEiUfHgHegbDEDlHUJA9RCHIyZfpnrq4RTLWwQlvKAH4IwudaRqj44dySZc61frjqXwhOs208IsQEZj90eE5UcDJel8UNg84sYqrpwhkkYyOomgyKrSJTMN138JVFIgIZ7h2kfduZONYbZT8I0g6TfsQltG9Hbyd8aEHE4jJtrfkggRjG1kFbgRreHmp+uAGgtZAwIpDsO/rcqnLY5AvbELPNT/Ne0Ur7szRnohSDydyyjFUHJ0MCh7HN4H4iSQ8CjFCCZeJtw2c8rIqHQBL5aog3pEnz2inTdOKp0uVEdXoSgJ+IaA8F3wEuYGtZdFlkNbu0aCvaYwGwjqbdUBMBajAXoz2rWVJssJhTL7QPTp+7kw0PDJ5t2rnZjPrmkmxpJioYWl2eKuMuu5jOdNiqJ88U56deUOnlY8ODs60tQnaKTUkhCuuFT0ERHTHtnqZMLV4gudNeBLVqtO6x0ZbWfC39laC225YPprn62vq8fN2U050lrkmXnUr4bYlHXzKyaQd8Gn7gVr0BDFMneNH5jzwwt0g7/MkrE8ljz9Vb0V2jswe79aCc0jRuhk5LtRo+9CgRssGMzOVWZytqLlkFIBLp6NJ4spsBoYhFM65XL8Vtg92Ae6kEvUge0lVzp2LFE/oJ/33pdSq5Imp9yf3AgbRLaxRsKbDnsSXP500tuVdcZ4QAyo3SKAQeJ/P+qXrWumsvZJLNfAlghmWtKk0hk7zxnlTdXVjWWC5iLrEiiUNogjzpjO+hpH7FKu1NqCe5jDbJMzZo5kghz3+2h/fmosIh2CzapW2CzMQcwuv49RrAMo30g/A9IQWQxO7wF74UmiYnAXeAJiKJF+VwaG7jE4CoCZZj5DOeiCe+qJhlK/3ST+vy/OpdvXfrf6QRvpBmveAMfX8YaZX7Hf7aJ48eS4n7eO4DLxsIWyHKSI/i6jJvkpVYPLwT7/Kf1DM/EbZPTs2mgDovzuElb22snAPjs3OBLyAPusOlbooLOjN8Y1s9sjysk2OS2RuCbFl17JYQahlwxZTiyIuNy/SRpaE3ab9abb/wDEF1vvzDYEh6D/HR1bm0aLM63tFuUzhZpFw+dmZjtZipTxR+FlYdsTZQTIUQPKBI4Gd7pwz657PvXBgOePS5X}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -75,7 +75,7 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Managed Controller configured using CasC. v.2ß"
+  systemMessage: "Managed Controller configured using CasC. v.8"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"
@@ -173,7 +173,7 @@ unclassified:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     mailAccount:
       smtpHost: "mail-digen.services.nublar.de"
-      smtpPassword: "{abc}"
+      smtpPassword: "{AQAAABAAAAAQjW7TIHH3PVmJCdiQm93GBc8l3+CpkMhCIOXZJU5jLhs=}"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -199,7 +199,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "Adresse nicht konfiguriert <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/digen/"
+    url: "https://digen-tst2-nublar-de-cloudbees.tst.digen.nublar.de/digen-tst2-nublar-de/"
   mailer:
     charset: "UTF-8"
     smtpHost: "mail-digen.services.nublar.de"
@@ -212,6 +212,11 @@ unclassified:
       name: "api.tst.digen.nublar.de"
       serverUrl: "https://api.tst.digen.nublar.de:8443/"
       skipTlsVerify: true
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAACWOQQ7CIBAA/8LZBau1SL/hC2B3xWpbCCzxYPy7JJ5nJpmPisXvomZFSI6G+xku\r\
+      \nV+dhtBOB5yEAobWTm4Jja9VBLdTdI9ASeQepcoK9hdUXIO60lbXjh0iuszG4pkaBuWqfc9Vb3EQn\r\
+      \nzKP2pP+VJjb4TGh6++ZwS/jiPiOl8fcHAjMK/JsAAAA=\r\n----- END CONNECTION DETAILS\
+      \ -----\n"
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:

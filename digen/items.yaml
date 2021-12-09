@@ -2,151 +2,28 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-  - concurrentBuild: true
-    kind: pipeline
-    displayName: docker_in_openshift
-    resumeBlocked: false
-    name: docker_in_openshift
-    description: ''
-    definition:
-      cpsFlowDefinition:
-        sandbox: true
-        script: |-
-          pipeline {
-              agent {
-                  kubernetes {
-                      yamlFile '''
-          apiVersion: v1
-          kind: Pod
-          metadata:
-            name: test-dind
-          spec:
-            tolerations:
-            - key: "app"
-              value: "cloudbees"
-              operator: "Equal"
-              effect: "NoSchedule"
-            nodeSelector:
-              nodeType: managementNode
-            containers:
-            - name: dind
-              image: itsg-docker.repo.services.nublar.de/docker:19.03.14-dind
-              command:
-              - sleep
-              args:
-              - infinity
-              volumeMounts:
-              - mountPath: /var/run/docker.sock
-                name: myvolume
-            volumes:
-            - name: myvolume
-              hostPath:
-                path: /var/run/docker.sock
-                type: FileOrCreate'''
-                  }
-              }
-              stages {
-                  stage('Say Hello') {
-                      steps {
-                          container('dind') {
-                              // git 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'
-                              sh 'docker ps'
-                          }
-                      }
-                  }
-              }
-          }
-    disabled: false
-- concurrentBuild: true
-    kind: pipeline
-    displayName: kustomize_test_pipeline
-    resumeBlocked: false
-    name: kustomize_test_pipeline
-    description: ''
-    definition:
-      cpsFlowDefinition:
-        sandbox: false
-        script: "// Uses Declarative syntax to run commands inside a container.\npipeline\
-          \ {\n    agent {\n        kubernetes {\n            // Rather than inline\
-          \ YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'\n\
-          \            // Or, to avoid YAML:\n            // containerTemplate {\n \
-          \           //     name 'shell'\n            //     image 'ubuntu'\n     \
-          \       //     command 'sleep'\n            //     args 'infinity'\n     \
-          \       // }\n            yaml '''\napiVersion: v1\nkind: Pod\nspec:\n  tolerations:\n\
-          \  - key: \"app\"\n    value: \"cloudbees\"\n    operator: \"Equal\"\n   \
-          \ effect: \"NoSchedule\"\n  nodeSelector:\n    nodeType: managementNode\n\
-          \  containers:\n  - name: shell\n    image: itsg-docker.repo.services.nublar.de/itsg-cloudbees-kustomize-agent:v0.0.1\n\
-          \    command:\n    - sleep\n    args:\n    - infinity\n    securityContext:\n\
-          \      fsGroup: 1000\n'''\n            // Can also wrap individual steps:\n\
-          \            // container('shell') {\n            //     sh 'hostname'\n \
-          \           // }\n            defaultContainer 'shell'\n        }\n    }\n\
-          \    stages {\n        stage('Main') {\n            steps {\n            \
-          \    script {\n                     openshift.withCluster( 'api.tst.digen.nublar.de'\
-          \ ){\n                                openshift.withProject( 'cloudbeesci-test'\
-          \ ){\n                                    def result = openshift.raw( 'whoami'\
-          \ )\n                                    echo \"Cluster status: ${result.out}\"\
-          \n                                }\n                     } \n           \
-          \     }\n            }\n        }\n    }\n}\n"
-    disabled: false
-- concurrentBuild: true
-    kind: pipeline
-    displayName: maven_soap_test
-    resumeBlocked: false
-    name: maven_soap_test
-    description: ''
-    definition:
-      cpsScmFlowDefinition:
-        scriptPath: Jenkinsfile
-        scm:
-          gitSCM:
-            userRemoteConfigs:
-            - userRemoteConfig:
-                credentialsId: usr78061_ssh_key
-                url: git@gitlab.services.nublar.de:cloudbees-ci/maven_test_project.git
-            branches:
-            - branchSpec:
-                name: '*/develop'
-        lightweight: true
-    disabled: false
-- concurrentBuild: true
-    kind: pipeline
-    displayName: test_gitlab_kustomize_pipeline
-    resumeBlocked: false
-    name: test_gitlab_kustomize_pipeline
-    description: ''
-    definition:
-      cpsScmFlowDefinition:
-        scriptPath: Jenkinsfile
-        scm:
-          gitSCM:
-            userRemoteConfigs:
-            - userRemoteConfig:
-                credentialsId: usr78061_ssh_key
-                url: git@gitlab.services.nublar.de:cloudbees-ci/kustomize_test_project.git
-            branches:
-            - branchSpec:
-                name: '*/master'
-        lightweight: true
-    disabled: false
 - kind: folder
-    displayName: Access only for Digen Users
-    name: tst
-    description: ''
-    groups:
-    - members:
-        users:
-        - digendeveloper
-      roles:
-      - name: browse
-        grantedAt: current
-      - name: develop
-        grantedAt: current
-      name: digen-tst
-    filteredRoles:
-    - develop
-    - browse
-    properties:
-    - envVars: {}
-    - kubernetesFolderProperty: {}
-    - itemRestrictions:
-        filter: false
+  displayName: Access only EPA Users
+  name: Access only EPA Users
+- kind: folder
+  displayName: Access only for Digen Users
+  name: tst
+  description: ''
+  groups:
+  - members:
+      users:
+      - digendeveloper
+    roles:
+    - name: browse
+      grantedAt: current
+    - name: develop
+      grantedAt: current
+    name: digen-tst
+  filteredRoles:
+  - develop
+  - browse
+  properties:
+  - envVars: {}
+  - kubernetesFolderProperty: {}
+  - itemRestrictions:
+      filter: false

@@ -2,28 +2,64 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: folder
-  displayName: Access only EPA Users
-  name: Access only EPA Users
-- kind: folder
-  displayName: Access only for Digen Users
-  name: tst
-  description: ''
-  groups:
-  - members:
-      users:
-      - digendeveloper
-    roles:
-    - name: browse
-      grantedAt: current
-    - name: develop
-      grantedAt: current
-    name: digen-tst
-  filteredRoles:
-  - develop
-  - browse
-  properties:
-  - envVars: {}
-  - kubernetesFolderProperty: {}
-  - itemRestrictions:
-      filter: false
+  - kind: folder
+    displayName: Access only EPA Users
+    name: Access only EPA Users
+    items:
+      - concurrentBuild: false
+        blockBuildWhenUpstreamBuilding: false
+        blockBuildWhenDownstreamBuilding: false
+        kind: freeStyle
+        displayName: test
+        name: test
+        description: ''
+        disabled: false
+        scm:
+          none: {}
+        scmCheckoutStrategy:
+          standard: {}
+  - kind: folder
+    displayName: Access only for Digen Users
+    name: tst
+    description: ''
+    groups:
+      - members:
+          users:
+            - digendeveloper
+        roles:
+          - name: browse
+            grantedAt: current
+          - name: develop
+            grantedAt: current
+        name: digen-tst
+    filteredRoles:
+      - develop
+      - browse
+    items:
+      - concurrentBuild: true
+        kind: pipeline
+        displayName: pipelinetest
+        resumeBlocked: false
+        name: pipelinetest
+        description: ''
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: |
+              pipeline {
+                  agent any
+
+                  stages {
+                      stage('Hello') {
+                          steps {
+                              echo 'Hello World'
+                          }
+                      }
+                  }
+              }
+        disabled: false
+    properties:
+      - envVars: {}
+      - kubernetesFolderProperty: {}
+      - itemRestrictions:
+          filter: false

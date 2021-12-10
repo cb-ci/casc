@@ -75,7 +75,7 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Managed Controller configured using CasC. v.8"
+  systemMessage: "Managed Controller configured using CasC. v.9"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"

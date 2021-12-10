@@ -18,6 +18,21 @@ items:
           none: {}
         scmCheckoutStrategy:
           standard: {}
+  - concurrentBuild: false
+    builders:
+      - shell:
+          command: echo test
+    blockBuildWhenUpstreamBuilding: false
+    blockBuildWhenDownstreamBuilding: false
+    kind: freeStyle
+    displayName: testfs
+    name: testfs
+    description: ''
+    disabled: false
+    scm:
+      none: {}
+    scmCheckoutStrategy:
+      standard: {}
   - kind: folder
     displayName: Access only for Digen Users
     name: tst

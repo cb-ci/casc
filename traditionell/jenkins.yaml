@@ -28,7 +28,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: -1
-  systemMessage: "Configuration by CasC bundle v.4"
+  systemMessage: "Configuration by CasC bundle v.5"
   updateCenter:
     sites:
     - id: "core-cm-offline"

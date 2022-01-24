@@ -83,11 +83,11 @@ plugins:
 - {id: jaxb}
 - {id: jdk-tool}
 - {id: jenkins-design-language}
-- {id: jenkins-jira-issue-updater}
-- {id: jira}
-- {id: jira-steps}
-- {id: jira-trigger}
-- {id: JiraTestResultReporter}
+#- {id: jenkins-jira-issue-updater}
+#- {id: jira}
+#- {id: jira-steps}
+#- {id: jira-trigger}
+#- {id: JiraTestResultReporter}
 - {id: jjwt-api}
 - {id: jquery3-api}
 - {id: jsch}

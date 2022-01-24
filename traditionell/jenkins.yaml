@@ -1,29 +1,22 @@
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-          - usernamePassword:
-              description: "password"
-              id: "password"
-              password: "{AQAAABAAAAAQW2Lg7VRbLZrgIas6TVWzOuiygO9lhfSR6sJ+g+K5TaQ=}"
-              scope: GLOBAL
-              username: "user"
 jenkins:
   agentProtocols:
-    - "Diagnostic-Ping"
-    - "JNLP4-connect"
-    - "OperationsCenter2"
-    - "Ping"
-  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  - "Diagnostic-Ping"
+  - "JNLP4-connect"
+  - "OperationsCenter2"
+  - "Ping"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
-    - name: "master"
+  - name: "built-in"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
+  noUsageStatistics: true
   numExecutors: 2
   primaryView:
     all:
@@ -34,16 +27,16 @@ jenkins:
     enabled: true
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
-  slaveAgentPort: 50000
+  slaveAgentPort: -1
   updateCenter:
     sites:
-      - id: "core-cm-offline"
-        url: "file:/var/jenkins_home/war/WEB-INF/plugins/update-center.json"
-      - id: "cap-core-cm"
-        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-cm/update-center.json"
+    - id: "core-cm-offline"
+      url: "file:/var/cache/cloudbees-core-cm/war/WEB-INF/plugins/update-center.json"
+    - id: "cap-core-cm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-cm/update-center.json"
   views:
-    - all:
-        name: "all"
+  - all:
+      name: "all"
   viewsTabBar: "standard"
 beekeeper:
   enabled: true
@@ -53,6 +46,58 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: false
+support:
+  automatedBundleConfiguration:
+    componentIds:
+    - "CloudBeesAssuranceSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "OperationsCenterSupportComponent"
+    enabled: true
+    period: 1
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
 security:
   anonymizeSupportBundle:
     enabled: false
@@ -63,12 +108,9 @@ security:
   sSHD:
     port: -1
 unclassified:
-  artifactManager:
-    artifactManagerFactories:
-      - "jSync"
   buildDiscarders:
     configuredBuildDiscarders:
-      - "jobBuildDiscarder"
+    - "jobBuildDiscarder"
   cloudBeesSCMReporting:
     enabled: true
   email-ext:
@@ -76,10 +118,13 @@ unclassified:
     allowUnregisteredEnabled: false
     charset: "UTF-8"
     debugMode: false
-    defaultBody: "Hello"
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
-      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -92,7 +137,7 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "http://master1:8080/github-webhook/"
+    hookUrl: "http://35.229.32.70:8080/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -105,30 +150,32 @@ unclassified:
     bindPort: 0
     diagnosticPort: 0
     portRange: 0
+    timeout: 30
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://master1:8080/"
+    url: "http://35.229.32.70:8080/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
   operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAA2MSw4CIRBE79LrIbTyDdfwBNg0MyqKYTAujHef3lRSr17qB+vIrwkJCmbvyBjl\r\
-      \nmFFZfw4qBiNxqkS2cuBqYIFbERfVM++Th/TPaAK2Od9Ja7p3ShEjalm+fL10erCc19x2/h+84Qsp\r\
-      \nbAAAAA==\r\n----- END CONNECTION DETAILS -----\n"
+    connectionDetails: "H4sIAAAAAAAAAA2NSQ7CMAwA/5IzzuIUSvMNXhCnLiCiBqWuOFT9O57rjDSHefa8ikmGfFz8UhAG\r\
+      \npAxDDiPkwBk4IN0ozjRxMBfznrX1UNoqvdXKHYQ3UbH3quYl8k3OxatFnGxEO/p0V5wWP6ZHKx/W\r\
+      \nm/Sdzz92m1Z1fAAAAA==\r\n"
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:
+    disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true
 tool:
   cloudbeesPluginUsageAnalyzer:
     enabled: true
   git:
     installations:
-      - home: "git"
-        name: "Default"
+    - home: "git"
+      name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

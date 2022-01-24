@@ -5,7 +5,13 @@ pipeline {
         stage('Update Casc Bundles') {
             steps {
                 echo "Update casc ...."
-                sh "./update.sh"
+                timeout(time: 3, unit: 'MINUTES') {
+                    retry(5) {
+                        sh "ls -l"
+                        sh "./update.sh"
+                    }
+                }
+
             }
         }
     }

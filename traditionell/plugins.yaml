@@ -2,6 +2,7 @@ plugins:
 - id: ace-editor
 - id: apache-httpcomponents-client-4-api
 - id: async-http-client
+- id: atlassian-bitbucket-server-integration
 - id: aws-credentials
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-minimal
@@ -59,6 +60,8 @@ plugins:
 - id: gradle
 - id: handlebars
 - id: handy-uri-templates-2-api
+- id: hashicorp-vault-pipeline
+- id: hashicorp-vault-plugin
 - id: infradna-backup
 - id: jackson2-api
 - id: jaxb

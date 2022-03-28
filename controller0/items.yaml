@@ -26,21 +26,3 @@ items:
       triggers:
       - githubPush: {}
   resumeBlocked: false
-- kind: multibranch
-  name: HWMB
-  description: ''
-  displayName: HWMB
-  orphanedItemStrategy:
-    defaultOrphanedItemStrategy:
-      pruneDeadBranches: true
-      daysToKeep: -1
-      numToKeep: -1
-  projectFactory:
-    workflowBranchProjectFactory:
-      scriptPath: Jenkinsfile
-  properties:
-  - envVars: {}
-  - kubernetesFolderProperty: {}
-  trigger:
-    periodicFolderTrigger:
-      interval: 1d

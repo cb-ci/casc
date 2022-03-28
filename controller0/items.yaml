@@ -1,0 +1,46 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: pipeline
+  name: helloworld
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: Jenkinsfile
+      scm:
+        gitSCM:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              credentialsId: github-user-ssh
+              url: git@github.com:org-caternberg/helloworld.git
+          branches:
+          - branchSpec:
+              name: '*/master'
+      lightweight: false
+  description: ''
+  disabled: false
+  displayName: helloworld
+  properties:
+  - pipelineTriggers:
+      triggers:
+      - githubPush: {}
+  resumeBlocked: false
+- kind: multibranch
+  name: HWMB
+  description: ''
+  displayName: HWMB
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+  projectFactory:
+    workflowBranchProjectFactory:
+      scriptPath: Jenkinsfile
+  properties:
+  - envVars: {}
+  - kubernetesFolderProperty: {}
+  trigger:
+    periodicFolderTrigger:
+      interval: 1d

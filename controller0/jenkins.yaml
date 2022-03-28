@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "managed by CasC v.4"
+  systemMessage: "managed by CasC v.5"
   agentProtocols:
   - "Diagnostic-Ping"
   - "JNLP4-connect"

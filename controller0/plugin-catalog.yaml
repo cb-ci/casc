@@ -7,3 +7,7 @@ configurations:
   includePlugins:
     kubernetes-credentials-provider:
       version: '0.20'
+    ansicolor:
+      version: 1.0.1
+    build-discarder:
+      version: 60.v1747b0eb632a

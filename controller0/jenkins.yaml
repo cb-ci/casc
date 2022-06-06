@@ -1,5 +1,4 @@
 jenkins:
-  systemMessage: "managed by CasC v.14"
   agentProtocols:
   - "Diagnostic-Ping"
   - "JNLP4-connect"
@@ -12,6 +11,10 @@ jenkins:
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
+  - name: "helloworldGo_cbpreview_5-whk94"
+  - name: "helloworldGo_master_8-wkzqk"
+  - name: "helloworldgo-cbpreview-5-whk94-kf24s-1h106"
+  - name: "helloworldgo-master-8-wkzqk-pn519-9lprt"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -27,11 +30,10 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
+  systemMessage: "managed by CasC v.16"
   updateCenter:
     sites:
-    - id: "core-mm-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-mm"
+    - id: "virtual-cap-core-mm"
       url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
   - all:
@@ -45,6 +47,15 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: false
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+  - branchOrTag: "master"
+    scm:
+      git:
+        credentialsId: "github-user-ssh"
+        id: "106fc83a-ad2e-4ebd-9124-7ce4e2550904"
+        remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
+    updateInterval: "1d"
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -110,6 +121,80 @@ security:
   sSHD:
     port: -1
 unclassified:
+  ansiColorBuildWrapper:
+    colorMaps:
+    - black: "#000000"
+      blackB: "#4C4C4C"
+      blue: "#1E90FF"
+      blueB: "#4682B4"
+      cyan: "#00CDCD"
+      cyanB: "#00FFFF"
+      green: "#00CD00"
+      greenB: "#00FF00"
+      magenta: "#CD00CD"
+      magentaB: "#FF00FF"
+      name: "xterm"
+      red: "#CD0000"
+      redB: "#FF0000"
+      white: "#E5E5E5"
+      whiteB: "#FFFFFF"
+      yellow: "#CDCD00"
+      yellowB: "#FFFF00"
+    - black: "#000000"
+      blackB: "#555555"
+      blue: "#0000AA"
+      blueB: "#5555FF"
+      cyan: "#00AAAA"
+      cyanB: "#55FFFF"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#00AA00"
+      greenB: "#55FF55"
+      magenta: "#AA00AA"
+      magentaB: "#FF55FF"
+      name: "vga"
+      red: "#AA0000"
+      redB: "#FF5555"
+      white: "#AAAAAA"
+      whiteB: "#FFFFFF"
+      yellow: "#AA5500"
+      yellowB: "#FFFF55"
+    - black: "black"
+      blackB: "black"
+      blue: "blue"
+      blueB: "blue"
+      cyan: "cyan"
+      cyanB: "cyan"
+      green: "green"
+      greenB: "green"
+      magenta: "magenta"
+      magentaB: "magenta"
+      name: "css"
+      red: "red"
+      redB: "red"
+      white: "white"
+      whiteB: "white"
+      yellow: "yellow"
+      yellowB: "yellow"
+    - black: "#2E3436"
+      blackB: "#2E3436"
+      blue: "#3465A4"
+      blueB: "#3465A4"
+      cyan: "#06989A"
+      cyanB: "#06989A"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#4E9A06"
+      greenB: "#4E9A06"
+      magenta: "#75507B"
+      magentaB: "#75507B"
+      name: "gnome-terminal"
+      red: "#CC0000"
+      redB: "#CC0000"
+      white: "#D3D7CF"
+      whiteB: "#D3D7CF"
+      yellow: "#C4A000"
+      yellowB: "#C4A000"
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
@@ -152,6 +237,107 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+  globalConfigFiles:
+    configs:
+    - globalMavenSettings:
+        comment: "Global settings"
+        content: |-
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings>
+              <servers>
+                  <server>
+                      <id>nexus-snapshots</id>
+                      <username>admin</username>
+                      <password>acaternberg</password>
+                  </server>
+                  <server>
+                      <id>nexus-releases</id>
+                      <username>admin</username>
+                      <password>acaternberg</password>
+                  </server>
+                  <server>
+                      <id>nexus</id>
+                      <username>admin</username>
+                      <password>acaternberg</password>
+                  </server>
+                  <server>
+                      <id>spring-milestones</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+                  <server>
+                      <id>spring-releases</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+                  <server>
+                      <id>spring-snapshots</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+              </servers>
+              <mirrors>
+                  <mirror>
+                      <!--This sends everything else to /public -->
+                      <id>nexus</id>
+                      <mirrorOf>*</mirrorOf>
+                      <url>https://nexus.acaternberg.flow-training.beescloud.com/repository/maven-public/</url>
+                  </mirror>
+              </mirrors>
+              <profiles>
+                  <profile>
+                      <id>nexus</id>
+                      <!--Enable snapshots for the built in central repo to direct -->
+                      <!--all requests to nexus via the mirror -->
+                      <repositories>
+                          <repository>
+                              <id>central</id>
+                              <url>http://central</url>
+                              <releases>
+                                  <enabled>true</enabled>
+                              </releases>
+                              <snapshots>
+                                  <enabled>true</enabled>
+                              </snapshots>
+                          </repository>
+                      </repositories>
+                      <pluginRepositories>
+                          <pluginRepository>
+                              <id>central</id>
+                              <url>http://central</url>
+                              <releases>
+                                  <enabled>true</enabled>
+                              </releases>
+                              <snapshots>
+                                  <enabled>true</enabled>
+                              </snapshots>
+                          </pluginRepository>
+                      </pluginRepositories>
+                  </profile>
+              </profiles>
+              <activeProfiles>
+                  <!--make the profile active all the time -->
+                  <activeProfile>nexus</activeProfile>
+              </activeProfiles>
+          </settings>
+        id: "maven-global-settings"
+        isReplaceAll: true
+        name: "MyGlobalSettings"
+        providerId: "org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig"
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      implicit: true
+      name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              credentialsId: "github-user-ssh"
+              id: "4cd25a36-3eab-49df-8721-890bcda365a6"
+              remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
+              traits:
+              - "gitBranchDiscovery"
   junitTestResultStorage:
     storage: "file"
   location:
@@ -161,11 +347,23 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSw7CIBSF4b0wFjCt1Lbb6Aq4j/q6KeYCOjDuXer0z3eS8zEXjVsxs+loxW6K\r\
+      \nYMfAkz3FYbAANFqgqT9D4EBwNAdzo2Z7i2krmkRY91hVWr2W8py9x3tCh5IqAXNuUtnl155qLqxO\r\
+      \nEkb5K9+mb4Yl4YPbhTVK5u8PdUCddZIAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
   usageStatisticsCloudBees:
     disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true
+  warningsParsers:
+    consoleLogScanningPermitted: false
 tool:
   cloudbeesPluginUsageAnalyzer:
     enabled: true

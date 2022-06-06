@@ -1,5 +1,8 @@
 plugins:
 - id: ace-editor
+- id: analysis-model-api
+- id: ansicolor
+- id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
 - id: authentication-tokens
 - id: aws-credentials
@@ -10,6 +13,7 @@ plugins:
 - id: bootstrap5-api
 - id: bouncycastle-api
 - id: branch-api
+- id: build-discarder
 - id: caffeine-api
 - id: checks-api
 - id: cloudbees-administrative-monitors
@@ -41,14 +45,17 @@ plugins:
 - id: cloudbees-workflow-template
 - id: cloudbees-workflow-ui
 - id: command-launcher
+- id: config-file-provider
 - id: configuration-as-code
 - id: credentials
 - id: credentials-binding
+- id: data-tables-api
 - id: display-url-api
 - id: durable-task
 - id: echarts-api
 - id: email-ext
 - id: font-awesome-api
+- id: forensics-api
 - id: git
 - id: git-client
 - id: git-server
@@ -60,6 +67,7 @@ plugins:
 - id: handy-uri-templates-2-api
 - id: infradna-backup
 - id: jackson2-api
+- id: javadoc
 - id: javax-activation-api
 - id: javax-mail-api
 - id: jaxb
@@ -77,6 +85,7 @@ plugins:
 - id: mailer
 - id: mapdb-api
 - id: matrix-project
+- id: maven-plugin
 - id: metrics
 - id: momentjs
 - id: nectar-license
@@ -110,11 +119,13 @@ plugins:
 - id: sshd
 - id: structs
 - id: support-core
+- id: timestamper
 - id: token-macro
 - id: trilead-api
 - id: unique-id
 - id: user-activity-monitoring
 - id: variant
+- id: warnings-ng
 - id: workflow-aggregator
 - id: workflow-api
 - id: workflow-basic-steps

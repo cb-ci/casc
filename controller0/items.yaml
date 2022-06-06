@@ -26,3 +26,54 @@ items:
       triggers:
       - githubPush: {}
   resumeBlocked: false
+- kind: cloudbeesTemplatedJob
+  catalog: Pipeline Template Catalog Examples
+  name: helloworldGo
+  model: Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
+  attributes:
+  - value: github-user-accesstoken
+    key: githubToken
+  - value: pipeline-demo-caternberg
+    key: organsisation
+  - value: helloworldGo
+    key: repoName
+  - value: helloworldGo
+    key: name
+- kind: multibranch
+  name: nginx-hello
+  description: NGINX and NGINX Plus demos
+  displayName: nginx-hello
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+      abortBuilds: false
+  projectFactory:
+    workflowBranchProjectFactory:
+      scriptPath: Jenkinsfile
+  properties:
+  - envVars: {}
+  - kubernetesFolderProperty: {}
+  sourcesList:
+  - branchSource:
+      source:
+        github:
+          apiUri: https://api.github.com
+          traits:
+          - gitHubBranchDiscovery:
+              strategyId: 1
+          - gitHubPullRequestDiscovery:
+              strategyId: 1
+          - gitHubForkDiscovery:
+              trust:
+                gitHubTrustPermissions: {}
+              strategyId: 1
+          repoOwner: org-caternberg
+          credentialsId: github-user-accesstoken
+          id: 732497a1-6b6c-495a-9e1f-182c8d3e6ff5
+          repository: NGINX-Demos
+          configuredByUrl: true
+          repositoryUrl: https://github.com/org-caternberg/NGINX-Demos.git
+      strategy:
+        allBranchesSame: {}

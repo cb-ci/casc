@@ -72,6 +72,7 @@ plugins:
 - id: kubernetes
 - id: kubernetes-client-api
 - id: kubernetes-credentials
+- id: kubernetes-credentials-provider
 - id: ldap
 - id: mailer
 - id: mapdb-api

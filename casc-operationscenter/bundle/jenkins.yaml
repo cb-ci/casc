@@ -5,7 +5,7 @@ credentials:
       - usernamePassword:
           description: "bbdp"
           id: "bbdp"
-          password: "{AQAAABAAAAAQMmBkjb2CIySdg3BB49GC3jn0dFM+uMd0fH+bLpBGpQ8=}"
+          password: "{AQAAABAAAAAQT6D/q4QPPsuaPlGn9BdnXf4BSQyEeCNfmNncJPICZlw=}"
           scope: GLOBAL
           username: "Andreas.Caternberg@dentsplysirona.com"
       - file:
@@ -290,6 +290,7 @@ unclassified:
         count: 3
         limit: 10
         log: "/tmp/auditjenkins.log"
+        logSeparator: " "
     - console:
         dateFormat: "yyyy-MM-dd HH:mm:ss:SSS"
         output: STD_ERR

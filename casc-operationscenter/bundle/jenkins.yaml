@@ -5,7 +5,7 @@ credentials:
       - usernamePassword:
           description: "bbdp"
           id: "bbdp"
-          password: "{AQAAABAAAAAQ24o9rzfulJT19gxrywFlP/St2+zXfF/oxrAt0YN92IA=}"
+          password: "{AQAAABAAAAAQMmBkjb2CIySdg3BB49GC3jn0dFM+uMd0fH+bLpBGpQ8=}"
           scope: GLOBAL
           username: "Andreas.Caternberg@dentsplysirona.com"
       - file:
@@ -34,8 +34,13 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: true
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "bundleStorageService"
+  - "com.cloudbees.jenkins.plugins.administrative_monitors.CJOCBuildSecurityMonitor"
+  - "jenkins.diagnostics.ControllerExecutorsNoAgents"
+  - "com.cloudbees.jenkins.plugins.assurance.SecurityWarningsWatch"
   labelAtoms:
-  - name: "master"
+  - name: "built-in"
   - name: "test"
   markupFormatter: "plainText"
   mode: NORMAL
@@ -85,7 +90,7 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Operations Center configured using CasC. v.28"
+  systemMessage: "Operations Center configured using CasC. v.29"
   updateCenter:
     sites:
     - id: "virtual-cap-core-oc"
@@ -118,7 +123,41 @@ beekeeper:
     autoDowngradePlugins: false
     autoUpgradePlugins: false
 cloudBeesCasCServer:
-  visibility: false
+  visibility: true
+license:
+  certificate: "-----BEGIN CERTIFICATE-----\r\nMIIGeDCCBGCgAwIBAgIEASOMyDANBgkqhkiG9w0BAQUFADBKMQswCQYDVQQGEwJV\r\
+    \nUzERMA8GA1UECAwIRGVsYXdhcmUxDjAMBgNVBAcMBUxld2VzMRgwFgYDVQQKDA9D\r\nbG91ZEJlZXMsIEluYy4wHhcNMjIwNjA2MDAwMDAwWhcNMjIwNzAxMjM1OTU5WjCC\r\
+    \nAnQxETAPBgorBgEEAYKpfwEBEwEzMTAwLgYKKwYBBAGCqX8BAhMgYzg0NGYxY2Y2\r\nYjk3MWIxNzNlNTdiNDQ1ZTY1OGE5M2ExFTATBgsrBgEEAYKpfwELDhMEdHJ1ZTEV\r\
+    \nMBMGCysGAQQBgql/AQsNEwR0cnVlMRUwEwYLKwYBBAGCqX8BCxATBHRydWUxFTAT\r\nBgsrBgEEAYKpfwELDxMEdHJ1ZTEVMBMGCysGAQQBgql/AQsKEwR0cnVlMRUwEwYL\r\
+    \nKwYBBAGCqX8BCwwTBHRydWUxFTATBgsrBgEEAYKpfwELCxMEdHJ1ZTEVMBMGCysG\r\nAQQBgql/AQsREwR0cnVlMRUwEwYLKwYBBAGCqX8BCwcTBHRydWUxFTATBgsrBgEE\r\
+    \nAYKpfwELBhMEdHJ1ZTEVMBMGCysGAQQBgql/AQsJEwR0cnVlMRUwEwYLKwYBBAGC\r\nqX8BCwgTBHRydWUxFTATBgsrBgEEAYKpfwELAxMEdHJ1ZTEVMBMGCysGAQQBgql/\r\
+    \nAQsCEwR0cnVlMRUwEwYLKwYBBAGCqX8BCwUTBHRydWUxFTATBgsrBgEEAYKpfwEL\r\nBBMEdHJ1ZTEVMBMGCysGAQQBgql/AQsBEwR0cnVlMRUwEwYLKwYBBAGCqX8BCxQT\r\
+    \nBHRydWUxFTATBgsrBgEEAYKpfwELFRMEdHJ1ZTETMBEGCisGAQQBgql/AQMTAzEw\r\nMDERMA8GCisGAQQBgql/AQ4TATQxFTATBgorBgEEAYKpfwEJEwVmYWxzZTETMBEG\r\
+    \nA1UEAxMKQ2xvdWRiZWVzIDEMMAoGA1UECxMDc2RhMRYwFAYLKwYBBAGCqX8BCxgT\r\nBWZhbHNlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwK9Ra2/k3Ky0\r\
+    \nMIms1QIVvDDOTh7VmhBm+t2mc7muNoUsqjJMFFZRhrLziJiFx60TCYpeHEm69Juz\r\nUIQR9JxU5MtHJZxDbzJJw3r9yGWbj+lSJi4I3l5IppGj4pfI7oebgfD2yezzFvfd\r\
+    \netktJQZyIuu6pCB1hcW2+M80V3fobiy3Sb6Ht7AhnlAOJTZnmDZK6HFt5ib868jB\r\nhrK+oLgDaovhxjeqOPYavF8qNoUSLl1lOKysd1Z4at3THSlSjcVnLE1YNfa+mKel\r\
+    \np1fe0pOrcDzTl2W41wqJLvBTxkJEAP1PQDw9N/IK9vN700N6MsKAOvuKcHo3MxgB\r\nlzt18TG1fwIDAQABozowODAMBgNVHRMEBTADAQH/MB0GA1UdDgQWBBTQVf0Dvou4\r\
+    \nr/Pb+lzovm3qEQDgQzAJBgNVHSMEAjAAMA0GCSqGSIb3DQEBBQUAA4ICAQA8DlDq\r\n/BWRVT3Qi64ci5Jxiz75ul+OmRFs40+eDfYsJ9AXWVnuBj2JVyTtk8nZsN58+jKU\r\
+    \nCMOPNm/WvehVCKHY56o67advf0Bmk9B/Yjdgao2WNBo9CQeMPUA+NLBUUFM+vx6C\r\nhqKhLTDKCKLNbVLXqlynMlwEvVxvr2CtlyuWRjnc79QQEnQua8maKlqoueceMnTk\r\
+    \njnL9AbbQAe02ahmzDe1nudNFrLW/xtmQacykJ1p4MyCL8zpoDedapQTJouAnYY72\r\nid5lp+KzfQEigFVlBMSi5MrPRBaMJD9Y30oeoe/hqpySsIEzABU6ViWhTLJRGOv1\r\
+    \nQHWaM7UZlvKXASltJ/FH8RMZYs7zRAi1BJnLZ6RQeTZXu80ItCq1jMlNl4ykk79u\r\nNmc2j46YtoBXC4dm5i7BRSUvz6vx18D2PBn84lbuYZloYjtQ4R7bpAV/4ibaqb3N\r\
+    \nhpjab9ekbDEQsqfxyTIh3ykUY+wrHe8gcSVndSjbwiPRx++8jhm8LIkHSoTDd4Oa\r\n5LQ3m54RUg46Tjv6OxA3CUAEW4Tzzln9MRRy85L1+SUiadzFIcta97phs8kUoq4H\r\
+    \n6gRmRKlrpnf+7IpiZgm5h/Ml7SKeFLaBHENHsAMG7/ptfboAXA7oT284XAEzeplt\r\nbfrVg5Au/OrRwQ+UtgfBHVtS8zkzEBH3t+haQg==\r\
+    \n-----END CERTIFICATE-----\r\n"
+  key: "-----BEGIN RSA PRIVATE KEY-----\r\nMIIEowIBAAKCAQEAwK9Ra2/k3Ky0MIms1QIVvDDOTh7VmhBm+t2mc7muNoUsqjJM\r\
+    \nFFZRhrLziJiFx60TCYpeHEm69JuzUIQR9JxU5MtHJZxDbzJJw3r9yGWbj+lSJi4I\r\n3l5IppGj4pfI7oebgfD2yezzFvfdetktJQZyIuu6pCB1hcW2+M80V3fobiy3Sb6H\r\
+    \nt7AhnlAOJTZnmDZK6HFt5ib868jBhrK+oLgDaovhxjeqOPYavF8qNoUSLl1lOKys\r\nd1Z4at3THSlSjcVnLE1YNfa+mKelp1fe0pOrcDzTl2W41wqJLvBTxkJEAP1PQDw9\r\
+    \nN/IK9vN700N6MsKAOvuKcHo3MxgBlzt18TG1fwIDAQABAoIBAAwZ9q8cs+74GckC\r\nnIw0OVE8b3iQjzHB3fXbfdy+yKY77vYxen28fhpLmuf1TFGiGRP8ULTOHKPIM5bW\r\
+    \n9Jm8R8imy60dB08whVl1nAK9/usm6DXlpkDxAvcTJovQpJn2glnC3H0KGKpUnuBc\r\nS22L3hc7Xtl4AGmKZVdzDAKCUWK56BW7uyDvq3vcn9QR3POJHo0FSa0eGxfW4yAn\r\
+    \nyFA6YBKklAVuTe3ZuCBn8z9NFcpulQRfPM8gsn3F0dkGT5LF8Y+7hRhWlTqWxunq\r\nXOqllihDWqtE5legqTK9g21TriP+DVZM9pY3fH0/16GxvMO7FC498MdIpp8JRcdn\r\
+    \nQPLVu2ECgYEA/TXD6yFggo2Vvh9BOll5/uLgnUrRpucK+QzuLehtJJbqYOsC8G5R\r\nWpvegCUn6FCLLS1F0x3iAk+HqpgiMMimj9F+AahhAWi/pcilwVbpErP3KMYkpeM/\r\
+    \naAlPu9OL69ZT0mYg845YnvX+7rQW3BXe/1pv/s1/u60gXPNMY2PkMG0CgYEAws7T\r\n/xCKD0vuk6ZRqU1I+sjfQ2VcSfSyJ5I3eZUL6Lb65nwGfdMfxrZEOyf7kmLl6D/h\r\
+    \nLYpfNsL/msiwBRefcT+gBHZ3yY2yqn5WIyRvlaKNofJelEmvtjTiI1cHO5OjL3U0\r\nm9AINjhp7E+aLdHD6chH79Ioo1kxT4OHDvBmwhsCgYB/IeSZhOuZAQ+jIrw0WMKI\r\
+    \n+E7AitVS0IRQ4W4g/Kb4DRHm0XhrUWhlbwc7Hey4luAaMbXyNvnIIThDrhjUl5oR\r\ncaSrnmf+NiKrUV/v//wMGPHKthmmdL/cM3imHKQPKFBzvjVjNCBIx8hU/3TO0ehi\r\
+    \nG31J2NH+YAF0ye+bo4bpzQKBgGjOk7nHcS+Xn4yqT4bxgJEEHzIIR2W2k168yMHN\r\n0XFreIMmOOva+V6UUxMsiKmSMbUJISG6L02sDY596E1lDzADlhiwj/PNG1Gk1Lzl\r\
+    \nbm8n3GFDn2TSXAmAXCW9PbPs0z/GI/6sJq7dHQe5L+70yx1s1l8NRzXS17e6wJ/l\r\n8LL/AoGBAOAZbktdkjX+3Im+q0lWkQf9bD1cHYEwBiRqUqFRCdI2WS8e7Vla7wzG\r\
+    \nMuhOKPiUHwuAk+Z2dK7u96YuUuT556Jof4F5+jDn72C4tiQG5vgPCGB7FQr4W2PU\r\n0y7NnjKDEbrYpBClkCxTdi6CManJdKL8F5cmpb+tDP09LLMURILp\r\
+    \n-----END RSA PRIVATE KEY-----\r\n"
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
@@ -127,7 +166,6 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
     - id: "default"
-      ingressClass: "nginx"
       jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
       name: "kubernetes"
     - credentialsId: "sa-remote-cluster"
@@ -211,6 +249,16 @@ support:
     - "ConnectedMasterSupportComponent"
     enabled: true
     period: 1
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter:
+      includes:
+        classNames:
+        - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
+        - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+        - "com.cloudbees.jenkins.plugins.kubernetes_credentials_provider.KubernetesCredentialProvider"
+        - "com.cloudbees.plugins.credentials.UserCredentialsProvider"
+    typeFilter: "none"
 security:
   anonymizeSupportBundle:
     enabled: false
@@ -231,17 +279,55 @@ security:
         canOverride: true
         defaultMappingFactory: "restrictedEquivalentRAMF"
 unclassified:
+  audit-trail:
+    logBuildCause: true
+    loggers:
+    - console:
+        dateFormat: "yyyy-MM-dd HH:mm:ss:SSS"
+        logPrefix: "AUDIT"
+        output: STD_OUT
+    - logFile:
+        count: 3
+        limit: 10
+        log: "/tmp/auditjenkins.log"
+    - console:
+        dateFormat: "yyyy-MM-dd HH:mm:ss:SSS"
+        output: STD_ERR
+    pattern: ".*/(?:configSubmit|doDelete|postBuildResult|enable|disable|cancelQueue|stop|toggleLogKeep|doWipeOutWorkspace|createItem|createView|toggleOffline|cancelQuietDown|quietDown|restart|exit|safeExit|loginError|loginSuccess)/?.*"
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
-  #cascAutoControllerProvisioning:
-    #provisionControllerOnCreation: false
+  bundleStorageService:
+    activated: true
+    bundles:
+    - name: "legacyJCasCBundleStore"
+      retriever:
+        SCM:
+          defaultVersion: "loadcascbundle"
+          scmSource:
+            git:
+              credentialsId: "github-user-ssh"
+              id: "d581a1d5-d298-492b-947c-d34dd8e6ed4e"
+              remote: "git@github.com:cb-ci/casc.git"
+              traits:
+              - "gitBranchDiscovery"
+    pollingPeriod: 120
+    purgeOnDeactivation: true
+  cascAutoControllerProvisioning:
+    duration: 60
+    fireAndForget: true
+    initialDelay: 15
+    provisionControllerOnCreation: true
+    timeout: 600
   experimentalPlugins:
     enabled: false
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
   gitHubPluginConfig:
+    configs:
+    - credentialsId: "github-accesstoken"
+      name: "githubapi"
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   gitSCM:
     addGitTagAction: false
@@ -260,6 +346,14 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  metricsAccessKey:
+    accessKeys:
+    - canHealthCheck: true
+      canMetrics: true
+      canPing: true
+      canThreadDump: false
+      key: "{AQAAABAAAABQEYiAUVofY+5Wka7YJ7TkdpGiROOS/d2B9hWkrgxXwe6tRdmuSAeJXSP3zL4cQ3F2HPeS8WQ0QCK7//oZN65IZPoHSgnUeYHOnloM7Yf1Yz2ARHQSOtSWAznUFcWmumjN}"
+      origins: "*"
   operationsCenterSharedConfiguration:
     enabled: false
   pollSCM:

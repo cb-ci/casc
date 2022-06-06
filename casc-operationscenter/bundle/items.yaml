@@ -2,21 +2,24 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- concurrentBuild: false
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: backupAndRestore
-  displayName: backup
+- kind: backupAndRestore
   name: backup
-  disabled: false
-- concurrentBuild: false
-  blockBuildWhenUpstreamBuilding: false
   blockBuildWhenDownstreamBuilding: false
-  kind: backupAndRestore
-  displayName: backupoc
-  name: backupoc
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
   disabled: false
-- concurrentBuild: false
+  displayName: backup
+- kind: backupAndRestore
+  name: backupoc
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  disabled: false
+  displayName: backupoc
+- kind: freeStyle
+  name: casc
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
   builders:
   - shell:
       command: |
@@ -28,18 +31,15 @@ items:
         #rm -Rf $BUNDLE_DIR
         mkdir -p $BUNDLE_DIR
 
-        #cp casc/core-casc-security.xml ${JENKINS_HOME}/
-        #rsync -avz --exclude '.git' . ${BUNDLE_DIR}/
+        #cp casc/core-casc-security.xml /var/jenkins_home/
+        #rsync -avz --exclude '.git' . /
         rm -Rf .git
-        cp -vR * ${BUNDLE_DIR}/
-        ls -lathR ${BUNDLE_DIR}/
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: casc
-  name: casc
+        cp -vR * /
+        ls -lathR /
+  concurrentBuild: false
   description: ''
   disabled: false
+  displayName: casc
   scm:
     gitSCM:
       userRemoteConfigs:
@@ -51,7 +51,10 @@ items:
           name: '*/master'
   scmCheckoutStrategy:
     standard: {}
-- concurrentBuild: false
+- kind: freeStyle
+  name: cascdp
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
   builders:
   - shell:
       command: |
@@ -63,18 +66,15 @@ items:
         #rm -Rf $BUNDLE_DIR
         mkdir -p $BUNDLE_DIR
 
-        #cp casc/core-casc-security.xml ${JENKINS_HOME}/
-        #rsync -avz --exclude '.git' . ${BUNDLE_DIR}/
+        #cp casc/core-casc-security.xml /var/jenkins_home/
+        #rsync -avz --exclude '.git' . /
         rm -Rf .git
-        cp -vR * ${BUNDLE_DIR}/
-        ls -lathR ${BUNDLE_DIR}/
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: cascdp
-  name: cascdp
+        cp -vR * /
+        ls -lathR /
+  concurrentBuild: false
   description: ''
   disabled: false
+  displayName: cascdp
   scm:
     gitSCM:
       userRemoteConfigs:
@@ -86,39 +86,11 @@ items:
           name: '*/staging'
   scmCheckoutStrategy:
     standard: {}
-- kind: folder
-  displayName: Project Alpha
-  name: project-alpha
-  description: Project Alpha is going to change the world!
-  groups:
-  - members:
-      unknown:
-      - ldap-project-alpha
-    roles:
-    - name: developer
-      grantedAt: current
-    name: Project Alpha Developers
-  items:
-  - kind: folder
-    displayName: Project Alpha Tests
-    name: project-alpha-tests
-    items:
-    - kind: folder
-      displayName: test-1
-      name: test-1
-    - kind: folder
-      displayName: test-2
-      name: test-2
-- kind: folder
-  displayName: Project Beta
-  name: project-beta
-  description: Secret project! Only Admins can see this!
-  filteredRoles:
-  - browser
-  - developer
-- configuration:
+- kind: managedController
+  name: controller0
+  configuration:
     kubernetes:
-      allowExternalAgents: false
+      allowExternalAgents: true
       terminationGracePeriodSeconds: 1200
       image: CloudBees CI - Managed Master - latest
       memory: 3072
@@ -132,17 +104,17 @@ items:
       readinessFailureThreshold: 100
       livenessTimeoutSeconds: 10
       storageClassName: ssd-cloudbees-ci-cloudbees-core
-      domain: team1
+      domain: controller0
       livenessPeriodSeconds: 10
       javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
         -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
       yaml: ''
-  kind: managedController
-  displayName: team1
-  name: team1
   description: ''
+  displayName: controller0
   properties:
   - configurationAsCode: {}
+  - sharedHeaderLabelOptIn:
+      optIn: true
   - healthReporting:
       enabled: true
   - optOutProperty:
@@ -155,7 +127,64 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
-- configuration:
+- kind: freeStyle
+  name: cscsdvcsdva
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: cscsdvcsdva
+  scm:
+    none: {}
+  scmCheckoutStrategy:
+    standard: {}
+- kind: folder
+  name: project-alpha
+  description: Project Alpha is going to change the world!
+  displayName: Project Alpha
+  groups:
+  - members:
+      unknown:
+      - ldap-project-alpha
+    roles:
+    - name: developer
+      grantedAt: current
+    name: Project Alpha Developers
+  items:
+  - kind: folder
+    name: project-alpha-tests
+    displayName: Project Alpha Tests
+    items:
+    - kind: folder
+      name: test-1
+      displayName: test-1
+    - kind: folder
+      name: test-2
+      displayName: test-2
+- kind: folder
+  name: project-beta
+  description: Secret project! Only Admins can see this!
+  displayName: Project Beta
+  filteredRoles:
+  - browser
+  - developer
+- kind: sharedAgent
+  name: sharedagent
+  description: ''
+  displayName: sharedagent
+  labels: sharedagent
+  launcher:
+    command:
+      command: exec java -jar ~/bin/agent.jar
+  mode: NORMAL
+  numExecutors: 1
+  remoteFS: /tmp
+  retentionStrategy:
+    sharedNodeRetentionStrategy: {}
+- kind: managedController
+  name: teamgo
+  configuration:
     kubernetes:
       allowExternalAgents: false
       terminationGracePeriodSeconds: 1200
@@ -176,11 +205,11 @@ items:
       javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
         -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
       yaml: ''
-  kind: managedController
-  displayName: teamgo
-  name: teamgo
   description: ''
+  displayName: teamgo
   properties:
+  - sharedHeaderLabelOptIn:
+      optIn: true
   - configurationAsCode:
       bundle: golang-bitbucket
   - healthReporting:
@@ -195,7 +224,9 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
-- configuration:
+- kind: managedController
+  name: teamremote
+  configuration:
     kubernetes:
       allowExternalAgents: false
       terminationGracePeriodSeconds: 1200
@@ -238,11 +269,11 @@ items:
             - secretName: tls-secret
               hosts:
                 - teamremote-sda.acaternberg.flow-training.beescloud.com
-  kind: managedController
-  displayName: teamremote
-  name: teamremote
   description: ''
+  displayName: teamremote
   properties:
+  - sharedHeaderLabelOptIn:
+      optIn: true
   - configurationAsCode: {}
   - healthReporting:
       enabled: true
@@ -256,19 +287,56 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
-- concurrentBuild: false
+- kind: folder
+  name: Teams
+  displayName: Teams
+- kind: freeStyle
+  name: test
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
   builders:
   - shell:
       command: echo hallo
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: test
-  name: test
+  concurrentBuild: false
   description: ''
   disabled: false
+  displayName: test
   label: test
   scm:
     none: {}
+  scmCheckoutStrategy:
+    standard: {}
+- kind: folder
+  name: testk8scloud
+  description: ''
+  displayName: testk8scloud
+  properties:
+  - envVars: {}
+  - kubernetesFolderProperty: {}
+  - itemRestrictions:
+      filter: false
+- kind: freeStyle
+  name: testK8sCreds
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  builders:
+  - shell:
+      command: echo Hallo
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: testK8sCreds
+  scm:
+    gitSCM:
+      userRemoteConfigs:
+      - userRemoteConfig:
+          credentialsId: github-user-ssh
+          url: git@github.com:org-caternberg/helloworld.git
+      browser:
+        githubWeb:
+          repoUrl: https://github.com/org-caternberg/helloworld
+      branches:
+      - branchSpec:
+          name: '*/master'
   scmCheckoutStrategy:
     standard: {}

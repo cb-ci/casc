@@ -30,7 +30,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "managed by CasC v.16"
+  systemMessage: "managed by CasC v.17"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"

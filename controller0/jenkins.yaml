@@ -30,7 +30,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "managed by CasC v.17"
+  systemMessage: "managed by CasC v.18"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"
@@ -349,10 +349,6 @@ unclassified:
     useTls: false
   mavenModuleSet:
     localRepository: "default"
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSw7CIBSF4b0wFjCt1Lbb6Aq4j/q6KeYCOjDuXer0z3eS8zEXjVsxs+loxW6K\r\
-      \nYMfAkz3FYbAANFqgqT9D4EBwNAdzo2Z7i2krmkRY91hVWr2W8py9x3tCh5IqAXNuUtnl155qLqxO\r\
-      \nEkb5K9+mb4Yl4YPbhTVK5u8PdUCddZIAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
   timestamper:

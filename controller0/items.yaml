@@ -28,7 +28,7 @@ items:
   resumeBlocked: false
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
-  name: helloworldGo
+  name: mytest
   model: Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
   attributes:
   - value: github-user-accesstoken
@@ -37,7 +37,7 @@ items:
     key: organsisation
   - value: helloworldGo
     key: repoName
-  - value: helloworldGo
+  - value: mytest
     key: name
 - kind: multibranch
   name: nginx-hello

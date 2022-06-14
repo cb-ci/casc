@@ -8,6 +8,7 @@ plugins:
 - id: aws-credentials
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-minimal
+- id: beer
 - id: blueocean-commons
 - id: bootstrap4-api
 - id: bootstrap5-api

@@ -26,6 +26,28 @@ items:
       triggers:
       - githubPush: {}
   resumeBlocked: false
+- kind: pipeline
+  name: mynewtest
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        pipeline {
+            agent any
+
+            stages {
+                stage('Hello') {
+                    steps {
+                        echo 'Hello World'
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: mynewtest
+  resumeBlocked: false
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
   name: mytest

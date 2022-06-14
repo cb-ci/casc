@@ -11,5 +11,3 @@ configurations:
       version: 1.0.1
     build-discarder:
       version: 60.v1747b0eb632a
-    beer:
-      version: '1.3'

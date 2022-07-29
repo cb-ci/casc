@@ -5,6 +5,14 @@ jenkins:
   - "OperationsCenter2"
   - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      name: "mycloud"
+      namespace: "cloudbees-core"
+      usageRestricted: true
+      webSocket: true
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
@@ -26,7 +34,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "managed by CasC v.23"
+  systemMessage: "managed by CasC v.24"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"
@@ -114,8 +122,25 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "acceptFirstConnectionStrategy"
   sSHD:
     port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "017d0db438428731cd600b6ebda805065433520f"
+    - "2fad12722d6b439529e7966d5abf30b0970305cc"
+    - "352ea0a61d7d60f033d161e81b06e055bc52c855"
+    - "443857d40abaee82a93ac783395a91dd509d8519"
+    - "68c9241901012afc07f0872967e3e5fa2e019c99"
+    - "6bc5acfe193778139fb847fe498b41bff64104f4"
+    - "7273a2a6769ebca86a0d4d03b8063c551bf08421"
+    - "77a424cc26eba5572b7fa4f68112714176e83d16"
+    - "78dbbb971b11211f6ac165c6a78df1863fb62949"
+    - "7bda55098ba1c06adcd03dc03af2e0d13090f118"
+    - "a1651f3b9a9d6cac098a7d34d079356032b88fcd"
+    - "de297ada2701eae27eddba44aa7a37b228ca4f3f"
+    - "fe3059c7004d2712542e317c2d0b3e0c78113a09"
 unclassified:
   ansiColorBuildWrapper:
     colorMaps:
@@ -345,8 +370,14 @@ unclassified:
     useTls: false
   mavenModuleSet:
     localRepository: "default"
+  operationsCenterRootAction:
+    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSw7CIBSF4b0wFjCt1Lbb6Aq4j/q6KeYCOjDuXer0z3eS8zEXjVsxs+loxW6K\r\
+      \nYMfAkz3FYbAANFqgqT9D4EBwNAdzo2Z7i2krmkRY91hVWr2W8py9x3tCh5IqAXNuUtnl155qLqxO\r\
+      \nEkb5K9+mb4Yl4YPbhTVK5u8PdUCddZIAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
+  prismConfiguration:
+    theme: PRISM
   timestamper:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"

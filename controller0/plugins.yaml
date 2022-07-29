@@ -99,6 +99,7 @@ plugins:
 - id: operations-center-context
 - id: pipeline-build-step
 - id: pipeline-graph-analysis
+- id: pipeline-groovy-lib
 - id: pipeline-input-step
 - id: pipeline-milestone-step
 - id: pipeline-model-api
@@ -112,6 +113,7 @@ plugins:
 - id: plugin-util-api
 - id: popper-api
 - id: popper2-api
+- id: prism-api
 - id: scm-api
 - id: script-security
 - id: snakeyaml-api

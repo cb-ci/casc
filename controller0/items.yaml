@@ -124,7 +124,7 @@ items:
         allBranchesSame: {}
 - kind: folder
   name: test
-  description: ''
+  description: TEST FOLDER
   displayName: test
   items:
   - kind: cloudbeesTemplatedJob

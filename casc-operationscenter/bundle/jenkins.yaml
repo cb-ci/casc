@@ -2,12 +2,6 @@ credentials:
   system:
     domainCredentials:
     - credentials:
-      - usernamePassword:
-          description: "bbdp"
-          id: "bbdp"
-          password: "{AQAAABAAAAAQT6D/q4QPPsuaPlGn9BdnXf4BSQyEeCNfmNncJPICZlw=}"
-          scope: GLOBAL
-          username: "Andreas.Caternberg@dentsplysirona.com"
       - file:
           description: "sa-remote-cluster"
           fileName: "sa-jenkins-remnote-controller.yaml"
@@ -90,7 +84,7 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Operations Center configured using CasC. v.30"
+  systemMessage: "Operations Center configured using CasC. v.31"
   updateCenter:
     sites:
     - id: "virtual-cap-core-oc"
@@ -236,8 +230,13 @@ security:
     enforce:
       canOverride: false
       count: 0
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "acceptFirstConnectionStrategy"
   sSHD:
     port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "fe3059c7004d2712542e317c2d0b3e0c78113a09"
   securitySettingsEnforcement:
     global:
       realmAndAuthorization:

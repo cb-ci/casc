@@ -112,6 +112,8 @@ items:
   description: ''
   displayName: controller0
   properties:
+  - enforceControllerExecutors:
+      count: 1
   - configurationAsCode:
       bundle: controller0
   - sharedHeaderLabelOptIn:

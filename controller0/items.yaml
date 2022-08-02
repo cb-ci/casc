@@ -55,6 +55,7 @@ items:
 - kind: pipeline
   name: mynewtest
   concurrentBuild: true
+  disabled: false
   definition:
     cpsFlowDefinition:
       sandbox: true
@@ -91,6 +92,7 @@ items:
   name: nginx-hello
   description: NGINX and NGINX Plus demos
   displayName: nginx-hello
+  disabled: false
   orphanedItemStrategy:
     defaultOrphanedItemStrategy:
       pruneDeadBranches: true

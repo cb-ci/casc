@@ -39,60 +39,10 @@ items:
     key: repoName
   - value: helloworld1
     key: name
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: herlloworl2
-  model: Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
-  attributes:
-  - value: github-user-accesstoken
-    key: githubToken
-  - value: org-caternberg
-    key: organsisation
-  - value: helloworld
-    key: repoName
-  - value: herlloworl2
-    key: name
-- kind: pipeline
-  name: mynewtest
-  concurrentBuild: true
-  disabled: false
-  definition:
-    cpsFlowDefinition:
-      sandbox: true
-      script: |
-        pipeline {
-            agent any
-
-            stages {
-                stage('Hello') {
-                    steps {
-                        echo 'Hello World'
-                    }
-                }
-            }
-        }
-  description: ''
-  disabled: false
-  displayName: mynewtest
-  resumeBlocked: false
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: mytest
-  model: Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
-  attributes:
-  - value: github-user-accesstoken
-    key: githubToken
-  - value: pipeline-demo-caternberg
-    key: organsisation
-  - value: helloworldGo
-    key: repoName
-  - value: mytest
-    key: name
 - kind: multibranch
   name: nginx-hello
   description: NGINX and NGINX Plus demos
   displayName: nginx-hello
-  disabled: false
   orphanedItemStrategy:
     defaultOrphanedItemStrategy:
       pruneDeadBranches: true

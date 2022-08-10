@@ -5,14 +5,6 @@ jenkins:
   - "OperationsCenter2"
   - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
-  clouds:
-  - kubernetes:
-      containerCap: 10
-      containerCapStr: "10"
-      name: "mycloud"
-      namespace: "cloudbees-core"
-      usageRestricted: true
-      webSocket: true
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
@@ -34,7 +26,6 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "${systemMessage}"
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"
@@ -221,6 +212,14 @@ unclassified:
     - "jobBuildDiscarder"
   cloudBeesSCMReporting:
     enabled: true
+  defaultFolderConfiguration:
+    healthMetrics:
+    - jobStatusHealthMetric:
+        countVirginJobs: false
+        failure: true
+        success: true
+        unbuilt: true
+        unstable: true
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
@@ -359,6 +358,8 @@ unclassified:
               remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
               traits:
               - "gitBranchDiscovery"
+  headerLabel:
+    text: "${systemMessage}"
   junitTestResultStorage:
     storage: "file"
   location:

@@ -28,6 +28,15 @@ items:
   resumeBlocked: false
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
+  name: HW
+  model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
+  attributes:
+  - value: Andreas
+    key: firstname
+  - value: HW
+    key: name
+- kind: cloudbeesTemplatedJob
+  catalog: Pipeline Template Catalog Examples
   name: mytest
   model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
   attributes:

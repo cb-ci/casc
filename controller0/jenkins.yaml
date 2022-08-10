@@ -11,6 +11,8 @@ jenkins:
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
+  - name: "mytest-master-4-3c648-wnl3x-t3rg9"
+  - name: "mytest_master_4-3c648"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -51,6 +53,131 @@ globalCloudBeesPipelineTemplateCatalog:
         id: "106fc83a-ad2e-4ebd-9124-7ce4e2550904"
         remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
     updateInterval: "1d"
+license:
+  certificate: |
+    -----BEGIN CERTIFICATE-----
+    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
+    NnaV4t0fos29MsuhTqRMMEoxCzAJBgNVBAYTAlVTMREwDwYDVQQIDAhEZWxhd2Fy
+    ZTEOMAwGA1UEBwwFTGV3ZXMxGDAWBgNVBAoMD0Nsb3VkQmVlcywgSW5jLoIEAmLD
+    QDCCCRcGCisGAQQBgql/AQcEggkHBIIJAwotLS0tLUJFR0lOIENFUlRJRklDQVRF
+    LS0tLS0KTUlJR2VqQ0NCR0tnQXdJQkFnSUVBbUxEUURBTkJna3Foa2lHOXcwQkFR
+    VUZBREJLTVFzd0NRWURWUVFHRXdKVgpVekVSTUE4R0ExVUVDQXdJUkdWc1lYZGhj
+    bVV4RGpBTUJnTlZCQWNNQlV4bGQyVnpNUmd3RmdZRFZRUUtEQTlECmJHOTFaRUps
+    WlhNc0lFbHVZeTR3SGhjTk1qSXdOekk1TURBd01EQXdXaGNOTWpJd09ESTRNak0x
+    T1RVNVdqQ0MKQW5ZeEVUQVBCZ29yQmdFRUFZS3Bmd0VCRXdFek1UQXdMZ1lLS3dZ
+    QkJBR0NxWDhCQWhNZ1l6ZzBOR1l4WTJZMgpZamszTVdJeE56TmxOVGRpTkRRMVpU
+    WTFPR0U1TTJFeEZUQVRCZ3NyQmdFRUFZS3Bmd0VMRGhNRWRISjFaVEVWCk1CTUdD
+    eXNHQVFRQmdxbC9BUXNORXdSMGNuVmxNUlV3RXdZTEt3WUJCQUdDcVg4QkN4QVRC
+    SFJ5ZFdVeEZUQVQKQmdzckJnRUVBWUtwZndFTER4TUVkSEoxWlRFVk1CTUdDeXNH
+    QVFRQmdxbC9BUXNLRXdSMGNuVmxNUlV3RXdZTApLd1lCQkFHQ3FYOEJDd3dUQkhS
+    eWRXVXhGVEFUQmdzckJnRUVBWUtwZndFTEN4TUVkSEoxWlRFVk1CTUdDeXNHCkFR
+    UUJncWwvQVFzUkV3UjBjblZsTVJVd0V3WUxLd1lCQkFHQ3FYOEJDd2NUQkhSeWRX
+    VXhGVEFUQmdzckJnRUUKQVlLcGZ3RUxCaE1FZEhKMVpURVZNQk1HQ3lzR0FRUUJn
+    cWwvQVFzSkV3UjBjblZsTVJVd0V3WUxLd1lCQkFHQwpxWDhCQ3dnVEJIUnlkV1V4
+    RlRBVEJnc3JCZ0VFQVlLcGZ3RUxBeE1FZEhKMVpURVZNQk1HQ3lzR0FRUUJncWwv
+    CkFRc0NFd1IwY25WbE1SVXdFd1lMS3dZQkJBR0NxWDhCQ3dVVEJIUnlkV1V4RlRB
+    VEJnc3JCZ0VFQVlLcGZ3RUwKQkJNRWRISjFaVEVWTUJNR0N5c0dBUVFCZ3FsL0FR
+    c0JFd1IwY25WbE1SVXdFd1lMS3dZQkJBR0NxWDhCQ3hRVApCSFJ5ZFdVeEZUQVRC
+    Z3NyQmdFRUFZS3Bmd0VMRlJNRWRISjFaVEVUTUJFR0Npc0dBUVFCZ3FsL0FRTVRB
+    ekV3Ck1ERVJNQThHQ2lzR0FRUUJncWwvQVE0VEFUUXhGVEFUQmdvckJnRUVBWUtw
+    ZndFSkV3Vm1ZV3h6WlRFVE1CRUcKQTFVRUF4TUtRMnh2ZFdSaVpXVnpJREVPTUF3
+    R0ExVUVDeE1GYkc5allXd3hGakFVQmdzckJnRUVBWUtwZndFTApHQk1GWm1Gc2My
+    VXdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEU2tJ
+    ZlpvNVM5ClhNRHplNFZqSml3d2s4Z0xKSXNKV3hwaEVTZWZnRVdXQmlZK3hBd1p4
+    SzBWeHY4ZnFkcFR4dTRXdGw1bG1yaFoKNEJGZ1ZmbVlFdnNxamhxVkpYK2ptWVlv
+    UDA1L2dGUkJ2M3ZZWDRlVlM1UWh5UFYvNEhkWFZzbGQ5TnFGWEVMdwpxdnVLUkF6
+    cUh1NDF6NVh2eWZ2R0trQzZQamJvWTB5NkgzZmN1RHA3R1R6ek1hUE8rODlObjlT
+    K2ZxdTV1OHlGCk1rMnhVdXJZdk1KbGhneFNTOE13ZUhCRm53cEZSeEd0SmZlMWc4
+    VTc0VnFqMEt0T3VYeGtMME9Ed29zaUhvMTMKTnBUeHpQNXNuYzduVjFKTzVMbHFL
+    aXE2UWd4TUhtWVRXVWFwK3F4ODF6QWsvWmFJNFdmYzJzQlBJMHYwK0twMwplY0tL
+    U05VcC9nTVZBZ01CQUFHak9qQTRNQXdHQTFVZEV3UUZNQU1CQWY4d0hRWURWUjBP
+    QkJZRUZGRXMrNEFrCm9TdUlOaloybGVMZEg2TE52VExMTUFrR0ExVWRJd1FDTUFB
+    d0RRWUpLb1pJaHZjTkFRRUZCUUFEZ2dJQkFFR0YKUzYybVg5a2xUVENpdnM0STBy
+    VWM1Z21pckplVVVJaVBrZ2tqUm5KSHVGM0dHcG1sQlJSTFAvOU14TkR3WFhibwpM
+    SXNoU0REZmxtMVJkK1FCNm54OVBYTkFSeWtDT1lvaENneEpIVGNMRERlcHd1bjVS
+    RloxMGN3VWRURHhtUFEyCmdETjhqSjgxSThKUjk5ZTlmME14RzMwVHh6VExTbVNV
+    VFNyRWRJZG1aZFUxcEJYcmJSR0ZsQWFURDhkSXQ4RGUKVC96MkRNTzcrbExDT0Vi
+    K2VVdjkzMVJOK0FYQ0ZkcXE1bVR4UmpGc081Qjh5dFArUnMyOFFQOVRobGdmU1ZY
+    eQpWeE9LSHR2T09FSlBzWWE1U0tlcmF4UVluZEpjelpsaFVFR3EzU0JTdnZTUWVm
+    V2lRS2JNb1VJaGQ4ZGFCNDZyCkZLQ3htTHNFZlJDNFRoSkxRWnRIeE95d3FEK3lz
+    ZTJGU0RBT01ab2FORnE5T1AvcElONlNFczg0WEN3aHJaWGoKVEhpNUdNZ3dNYW44
+    ZUVaNXNXZndFd3h2MzYxUzV2V3hFZjgrWDVDY25yQ2VtelFRd08yNkhHMVRLalBZ
+    eG1FVApESXNlUDk4UWRQeUUxakpkVURMbmRyM09jMVRRSkRSS0hScitOT3g2ZElz
+    cG5tMGtUZ2YrNUw3ZGVkb1ZOajhFCnZMaGdJVjFuc1pSUVVBQjg1Z3huV0c2aWpT
+    WnpsTnFaeFFnUkEzd3QzRlZGZjhvdUVzWXVhT3NvL3JuVitpLzYKMDZaS0kwY21Q
+    cFg1VWdSOVB1ZnZlS0d4YzZPb1p2WUpITFUyZGRiZjJQQ3J4Si9Ud05zYnk3K25H
+    UjdXN2Z1VgpyeWxZUTRYd1c5cUhBYjE2MmwrbVhnZkU0Yk0xZ0QrcFFUU1BzT3dB
+    Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KCjANBgkqhkiG9w0BAQUFAAOCAQEA
+    lTypJN05ntfTRHlRVi9CNTExGcsMUAydyOl0yl1Ybk/fjedOnYGCRElf/xoBpPs1
+    aSZp4Q23n0lLItVYGk2NqsdhLAJ6kHcPj91yFq0DzVtRK1WXdaluANgtgjLGvZrY
+    C/TVUPG8xuib278HZP/14mAm38ZuK7OtQTVb2L2FAmv6S40BbbpjRmpWPLz91fd/
+    qY96KuS32W+99GBc+R7MKs3iH5YtVKXDRH/qnoQ67jcGt52Zg//F6qWJnQzejaJ6
+    rrk2LfZG3UP3gH2Xo0lIZ70ungFhWBo8O3CyLQ5acps6Q/1hx0U6YSPkIj+D+8xb
+    EX4dvYNvbZSfU478nvQHYw==
+    -----END CERTIFICATE-----
+  key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpAIBAAKCAQEArkWjiiNcuWLXA9rGiVEd4vZEwtlVJfgEmrac59ltWrktS+C8
+    CRO1M+/9dgCkjWamRH0EINuVrWoYx2raHxL0KSqlq1APGTk3yZeHWFbyeYFJvlhA
+    5PHPYeKDXyd7DuHrW28BwJLwh8/LQLDlJaXq1AdbRdS10R/8COWwUafxVc9tBf9O
+    3EVmEJweNxN/qLT5AWZg+XWfMF42uUyJ3qM1lMDMHLnYZn6oLVe9jQD/7c+C2mgi
+    pN8Naj2WsFVN1AMRJC/L75g4c97JD5ozLn2GY+NmR+hDWi39T/x5dgRZQWv376/P
+    6VdvVHU0NtfR5Plbe9D82tXaWyR20pLU/yuCLwIDAQABAoIBAQCOZEAXooUkxGnC
+    sIL/t9OfmnDcdA9qkpfQgdz6Y2FCe4NTODDribrI0RJb1HKfRnwcAbnZzxEhPEs6
+    xUerlCUDbeEndKahiWrXwIPJ3mEIfmbuq9V6O0mjRRzqJqwZoOZZMv5PhsAZd+Mu
+    3FqexE53J/uftwlH8cZQzruePIaoAROVpYrEqKhUVmHK9IdCDPyoQmZ+qU8w6Sf5
+    TesNyxaYFKx87khhBoz+hw/dwgCbY+Lfty+1fPnAxZnrwF9ZEb4t6nA7egQT9nKW
+    z+NsISN1EVEbQ5ZiURl0ReOpogSmN/+hlLCX79TkFUe9EEfbA06e5gGezRLvbV8A
+    KIl12A3hAoGBAPB02/svwnpOT45jhqFA7ey8iO8aj127iL8rlVjucdVLmMvCiFg5
+    tIkcIOcma57cgIYDGYtiXwhl2XlDbX7NDxsQNTUZ7YFC7U3V5vMps+FB0eJH9jB2
+    KB3pP9IQ/pN/3BR5OJ2KQtBOU9tSg/nDxPNuLQzNbiP4AQMCzEPa+BNzAoGBALmJ
+    im+tuAo8gFsd7YGIGCLAcUp44Qa4DLWOy+s3kaO8lhvriMWdLkJOSvtSyEEWVeY9
+    UYne09vMdZSc38zqrxVsHSwoP5wQtXruueAFYLgN6Lc/KbupVjqN4olzQtwSUMYQ
+    J+b8RRMyXt3rbAyzyWfBgjPDXfOPNzHjIV/efX9VAoGAKgKgtGABwFCSQbRNvzqS
+    1vuRiQTA64VqPMwmiaUPKk7M4TyZiaB7VEEf1oK15slrgv5jpiCHrfXtauxG4xJ8
+    gyPvx9lBz4Wb5C9s7CrrDH3tZ3VfI9Rg6ejoh5EEiUybbNBI/e08AxzMNdNSz35O
+    mKE1KblydsJLmvUQLwLAuNUCgYBeCRfhAmsExSVJCSIXRKL2+hJxbFKg1Seb3YP8
+    820dT7fE7tujTMblVEksmAhm9KsUxn9NIWK/RCFT8S587XVPpjwi5UNYFh/k7pnG
+    sPMUVfhc5+Z+9pR9mOv4PjLk12OY/xc6OyHHWQA7+dYJmhW6QJl9Ise7ahrPbg68
+    SEfTAQKBgQDccjVL7ihOHfWRYROTm/2JQscPUITBDINjWti8M9NUce4hrAOpq0g4
+    ZEZItK/ylOkFzpAWHCgRNtWqmITxY4QckiO+u9BtAKDq/1cF+uhOKHbGoRX+VzWZ
+    bOsDsdmGg7Cnt0u1oWImDoQUZ3iZFRDgbAih04FLo6iklrNdoBqPyQ==
+    -----END RSA PRIVATE KEY-----
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -267,18 +394,12 @@ unclassified:
               <servers>
                   <server>
                       <id>nexus-snapshots</id>
-                      <username>admin</username>
-                      <password>acaternberg</password>
                   </server>
                   <server>
                       <id>nexus-releases</id>
-                      <username>admin</username>
-                      <password>acaternberg</password>
                   </server>
                   <server>
                       <id>nexus</id>
-                      <username>admin</username>
-                      <password>acaternberg</password>
                   </server>
                   <server>
                       <id>spring-milestones</id>
@@ -340,10 +461,17 @@ unclassified:
                   <activeProfile>nexus</activeProfile>
               </activeProfiles>
           </settings>
-        id: "maven-global-settings"
+        id: "global-maven-settings"
         isReplaceAll: true
         name: "MyGlobalSettings"
         providerId: "org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig"
+        serverCredentialMappings:
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus"
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus-snapshots"
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus-releases"
   globalLibraries:
     libraries:
     - defaultVersion: "master"

@@ -2,30 +2,6 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: pipeline
-  name: helloworld
-  concurrentBuild: true
-  definition:
-    cpsScmFlowDefinition:
-      scriptPath: Jenkinsfile
-      scm:
-        gitSCM:
-          userRemoteConfigs:
-          - userRemoteConfig:
-              credentialsId: github-user-ssh
-              url: git@github.com:org-caternberg/helloworld.git
-          branches:
-          - branchSpec:
-              name: '*/master'
-      lightweight: false
-  description: ''
-  disabled: false
-  displayName: helloworld
-  properties:
-  - pipelineTriggers:
-      triggers:
-      - githubPush: {}
-  resumeBlocked: false
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
   name: HW
@@ -53,11 +29,11 @@ items:
   name: mytest11
   model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
   attributes:
-    - value: github-user-accesstoken
-      key: githubToken
-    - value: pipeline-demo-caternberg
-      key: organsisation
-    - value: spring-boot-demo
-      key: repoName
-    - value: mytest11
-      key: name
+  - value: github-user-accesstoken
+    key: githubToken
+  - value: pipeline-demo-caternberg
+    key: organsisation
+  - value: spring-boot-demo
+    key: repoName
+  - value: mytest11
+    key: name

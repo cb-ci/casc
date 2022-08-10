@@ -84,7 +84,7 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Operations Center configured using CasC. v.31"
+  systemMessage: "Operations Center configured using CasC. v.32"
   updateCenter:
     sites:
     - id: "virtual-cap-core-oc"

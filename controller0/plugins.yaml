@@ -84,6 +84,7 @@ plugins:
 - id: kubernetes-credentials-provider
 - id: ldap
 - id: mailer
+- id: managed-master-hibernation
 - id: mapdb-api
 - id: matrix-project
 - id: maven-plugin

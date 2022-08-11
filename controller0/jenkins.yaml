@@ -11,8 +11,6 @@ jenkins:
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
-  - name: "mytest-master-4-3c648-wnl3x-t3rg9"
-  - name: "mytest_master_4-3c648"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -363,6 +361,12 @@ unclassified:
               - "gitBranchDiscovery"
   headerLabel:
     text: "${systemMessage}"
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: true
+    gracePeriod: 120
   junitTestResultStorage:
     storage: "file"
   location:

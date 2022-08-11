@@ -2,6 +2,85 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
+- kind: folder
+  name: folder-one
+  description: ''
+  displayName: folder-one
+  healthMetrics:
+  - jobStatusHealthMetric:
+      unstable: true
+      countVirginJobs: false
+      failure: true
+      success: true
+      unbuilt: true
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      allowedTypes:
+      - org.jenkinsci.plugins.workflow.job.WorkflowJob
+      - Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
+      - Pipeline-Tem.c3qk18.log-Examples/helloWorld
+      filter: true
+- kind: folder
+  name: folder-two
+  description: ''
+  displayName: folder-two
+  healthMetrics:
+  - jobStatusHealthMetric:
+      unstable: true
+      countVirginJobs: false
+      failure: true
+      success: true
+      unbuilt: true
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      allowedTypes:
+      - org.jenkinsci.plugins.workflow.job.WorkflowJob
+      - Pipeline-Tem.c3qk18.log-Examples/parametrizedPipeline
+      - Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
+      - jenkins.branch.OrganizationFolder
+      - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+      - Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
+      - Pipeline-Tem.c3qk18.log-Examples/helloWorld
+      filter: true
+- kind: pipeline
+  name: helloworldtest
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
+        def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+            agent {
+                kubernetes {
+                    //#deprectatedlabel 'mavenPod'
+                    defaultContainer "maven"
+                    yaml mavenPod
+                }
+            }
+            stages {
+                stage('Hello') {
+                    steps {
+                        sh 'hostname'
+                        helloWorld "Andreas"
+                    }
+                }
+                stage('Hello 2') {
+                    steps {
+                        sh 'hostname'
+                        helloWorld "${firstname}"
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: helloworldtest
+  resumeBlocked: false
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
   name: HW
@@ -10,6 +89,15 @@ items:
   - value: Andreas
     key: firstname
   - value: HW
+    key: name
+- kind: cloudbeesTemplatedJob
+  catalog: Pipeline Template Catalog Examples
+  name: myhello
+  model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
+  attributes:
+  - value: 'Martin '
+    key: firstname
+  - value: myhello
     key: name
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples

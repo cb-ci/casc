@@ -6,6 +6,17 @@ items:
   name: folder-one
   description: ''
   displayName: folder-one
+  filteredRoles:
+  - browser
+  - developer
+  groups:
+  - members:
+      users:
+      - dev1
+    roles:
+    - name: developer
+      grantedAt: current
+    name: developer
   healthMetrics:
   - jobStatusHealthMetric:
       unstable: true
@@ -25,6 +36,17 @@ items:
   name: folder-two
   description: ''
   displayName: folder-two
+  filteredRoles:
+  - browser
+  - developer
+  groups:
+  - members:
+      users:
+      - dev2
+    roles:
+    - name: developer
+      grantedAt: current
+    name: developer
   healthMetrics:
   - jobStatusHealthMetric:
       unstable: true

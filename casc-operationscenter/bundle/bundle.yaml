@@ -12,7 +12,7 @@ rbac:
   - "rbac.yaml"
 items:
   - "items.yaml"
-  - "items-controller0.yaml"
-  - "items-controller1.yaml"
+  - "controllers/items-controller0.yaml"
+  - "controllers/items-controller1.yaml"
 variables:
   - "variables.yaml"

@@ -365,7 +365,7 @@ unclassified:
     activities:
     - "build"
     - "web"
-    enabled: true
+    enabled: false
     gracePeriod: 1800
   junitTestResultStorage:
     storage: "file"

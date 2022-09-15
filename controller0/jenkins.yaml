@@ -370,6 +370,10 @@ unclassified:
               remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
               traits:
               - "gitBranchDiscovery"
+  hashicorpVault:
+    configuration:
+      engineVersion: 2
+      timeout: 60
   headerLabel:
     text: "${systemMessage}"
   hibernationConfiguration:

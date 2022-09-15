@@ -1,3 +1,12 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - string:
+          description: "Webhook secret for https://github.com/apps/ghapp-ci-org-folderscan-example"
+          id: "0663d72b-c569-48b6-85d8-3206c7b4099a"
+          scope: SYSTEM
+          secret: "{AQAAABAAAAAw2fydEMS+IqymMuL/mMKkGVVIs86DU/eyxiyroV1iwiX9Xmzj3k7BzvICVV9tEKXMFaR47QuvG1NLeN7z4Bpr6w==}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -47,9 +56,9 @@ globalCloudBeesPipelineTemplateCatalog:
   - branchOrTag: "master"
     scm:
       git:
-        credentialsId: "github-user-ssh"
+        credentialsId: "github-user-accesstoken"
         id: "106fc83a-ad2e-4ebd-9124-7ce4e2550904"
-        remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
+        remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
     updateInterval: "1d"
 support:
   automatedBundleConfiguration:
@@ -248,6 +257,8 @@ unclassified:
     configs:
     - credentialsId: "github-accesstoken"
       name: "ghapi"
+    hookSecretConfigs:
+    - credentialsId: "0663d72b-c569-48b6-85d8-3206c7b4099a"
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller0/github-webhook/"
   gitSCM:
     addGitTagAction: false
@@ -354,9 +365,9 @@ unclassified:
         modernSCM:
           scm:
             git:
-              credentialsId: "github-user-ssh"
+              credentialsId: "github-user-accesstoken"
               id: "4cd25a36-3eab-49df-8721-890bcda365a6"
-              remote: "git@github.com:pipeline-demo-caternberg/pipeline-examples.git"
+              remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
               traits:
               - "gitBranchDiscovery"
   headerLabel:

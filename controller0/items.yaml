@@ -2,6 +2,33 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
+- kind: backupAndRestore
+  name: backup
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  buildersList:
+  - backupBuilder:
+      subjects:
+      - buildRecordSubject: {}
+      - jobConfigurationSubject: {}
+      format:
+        tarGzFormat: {}
+      exclusive: true
+      store:
+        s3Store:
+          bucketName: backup.cjoc.acaternberg.pscbdemos.com
+          sse: true
+          bucketFolder: controllers
+          credentialsId: aws-credentials
+          region: us-east-1
+      retentionPolicy:
+        upToNRetentionPolicy:
+          n: 2
+      safeDelaySeconds: 0
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: backup
 - kind: folder
   name: folder-one
   description: ''
@@ -66,61 +93,6 @@ items:
       - Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
       - Pipeline-Tem.c3qk18.log-Examples/helloWorld
       filter: true
-- kind: pipeline
-  name: helloworldtest
-  concurrentBuild: true
-  definition:
-    cpsFlowDefinition:
-      sandbox: true
-      script: |
-        library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
-        def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
-        // Uses Declarative syntax to run commands inside a container.
-        pipeline {
-            agent {
-                kubernetes {
-                    //#deprectatedlabel 'mavenPod'
-                    defaultContainer "maven"
-                    yaml mavenPod
-                }
-            }
-            stages {
-                stage('Hello') {
-                    steps {
-                        sh 'hostname'
-                        helloWorld "Andreas"
-                    }
-                }
-                stage('Hello 2') {
-                    steps {
-                        sh 'hostname'
-                        helloWorld "${firstname}"
-                    }
-                }
-            }
-        }
-  description: ''
-  disabled: false
-  displayName: helloworldtest
-  resumeBlocked: false
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: HW
-  model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
-  attributes:
-  - value: Andreas
-    key: firstname
-  - value: HW
-    key: name
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: myhello
-  model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
-  attributes:
-  - value: 'Martin '
-    key: firstname
-  - value: myhello
-    key: name
 - kind: cloudbeesTemplatedJob
   catalog: Pipeline Template Catalog Examples
   name: mytest
@@ -134,16 +106,101 @@ items:
     key: repoName
   - value: mytest
     key: name
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: mytest11
-  model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-  attributes:
-  - value: github-user-accesstoken
-    key: githubToken
-  - value: pipeline-demo-caternberg
-    key: organsisation
-  - value: spring-boot-demo
-    key: repoName
-  - value: mytest11
-    key: name
+- kind: pipeline
+  name: testdocker
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: Jenkinsfile3
+      scm:
+        gitSCM:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              credentialsId: github-user-ssh
+              url: git@github.com:pipeline-demo-caternberg/kaniko-parallel-pipeline.git
+          branches:
+          - branchSpec:
+              name: '*/main'
+      lightweight: false
+  description: ''
+  disabled: false
+  displayName: testdocker
+  properties:
+  - buildDiscarder:
+      strategy:
+        logRotator:
+          artifactDaysToKeep: -1
+          artifactNumToKeep: -1
+          daysToKeep: -1
+          numToKeep: 5
+  - durabilityHint:
+      hint: PERFORMANCE_OPTIMIZED
+  resumeBlocked: false
+- kind: pipeline
+  name: testmatrix
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
+        def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
+
+
+        //git show --name-only --pretty="" --oneline HEAD
+
+        //def dockerfiles = env.DOCKERFILES.split(",").findAll { it }.collect { it.trim() }
+        //def dockerfiles =  ["Dockerfile1","Dockerfile2]
+
+
+            stage('run-parallel') {
+               // def files = findFiles glob: '**/Dockerfile*'
+                def files =  ["Dockerfile1","Dockerfile2"]
+                files.each { file -> println file }
+                def parallelBranches = files.collectEntries { n ->
+                    [(n): {
+                         podTemplate(label: "mylabel-$n",yaml: '''
+                             apiVersion: v1
+                             kind: Pod
+                             metadata:
+                               name: kaniko
+                             spec:
+                               containers:
+                                 - name: kaniko
+                                   image: gcr.io/kaniko-project/executor:debug
+                                   imagePullPolicy: Always
+                                   command:
+                                     - /busybox/cat
+                                   tty: true
+                                   volumeMounts:
+                                     - name: jenkins-docker-cfg
+                                       mountPath: /kaniko/.docker
+                               volumes:
+                                 - name: jenkins-docker-cfg
+                                   projected:
+                                     sources:
+                                       - secret:
+                                           name: docker-credentials
+                                           items:
+                                             - key: .dockerconfigjson
+                                               path: config.json
+                             ''') {
+                             node("mylabel-$n") {
+                                 stage ("build"){
+                               container('kaniko') {
+                                 echo POD_CONTAINER // displays 'kaniko'
+                                 sh 'hostname'
+                               }
+                                 }
+                             }
+                         }
+                    }]
+                }
+
+                parallel parallelBranches
+
+            }
+  description: ''
+  disabled: false
+  displayName: testmatrix
+  resumeBlocked: false

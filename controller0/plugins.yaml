@@ -48,6 +48,7 @@ plugins:
 - id: command-launcher
 - id: config-file-provider
 - id: configuration-as-code
+- id: consul-kv-builder
 - id: credentials
 - id: credentials-binding
 - id: data-tables-api
@@ -66,8 +67,13 @@ plugins:
 - id: gradle
 - id: handlebars
 - id: handy-uri-templates-2-api
+- id: hashicorp-vault-pipeline
+- id: hashicorp-vault-plugin
 - id: infradna-backup
+- id: instance-identity
 - id: jackson2-api
+- id: jakarta-activation-api
+- id: jakarta-mail-api
 - id: javadoc
 - id: javax-activation-api
 - id: javax-mail-api
@@ -89,6 +95,8 @@ plugins:
 - id: matrix-project
 - id: maven-plugin
 - id: metrics
+- id: mina-sshd-api-common
+- id: mina-sshd-api-core
 - id: momentjs
 - id: nectar-license
 - id: nectar-rbac
@@ -101,6 +109,7 @@ plugins:
 - id: operations-center-context
 - id: pipeline-build-step
 - id: pipeline-graph-analysis
+- id: pipeline-graph-view
 - id: pipeline-groovy-lib
 - id: pipeline-input-step
 - id: pipeline-milestone-step
@@ -111,6 +120,7 @@ plugins:
 - id: pipeline-stage-step
 - id: pipeline-stage-tags-metadata
 - id: pipeline-stage-view
+- id: pipeline-utility-steps
 - id: plain-credentials
 - id: plugin-util-api
 - id: popper-api

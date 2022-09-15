@@ -13,3 +13,13 @@ configurations:
       version: 60.v1747b0eb632a
     beer:
       version: 30.v71254f39d447
+    consul-kv-builder:
+      version: 2.0.13
+    hashicorp-vault-pipeline:
+      version: '1.4'
+    hashicorp-vault-plugin:
+      version: 356.ved18810a_b_828
+    pipeline-graph-view:
+      version: 51.v5a693b766483
+    pipeline-utility-steps:
+      version: 2.13.0

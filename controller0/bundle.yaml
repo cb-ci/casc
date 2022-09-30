@@ -12,3 +12,5 @@ catalog:
 #  - "rbac.yaml"
 items:
   - "items.yaml"
+variables:
+  - "variables.yaml"

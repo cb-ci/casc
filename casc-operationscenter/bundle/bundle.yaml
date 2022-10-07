@@ -11,9 +11,9 @@ catalog:
 rbac:
   - "rbac.yaml"
 items:
-  - "items/items-controller1.yaml"
-  - "items/items-controller1.yaml"
-  - "items/items.yaml"
+  - "items-controller1.yaml"
+  - "items-controller1.yaml"
+  - "items.yaml"
 
 variables:
   - "variables.yaml"

@@ -107,6 +107,12 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
+advisor:
+  acceptToS: true
+  email: "acaternberg@cloudbees.com"
+  excludedComponents:
+  - "RootCAs"
+  nagDisabled: true
 beekeeper:
   enabled: true
   securityWarnings:
@@ -117,6 +123,73 @@ beekeeper:
     autoUpgradePlugins: false
 cloudBeesCasCServer:
   visibility: true
+license:
+  certificate: |
+    -----BEGIN CERTIFICATE-----
+    MIIGejCCBGKgAwIBAgIEAVnWmDANBgkqhkiG9w0BAQUFADBKMQswCQYDVQQGEwJV
+    UzERMA8GA1UECAwIRGVsYXdhcmUxDjAMBgNVBAcMBUxld2VzMRgwFgYDVQQKDA9D
+    bG91ZEJlZXMsIEluYy4wHhcNMjIwOTMwMDAwMDAwWhcNMjIxMDMwMjM1OTU5WjCC
+    AnYxETAPBgorBgEEAYKpfwEBEwEzMTAwLgYKKwYBBAGCqX8BAhMgYzg0NGYxY2Y2
+    Yjk3MWIxNzNlNTdiNDQ1ZTY1OGE5M2ExFTATBgsrBgEEAYKpfwELDhMEdHJ1ZTEV
+    MBMGCysGAQQBgql/AQsNEwR0cnVlMRUwEwYLKwYBBAGCqX8BCxATBHRydWUxFTAT
+    BgsrBgEEAYKpfwELDxMEdHJ1ZTEVMBMGCysGAQQBgql/AQsKEwR0cnVlMRUwEwYL
+    KwYBBAGCqX8BCwwTBHRydWUxFTATBgsrBgEEAYKpfwELCxMEdHJ1ZTEVMBMGCysG
+    AQQBgql/AQsREwR0cnVlMRUwEwYLKwYBBAGCqX8BCwcTBHRydWUxFTATBgsrBgEE
+    AYKpfwELBhMEdHJ1ZTEVMBMGCysGAQQBgql/AQsJEwR0cnVlMRUwEwYLKwYBBAGC
+    qX8BCwgTBHRydWUxFTATBgsrBgEEAYKpfwELAxMEdHJ1ZTEVMBMGCysGAQQBgql/
+    AQsCEwR0cnVlMRUwEwYLKwYBBAGCqX8BCwUTBHRydWUxFTATBgsrBgEEAYKpfwEL
+    BBMEdHJ1ZTEVMBMGCysGAQQBgql/AQsBEwR0cnVlMRUwEwYLKwYBBAGCqX8BCxQT
+    BHRydWUxFTATBgsrBgEEAYKpfwELFRMEdHJ1ZTETMBEGCisGAQQBgql/AQMTAzEw
+    MDERMA8GCisGAQQBgql/AQ4TATUxFTATBgorBgEEAYKpfwEJEwVmYWxzZTETMBEG
+    A1UEAxMKQ2xvdWRiZWVzIDEOMAwGA1UECxMFbG9jYWwxFjAUBgsrBgEEAYKpfwEL
+    GBMFZmFsc2UwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC5IE+mSRLk
+    fsxc76dfvzCKSNYuNBaZK/TEkKser7oCKY7Z+6ZED7agpWAUu1L+7xLXYQxqh8Rn
+    //Np/CMLl5N068Vv7Mhfjiinv9gwTlpvlmyQ779ZUPQpXVhoeqWG28WFEQ8nonGj
+    qzhbSh4x+CCRFagFK6NB0hTEeVINSXycrUcU/HN6H5lJVUD49YYKyxXyf+MDG87D
+    CUgk0O6xP7anpJBIxaTDJws6oCpVPiriVUPCDGLqKhlKn4FpCUPC9RskQqteLa7t
+    j0i3eZ/R7cNgSjtc3dzI0vqBHKQBfRrlvTXrQteqbt1J/MXRdDZmOEI3XX56evoA
+    fGpbsU8UNjSVAgMBAAGjOjA4MAwGA1UdEwQFMAMBAf8wHQYDVR0OBBYEFL1X1LW4
+    Lb1MPmqHW02zGO9FSBZvMAkGA1UdIwQCMAAwDQYJKoZIhvcNAQEFBQADggIBAHCh
+    q9nEgt5A8WkX0RSHvoCRK9/4XFQy+Jg69ncSBghr9jlv/xGkCGT2gjkRIOxvdKxy
+    bzLwWcvJhNmGnpRWwGuTIab9FoxvS75ilaKo+GRjm1fqU2fadxpbPCnJuA0TGtDw
+    J3ZYGTKOttkxqQ88pTF+MIFvVL0n3rPsQq2ap906IOXOzE0QSi5vuBAbckbGxdD7
+    2dkIyWrw/56XeNwTiF8yp98fBhzwWS19DR0B9dmWBI43Yxud4TS/QlSsmzh/XrMh
+    FMbIOtelwI/C/sp9Sbmds2aLklMQuNH2AzUy/H7wdmqK8mOs1Em2FBLjwPhPAeUu
+    lk7P5cquzFBTplyHwGwhnRVeA9RiYxZKzrmW3HngcX31zDbM02Pe68S72kHJAdXW
+    6kXXNh3Ep7dcSYXHwRd99H6x7Dp6vV0+z2Vdt9KXAS4pzb2qqyr5ity1iTV4+FPM
+    l4gXvrWpEDhBmg0Da/I/dm0cpIYOyHRMv7MGSytWSx6ZuJDiD80yOm9th8UOKIql
+    GFXyfDJ4s5zIFFRU5NHhOKQd6Tns1RUnz5ypaWpU2H8fProI3nxb4epK+hi3nIN/
+    MtV7b8RgkIJpG8xkhotMQTFxvHqKHeOGexCahgcJxHvK17opDOKqrcbCtv1GQs5A
+    PZIKc9Qa+Zv0NtWglnTU45YZyWzlD0RfprPSMo3C
+    -----END CERTIFICATE-----
+  key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEpAIBAAKCAQEAuSBPpkkS5H7MXO+nX78wikjWLjQWmSv0xJCrHq+6AimO2fum
+    RA+2oKVgFLtS/u8S12EMaofEZ//zafwjC5eTdOvFb+zIX44op7/YME5ab5ZskO+/
+    WVD0KV1YaHqlhtvFhREPJ6Jxo6s4W0oeMfggkRWoBSujQdIUxHlSDUl8nK1HFPxz
+    eh+ZSVVA+PWGCssV8n/jAxvOwwlIJNDusT+2p6SQSMWkwycLOqAqVT4q4lVDwgxi
+    6ioZSp+BaQlDwvUbJEKrXi2u7Y9It3mf0e3DYEo7XN3cyNL6gRykAX0a5b0160LX
+    qm7dSfzF0XQ2ZjhCN11+enr6AHxqW7FPFDY0lQIDAQABAoIBAQCCTxchsmAlDIfn
+    hx3mjJqrTBfPEAU0LjetwTNid0lUSlJuZ++iCvl/XMkj7rO+FSTLDFoEBqselZCO
+    ctdsSnaWH3urjB2C/XrqkWSopA6Oa3DiGJA1W4FyOG2JpYMsSThgsSBcwsCA933E
+    7IgSnli2J2tMsGnLZAgQQGGcTrTzRuaTLgcFC6zzvy9wiFu+XZZcnAtP11alkFYW
+    /bbwni/Wb/GkW17HWC7BLmSm4K4C8J1q9s/YYqJQeTzcfByz/sn8ahEIUVGJYJ76
+    cQTA2Atet3ie1S5aWvEJ7o3NuFzzz27UG+nwQ/j61cPuNEiQQOJKsXTiCTO5M/zY
+    /TkRtSzlAoGBAOEai3d1xNOBFxv/OPdei/OgGZXYEZ+myeW3GTlatYWd6qyD69zG
+    6MqlwYm6gUGbD5WNw6Hx72pZM+ysz9ZWtCwDNo0DBv6+kbEXmwuFehoQejxxQCfz
+    iVaQufHoqgm77JjVT6ZSE4h9bbg0DRqYG4EXW5EVpSs/UxV1VumwqMtjAoGBANKJ
+    FINxymvXK39TvPG50ZLRiNBNKNYWUieO/5+jU4tAWDx67rUQO3z1BgSdTjN4ex0i
+    QLxmwRYW4wZT5qsBDYqEYEGdait+Q1ob4G0ZLSTPS2QDKc5L41n14be6ZQ0+lvq6
+    pZsr5TXq6l697TvSf9pQ8CenieYGyqLbrPcn3I2nAoGATDwELaHp1cNrQyUNcuFH
+    PmvjHlc9qLcAu1ZmKYFp5mWT23cWAwAuSKsYP3+1VLWh8oE/VvIrpfWt2yKvhKR6
+    gklYSStUTCPYDYS0EpPSxU79RskH9D/LLFD5WE72fzNwrlXXkrlLOjdYWEDwiygm
+    cHKrpRgShvH8PlEt7RjSIYcCgYAZfa11KM7odbn3ha0H24bLbwFQrzb1jOhPj9nV
+    e1H/N0A3um6yj4+UVppu7pjsVHcblO0fopVYVlcQihIQvGTmU5bP+v5C29vNyjhH
+    HVhA77RiHJvwNXIGj2XP+AqKKvzeyMCKZCsxdwr/g6F4r8j5Jvmc44Uny8S3KT/t
+    AO+MWwKBgQDF1IUECOUGDdjrrqLm6Zs7Blxmq1gt2Kboe2FYt6ZqWzZ3GQ3pYyxb
+    HOzNi+a85K1HzArdoQB3lgqIq6Q/ZGABddmE4Sbxjarn45DXsFuEBzHnMuowGVB8
+    E4o0FVt3BSPA6zS7z1c3oHes+r8O063IvSSxx3yZoxuy3PqqNHfozA==
+    -----END RSA PRIVATE KEY-----
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
@@ -276,6 +349,17 @@ unclassified:
               remote: "git@github.com:cb-ci/casc.git"
               traits:
               - "gitBranchDiscovery"
+    - name: "controller2"
+      retriever:
+        SCM:
+          defaultVersion: "main"
+          scmSource:
+            git:
+              credentialsId: "github-user-accesstoken"
+              id: "282d81fd-782e-447f-84a3-476599deda53"
+              remote: "https://github.com/cb-ci/casc2.git"
+              traits:
+              - "gitBranchDiscovery"
     pollingPeriod: 120
     purgeOnDeactivation: true
   cascAutoControllerProvisioning:
@@ -291,6 +375,8 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     configs:
     - credentialsId: "github-accesstoken"

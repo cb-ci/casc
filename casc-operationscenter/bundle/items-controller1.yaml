@@ -29,7 +29,7 @@ items:
     displayName: controller1
     properties:
       - configurationAsCode:
-          bundle: controller0
+          bundle: controller1
       - sharedHeaderLabelOptIn:
           optIn: true
       - healthReporting:

@@ -33,8 +33,6 @@ groups:
     internal_groups:
     - DevTeam1
   roles:
-  - name: administer
-    grantedAt: current
   - name: developer
     grantedAt: current
   name: Controller-dev1-developers

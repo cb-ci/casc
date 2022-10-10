@@ -19,7 +19,7 @@ items:
         disk: 50
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
-        storageClassName: ssd-cloudbees-ci-cloudbees-core
+        storageClassName: gp2
         domain: controller1
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC

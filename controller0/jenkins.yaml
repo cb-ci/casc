@@ -1,12 +1,3 @@
-credentials:
-  system:
-    domainCredentials:
-    - credentials:
-      - string:
-          description: "Webhook secret for https://github.com/apps/ghapp-ci-org-folderscan-example"
-          id: "0663d72b-c569-48b6-85d8-3206c7b4099a"
-          scope: SYSTEM
-          secret: "{AQAAABAAAAAw2fydEMS+IqymMuL/mMKkGVVIs86DU/eyxiyroV1iwiX9Xmzj3k7BzvICVV9tEKXMFaR47QuvG1NLeN7z4Bpr6w==}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -251,15 +242,6 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
-  gitHubConfiguration:
-    apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    configs:
-    - credentialsId: "github-accesstoken"
-      name: "ghapi"
-    hookSecretConfigs:
-    - credentialsId: "0663d72b-c569-48b6-85d8-3206c7b4099a"
-    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller0/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -386,17 +368,13 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/controller0/"
+    url: "https://cjoc.acaternberg.pscbdemos.com/controller0/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
   mavenModuleSet:
     localRepository: "default"
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAB3OSw7CIBSF4b0wFjCt1Lbb6Aq4j/q6KeYCOjDuXer0z3eS8zEXjVsxs+loxW6K\r\
-      \nYMfAkz3FYbAANFqgqT9D4EBwNAdzo2Z7i2krmkRY91hVWr2W8py9x3tCh5IqAXNuUtnl155qLqxO\r\
-      \nEkb5K9+mb4Yl4YPbhTVK5u8PdUCddZIAAAA=\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
   prismConfiguration:

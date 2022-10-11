@@ -54,21 +54,8 @@ jenkins:
       retentionStrategy: "always"
   numExecutors: 1
   primaryView:
-    masters:
-      columns:
-      - "status"
-      - "weather"
-      - "jobName"
-      - "manageMaster"
-      - "masterConfigurationStaleViewColumn"
-      - "totalJobsViewColumn"
-      - "queueSizeViewColumn"
-      - "jenkinsVersionViewColumn"
-      - "listSelectionColumn"
-      jobFilters:
-      - "connectedMasterViewFilter"
-      name: "Controllers"
-      recurse: true
+    all:
+      name: "all"
   projectNamingStrategy: "standard"
   quietPeriod: 5
   remotingSecurity:
@@ -104,6 +91,18 @@ jenkins:
       - "connectedMasterViewFilter"
       name: "Controllers"
       recurse: true
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      jobNames:
+      - "Teams"
+      name: "Org"
   - all:
       name: "all"
   viewsTabBar: "standard"

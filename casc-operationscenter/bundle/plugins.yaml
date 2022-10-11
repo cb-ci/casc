@@ -57,7 +57,10 @@ plugins:
 - id: github-api
 - id: handy-uri-templates-2-api
 - id: infradna-backup
+- id: instance-identity
 - id: jackson2-api
+- id: jakarta-activation-api
+- id: jakarta-mail-api
 - id: javax-activation-api
 - id: javax-mail-api
 - id: jaxb
@@ -78,6 +81,10 @@ plugins:
 - id: master-provisioning-core
 - id: master-provisioning-kubernetes
 - id: metrics
+- id: mina-sshd-api-common
+- id: mina-sshd-api-core
+- id: mina-sshd-api-scp
+- id: mina-sshd-api-sftp
 - id: mock-security-realm
 - id: nectar-license
 - id: nectar-rbac
@@ -115,6 +122,7 @@ plugins:
 - id: user-activity-monitoring
 - id: variant
 - id: workflow-api
+- id: workflow-durable-task-step
 - id: workflow-scm-step
 - id: workflow-step-api
 - id: workflow-support

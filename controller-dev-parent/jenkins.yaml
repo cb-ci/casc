@@ -28,9 +28,7 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-mm-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-mm"
+    - id: "virtual-cap-core-mm"
       url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
   - all:
@@ -153,7 +151,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://cjoc.acaternberg.pscbdemos.com/controller-dev1/"
+    url: "https://cjoc.acaternberg.pscbdemos.com/mobile-studio-controller0/"
   mailer:
     charset: "UTF-8"
     useSsl: false

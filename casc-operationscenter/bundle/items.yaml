@@ -185,7 +185,8 @@ items:
             propagates: 'false'
           name: MobileStudioDevelopers
         properties:
-        - configurationAsCode: {}
+        - configurationAsCode:
+            bundle: controller-dev-parent
         - sharedHeaderLabelOptIn:
             optIn: true
         - healthReporting:

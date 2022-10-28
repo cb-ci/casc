@@ -10,6 +10,13 @@ plugins:
 - id: aws-java-sdk-minimal
 - id: beer
 - id: blueocean-commons
+- id: blueocean-core-js
+- id: blueocean-jwt
+- id: blueocean-pipeline-api-impl
+- id: blueocean-pipeline-scm-api
+- id: blueocean-rest
+- id: blueocean-rest-impl
+- id: blueocean-web
 - id: bootstrap4-api
 - id: bootstrap5-api
 - id: bouncycastle-api
@@ -37,6 +44,7 @@ plugins:
 - id: cloudbees-platform-common
 - id: cloudbees-platform-data
 - id: cloudbees-plugin-usage
+- id: cloudbees-slack
 - id: cloudbees-ssh-slaves
 - id: cloudbees-support
 - id: cloudbees-template
@@ -52,10 +60,13 @@ plugins:
 - id: credentials
 - id: credentials-binding
 - id: data-tables-api
+- id: declarative-pipeline-migration-assistant
+- id: declarative-pipeline-migration-assistant-api
 - id: display-url-api
 - id: durable-task
 - id: echarts-api
 - id: email-ext
+- id: favorite
 - id: font-awesome-api
 - id: forensics-api
 - id: git
@@ -69,8 +80,10 @@ plugins:
 - id: handy-uri-templates-2-api
 - id: hashicorp-vault-pipeline
 - id: hashicorp-vault-plugin
+- id: htmlpublisher
 - id: infradna-backup
 - id: instance-identity
+- id: ionicons-api
 - id: jackson2-api
 - id: jakarta-activation-api
 - id: jakarta-mail-api
@@ -79,6 +92,7 @@ plugins:
 - id: javax-mail-api
 - id: jaxb
 - id: jdk-tool
+- id: jenkins-design-language
 - id: jjwt-api
 - id: jquery3-api
 - id: jsch
@@ -97,6 +111,8 @@ plugins:
 - id: metrics
 - id: mina-sshd-api-common
 - id: mina-sshd-api-core
+- id: mina-sshd-api-scp
+- id: mina-sshd-api-sftp
 - id: momentjs
 - id: nectar-license
 - id: nectar-rbac
@@ -126,6 +142,7 @@ plugins:
 - id: popper-api
 - id: popper2-api
 - id: prism-api
+- id: pubsub-light
 - id: scm-api
 - id: script-security
 - id: snakeyaml-api

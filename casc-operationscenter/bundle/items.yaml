@@ -2,273 +2,165 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- concurrentBuild: false
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: backupAndRestore
-  displayName: backup
-  name: backup
-  disabled: false
-- concurrentBuild: false
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: backupAndRestore
-  displayName: backupoc
-  name: backupoc
-  disabled: false
-- concurrentBuild: false
-  builders:
-  - shell:
-      command: |
-        #!/usr/bin/env bash
-        #mkdir -p $JENKINS_HOME/jcasc-bundles-store/
-        BUNDLE_DIR=$JENKINS_HOME/jcasc-bundles-store
-
-
-        #rm -Rf $BUNDLE_DIR
-        mkdir -p $BUNDLE_DIR
-
-        #cp casc/core-casc-security.xml ${JENKINS_HOME}/
-        #rsync -avz --exclude '.git' . ${BUNDLE_DIR}/
-        rm -Rf .git
-        cp -vR * ${BUNDLE_DIR}/
-        ls -lathR ${BUNDLE_DIR}/
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: casc
-  name: casc
-  description: ''
-  disabled: false
-  scm:
-    gitSCM:
-      userRemoteConfigs:
-      - userRemoteConfig:
-          credentialsId: github-user-ssh
-          url: git@github.com:cb-ci/casc.git
-      branches:
-      - branchSpec:
-          name: '*/master'
-  scmCheckoutStrategy:
-    standard: {}
-- concurrentBuild: false
-  builders:
-  - shell:
-      command: |
-        #!/usr/bin/env bash
-        #mkdir -p $JENKINS_HOME/jcasc-bundles-store/
-        BUNDLE_DIR=$JENKINS_HOME/jcasc-bundles-store
-
-
-        #rm -Rf $BUNDLE_DIR
-        mkdir -p $BUNDLE_DIR
-
-        #cp casc/core-casc-security.xml ${JENKINS_HOME}/
-        #rsync -avz --exclude '.git' . ${BUNDLE_DIR}/
-        rm -Rf .git
-        cp -vR * ${BUNDLE_DIR}/
-        ls -lathR ${BUNDLE_DIR}/
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: cascdp
-  name: cascdp
-  description: ''
-  disabled: false
-  scm:
-    gitSCM:
-      userRemoteConfigs:
-      - userRemoteConfig:
-          credentialsId: bbdp
-          url: https://bitbucket.dentsplysirona.com/scm/toolchain/cloudbees-casc.git
-      branches:
-      - branchSpec:
-          name: '*/staging'
-  scmCheckoutStrategy:
-    standard: {}
 - kind: folder
-  displayName: Project Alpha
-  name: project-alpha
-  description: Project Alpha is going to change the world!
+  name: Teams
+  displayName: Teams
   groups:
   - members:
-      unknown:
-      - ldap-project-alpha
+      internal_groups:
+      - MobileStudiodevelopers
     roles:
-    - name: developer
+    - name: browse
       grantedAt: current
-    name: Project Alpha Developers
+      propagates: 'false'
+    name: TeamsReader
   items:
   - kind: folder
-    displayName: Project Alpha Tests
-    name: project-alpha-tests
+    name: CEPE
+    description: ''
+    displayName: CEPE
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: DSG
+    description: ''
+    displayName: DSG
+    groups:
+    - members:
+        internal_groups:
+        - MobileStudiodevelopers
+      roles:
+      - name: browse
+        grantedAt: current
+        propagates: 'false'
+      name: DSGReaders
     items:
     - kind: folder
-      displayName: test-1
-      name: test-1
+      name: CoreInfra
+      description: ''
+      displayName: CoreInfra
+      properties:
+      - envVars: {}
+      - itemRestrictions:
+          filter: false
     - kind: folder
-      displayName: test-2
-      name: test-2
-- kind: folder
-  displayName: Project Beta
-  name: project-beta
-  description: Secret project! Only Admins can see this!
-  filteredRoles:
-  - browser
-  - developer
-- configuration:
-    kubernetes:
-      allowExternalAgents: false
-      terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Master - latest
-      memory: 3072
-      fsGroup: '1000'
-      cpus: 1.0
-      readinessTimeoutSeconds: 5
-      livenessInitialDelaySeconds: 300
-      readinessInitialDelaySeconds: 30
-      clusterEndpointId: default
-      disk: 50
-      readinessFailureThreshold: 100
-      livenessTimeoutSeconds: 10
-      storageClassName: ssd-cloudbees-ci-cloudbees-core
-      domain: team1
-      livenessPeriodSeconds: 10
-      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-      yaml: ''
-  kind: managedController
-  displayName: team1
-  name: team1
-  description: ''
-  properties:
-  - configurationAsCode: {}
-  - healthReporting:
-      enabled: true
-  - optOutProperty:
-      securityEnforcerOptOutMode:
-        optOutNone: {}
-  - owner:
-      delay: 5
-      owners: ''
-  - envelopeExtension:
-      allowExceptions: false
-  - sharedConfigurationOptOut:
-      optOut: false
-- configuration:
-    kubernetes:
-      allowExternalAgents: false
-      terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Master - latest
-      memory: 3072
-      fsGroup: '1000'
-      cpus: 1.0
-      readinessTimeoutSeconds: 5
-      livenessInitialDelaySeconds: 300
-      readinessInitialDelaySeconds: 30
-      clusterEndpointId: default
-      disk: 50
-      readinessFailureThreshold: 100
-      livenessTimeoutSeconds: 10
-      storageClassName: ssd-cloudbees-ci-cloudbees-core
-      domain: teamgo
-      livenessPeriodSeconds: 10
-      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-      yaml: ''
-  kind: managedController
-  displayName: teamgo
-  name: teamgo
-  description: ''
-  properties:
-  - configurationAsCode:
-      bundle: golang-bitbucket
-  - healthReporting:
-      enabled: true
-  - optOutProperty:
-      securityEnforcerOptOutMode:
-        optOutNone: {}
-  - owner:
-      delay: 5
-      owners: ''
-  - envelopeExtension:
-      allowExceptions: false
-  - sharedConfigurationOptOut:
-      optOut: false
-- configuration:
-    kubernetes:
-      allowExternalAgents: false
-      terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Master - latest
-      memory: 3072
-      fsGroup: '1000'
-      cpus: 1.0
-      readinessTimeoutSeconds: 5
-      livenessInitialDelaySeconds: 300
-      readinessInitialDelaySeconds: 30
-      clusterEndpointId: 5fd6dbf0-f4db-47bb-9509-884f118e54da
-      disk: 50
-      readinessFailureThreshold: 100
-      livenessTimeoutSeconds: 10
-      storageClassName: ssd-cloudbees-ci-cloudbees-core
-      domain: teamremote
-      livenessPeriodSeconds: 10
-      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-      yaml: |-
-        apiVersion: "networking.k8s.io/v1"
-        kind: "Ingress"
-        metadata:
-          annotations:
-            nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            kubernetes.io/ingress.class: "nginx"
-            cert-manager.io/cluster-issuer: letsencrypt
-          labels:
-            type: "master"
-            tenant: "teamremote"
-            com.cloudbees.pse.type: "master"
-            com.cloudbees.cje.type: "master"
-            com.cloudbees.pse.tenant: "teamremote"
-            com.cloudbees.cje.tenant: "teamremote"
-          name: "teamremote"
-        spec:
-          tls:
-            - secretName: tls-secret
-              hosts:
-                - teamremote-sda.acaternberg.flow-training.beescloud.com
-  kind: managedController
-  displayName: teamremote
-  name: teamremote
-  description: ''
-  properties:
-  - configurationAsCode: {}
-  - healthReporting:
-      enabled: true
-  - optOutProperty:
-      securityEnforcerOptOutMode:
-        optOutNone: {}
-  - owner:
-      delay: 5
-      owners: ''
-  - envelopeExtension:
-      allowExceptions: false
-  - sharedConfigurationOptOut:
-      optOut: false
-- concurrentBuild: false
-  builders:
-  - shell:
-      command: echo hallo
-  blockBuildWhenUpstreamBuilding: false
-  blockBuildWhenDownstreamBuilding: false
-  kind: freeStyle
-  displayName: test
-  name: test
-  description: ''
-  disabled: false
-  label: test
-  scm:
-    none: {}
-  scmCheckoutStrategy:
-    standard: {}
+      name: MobileStudio
+      description: ''
+      displayName: MobileStudio
+      groups:
+      - members:
+          internal_groups:
+          - MobileStudiodevelopers
+        roles:
+        - name: browse
+          grantedAt: current
+          propagates: 'false'
+        name: MobileStudioDev
+      items:
+      - kind: managedController
+        name: mobile-studio-controller-PROD
+        configuration:
+          kubernetes:
+            allowExternalAgents: false
+            terminationGracePeriodSeconds: 1200
+            image: CloudBees CI - Managed Controller - 2.361.2.1
+            memory: 3072
+            fsGroup: '1000'
+            cpus: 1.0
+            readinessTimeoutSeconds: 5
+            livenessInitialDelaySeconds: 300
+            readinessInitialDelaySeconds: 30
+            clusterEndpointId: default
+            disk: 50
+            readinessFailureThreshold: 100
+            livenessTimeoutSeconds: 10
+            storageClassName: gp2
+            domain: mobile-studio-controller-prod
+            livenessPeriodSeconds: 10
+            javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+              -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+            yaml: ''
+        description: ''
+        displayName: mobile-studio-controller-PROD
+        groups:
+        - members:
+            internal_groups:
+            - MobileStudiodevelopers
+          roles:
+          - name: develop
+            grantedAt: current
+            propagates: 'false'
+          name: mobile-studio-controller-PROD-Developers
+        properties:
+        - configurationAsCode: {}
+        - sharedHeaderLabelOptIn:
+            optIn: true
+        - healthReporting:
+            enabled: true
+        - optOutProperty:
+            securityEnforcerOptOutMode:
+              optOutNone: {}
+        - owner:
+            delay: 5
+            owners: ''
+        - envelopeExtension:
+            allowExceptions: false
+        - sharedConfigurationOptOut:
+            optOut: false
+      - kind: managedController
+        name: mobile-studio-controller0
+        configuration:
+          kubernetes:
+            allowExternalAgents: false
+            terminationGracePeriodSeconds: 1200
+            image: CloudBees CI - Managed Controller - 2.361.2.1
+            memory: 3072
+            fsGroup: '1000'
+            cpus: 1.0
+            readinessTimeoutSeconds: 5
+            livenessInitialDelaySeconds: 300
+            readinessInitialDelaySeconds: 30
+            clusterEndpointId: default
+            disk: 50
+            readinessFailureThreshold: 100
+            livenessTimeoutSeconds: 10
+            storageClassName: gp2
+            domain: mobile-studio-controller0
+            livenessPeriodSeconds: 10
+            javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+              -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+            yaml: ''
+        description: ''
+        displayName: mobile-studio-controller-DEV
+        groups:
+        - members:
+            internal_groups:
+            - MobileStudioDev
+          roles:
+          - name: develop
+            grantedAt: current
+            propagates: 'false'
+          name: mobile-studio-controller-DEV-developers
+        properties:
+        - configurationAsCode:
+            bundle: controller-dev-parent
+        - sharedHeaderLabelOptIn:
+            optIn: true
+        - healthReporting:
+            enabled: true
+        - optOutProperty:
+            securityEnforcerOptOutMode:
+              authorizationOptOutMode: {}
+        - owner:
+            delay: 5
+            owners: ''
+        - envelopeExtension:
+            allowExceptions: false
+        - sharedConfigurationOptOut:
+            optOut: false
+      properties:
+      - envVars: {}
+      - itemRestrictions:
+          filter: false

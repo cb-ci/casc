@@ -2,18 +2,12 @@ credentials:
   system:
     domainCredentials:
     - credentials:
-      - usernamePassword:
-          description: "bbdp"
-          id: "bbdp"
-          password: "{AQAAABAAAAAQ24o9rzfulJT19gxrywFlP/St2+zXfF/oxrAt0YN92IA=}"
-          scope: GLOBAL
-          username: "Andreas.Caternberg@dentsplysirona.com"
       - file:
           description: "sa-remote-cluster"
           fileName: "sa-jenkins-remnote-controller.yaml"
           id: "sa-remote-cluster"
           scope: GLOBAL
-          secretBytes: "{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}"
+          secretBytes: "{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}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -34,8 +28,13 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: true
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "bundleStorageService"
+  - "com.cloudbees.jenkins.plugins.administrative_monitors.CJOCBuildSecurityMonitor"
+  - "jenkins.diagnostics.ControllerExecutorsNoAgents"
+  - "com.cloudbees.jenkins.plugins.assurance.SecurityWarningsWatch"
   labelAtoms:
-  - name: "master"
+  - name: "built-in"
   - name: "test"
   markupFormatter: "plainText"
   mode: NORMAL
@@ -55,21 +54,8 @@ jenkins:
       retentionStrategy: "always"
   numExecutors: 1
   primaryView:
-    masters:
-      columns:
-      - "status"
-      - "weather"
-      - "jobName"
-      - "manageMaster"
-      - "masterConfigurationStaleViewColumn"
-      - "totalJobsViewColumn"
-      - "queueSizeViewColumn"
-      - "jenkinsVersionViewColumn"
-      - "listSelectionColumn"
-      jobFilters:
-      - "connectedMasterViewFilter"
-      name: "Controllers"
-      recurse: true
+    all:
+      name: "all"
   projectNamingStrategy: "standard"
   quietPeriod: 5
   remotingSecurity:
@@ -85,7 +71,6 @@ jenkins:
       randomDelay: false
       userIdStrategy: "caseInsensitive"
   slaveAgentPort: 50000
-  systemMessage: "Operations Center configured using CasC. v.28"
   updateCenter:
     sites:
     - id: "virtual-cap-core-oc"
@@ -106,9 +91,27 @@ jenkins:
       - "connectedMasterViewFilter"
       name: "Controllers"
       recurse: true
+  - list:
+      columns:
+      - "status"
+      - "weather"
+      - "jobName"
+      - "lastSuccess"
+      - "lastFailure"
+      - "lastDuration"
+      - "buildButton"
+      jobNames:
+      - "Teams"
+      name: "Org"
   - all:
       name: "all"
   viewsTabBar: "standard"
+advisor:
+  acceptToS: true
+  email: "acaternberg@cloudbees.com"
+  excludedComponents:
+  - "RootCAs"
+  nagDisabled: true
 beekeeper:
   enabled: true
   securityWarnings:
@@ -118,34 +121,27 @@ beekeeper:
     autoDowngradePlugins: false
     autoUpgradePlugins: false
 cloudBeesCasCServer:
-  visibility: false
+  visibility: true
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
-    - imageTag: "cloudbees/cloudbees-core-mm:latest"
-      name: "CloudBees CI - Managed Master - latest"
+    - imageTag: "cloudbees/cloudbees-core-mm:2.361.2.1"
+      name: "CloudBees CI - Managed Controller - 2.361.2.1"
+    - imageTag: "cloudbees/cloudbees-core-mm:2.361.2.1"
+      name: "CloudBees CI - Managed Master - 2.361.2.1"
   kubernetes:
     clusterEndpoints:
     - id: "default"
       ingressClass: "nginx"
       jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
       name: "kubernetes"
-    - credentialsId: "sa-remote-cluster"
-      id: "5fd6dbf0-f4db-47bb-9509-884f118e54da"
-      ingressClass: "nginx"
-      masterUrlPattern: "https://*-sda.acaternberg.flow-training.beescloud.com/*/"
-      name: "remote"
-      skipTlsVerify: true
-      url: "https://34.73.254.21"
-      webSocket: true
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
-    globalJavaOptions: "-Djenkins.model.Jenkins.crumbIssuerProxyCompatibility=true\
-      \ -Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest\
+    globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.361.2.1\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
-      https\" -Dcom.cloudbees.networking.hostname=\"sda.acaternberg.flow-training.beescloud.com\"\
+      https\" -Dcom.cloudbees.networking.hostname=\"cjoc.acaternberg.pscbdemos.com\"\
       \ -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName=\"\
       cjoc\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC\
@@ -157,7 +153,7 @@ masterprovisioning:
     readinessFailureThreshold: 100
     readinessInitialDelaySeconds: 30
     readinessTimeoutSeconds: 5
-    storageClassName: "ssd-cloudbees-ci-cloudbees-core"
+    storageClassName: "gp2"
     terminationGracePeriodSeconds: 1200
 support:
   automatedBundleConfiguration:
@@ -211,6 +207,16 @@ support:
     - "ConnectedMasterSupportComponent"
     enabled: true
     period: 1
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter:
+      includes:
+        classNames:
+        - "com.cloudbees.hudson.plugins.folder.properties.FolderCredentialsProvider"
+        - "com.cloudbees.plugins.credentials.SystemCredentialsProvider$ProviderImpl"
+        - "com.cloudbees.jenkins.plugins.kubernetes_credentials_provider.KubernetesCredentialProvider"
+        - "com.cloudbees.plugins.credentials.UserCredentialsProvider"
+    typeFilter: "none"
 security:
   anonymizeSupportBundle:
     enabled: false
@@ -222,8 +228,13 @@ security:
     enforce:
       canOverride: false
       count: 0
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "acceptFirstConnectionStrategy"
   sSHD:
     port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "fe3059c7004d2712542e317c2d0b3e0c78113a09"
   securitySettingsEnforcement:
     global:
       realmAndAuthorization:
@@ -231,18 +242,65 @@ security:
         canOverride: true
         defaultMappingFactory: "restrictedEquivalentRAMF"
 unclassified:
+  audit-trail:
+    logBuildCause: true
+    loggers:
+    - console:
+        dateFormat: "yyyy-MM-dd HH:mm:ss:SSS"
+        logPrefix: "AUDIT"
+        output: STD_OUT
+    - logFile:
+        count: 3
+        limit: 10
+        log: "/tmp/auditjenkins.log"
+        logSeparator: " "
+    - console:
+        dateFormat: "yyyy-MM-dd HH:mm:ss:SSS"
+        output: STD_ERR
+    pattern: ".*/(?:configSubmit|doDelete|postBuildResult|enable|disable|cancelQueue|stop|toggleLogKeep|doWipeOutWorkspace|createItem|createView|toggleOffline|cancelQuietDown|quietDown|restart|exit|safeExit|loginError|loginSuccess)/?.*"
   buildDiscarders:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
-  #cascAutoControllerProvisioning:
-    #provisionControllerOnCreation: false
+  bundleStorageService:
+    activated: true
+    bundles:
+    - name: "legacyJCasCBundleStore"
+      retriever:
+        SCM:
+          defaultVersion: "loadcascbundle"
+          scmSource:
+            git:
+              credentialsId: "github-user-ssh"
+              id: "d581a1d5-d298-492b-947c-d34dd8e6ed4e"
+              remote: "git@github.com:cb-ci/casc.git"
+              traits:
+              - "gitBranchDiscovery"
+    - name: "controller2"
+      retriever:
+        SCM:
+          defaultVersion: "main"
+          scmSource:
+            git:
+              credentialsId: "github-user-accesstoken"
+              id: "282d81fd-782e-447f-84a3-476599deda53"
+              remote: "https://github.com/cb-ci/casc2.git"
+              traits:
+              - "gitBranchDiscovery"
+    pollingPeriod: 120
+    purgeOnDeactivation: true
+  cascAutoControllerProvisioning:
+    duration: 60
+    fireAndForget: true
+    initialDelay: 15
+    provisionControllerOnCreation: true
+    timeout: 600
   experimentalPlugins:
     enabled: false
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
   gitHubPluginConfig:
-    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
+    hookUrl: "https://cjoc.acaternberg.pscbdemos.com/cjoc/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -251,15 +309,25 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
+  headerLabel:
+    text: "CasC Version 56"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/"
+    url: "https://cjoc.acaternberg.pscbdemos.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  metricsAccessKey:
+    accessKeys:
+    - canHealthCheck: true
+      canMetrics: true
+      canPing: true
+      canThreadDump: false
+      key: "{AQAAABAAAACQu3SpkGOcfoc9H8aglRCJdu1XoIoLlxV40LYAB9qhgSTXuNShU1Rqs4bHPfEV0/fXPBrEDLAeanE2zOdtsEfq1yAIET/gZOeTiOmUZtW+u8+CoDOVogWIGSRsClJ6jYmJPXZFH5RxhBwDXw9YmPqvmzcNsAS+9rSfE/f76uBZhNBDqV3mrnR7B5NjB7k8L1GYa/mZ7SIUmVCOLCKwSizJEQ==}"
+      origins: "*"
   operationsCenterSharedConfiguration:
     enabled: false
   pollSCM:

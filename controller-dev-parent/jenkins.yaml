@@ -4,12 +4,10 @@ jenkins:
   - "JNLP4-connect"
   - "OperationsCenter2"
   - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
-      excludeClientIPFromCrumb: false
+      excludeClientIPFromCrumb: true
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
@@ -17,7 +15,7 @@ jenkins:
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
-  numExecutors: 2
+  numExecutors: 0
   primaryView:
     all:
       name: "all"
@@ -27,14 +25,11 @@ jenkins:
     enabled: true
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
-  slaveAgentPort: -1
-  systemMessage: "Configuration by CasC bundle v.5"
+  slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-cm-offline"
-      url: "file:/var/cache/cloudbees-core-cm/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-cm"
-      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-cm/update-center.json"
+    - id: "virtual-cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
   - all:
       name: "all"
@@ -89,10 +84,13 @@ support:
     - "ThreadDumps"
     - "UpdateCenter"
     - "UserCount"
+    - "ComponentImpl"
     - "SlowRequestComponent"
     - "HighLoadComponent"
     - "DeadlockRequestComponent"
     - "OperationsCenterSupportComponent"
+    - "PipelineTimings"
+    - "PipelineThreadDump"
     enabled: true
     period: 1
 globalCredentialsConfiguration:
@@ -106,6 +104,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
   sSHD:
     port: -1
 unclassified:
@@ -123,7 +123,6 @@ unclassified:
       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
       Check console output at $BUILD_URL to view the results.
-    defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
@@ -139,7 +138,7 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "http://35.229.32.70:8080/github-webhook/"
+    hookUrl: "https://cjoc.acaternberg.pscbdemos.com/controller-dev1/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -148,42 +147,17 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
-  hAGlobalConfiguration:
-    bindPort: 0
-    diagnosticPort: 0
-    portRange: 0
-    timeout: 30
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "http://35.229.32.70:8080/"
+    url: "https://cjoc.acaternberg.pscbdemos.com/mobile-studio-controller0/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAAAA2NSQ7CMAwA/5IzzuIUSvMNXhCnLiCiBqWuOFT9O57rjDSHefa8ikmGfFz8UhAG\r\
-      \npAxDDiPkwBk4IN0ozjRxMBfznrX1UNoqvdXKHYQ3UbH3quYl8k3OxatFnGxEO/p0V5wWP6ZHKx/W\r\
-      \nm/Sdzz92m1Z1fAAAAA==\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
-  prometheusConfiguration:
-    appendParamLabel: false
-    appendStatusLabel: false
-    collectDiskUsage: true
-    collectingMetricsPeriodInSeconds: 120
-    countAbortedBuilds: true
-    countFailedBuilds: true
-    countNotBuiltBuilds: true
-    countSuccessfulBuilds: true
-    countUnstableBuilds: true
-    defaultNamespace: "default"
-    fetchTestResults: true
-    jobAttributeName: "jenkins_job"
-    path: "prometheus"
-    processingDisabledBuilds: false
-    useAuthenticatedEndpoint: false
   usageStatisticsCloudBees:
     disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true

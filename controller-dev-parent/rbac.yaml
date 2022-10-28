@@ -92,7 +92,7 @@ groups:
 - members:
     users:
     - admin
-    - dev2
+    - dev1
   roles:
   - name: administer
     grantedAt: current

@@ -2,55 +2,24 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: backupAndRestore
-  name: backup
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: false
-  disabled: false
-  displayName: backup
-- kind: backupAndRestore
-  name: backupoc
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: false
-  disabled: false
-  displayName: backupoc
-- kind: freeStyle
-  name: casc
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  builders:
-  - shell:
-      command: |
-        #!/usr/bin/env bash
-        #mkdir -p $JENKINS_HOME/jcasc-bundles-store/
-        BUNDLE_DIR=$JENKINS_HOME/jcasc-bundles-store
-
-
-        #rm -Rf $BUNDLE_DIR
-        mkdir -p $BUNDLE_DIR
-
-        #cp casc/core-casc-security.xml /var/jenkins_home/
-        #rsync -avz --exclude '.git' . /
-        rm -Rf .git
-        cp -vR * /
-        ls -lathR /
-  concurrentBuild: false
+- kind: sharedCloud
+  name: AgentCloud
+  cloud:
+    inboundAgents:
+      mode: NORMAL
+      numExecutors: 1
+      remoteFS: ''
+      labels: testlabel
+      launcher:
+        jnlp:
+          webSocket: false
+          workDirSettings:
+            remotingWorkDirSettings:
+              internalDir: remoting
+              disabled: false
+              failIfWorkDirIsMissing: false
   description: ''
-  disabled: false
-  displayName: casc
-  scm:
-    gitSCM:
-      userRemoteConfigs:
-      - userRemoteConfig:
-          credentialsId: github-user-ssh
-          url: git@github.com:cb-ci/casc.git
-      branches:
-      - branchSpec:
-          name: '*/master'
-  scmCheckoutStrategy:
-    standard: {}
+  displayName: AgentCloud
 - kind: managedController
   name: controller0
   configuration:
@@ -93,6 +62,50 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
+- kind: managedController
+  name: controller1
+  configuration:
+    kubernetes:
+      allowExternalAgents: false
+      terminationGracePeriodSeconds: 1200
+      image: CloudBees CI - Managed Master - 2.361.2.1
+      memory: 3072
+      fsGroup: '1000'
+      cpus: 1.0
+      readinessTimeoutSeconds: 5
+      livenessInitialDelaySeconds: 300
+      readinessInitialDelaySeconds: 30
+      clusterEndpointId: default
+      disk: 50
+      readinessFailureThreshold: 100
+      livenessTimeoutSeconds: 10
+      storageClassName: gp2
+      domain: controller1
+      livenessPeriodSeconds: 10
+      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+      yaml: ''
+  description: ''
+  displayName: controller1
+  properties:
+  - enforceControllerExecutors:
+      count: 2
+  - configurationAsCode:
+      bundle: controller0
+  - sharedHeaderLabelOptIn:
+      optIn: true
+  - healthReporting:
+      enabled: true
+  - optOutProperty:
+      securityEnforcerOptOutMode:
+        optOutNone: {}
+  - owner:
+      delay: 5
+      owners: ''
+  - envelopeExtension:
+      allowExceptions: false
+  - sharedConfigurationOptOut:
+      optOut: false
 - kind: folder
   name: Teams
   displayName: Teams
@@ -106,6 +119,24 @@ items:
       propagates: 'false'
     name: TeamsReader
   items:
+  - kind: sharedCloud
+    name: AgentCloud
+    cloud:
+      inboundAgents:
+        mode: NORMAL
+        numExecutors: 1
+        remoteFS: ''
+        labels: testlabel
+        launcher:
+          jnlp:
+            webSocket: false
+            workDirSettings:
+              remotingWorkDirSettings:
+                internalDir: remoting
+                disabled: false
+                failIfWorkDirIsMissing: false
+    description: ''
+    displayName: AgentCloud
   - kind: folder
     name: CEPE
     description: ''
@@ -151,6 +182,56 @@ items:
         name: MobileStudioDev
       items:
       - kind: managedController
+        name: mobile-studio-controller-PROD
+        configuration:
+          kubernetes:
+            allowExternalAgents: false
+            terminationGracePeriodSeconds: 1200
+            image: CloudBees CI - Managed Controller - 2.361.2.1
+            memory: 3072
+            fsGroup: '1000'
+            cpus: 1.0
+            readinessTimeoutSeconds: 5
+            livenessInitialDelaySeconds: 300
+            readinessInitialDelaySeconds: 30
+            clusterEndpointId: default
+            disk: 50
+            readinessFailureThreshold: 100
+            livenessTimeoutSeconds: 10
+            storageClassName: gp2
+            domain: mobile-studio-controller-prod
+            livenessPeriodSeconds: 10
+            javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+              -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+            yaml: ''
+        description: ''
+        displayName: mobile-studio-controller-PROD
+        groups:
+        - members:
+            internal_groups:
+            - MobileStudiodevelopers
+          roles:
+          - name: develop
+            grantedAt: current
+            propagates: 'false'
+          name: mobile-studio-controller-PROD-Developers
+        properties:
+        - configurationAsCode: {}
+        - sharedHeaderLabelOptIn:
+            optIn: true
+        - healthReporting:
+            enabled: true
+        - optOutProperty:
+            securityEnforcerOptOutMode:
+              optOutNone: {}
+        - owner:
+            delay: 5
+            owners: ''
+        - envelopeExtension:
+            allowExceptions: false
+        - sharedConfigurationOptOut:
+            optOut: false
+      - kind: managedController
         name: mobile-studio-controller0
         configuration:
           kubernetes:
@@ -174,7 +255,7 @@ items:
               -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
             yaml: ''
         description: ''
-        displayName: mobile-studio-controller0
+        displayName: mobile-studio-controller-DEV
         groups:
         - members:
             internal_groups:
@@ -183,7 +264,7 @@ items:
           - name: develop
             grantedAt: current
             propagates: 'false'
-          name: MobileStudioDevelopers
+          name: mobile-studio-controller-DEV-developers
         properties:
         - configurationAsCode:
             bundle: controller-dev-parent
@@ -205,41 +286,18 @@ items:
       - envVars: {}
       - itemRestrictions:
           filter: false
+    - kind: clusterOpProject
+      name: cop
+      blockBuildWhenDownstreamBuilding: false
+      blockBuildWhenUpstreamBuilding: false
+      concurrentBuild: true
+      disabled: false
+      displayName: cop
+      scm:
+        none: {}
+      scmCheckoutStrategy:
+        standard: {}
     properties:
     - envVars: {}
     - itemRestrictions:
         filter: false
-- kind: folder
-  name: testk8scloud
-  description: ''
-  displayName: testk8scloud
-  properties:
-  - envVars: {}
-  - kubernetes: {}
-  - itemRestrictions:
-      filter: false
-- kind: freeStyle
-  name: testK8sCreds
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  builders:
-  - shell:
-      command: echo Hallo
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: testK8sCreds
-  scm:
-    gitSCM:
-      userRemoteConfigs:
-      - userRemoteConfig:
-          credentialsId: github-user-ssh
-          url: git@github.com:org-caternberg/helloworld.git
-      browser:
-        githubWeb:
-          repoUrl: https://github.com/org-caternberg/helloworld
-      branches:
-      - branchSpec:
-          name: '*/master'
-  scmCheckoutStrategy:
-    standard: {}

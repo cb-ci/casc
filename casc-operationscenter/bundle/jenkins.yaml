@@ -310,7 +310,7 @@ unclassified:
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
   headerLabel:
-    text: "CasC Version 56"
+    text: "${systemMessage}"
   junitTestResultStorage:
     storage: "file"
   location:

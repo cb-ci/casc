@@ -200,7 +200,8 @@ items:
             propagates: 'false'
           name: mobile-studio-controller-PROD-Developers
         properties:
-        - configurationAsCode: {}
+        - configurationAsCode:
+            bundle: controller-dev-parent
         - sharedHeaderLabelOptIn:
             optIn: true
         - healthReporting:

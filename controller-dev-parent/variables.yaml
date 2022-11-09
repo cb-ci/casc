@@ -1,0 +1,10 @@
+variables:
+  -  systemMessage: CasC Version 3
+  - key: value
+  - long_text: |-
+      multiline string without
+      quotes
+  - another: text
+  - team_name: Team Alpha
+  - team_group: alpha
+  - external_admin_group: ldap-cb-admins

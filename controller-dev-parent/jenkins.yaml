@@ -149,6 +149,8 @@ unclassified:
     useExistingAccountWithSameEmail: false
   junitTestResultStorage:
     storage: "file"
+  headerLabel:
+    text: "${systemMessage}"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "https://cjoc.acaternberg.pscbdemos.com/mobile-studio-controller0/"

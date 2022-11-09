@@ -49,6 +49,47 @@ items:
   disabled: false
   displayName: backupoc
 - kind: managedController
+  name: controller-namespace
+  configuration:
+    kubernetes:
+      allowExternalAgents: false
+      terminationGracePeriodSeconds: 1200
+      image: CloudBees CI - Managed Controller - 2.361.2.1
+      memory: 3072
+      fsGroup: '1000'
+      cpus: 1.0
+      readinessTimeoutSeconds: 5
+      livenessInitialDelaySeconds: 300
+      readinessInitialDelaySeconds: 30
+      clusterEndpointId: ee59040f-a809-47bb-b3f4-82f9e0cd30fb
+      disk: 50
+      readinessFailureThreshold: 100
+      livenessTimeoutSeconds: 10
+      storageClassName: gp2
+      domain: controller-namespace
+      livenessPeriodSeconds: 10
+      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+      yaml: ''
+  description: ''
+  displayName: controller-namespace
+  properties:
+  - configurationAsCode: {}
+  - sharedHeaderLabelOptIn:
+      optIn: true
+  - healthReporting:
+      enabled: true
+  - optOutProperty:
+      securityEnforcerOptOutMode:
+        authorizationOptOutMode: {}
+  - owner:
+      delay: 5
+      owners: ''
+  - envelopeExtension:
+      allowExceptions: false
+  - sharedConfigurationOptOut:
+      optOut: false
+- kind: managedController
   name: controller-remote
   configuration:
     kubernetes:
@@ -116,7 +157,7 @@ items:
     kubernetes:
       allowExternalAgents: false
       terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Master - 2.361.2.1
+      image: CloudBees CI - Managed Controller - 2.361.2.1
       memory: 3072
       fsGroup: '1000'
       cpus: 1.0
@@ -227,57 +268,6 @@ items:
           propagates: 'false'
         name: MobileStudioDev
       items:
-      - kind: managedController
-        name: mobile-studio-controller-PROD
-        configuration:
-          kubernetes:
-            allowExternalAgents: false
-            terminationGracePeriodSeconds: 1200
-            image: CloudBees CI - Managed Controller - 2.361.2.1
-            memory: 3072
-            fsGroup: '1000'
-            cpus: 1.0
-            readinessTimeoutSeconds: 5
-            livenessInitialDelaySeconds: 300
-            readinessInitialDelaySeconds: 30
-            clusterEndpointId: default
-            disk: 50
-            readinessFailureThreshold: 100
-            livenessTimeoutSeconds: 10
-            storageClassName: gp2
-            domain: mobile-studio-controller-prod
-            livenessPeriodSeconds: 10
-            javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-              -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-            yaml: ''
-        description: ''
-        displayName: mobile-studio-controller-PROD
-        groups:
-        - members:
-            internal_groups:
-            - MobileStudiodevelopers
-          roles:
-          - name: develop
-            grantedAt: current
-            propagates: 'false'
-          name: mobile-studio-controller-PROD-Developers
-        properties:
-        - configurationAsCode:
-            bundle: controller-dev-parent
-        - sharedHeaderLabelOptIn:
-            optIn: true
-        - healthReporting:
-            enabled: true
-        - optOutProperty:
-            securityEnforcerOptOutMode:
-              optOutNone: {}
-        - owner:
-            delay: 5
-            owners: ''
-        - envelopeExtension:
-            allowExceptions: false
-        - sharedConfigurationOptOut:
-            optOut: false
       - kind: managedController
         name: mobile-studio-controller0
         configuration:

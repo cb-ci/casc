@@ -127,8 +127,6 @@ masterprovisioning:
     images:
     - imageTag: "cloudbees/cloudbees-core-mm:2.361.2.1"
       name: "CloudBees CI - Managed Controller - 2.361.2.1"
-    - imageTag: "cloudbees/cloudbees-core-mm:2.361.2.1"
-      name: "CloudBees CI - Managed Master - 2.361.2.1"
   kubernetes:
     clusterEndpoints:
     - id: "default"
@@ -143,6 +141,12 @@ masterprovisioning:
       namespace: "cloudbees-remnote-controller"
       skipTlsVerify: true
       url: "https://6E51FA982570CED8EDB092EF90CE688A.gr7.us-east-1.eks.amazonaws.com"
+      webSocket: true
+    - credentialsId: "sa-remote-cluster"
+      id: "ee59040f-a809-47bb-b3f4-82f9e0cd30fb"
+      ingressClass: "nginx"
+      name: "controller-namespace"
+      namespace: "cloudbees-remnote-controller"
       webSocket: true
     cpus: "1.0"
     disk: 50

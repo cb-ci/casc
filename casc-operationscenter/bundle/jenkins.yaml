@@ -19,9 +19,10 @@ jenkins:
   - kubernetes:
       containerCap: 10
       containerCapStr: "10"
-      name: "myk8s"
-      namespace: "default"
-      serverUrl: " https://34.73.254.21"
+      credentialsId: "sa-remote-cluster"
+      jenkinsUrl: "http://acff3f875b467429d975b6532e17ba6e-1570068071.us-east-1.elb.amazonaws.com"
+      name: "cloudbees-controller-ns-agent"
+      namespace: "cloudbees-remnote-controller"
       skipTlsVerify: true
       webSocket: true
   crumbIssuer:
@@ -35,6 +36,7 @@ jenkins:
   - "com.cloudbees.jenkins.plugins.assurance.SecurityWarningsWatch"
   labelAtoms:
   - name: "built-in"
+  - name: "cloudbees-controller-ns-agent"
   - name: "test"
   markupFormatter: "plainText"
   mode: NORMAL
@@ -288,17 +290,6 @@ unclassified:
               remote: "git@github.com:cb-ci/casc.git"
               traits:
               - "gitBranchDiscovery"
-    - name: "controller2"
-      retriever:
-        SCM:
-          defaultVersion: "main"
-          scmSource:
-            git:
-              credentialsId: "github-user-accesstoken"
-              id: "282d81fd-782e-447f-84a3-476599deda53"
-              remote: "https://github.com/cb-ci/casc2.git"
-              traits:
-              - "gitBranchDiscovery"
     pollingPeriod: 120
     purgeOnDeactivation: true
   cascAutoControllerProvisioning:
@@ -342,7 +333,7 @@ unclassified:
       key: "{AQAAABAAAACQu3SpkGOcfoc9H8aglRCJdu1XoIoLlxV40LYAB9qhgSTXuNShU1Rqs4bHPfEV0/fXPBrEDLAeanE2zOdtsEfq1yAIET/gZOeTiOmUZtW+u8+CoDOVogWIGSRsClJ6jYmJPXZFH5RxhBwDXw9YmPqvmzcNsAS+9rSfE/f76uBZhNBDqV3mrnR7B5NjB7k8L1GYa/mZ7SIUmVCOLCKwSizJEQ==}"
       origins: "*"
   operationsCenterSharedConfiguration:
-    enabled: false
+    enabled: true
   pollSCM:
     pollingThreadCount: 10
   usageStatisticsCloudBees:

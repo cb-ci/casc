@@ -127,6 +127,8 @@ cloudBeesCasCServer:
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
+    - imageTag: "cloudbees/cloudbees-core-mm:2.361.3.2"
+      name: "CloudBees CI - Managed Controller - latest"
     - imageTag: "cloudbees/cloudbees-core-mm:2.361.2.1"
       name: "CloudBees CI - Managed Controller - 2.361.2.1"
   kubernetes:

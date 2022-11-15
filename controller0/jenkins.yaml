@@ -1,16 +1,25 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - gitHubApp:
+          appID: "261547"
+          description: "ghappci"
+          id: "ghappci"
+          privateKey: "{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}"
 jenkins:
   agentProtocols:
-    - "Diagnostic-Ping"
-    - "JNLP4-connect"
-    - "OperationsCenter2"
-    - "Ping"
+  - "Diagnostic-Ping"
+  - "JNLP4-connect"
+  - "OperationsCenter2"
+  - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
   disableRememberMe: false
   labelAtoms:
-    - name: "built-in"
+  - name: "built-in"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -26,15 +35,15 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
+  systemMessage: "CasC bundle controller0 version 52"
   updateCenter:
     sites:
-      - id: "virtual-cap-core-mm"
-        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+    - id: "virtual-cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
-    - all:
-        name: "all"
+  - all:
+      name: "all"
   viewsTabBar: "standard"
-  systemMessage: CasC bundle controller0 version 52
 beekeeper:
   enabled: true
   securityWarnings:
@@ -42,65 +51,65 @@ beekeeper:
     enabledForPlugins: true
   upgrades:
     autoDowngradePlugins: false
-    autoUpgradePlugins: false
+    autoUpgradePlugins: true
 globalCloudBeesPipelineTemplateCatalog:
   catalogs:
-    - branchOrTag: "master"
-      scm:
-        git:
-          credentialsId: "github-user-accesstoken"
-          id: "106fc83a-ad2e-4ebd-9124-7ce4e2550904"
-          remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
-      updateInterval: "1d"
+  - branchOrTag: "master"
+    scm:
+      git:
+        credentialsId: "github-user-accesstoken"
+        id: "106fc83a-ad2e-4ebd-9124-7ce4e2550904"
+        remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
+    updateInterval: "1d"
 support:
   automatedBundleConfiguration:
     componentIds:
-      - "CloudBeesAssuranceSupport"
-      - "AgentsConfigFile"
-      - "ConfigFileComponent"
-      - "OtherConfigFilesComponent"
-      - "AboutBrowser"
-      - "AboutJenkins"
-      - "AboutUser"
-      - "AdministrativeMonitors"
-      - "AgentProtocols"
-      - "BuildQueue"
-      - "CustomLogs"
-      - "DumpExportTable"
-      - "EnvironmentVariables"
-      - "FileDescriptorLimit"
-      - "GCLogs"
-      - "HeapUsageHistogram"
-      - "ItemsContent"
-      - "AgentsJVMProcessSystemMetricsContents"
-      - "MasterJVMProcessSystemMetricsContents"
-      - "JenkinsLogs"
-      - "LoadStats"
-      - "LoggerManager"
-      - "Metrics"
-      - "NetworkInterfaces"
-      - "NodeMonitors"
-      - "OtherLogs"
-      - "ReverseProxy"
-      - "RootCAs"
-      - "RunningBuilds"
-      - "SlaveCommandStatistics"
-      - "SlaveLaunchLogs"
-      - "SlaveLogs"
-      - "AgentsSystemConfiguration"
-      - "MasterSystemConfiguration"
-      - "SystemProperties"
-      - "TaskLogs"
-      - "ThreadDumps"
-      - "UpdateCenter"
-      - "UserCount"
-      - "ComponentImpl"
-      - "SlowRequestComponent"
-      - "HighLoadComponent"
-      - "DeadlockRequestComponent"
-      - "OperationsCenterSupportComponent"
-      - "PipelineTimings"
-      - "PipelineThreadDump"
+    - "CloudBeesAssuranceSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "ComponentImpl"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "OperationsCenterSupportComponent"
+    - "PipelineTimings"
+    - "PipelineThreadDump"
     enabled: true
     period: 1
 globalCredentialsConfiguration:
@@ -120,107 +129,107 @@ security:
     port: -1
   scriptApproval:
     approvedScriptHashes:
-      - "017d0db438428731cd600b6ebda805065433520f"
-      - "2fad12722d6b439529e7966d5abf30b0970305cc"
-      - "352ea0a61d7d60f033d161e81b06e055bc52c855"
-      - "443857d40abaee82a93ac783395a91dd509d8519"
-      - "68c9241901012afc07f0872967e3e5fa2e019c99"
-      - "6bc5acfe193778139fb847fe498b41bff64104f4"
-      - "7273a2a6769ebca86a0d4d03b8063c551bf08421"
-      - "77a424cc26eba5572b7fa4f68112714176e83d16"
-      - "78dbbb971b11211f6ac165c6a78df1863fb62949"
-      - "7bda55098ba1c06adcd03dc03af2e0d13090f118"
-      - "a1651f3b9a9d6cac098a7d34d079356032b88fcd"
-      - "de297ada2701eae27eddba44aa7a37b228ca4f3f"
-      - "fe3059c7004d2712542e317c2d0b3e0c78113a09"
+    - "017d0db438428731cd600b6ebda805065433520f"
+    - "2fad12722d6b439529e7966d5abf30b0970305cc"
+    - "352ea0a61d7d60f033d161e81b06e055bc52c855"
+    - "443857d40abaee82a93ac783395a91dd509d8519"
+    - "68c9241901012afc07f0872967e3e5fa2e019c99"
+    - "6bc5acfe193778139fb847fe498b41bff64104f4"
+    - "7273a2a6769ebca86a0d4d03b8063c551bf08421"
+    - "77a424cc26eba5572b7fa4f68112714176e83d16"
+    - "78dbbb971b11211f6ac165c6a78df1863fb62949"
+    - "7bda55098ba1c06adcd03dc03af2e0d13090f118"
+    - "a1651f3b9a9d6cac098a7d34d079356032b88fcd"
+    - "de297ada2701eae27eddba44aa7a37b228ca4f3f"
+    - "fe3059c7004d2712542e317c2d0b3e0c78113a09"
 unclassified:
   ansiColorBuildWrapper:
     colorMaps:
-      - black: "#000000"
-        blackB: "#4C4C4C"
-        blue: "#1E90FF"
-        blueB: "#4682B4"
-        cyan: "#00CDCD"
-        cyanB: "#00FFFF"
-        green: "#00CD00"
-        greenB: "#00FF00"
-        magenta: "#CD00CD"
-        magentaB: "#FF00FF"
-        name: "xterm"
-        red: "#CD0000"
-        redB: "#FF0000"
-        white: "#E5E5E5"
-        whiteB: "#FFFFFF"
-        yellow: "#CDCD00"
-        yellowB: "#FFFF00"
-      - black: "#000000"
-        blackB: "#555555"
-        blue: "#0000AA"
-        blueB: "#5555FF"
-        cyan: "#00AAAA"
-        cyanB: "#55FFFF"
-        defaultBackground: 0
-        defaultForeground: 7
-        green: "#00AA00"
-        greenB: "#55FF55"
-        magenta: "#AA00AA"
-        magentaB: "#FF55FF"
-        name: "vga"
-        red: "#AA0000"
-        redB: "#FF5555"
-        white: "#AAAAAA"
-        whiteB: "#FFFFFF"
-        yellow: "#AA5500"
-        yellowB: "#FFFF55"
-      - black: "black"
-        blackB: "black"
-        blue: "blue"
-        blueB: "blue"
-        cyan: "cyan"
-        cyanB: "cyan"
-        green: "green"
-        greenB: "green"
-        magenta: "magenta"
-        magentaB: "magenta"
-        name: "css"
-        red: "red"
-        redB: "red"
-        white: "white"
-        whiteB: "white"
-        yellow: "yellow"
-        yellowB: "yellow"
-      - black: "#2E3436"
-        blackB: "#2E3436"
-        blue: "#3465A4"
-        blueB: "#3465A4"
-        cyan: "#06989A"
-        cyanB: "#06989A"
-        defaultBackground: 0
-        defaultForeground: 7
-        green: "#4E9A06"
-        greenB: "#4E9A06"
-        magenta: "#75507B"
-        magentaB: "#75507B"
-        name: "gnome-terminal"
-        red: "#CC0000"
-        redB: "#CC0000"
-        white: "#D3D7CF"
-        whiteB: "#D3D7CF"
-        yellow: "#C4A000"
-        yellowB: "#C4A000"
+    - black: "#000000"
+      blackB: "#4C4C4C"
+      blue: "#1E90FF"
+      blueB: "#4682B4"
+      cyan: "#00CDCD"
+      cyanB: "#00FFFF"
+      green: "#00CD00"
+      greenB: "#00FF00"
+      magenta: "#CD00CD"
+      magentaB: "#FF00FF"
+      name: "xterm"
+      red: "#CD0000"
+      redB: "#FF0000"
+      white: "#E5E5E5"
+      whiteB: "#FFFFFF"
+      yellow: "#CDCD00"
+      yellowB: "#FFFF00"
+    - black: "#000000"
+      blackB: "#555555"
+      blue: "#0000AA"
+      blueB: "#5555FF"
+      cyan: "#00AAAA"
+      cyanB: "#55FFFF"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#00AA00"
+      greenB: "#55FF55"
+      magenta: "#AA00AA"
+      magentaB: "#FF55FF"
+      name: "vga"
+      red: "#AA0000"
+      redB: "#FF5555"
+      white: "#AAAAAA"
+      whiteB: "#FFFFFF"
+      yellow: "#AA5500"
+      yellowB: "#FFFF55"
+    - black: "black"
+      blackB: "black"
+      blue: "blue"
+      blueB: "blue"
+      cyan: "cyan"
+      cyanB: "cyan"
+      green: "green"
+      greenB: "green"
+      magenta: "magenta"
+      magentaB: "magenta"
+      name: "css"
+      red: "red"
+      redB: "red"
+      white: "white"
+      whiteB: "white"
+      yellow: "yellow"
+      yellowB: "yellow"
+    - black: "#2E3436"
+      blackB: "#2E3436"
+      blue: "#3465A4"
+      blueB: "#3465A4"
+      cyan: "#06989A"
+      cyanB: "#06989A"
+      defaultBackground: 0
+      defaultForeground: 7
+      green: "#4E9A06"
+      greenB: "#4E9A06"
+      magenta: "#75507B"
+      magentaB: "#75507B"
+      name: "gnome-terminal"
+      red: "#CC0000"
+      redB: "#CC0000"
+      white: "#D3D7CF"
+      whiteB: "#D3D7CF"
+      yellow: "#C4A000"
+      yellowB: "#C4A000"
   buildDiscarders:
     configuredBuildDiscarders:
-      - "jobBuildDiscarder"
+    - "jobBuildDiscarder"
   cloudBeesSCMReporting:
     enabled: true
   defaultFolderConfiguration:
     healthMetrics:
-      - jobStatusHealthMetric:
-          countVirginJobs: false
-          failure: true
-          success: true
-          unbuilt: true
-          unstable: true
+    - jobStatusHealthMetric:
+        countVirginJobs: false
+        failure: true
+        success: true
+        unbuilt: true
+        unstable: true
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
@@ -233,7 +242,7 @@ unclassified:
     defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
-      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
@@ -243,6 +252,10 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://cjoc.acaternberg.pscbdemos.com/controller0/github-webhook/"
   gitSCM:
     addGitTagAction: false
     allowSecondFetch: false
@@ -253,106 +266,106 @@ unclassified:
     useExistingAccountWithSameEmail: false
   globalConfigFiles:
     configs:
-      - globalMavenSettings:
-          comment: "Global settings"
-          content: |-
-            <?xml version="1.0" encoding="UTF-8"?>
-            <settings>
-                <servers>
-                    <server>
-                        <id>nexus-snapshots</id>
-                    </server>
-                    <server>
-                        <id>nexus-releases</id>
-                    </server>
-                    <server>
-                        <id>nexus</id>
-                    </server>
-                    <server>
-                        <id>spring-milestones</id>
-                        <username>*</username>
-                        <password>*</password>
-                    </server>
-                    <server>
-                        <id>spring-releases</id>
-                        <username>*</username>
-                        <password>*</password>
-                    </server>
-                    <server>
-                        <id>spring-snapshots</id>
-                        <username>*</username>
-                        <password>*</password>
-                    </server>
-                </servers>
-                <mirrors>
-                    <mirror>
-                        <!--This sends everything else to /public -->
-                        <id>nexus</id>
-                        <mirrorOf>*</mirrorOf>
-                        <url>https://nexus.acaternberg.flow-training.beescloud.com/repository/maven-public/</url>
-                    </mirror>
-                </mirrors>
-                <profiles>
-                    <profile>
-                        <id>nexus</id>
-                        <!--Enable snapshots for the built in central repo to direct -->
-                        <!--all requests to nexus via the mirror -->
-                        <repositories>
-                            <repository>
-                                <id>central</id>
-                                <url>http://central</url>
-                                <releases>
-                                    <enabled>true</enabled>
-                                </releases>
-                                <snapshots>
-                                    <enabled>true</enabled>
-                                </snapshots>
-                            </repository>
-                        </repositories>
-                        <pluginRepositories>
-                            <pluginRepository>
-                                <id>central</id>
-                                <url>http://central</url>
-                                <releases>
-                                    <enabled>true</enabled>
-                                </releases>
-                                <snapshots>
-                                    <enabled>true</enabled>
-                                </snapshots>
-                            </pluginRepository>
-                        </pluginRepositories>
-                    </profile>
-                </profiles>
-                <activeProfiles>
-                    <!--make the profile active all the time -->
-                    <activeProfile>nexus</activeProfile>
-                </activeProfiles>
-            </settings>
-          id: "global-maven-settings"
-          isReplaceAll: true
-          name: "MyGlobalSettings"
-          providerId: "org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig"
-          serverCredentialMappings:
-            - credentialsId: "nexus-user-accesstoken"
-              serverId: "nexus"
-            - credentialsId: "nexus-user-accesstoken"
-              serverId: "nexus-snapshots"
-            - credentialsId: "nexus-user-accesstoken"
-              serverId: "nexus-releases"
+    - globalMavenSettings:
+        comment: "Global settings"
+        content: |-
+          <?xml version="1.0" encoding="UTF-8"?>
+          <settings>
+              <servers>
+                  <server>
+                      <id>nexus-snapshots</id>
+                  </server>
+                  <server>
+                      <id>nexus-releases</id>
+                  </server>
+                  <server>
+                      <id>nexus</id>
+                  </server>
+                  <server>
+                      <id>spring-milestones</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+                  <server>
+                      <id>spring-releases</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+                  <server>
+                      <id>spring-snapshots</id>
+                      <username>*</username>
+                      <password>*</password>
+                  </server>
+              </servers>
+              <mirrors>
+                  <mirror>
+                      <!--This sends everything else to /public -->
+                      <id>nexus</id>
+                      <mirrorOf>*</mirrorOf>
+                      <url>https://nexus.acaternberg.flow-training.beescloud.com/repository/maven-public/</url>
+                  </mirror>
+              </mirrors>
+              <profiles>
+                  <profile>
+                      <id>nexus</id>
+                      <!--Enable snapshots for the built in central repo to direct -->
+                      <!--all requests to nexus via the mirror -->
+                      <repositories>
+                          <repository>
+                              <id>central</id>
+                              <url>http://central</url>
+                              <releases>
+                                  <enabled>true</enabled>
+                              </releases>
+                              <snapshots>
+                                  <enabled>true</enabled>
+                              </snapshots>
+                          </repository>
+                      </repositories>
+                      <pluginRepositories>
+                          <pluginRepository>
+                              <id>central</id>
+                              <url>http://central</url>
+                              <releases>
+                                  <enabled>true</enabled>
+                              </releases>
+                              <snapshots>
+                                  <enabled>true</enabled>
+                              </snapshots>
+                          </pluginRepository>
+                      </pluginRepositories>
+                  </profile>
+              </profiles>
+              <activeProfiles>
+                  <!--make the profile active all the time -->
+                  <activeProfile>nexus</activeProfile>
+              </activeProfiles>
+          </settings>
+        id: "global-maven-settings"
+        isReplaceAll: true
+        name: "MyGlobalSettings"
+        providerId: "org.jenkinsci.plugins.configfiles.maven.GlobalMavenSettingsConfig"
+        serverCredentialMappings:
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus"
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus-snapshots"
+        - credentialsId: "nexus-user-accesstoken"
+          serverId: "nexus-releases"
   globalLibraries:
     libraries:
-      - defaultVersion: "master"
-        implicit: true
-        name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
-        retriever:
-          modernSCM:
-            scm:
-              git:
-                credentialsId: "github-user-accesstoken"
-                id: "4cd25a36-3eab-49df-8721-890bcda365a6"
-                remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
-                traits:
-                  - "gitBranchDiscovery"
+    - defaultVersion: "master"
+      implicit: true
+      name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              credentialsId: "github-user-accesstoken"
+              id: "4cd25a36-3eab-49df-8721-890bcda365a6"
+              remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
+              traits:
+              - "gitBranchDiscovery"
   hashicorpVault:
     configuration:
       engineVersion: 2
@@ -361,8 +374,8 @@ unclassified:
     text: "${systemMessage}"
   hibernationConfiguration:
     activities:
-      - "build"
-      - "web"
+    - "build"
+    - "web"
     enabled: false
     gracePeriod: 1800
   junitTestResultStorage:
@@ -394,8 +407,8 @@ tool:
     enabled: true
   git:
     installations:
-      - home: "git"
-        name: "Default"
+    - home: "git"
+      name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

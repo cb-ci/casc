@@ -8,8 +8,6 @@ configurations:
   includePlugins:
     ansicolor:
       version: 1.0.2
-    beer:
-      version: 42.v776b_04d96de3
     build-discarder:
       version: 139.v05696a_7fe240
     consul-kv-builder:
@@ -18,12 +16,8 @@ configurations:
       version: 1.4
     hashicorp-vault-plugin:
       version: 359.v2da_3b_45f17d5
-    ionicons-api:
-      version: 31.v4757b_6987003
     kubernetes-credentials-provider:
       version: 1.206.v7ce2cf7b_0c8b
-    managed-master-hibernation:
-      version: 1.6
     pipeline-graph-view:
       version: 118.v7535b_960f86c
     pipeline-utility-steps:

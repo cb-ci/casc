@@ -1,24 +1,17 @@
 plugins:
 - id: ace-editor
-- id: active-directory
 - id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
-- id: async-http-client
-- id: audit-trail
 - id: authentication-tokens
 - id: aws-credentials
-- id: aws-java-sdk
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-elasticbeanstalk
 - id: aws-java-sdk-minimal
 - id: blueocean-commons
 - id: blueocean-rest
 - id: bluesteel-cjoc
-- id: bootstrap4-api
-- id: bootstrap5-api
 - id: bouncycastle-api
 - id: caffeine-api
-- id: checks-api
 - id: cloudbees-administrative-monitors
 - id: cloudbees-analytics
 - id: cloudbees-assurance
@@ -43,14 +36,14 @@ plugins:
 - id: cloudbees-unified-ui
 - id: cloudbees-update-center-plugin
 - id: command-launcher
+- id: commons-lang3-api
+- id: commons-text-api
 - id: configuration-as-code
 - id: credentials
 - id: credentials-binding
 - id: display-url-api
 - id: docker-commons
 - id: durable-task
-- id: echarts-api
-- id: font-awesome-api
 - id: git
 - id: git-client
 - id: github
@@ -58,6 +51,7 @@ plugins:
 - id: handy-uri-templates-2-api
 - id: infradna-backup
 - id: instance-identity
+- id: ionicons-api
 - id: jackson2-api
 - id: jakarta-activation-api
 - id: jakarta-mail-api
@@ -66,10 +60,7 @@ plugins:
 - id: jaxb
 - id: jdk-tool
 - id: jjwt-api
-- id: jobConfigHistory
 - id: jquery3-api
-- id: jsch
-- id: junit
 - id: kube-agent-management
 - id: kubernetes
 - id: kubernetes-client-api
@@ -104,9 +95,6 @@ plugins:
 - id: operations-center-sso
 - id: operations-center-updatecenter
 - id: plain-credentials
-- id: plugin-util-api
-- id: popper-api
-- id: popper2-api
 - id: pubsub-light
 - id: scm-api
 - id: script-security
@@ -123,6 +111,5 @@ plugins:
 - id: variant
 - id: workflow-api
 - id: workflow-durable-task-step
-- id: workflow-scm-step
 - id: workflow-step-api
 - id: workflow-support

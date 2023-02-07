@@ -11,6 +11,8 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "bundleStorageService"
   labelAtoms:
   - name: "built-in"
   markupFormatter: "plainText"
@@ -51,9 +53,7 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-oc-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-oc"
+    - id: "virtual-cap-core-oc"
       url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
   views:
   - masters:
@@ -83,7 +83,8 @@ beekeeper:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
 cloudBeesCasCServer:
-  visibility: false
+  defaultBundle: "controller0"
+  visibility: true
 license:
   certificate: |
     -----BEGIN CERTIFICATE-----
@@ -243,6 +244,11 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "noHostKeyVerificationStrategy"
   sSHD:
     port: -1
   securitySettingsEnforcement:
@@ -256,9 +262,21 @@ unclassified:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
   bundleStorageService:
-    activated: false
+    activated: true
+    bundles:
+    - name: "loadcascbundle"
+      retriever:
+        SCM:
+          defaultVersion: "loadcascbundle"
+          scmSource:
+            git:
+              credentialsId: "github-user-ssh"
+              id: "7e30f876-352b-465d-a710-4b1ca4d78e4a"
+              remote: "git@github.com:cb-ci/casc.git"
+              traits:
+              - "gitBranchDiscovery"
     pollingPeriod: 120
-    purgeOnDeactivation: false
+    purgeOnDeactivation: true
   cascAutoControllerProvisioning:
     duration: 60
     fireAndForget: true
@@ -270,6 +288,16 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  gitHubPluginConfig:
+    hookUrl: "https://cjoc.acaternberg.pscbdemos.com/cjoc/github-webhook/"
+  gitSCM:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
   headerLabel:
     text: "${systemMessage}"
   location:

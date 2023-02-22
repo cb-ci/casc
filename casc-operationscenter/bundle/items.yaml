@@ -40,3 +40,6 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
+- kind: folder
+  name: Teams
+  displayName: Teams

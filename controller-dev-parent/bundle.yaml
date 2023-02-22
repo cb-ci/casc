@@ -11,6 +11,6 @@ catalog:
 rbac:
   - "rbac.yaml"
 items:
-  - "items.yaml"
+  - "folder-all.yaml"
 variables:
   - "variables.yaml"

@@ -8,7 +8,6 @@ plugins:
 - id: aws-credentials
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-minimal
-- id: beer
 - id: blueocean-commons
 - id: blueocean-core-js
 - id: blueocean-jwt
@@ -37,7 +36,7 @@ plugins:
 - id: cloudbees-github-reporting
 - id: cloudbees-groovy-view
 - id: cloudbees-jenkins-advisor
-- id: cloudbees-jsync-archiver
+#- id: cloudbees-jsync-archiver
 - id: cloudbees-license
 - id: cloudbees-monitoring
 - id: cloudbees-nodes-plus

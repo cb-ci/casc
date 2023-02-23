@@ -22,3 +22,7 @@ configurations:
       version: 118.v7535b_960f86c
     pipeline-utility-steps:
       version: 2.13.0
+    build-timeout:
+      version: '1.28'
+    cloudbees-slack:
+      version: '1.21'

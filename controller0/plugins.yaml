@@ -21,6 +21,7 @@ plugins:
 - id: bouncycastle-api
 - id: branch-api
 - id: build-discarder
+- id: build-timeout
 - id: caffeine-api
 - id: checks-api
 - id: cloudbees-administrative-monitors
@@ -36,7 +37,6 @@ plugins:
 - id: cloudbees-github-reporting
 - id: cloudbees-groovy-view
 - id: cloudbees-jenkins-advisor
-#- id: cloudbees-jsync-archiver
 - id: cloudbees-license
 - id: cloudbees-monitoring
 - id: cloudbees-nodes-plus
@@ -53,6 +53,8 @@ plugins:
 - id: cloudbees-workflow-template
 - id: cloudbees-workflow-ui
 - id: command-launcher
+- id: commons-lang3-api
+- id: commons-text-api
 - id: config-file-provider
 - id: configuration-as-code
 - id: consul-kv-builder
@@ -63,6 +65,7 @@ plugins:
 - id: declarative-pipeline-migration-assistant-api
 - id: display-url-api
 - id: durable-task
+- id: ec2
 - id: echarts-api
 - id: email-ext
 - id: favorite
@@ -75,7 +78,6 @@ plugins:
 - id: github-api
 - id: github-branch-source
 - id: gradle
-- id: handlebars
 - id: handy-uri-templates-2-api
 - id: hashicorp-vault-pipeline
 - id: hashicorp-vault-plugin

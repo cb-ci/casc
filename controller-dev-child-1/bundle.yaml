@@ -5,10 +5,10 @@ parent: "controller-dev-parent"
 version: "2"
 #jcasc:
 #  - "jenkins.yaml"
-#plugins:
-#  - "plugins.yaml"
-#catalog:
-#  - "plugin-catalog.yaml"
+plugins:
+  - "plugins.yaml"
+catalog:
+  - "plugin-catalog.yaml"
 #rbac:
 #  - "rbac.yaml"
 items:

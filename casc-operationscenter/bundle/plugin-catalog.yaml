@@ -9,4 +9,3 @@ configurations:
       version: '1.6'
     kubernetes-credentials-provider:
       version: '0.20'
-

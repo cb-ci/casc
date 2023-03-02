@@ -6,4 +6,4 @@ configurations:
 - description: Exported plugins
   includePlugins:
     kubernetes-credentials-provider:
-      version: 1.196.va_55f5e31e3c2
+      version: 1.209.v862c6e5fb_1ef

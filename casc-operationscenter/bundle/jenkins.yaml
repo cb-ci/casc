@@ -294,7 +294,7 @@ unclassified:
     storage: "file"
   gitHubPluginConfig:
     hookUrl: "https://cjoc.acaternberg.pscbdemos.com/cjoc/github-webhook/"
-  gitSCM:
+  scmGit:
     addGitTagAction: false
     allowSecondFetch: false
     createAccountBasedOnEmail: false

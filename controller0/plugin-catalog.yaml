@@ -17,7 +17,7 @@ configurations:
     hashicorp-vault-plugin:
       version: 359.v2da_3b_45f17d5
     kubernetes-credentials-provider:
-      version: 1.206.v7ce2cf7b_0c8b
+      version: 1.209.v862c6e5fb_1ef
     pipeline-graph-view:
       version: 118.v7535b_960f86c
     pipeline-utility-steps:

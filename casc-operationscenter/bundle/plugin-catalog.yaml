@@ -8,4 +8,4 @@ configurations:
     mock-security-realm:
       version: '1.6'
     kubernetes-credentials-provider:
-      version: '0.20'
+      version: '1.209.v862c6e5fb_1ef'

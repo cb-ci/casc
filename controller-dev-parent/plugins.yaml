@@ -25,7 +25,6 @@ plugins:
 - id: cloudbees-github-reporting
 - id: cloudbees-groovy-view
 - id: cloudbees-jenkins-advisor
-- id: cloudbees-jsync-archiver
 - id: cloudbees-license
 - id: cloudbees-monitoring
 - id: cloudbees-nodes-plus
@@ -41,6 +40,8 @@ plugins:
 - id: cloudbees-workflow-template
 - id: cloudbees-workflow-ui
 - id: command-launcher
+- id: commons-lang3-api
+- id: commons-text-api
 - id: configuration-as-code
 - id: credentials
 - id: credentials-binding
@@ -55,10 +56,10 @@ plugins:
 - id: github-api
 - id: github-branch-source
 - id: gradle
-- id: handlebars
 - id: handy-uri-templates-2-api
 - id: infradna-backup
 - id: instance-identity
+- id: ionicons-api
 - id: jackson2-api
 - id: jakarta-activation-api
 - id: jakarta-mail-api
@@ -77,6 +78,7 @@ plugins:
 - id: kubernetes-credentials-provider
 - id: ldap
 - id: mailer
+- id: managed-master-hibernation
 - id: mapdb-api
 - id: matrix-project
 - id: metrics

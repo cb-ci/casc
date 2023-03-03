@@ -7,3 +7,5 @@ configurations:
   includePlugins:
     kubernetes-credentials-provider:
       version: 1.209.v862c6e5fb_1ef
+    momentjs:
+      version: 1.1.1

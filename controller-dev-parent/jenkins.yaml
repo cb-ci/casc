@@ -139,7 +139,7 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "https://cjoc.acaternberg.pscbdemos.com/controller-dev1/github-webhook/"
-  gitSCM:
+  scmGit:
     addGitTagAction: false
     allowSecondFetch: false
     createAccountBasedOnEmail: false

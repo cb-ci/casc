@@ -108,7 +108,7 @@ items:
           cpsScmFlowDefinition:
             scriptPath: templates/multibranchPipeline/Jenkinsfile
             scm:
-              gitSCM:
+              scmGit:
                 userRemoteConfigs:
                 - userRemoteConfig:
                     credentialsId: github-user-accesstoken
@@ -273,7 +273,7 @@ items:
               stages {
                   stage('Hello') {
                       steps {
-                          echo "Hello ${repoSet.repo}"
+                          echo "Hello "
                          //echo "test"
                       }
                   }
@@ -290,7 +290,7 @@ items:
       cpsScmFlowDefinition:
         scriptPath: jobs/JenkinsFile-jsonSlurper.groovy
         scm:
-          gitSCM:
+          scmGit:
             userRemoteConfigs:
             - userRemoteConfig:
                 credentialsId: github-user-ssh
@@ -315,7 +315,6 @@ items:
       filter: false
 - kind: organizationFolder
   name: GHOrg
-  description: ''
   displayName: GHOrg
   healthMetrics:
   - jobStatusHealthMetric:
@@ -363,7 +362,7 @@ items:
             cpsScmFlowDefinition:
               scriptPath: templates/multibranchPipeline/Jenkinsfile
               scm:
-                gitSCM:
+                scmGit:
                   userRemoteConfigs:
                   - userRemoteConfig:
                       credentialsId: github-user-ssh

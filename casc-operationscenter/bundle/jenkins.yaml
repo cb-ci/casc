@@ -159,6 +159,8 @@ license:
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
+    - imageTag: "cloudbees/cloudbees-core-mm:2.375.3.5"
+      name: "CloudBees CI - Managed Controller - 2.375.3.5"
     - imageTag: "cloudbees/cloudbees-core-mm:2.375.2.3"
       name: "CloudBees CI - Managed Controller - 2.375.2.3"
   kubernetes:
@@ -170,7 +172,7 @@ masterprovisioning:
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
-    globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.375.2.3\
+    globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.375.3.5\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
       https\" -Dcom.cloudbees.networking.hostname=\"cjoc.acaternberg.pscbdemos.com\"\
@@ -248,6 +250,10 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  controllerExecutorCount:
+    enforce:
+      canOverride: false
+      count: 0
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -294,14 +300,6 @@ unclassified:
     storage: "file"
   gitHubPluginConfig:
     hookUrl: "https://cjoc.acaternberg.pscbdemos.com/cjoc/github-webhook/"
-  scmGit:
-    addGitTagAction: false
-    allowSecondFetch: false
-    createAccountBasedOnEmail: false
-    disableGitToolChooser: false
-    hideCredentials: false
-    showEntireCommitSummaryInChanges: false
-    useExistingAccountWithSameEmail: false
   headerLabel:
     text: "${systemMessage}"
   location:
@@ -315,6 +313,14 @@ unclassified:
     enabled: false
   pollSCM:
     pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
   usageStatisticsCloudBees:
     disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true

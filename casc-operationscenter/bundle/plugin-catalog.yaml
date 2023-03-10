@@ -6,6 +6,6 @@ configurations:
 - description: Exported plugins
   includePlugins:
     mock-security-realm:
-      version: '1.6'
+      version: 54.v07143c60a_992
     kubernetes-credentials-provider:
       version: '1.209.v862c6e5fb_1ef'

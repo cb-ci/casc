@@ -150,6 +150,87 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
+- kind: managedController
+  name: remotetest
+  configuration:
+    kubernetes:
+      allowExternalAgents: false
+      terminationGracePeriodSeconds: 1200
+      image: CloudBees CI - Managed Controller - 2.387.1.2
+      memory: 3072
+      fsGroup: '1000'
+      cpus: 1.0
+      readinessTimeoutSeconds: 5
+      livenessInitialDelaySeconds: 300
+      systemProperties: |-
+        https.proxyHost=http://45.61.187.67
+        https.proxyPort=4000
+        http.proxyHost=http://45.61.187.67
+        http.proxyPort=4000
+        http.nonProxyHosts=localhost|127.0.0.1|10.0.0.0/8|172.16.0.0/12|192.168.0.0/16|*.svc.cluster.local|*.eks.amazonaws.com|*.cloudbees.com|*.jenkins.io|*.pscbdemos.com
+      readinessInitialDelaySeconds: 30
+      clusterEndpointId: default
+      disk: 50
+      readinessFailureThreshold: 100
+      livenessTimeoutSeconds: 10
+      domain: remotetest
+      livenessPeriodSeconds: 10
+      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+      yaml: |-
+        apiVersion: "networking.k8s.io/v1"
+        kind: "Ingress"
+        metadata:
+          annotations:
+            nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+            nginx.ingress.kubernetes.io/ssl-redirect: "true"
+            #kubernetes.io/ingress.class: "nginx"
+            cert-manager.io/cluster-issuer: letsencrypt
+          labels:
+            type: "master"
+            tenant: "${name}"
+            com.cloudbees.pse.type: "master"
+            com.cloudbees.cje.type: "master"
+            com.cloudbees.pse.tenant: "${name}"
+            com.cloudbees.cje.tenant: "${name}"
+          name: "${name}"
+        spec:
+          tls:
+            - secretName: tls-secret
+              hosts:
+                - cjoc.acaternberg.pscbdemos.com
+        ---
+        apiVersion: "v1"
+        kind: "Service"
+        metadata:
+          annotations:
+            prometheus.io/path: /prometheus
+            prometheus.io/port: "80"
+            prometheus.io/scrape: "true"
+          labels:
+            app.kubernetes.io/component: Managed-Master
+            app.kubernetes.io/instance: ${name}
+            app.kubernetes.io/managed-by: CloudBees-Core-Cloud-Operations-Center
+            app.kubernetes.io/name: ${name}
+        name: "remotetest"
+        namespace: "cloudbees-core"
+  description: ''
+  displayName: remotetest
+  properties:
+  - configurationAsCode:
+      bundle: controller-dev-parent
+  - sharedHeaderLabelOptIn:
+      optIn: true
+  - healthReporting:
+      enabled: true
+  - owner:
+      delay: 5
+      owners: ''
+  - envelopeExtension:
+      allowExceptions: false
+  - sharedConfigurationOptOut:
+      optOut: false
 - kind: folder
   name: Teams
   displayName: Teams

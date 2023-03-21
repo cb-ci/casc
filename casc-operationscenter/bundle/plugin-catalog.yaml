@@ -1,8 +1,3 @@
---- There are Beekeeper warnings. This makes the bundle export a "best effort".
---- Exported plugin catalog and plugins list might be incorrect and might need manual fixing before use.
---- commons-text API Plugin (commons-text-api). Version 1.10.0-36.vc008c8fcda_7b_ is currently installed but version 1.10.0-27.vb_fa_3896786a_7 is recommended for this version of the product.
---- Support Core Plugin (support-core). Version 1262.vc248605ec68b is currently installed but version 1260.va_12d1e2d609a is recommended for this version of the product.
-
 type: plugin-catalog
 version: '1'
 name: plugin-catalog-cjoc
@@ -14,7 +9,3 @@ configurations:
       version: 54.v07143c60a_992
     kubernetes-credentials-provider:
       version: 1.209.v862c6e5fb_1ef
-    commons-text-api:
-      version: 1.10.0-27.vb_fa_3896786a_7
-    support-core:
-      version: 1260.va_12d1e2d609a

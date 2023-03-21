@@ -98,7 +98,7 @@ jenkins:
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
   slaveAgentPort: 50000
-  systemMessage: "CasC bundle controller0 version 52"
+  systemMessage: ""
   updateCenter:
     sites:
     - id: "virtual-cap-core-mm"

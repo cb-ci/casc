@@ -376,19 +376,6 @@ items:
   trigger:
     periodicFolderTrigger:
       interval: 1d
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: mytest
-  model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-  attributes:
-  - value: github-user-accesstoken
-    key: githubToken
-  - value: pipeline-demo-caternberg
-    key: organsisation
-  - value: spring-boot-demo
-    key: repoName
-  - value: mytest
-    key: name
 - kind: pipeline
   name: sshagenttest
   concurrentBuild: true

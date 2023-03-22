@@ -72,10 +72,6 @@ jenkins:
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
-  nodeProperties:
-  - envVars:
-      env:
-      - key: "MAVEN_OPTS"
   nodes:
   - permanent:
       labelString: "sshagent"

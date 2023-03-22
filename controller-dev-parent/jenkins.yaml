@@ -45,10 +45,6 @@ jenkins:
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
-  nodeProperties:
-  - envVars:
-      env:
-      - key: "MAVEN_OPTS"
   numExecutors: 0
   primaryView:
     all:

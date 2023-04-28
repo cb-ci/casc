@@ -3,10 +3,6 @@ removeStrategy:
   items: NONE
 items:
 - kind: folder
-  name: test1
-  description: ''
-  displayName: test1
-- kind: folder
   name: test
   description: ''
   displayName: test
@@ -33,3 +29,7 @@ items:
     disabled: false
     displayName: hw
     resumeBlocked: false
+- kind: folder
+  name: test1
+  description: ''
+  displayName: test1

@@ -15,3 +15,7 @@ configurations:
       version: '1.0'
     prometheus:
       version: 2.1.1
+    beer:
+      version: 42.v776b_04d96de3
+    job-dsl:
+      version: '1.83'

@@ -5,6 +5,7 @@ plugins:
 - id: aws-credentials
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-minimal
+- id: beer
 - id: blueocean-commons
 - id: bootstrap5-api
 - id: bouncycastle-api
@@ -69,6 +70,7 @@ plugins:
 - id: jaxb
 - id: jdk-tool
 - id: jjwt-api
+- id: job-dsl
 - id: jquery3-api
 - id: jsch
 - id: junit

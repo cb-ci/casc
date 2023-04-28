@@ -3,6 +3,33 @@ removeStrategy:
   items: NONE
 items:
 - kind: folder
+  name: test1
+  description: ''
+  displayName: test1
+- kind: folder
   name: test
   description: ''
   displayName: test
+  items:
+  - kind: pipeline
+    name: hw
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          pipeline {
+              agent any
+
+              stages {
+                  stage('Hello') {
+                      steps {
+                          echo 'Hello World'
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: hw
+    resumeBlocked: false

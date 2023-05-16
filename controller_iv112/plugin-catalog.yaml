@@ -6,8 +6,8 @@ configurations:
   - description: Exported plugins
     includePlugins:
       async-http-client:
-        url: "https://admin:AdminAdmin123@caternberg2.jfrog.io/artifactory/cb-plugins/async-http-client/1.7.24.3/async-http-client.hpi"
-        #url: "https://jenkins-updates.cloudbees.com/download/plugins/async-http-client/1.7.24.3/async-http-client.hpi"
+        #url: "https://caternberg2.jfrog.io/artifactory/cb-plugins/async-http-client/1.7.24.3/async-http-client.hpi"
+        url: "https://jenkins-updates.cloudbees.com/download/plugins/async-http-client/1.7.24.3/async-http-client.hpi"
       atlassian-bitbucket-server-integration:
         url: "https://jenkins-updates.cloudbees.com/download/plugins/atlassian-bitbucket-server-integration/3.1.0/atlassian-bitbucket-server-integration.hpi"
       bootstrap4-api:

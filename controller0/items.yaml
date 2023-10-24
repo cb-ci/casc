@@ -2,351 +2,23 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: backupAndRestore
-  name: controllerbackup
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  buildersList:
-  - backupBuilder:
-      subjects:
-      - buildRecordSubject: {}
-      - jobConfigurationSubject: {}
-      format:
-        tarGzFormat: {}
-      exclusive: true
-      store:
-        s3Store:
-          bucketName: backup.cjoc.acaternberg.pscbdemos.com
-          sse: true
-          bucketFolder: controllers
-          credentialsId: aws-credentials
-          region: us-east-1
-      retentionPolicy:
-        upToNRetentionPolicy:
-          n: 2
-      safeDelaySeconds: 0
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: controllerbackup
-- kind: pipeline
-  name: ec2test
-  concurrentBuild: true
-  definition:
-    cpsFlowDefinition:
-      sandbox: true
-      script: |
-        pipeline {
-           agent {
-          label 'ec2'
-        }
-
-
-            stages {
-                stage('Hello') {
-                    steps {
-                        echo 'Hello World'
-                    }
-                }
-            }
-        }
-  description: ''
-  disabled: false
-  displayName: ec2test
-  resumeBlocked: false
-- kind: folder
-  name: FQ
-  description: ''
-  displayName: FQ
-  healthMetrics:
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
-  items:
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: HW
-    model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
-    attributes:
-    - value: jdk8
-      key: firstname
-    - value: HW
-      key: name
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: HW2
-    model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
-    attributes:
-    - value: TEST!"§
-      key: firstname
-    - value: HW2
-      key: name
-  - kind: multibranch
-    name: MBTest
-    description: ''
-    displayName: MBTest
-    healthMetrics:
-    - jobStatusHealthMetric:
-        unstable: true
-        countVirginJobs: false
-        failure: true
-        success: true
-        unbuilt: true
-    orphanedItemStrategy:
-      defaultOrphanedItemStrategy:
-        pruneDeadBranches: true
-        daysToKeep: -1
-        numToKeep: -1
-        abortBuilds: false
-    projectFactory:
-      customBranchProjectFactory:
-        marker: pom.xml
-        definition:
-          cpsScmFlowDefinition:
-            scriptPath: templates/multibranchPipeline/Jenkinsfile
-            scm:
-              scmGit:
-                userRemoteConfigs:
-                - userRemoteConfig:
-                    credentialsId: github-user-accesstoken
-                    url: https://github.com/pipeline-demo-caternberg/pipeline-examples.git
-                branches:
-                - branchSpec:
-                    name: '*/master'
-            lightweight: false
-    properties:
-    - envVars: {}
-    - folderVaultConfiguration:
-        configuration:
-          vaultConfiguration:
-            skipSslVerification: false
-            failIfNotFound: true
-            timeout: 60
-    sourcesList:
-    - branchSource:
-        source:
-          git:
-            traits:
-            - gitBranchDiscovery: {}
-            credentialsId: github-user-accesstoken
-            id: acd53e03-fbac-4f3a-bc37-3a83ae61e3f6
-            remote: https://github.com/pipeline-demo-caternberg/spring-boot-demo.git
-        strategy:
-          allBranchesSame: {}
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: MYMB
-    model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-    attributes:
-    - value: github-user-ssh
-      key: githubToken
-    - value: pipeline-demo-caternberg
-      key: organsisation
-    - value: spring-boot-demo
-      key: repoName
-    - value: MYMB
-      key: name
-  - kind: organizationFolder
-    name: Orgscan
-    description: ''
-    displayName: Orgscan
-    healthMetrics:
-    - jobStatusHealthMetric:
-        unstable: true
-        countVirginJobs: false
-        failure: true
-        success: true
-        unbuilt: true
-    navigators:
-    - github:
-        apiUri: https://api.github.com
-        traits:
-        - gitHubBranchDiscovery:
-            strategyId: 1
-        - gitHubPullRequestDiscovery:
-            strategyId: 1
-        - gitHubForkDiscovery:
-            trust:
-              gitHubTrustPermissions: {}
-            strategyId: 1
-        repoOwner: org-folderscan-example
-        credentialsId: github-user-accesstoken
-    orphanedItemStrategy:
-      defaultOrphanedItemStrategy:
-        pruneDeadBranches: true
-        daysToKeep: -1
-        numToKeep: -1
-        abortBuilds: false
-    projectFactories:
-    - workflowMultiBranchProjectFactory:
-        scriptPath: Jenkinsfile
-    properties:
-    - organizationChildHealthMetricsProperty:
-        templates:
-        - worstChildHealthMetric:
-            recursive: true
-        - averageChildHealthMetric: {}
-        - jobStatusHealthMetric:
-            unstable: true
-            countVirginJobs: false
-            failure: true
-            success: true
-            unbuilt: true
-        - projectEnabledHealthMetric: {}
-    - organizationChildOrphanedItemsProperty:
-        strategy:
-          inherit: {}
-    - organizationChildTriggersProperty:
-        templates:
-        - periodicFolderTrigger:
-            interval: 1d
-    - envVars: {}
-    - folderVaultConfiguration:
-        configuration:
-          vaultConfiguration:
-            skipSslVerification: false
-            failIfNotFound: true
-            timeout: 60
-    - suppressFolderAutomaticTriggering:
-        strategy: NONE
-        branches: .*
-    strategy:
-      allBranchesSame: {}
-    trigger:
-      periodicFolderTrigger:
-        interval: 1d
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: mavenMB
-    model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-    attributes:
-    - value: github-user-accesstoken
-      key: githubToken
-    - value: pipeline-demo-caternberg
-      key: organsisation
-    - value: spring-boot-demo
-      key: repoName
-    - value: mavenMB
-      key: name
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: parameters
-    model: Pipeline-Tem.c3qk18.log-Examples/parametrizedPipeline
-    attributes:
-    - value: parameters
-      key: name
-  - kind: pipeline
-    name: slurper
-    concurrentBuild: true
-    definition:
-      cpsFlowDefinition:
-        sandbox: true
-        script: |
-          library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
-          import groovy.json.JsonSlurper;
-          def pipelineProperties = libraryResource 'json/pipelineProperties.json'
-          @NonCPS
-          def myFunction() {
-              throw new RuntimeException();
-          }
-
-          @NonCPS
-          def mySecondFunction() {
-              try {
-                  myFunction();
-              } catch (Exception e) {
-                  echo "Caught";
-              }
-          }
-
-          mySecondFunction();
-
-
-          pipeline {
-             agent {
-                  label 'sshagent'
-              }
-
-              stages {
-                  stage('Hello') {
-                      steps {
-                          echo "Hello "
-                         //echo "test"
-                      }
-                  }
-              }
-          }
-    description: ''
-    disabled: false
-    displayName: slurper
-    resumeBlocked: false
-  - kind: pipeline
-    name: test
-    concurrentBuild: true
-    definition:
-      cpsScmFlowDefinition:
-        scriptPath: jobs/JenkinsFile-jsonSlurper.groovy
-        scm:
-          scmGit:
-            userRemoteConfigs:
-            - userRemoteConfig:
-                credentialsId: github-user-ssh
-                url: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
-            branches:
-            - branchSpec:
-                name: '*/master'
-        lightweight: true
-    description: ''
-    disabled: false
-    displayName: test
-    resumeBlocked: false
-  properties:
-  - envVars: {}
-  - folderVaultConfiguration:
-      configuration:
-        vaultConfiguration:
-          skipSslVerification: false
-          failIfNotFound: true
-          timeout: 60
-  - itemRestrictions:
-      filter: false
 - kind: organizationFolder
   name: GHOrg
   displayName: GHOrg
-  healthMetrics:
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
   navigators:
   - github:
       apiUri: https://api.github.com
       traits:
       - gitHubBranchDiscovery:
-          strategyId: 3
+          strategyId: 1
       - gitHubPullRequestDiscovery:
           strategyId: 2
       - gitHubForkDiscovery:
           trust:
             gitHubTrustPermissions: {}
-          strategyId: 1
-      - cloudBeesSCMReporting:
-          visibleLinesOnly: false
-          handlers:
-          - endBuildError:
-              maxLogLines: 100
-          - stage:
-              verbosity:
-                all: {}
-          - junit: {}
-          - warningsNG: {}
+          strategyId: 2
       repoOwner: org-folderscan-example
-      credentialsId: ghappci
+      credentialsId: ghorg-app
   orphanedItemStrategy:
     defaultOrphanedItemStrategy:
       pruneDeadBranches: true
@@ -359,113 +31,161 @@ items:
         customBranchProjectFactory:
           marker: pom.xml
           definition:
-            cpsScmFlowDefinition:
-              scriptPath: templates/multibranchPipeline/Jenkinsfile
-              scm:
-                scmGit:
-                  userRemoteConfigs:
-                  - userRemoteConfig:
-                      credentialsId: github-user-ssh
-                      url: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
-                  branches:
-                  - branchSpec:
-                      name: '*/master'
-              lightweight: false
+            cpsFlowDefinition:
+              sandbox: true
+              script: |
+                // Uses Declarative syntax to run commands inside a container.
+                pipeline {
+                    agent {
+                        kubernetes {
+                            // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
+                            // Or, to avoid YAML:
+                            // containerTemplate {
+                            //     name 'shell'
+                            //     image 'ubuntu'
+                            //     command 'sleep'
+                            //     args 'infinity'
+                            // }
+                            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: shell
+                    image: ubuntu
+                    command:
+                    - sleep
+                    args:
+                    - infinity
+                '''
+                            // Can also wrap individual steps:
+                            // container('shell') {
+                            //     sh 'hostname'
+                            // }
+                            defaultContainer 'shell'
+                        }
+                    }
+                    stages {
+                        stage('Main') {
+                            steps {
+                                sh 'hostname'
+                            }
+                        }
+                    }
+                }
+  properties:
+  - organizationChildHealthMetricsProperty:
+      templates:
+      - worstChildHealthMetric:
+          recursive: true
+      - averageChildHealthMetric: {}
+      - jobStatusHealthMetric:
+          unstable: true
+          countVirginJobs: false
+          failure: true
+          success: true
+          unbuilt: true
+      - projectEnabledHealthMetric: {}
+  - organizationChildOrphanedItemsProperty:
+      strategy:
+        inherit: {}
+  - organizationChildTriggersProperty:
+      templates:
+      - periodicFolderTrigger:
+          interval: 1d
+  - envVars: {}
+  - suppressFolderAutomaticTriggering:
+      strategy: NONE
+      branches: .*
   strategy:
     allBranchesSame: {}
   trigger:
     periodicFolderTrigger:
       interval: 1d
 - kind: pipeline
-  name: sshagenttest
+  name: hellworld
   concurrentBuild: true
   definition:
     cpsFlowDefinition:
       sandbox: true
-      script: |
+      script: "\npipeline {\n    agent none\n    stages {\n        stage('Main') {\n\
+        \            steps {\n                echo \"Hello world\"\n             \
+        \   sleep 5\n            }\n        }\n    }\n}\n        "
+  description: ''
+  disabled: false
+  displayName: hellworld
+  properties:
+  - buildDiscarder:
+      strategy:
+        logRotator:
+          artifactDaysToKeep: -1
+          artifactNumToKeep: -1
+          daysToKeep: -1
+          numToKeep: 10
+  - durabilityHint:
+      hint: MAX_SURVIVABILITY
+  - rateLimitBuilds:
+      throttle:
+        throttle:
+          count: 32
+          userBoost: true
+          durationName: second
+  resumeBlocked: false
+- kind: folder
+  name: myfolder
+  description: ''
+  displayName: myfolder
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      filter: false
+- kind: backupAndRestore
+  name: restore
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  disabled: false
+  displayName: restore
+- kind: pipeline
+  name: stressController
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |-
+        //To simulate some stress on the controller withgout using sress-ng
+        //The Controller requires to have at least 1 executor assigend
         pipeline {
-           agent {
-          label 'sshagent'
-        }
-
-
+            agent any
             stages {
-                stage('Hello') {
+                stage('Generate Load') {
                     steps {
-                        echo 'Hello World'
+                        // Start the 'yes' command in the background to generate load.
+                        sh '''
+                                yes > /dev/null &
+                                echo $! > yes.pid
+                            '''
+                        // stress cpu see https://www.baeldung.com/linux/cpu-spike-bash
+                        sh '''
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null &
+                            '''
+                        echo "Tip run now: watch kubectl top pod"
+                        // Sleep for a specified duration, e.g., 1 hour.
+                        sleep time: 1, unit: 'HOURS'
+                        //input id: 'Input', message: 'abort', ok: 'continue'
+                        sh '''
+                                kill $(cat yes.pid)
+                                rm -f yes.pid
+                                killall dd
+                            '''
                     }
                 }
             }
         }
   description: ''
   disabled: false
-  displayName: sshagenttest
-  resumeBlocked: false
-- kind: pipeline
-  name: testmatrix
-  concurrentBuild: true
-  definition:
-    cpsFlowDefinition:
-      sandbox: true
-      script: |
-        library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
-        def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
-
-
-        //git show --name-only --pretty="" --oneline HEAD
-
-        //def dockerfiles = env.DOCKERFILES.split(",").findAll { it }.collect { it.trim() }
-        //def dockerfiles =  ["Dockerfile1","Dockerfile2]
-
-
-            stage('run-parallel') {
-               // def files = findFiles glob: '**/Dockerfile*'
-                def files =  ["Dockerfile1","Dockerfile2"]
-                files.each { file -> println file }
-                def parallelBranches = files.collectEntries { n ->
-                    [(n): {
-                         podTemplate(label: "mylabel-$n",yaml: '''
-                             apiVersion: v1
-                             kind: Pod
-                             metadata:
-                               name: kaniko
-                             spec:
-                               containers:
-                                 - name: kaniko
-                                   image: gcr.io/kaniko-project/executor:debug
-                                   imagePullPolicy: Always
-                                   command:
-                                     - /busybox/cat
-                                   tty: true
-                                   volumeMounts:
-                                     - name: jenkins-docker-cfg
-                                       mountPath: /kaniko/.docker
-                               volumes:
-                                 - name: jenkins-docker-cfg
-                                   projected:
-                                     sources:
-                                       - secret:
-                                           name: docker-credentials
-                                           items:
-                                             - key: .dockerconfigjson
-                                               path: config.json
-                             ''') {
-                             node("mylabel-$n") {
-                                 stage ("build"){
-                               container('kaniko') {
-                                 echo POD_CONTAINER // displays 'kaniko'
-                                 sh 'hostname'
-                               }
-                                 }
-                             }
-                         }
-                    }]
-                }
-
-                parallel parallelBranches
-
-            }
-  description: ''
-  disabled: false
-  displayName: testmatrix
+  displayName: stressController
   resumeBlocked: false

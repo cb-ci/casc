@@ -254,6 +254,8 @@ unclassified:
     autoPollingEnabled: true
     autoPollingIntervalSeconds: 10
     enabled: true
+  headerLabel:
+    text: "CasC Version ${cascVersion}"
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false

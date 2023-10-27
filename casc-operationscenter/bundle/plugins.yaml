@@ -1,5 +1,6 @@
 plugins:
 - id: ace-editor
+- id: active-directory
 - id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
 - id: authentication-tokens
@@ -16,7 +17,6 @@ plugins:
 - id: cloudbees-analytics
 - id: cloudbees-assurance
 - id: cloudbees-blueocean-default-theme
-- id: cloudbees-casc-api
 - id: cloudbees-casc-client
 - id: cloudbees-casc-items-api
 - id: cloudbees-casc-items-commons
@@ -46,8 +46,6 @@ plugins:
 - id: durable-task
 - id: git
 - id: git-client
-- id: github
-- id: github-api
 - id: handy-uri-templates-2-api
 - id: infradna-backup
 - id: instance-identity
@@ -61,12 +59,10 @@ plugins:
 - id: jdk-tool
 - id: jjwt-api
 - id: jquery3-api
-- id: jsch
 - id: kube-agent-management
 - id: kubernetes
 - id: kubernetes-client-api
 - id: kubernetes-credentials
-- id: kubernetes-credentials-provider
 - id: ldap
 - id: mailer
 - id: mapdb-api
@@ -97,6 +93,7 @@ plugins:
 - id: operations-center-updatecenter
 - id: plain-credentials
 - id: pubsub-light
+- id: saml
 - id: scm-api
 - id: script-security
 - id: snakeyaml-api

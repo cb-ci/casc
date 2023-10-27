@@ -3,7 +3,7 @@ removeStrategy:
   items: NONE
 items:
 - kind: backupAndRestore
-  name: backup-oc
+  name: backup
   blockBuildWhenDownstreamBuilding: false
   blockBuildWhenUpstreamBuilding: false
   buildersList:
@@ -20,24 +20,66 @@ items:
           bucketName: backup.cjoc.acaternberg.pscbdemos.com
           sse: true
           bucketFolder: cjoc
-          credentialsId: aws-credentials
+          credentialsId: awsbackup
           region: us-east-1
       retentionPolicy:
         upToNRetentionPolicy:
-          n: 2
+          n: 10
       safeDelaySeconds: 0
   concurrentBuild: false
   description: ''
   disabled: false
-  displayName: backup-oc
+  displayName: backup
+- kind: managedController
+  name: casctest
+  configuration:
+    kubernetes:
+      allowExternalAgents: false
+      terminationGracePeriodSeconds: 1200
+      image: CloudBees CI - Managed Controller - latest
+      memory: 3072
+      fsGroup: '1000'
+      cpus: 1.0
+      readinessTimeoutSeconds: 5
+      livenessInitialDelaySeconds: 300
+      readinessInitialDelaySeconds: 30
+      clusterEndpointId: default
+      disk: 50
+      readinessFailureThreshold: 100
+      livenessTimeoutSeconds: 10
+      storageClassName: efs-sc
+      domain: casctest
+      livenessPeriodSeconds: 10
+      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
+        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+      yaml: ''
+  description: ''
+  displayName: casctest
+  properties:
+  - configurationAsCode:
+      bundle: loadcascbundle/controller0
+  - sharedHeaderLabelOptIn:
+      optIn: true
+  - healthReporting:
+      enabled: true
+  - optOutProperty:
+      securityEnforcerOptOutMode:
+        optOutNone: {}
+  - owner:
+      delay: 5
+      owners: ''
+  - envelopeExtension:
+      allowExceptions: false
+  - sharedConfigurationOptOut:
+      optOut: false
 - kind: clusterOpProject
-  name: backupcontrollers
+  name: clusterop-backup-all-controllers
   blockBuildWhenDownstreamBuilding: false
   blockBuildWhenUpstreamBuilding: false
   concurrentBuild: true
   description: ''
   disabled: false
-  displayName: backupcontrollers
+  displayName: clusterop-backup-all-controllers
   operations:
   - managedMasterClusterOperation:
       failureMode: IMMEDIATELY
@@ -50,60 +92,21 @@ items:
           format:
             tarGzFormat: {}
           retentionPolicy:
-            noRetentionPolicy: {}
+            upToNRetentionPolicy:
+              n: 2
           safeDelaySeconds: 0
           store:
             s3Store:
               bucketName: backup.cjoc.acaternberg.pscbdemos.com
-              sse: false
+              sse: true
               bucketFolder: controllers
-              credentialsId: aws-credentials
+              credentialsId: awsbackup
               region: us-east-1
       timeoutSeconds: 0
-      itemSource:
-        parameterItemSource: {}
-      inParallel: 0
-      noRetries: 0
-  parameters:
-  - itemParameterDefinition:
-      name: controller
       itemSource:
         jenkinsRootItemSource: {}
       filters:
       - isMasterOnlineFilter: {}
-  scm:
-    none: {}
-  scmCheckoutStrategy:
-    standard: {}
-- kind: clusterOpProject
-  name: clusterop-test-single-controller
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: true
-  description: ''
-  disabled: false
-  displayName: clusterop-test-single-controller
-  operations:
-  - managedMasterClusterOperation:
-      failureMode: IMMEDIATELY
-      clusterOpSteps:
-      - backupClusterOpStep:
-          subjects:
-          - jobConfigurationSubject: {}
-          - systemConfigurationSubject:
-              omitMasterKey: false
-          format:
-            tarGzFormat: {}
-          retentionPolicy:
-            noRetentionPolicy: {}
-          safeDelaySeconds: 0
-          store:
-            localFileStore:
-              dir: /tmp
-      timeoutSeconds: 0
-      itemSource:
-        connectedMasterWithJenkinsLocation:
-          expression: https://cjoc.acaternberg.pscbdemos.com/parentbundle/
       inParallel: 0
       noRetries: 0
   scm:
@@ -111,12 +114,17 @@ items:
   scmCheckoutStrategy:
     standard: {}
 - kind: managedController
-  name: controller0
+  name: ha
   configuration:
     kubernetes:
       allowExternalAgents: false
+      replication:
+        config:
+          maxReplicas: 4
+          replicas: 2
+          targetCPUUtilizationPercentage: 60
       terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Controller - 2.387.1.2
+      image: CloudBees CI - Managed Controller - latest
       memory: 3072
       fsGroup: '1000'
       cpus: 1.0
@@ -127,103 +135,46 @@ items:
       disk: 50
       readinessFailureThreshold: 100
       livenessTimeoutSeconds: 10
-      domain: controller0
-      livenessPeriodSeconds: 10
-      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-      yaml: ''
-  description: ''
-  displayName: controller0
-  properties:
-  - enforceControllerExecutors:
-      count: 0
-  - configurationAsCode:
-      bundle: controller0
-  - sharedHeaderLabelOptIn:
-      optIn: true
-  - healthReporting:
-      enabled: true
-  - owner:
-      delay: 5
-      owners: ''
-  - envelopeExtension:
-      allowExceptions: false
-  - sharedConfigurationOptOut:
-      optOut: false
-- kind: managedController
-  name: remotetest
-  configuration:
-    kubernetes:
-      allowExternalAgents: false
-      terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Controller - 2.387.1.2
-      memory: 3072
-      fsGroup: '1000'
-      cpus: 1.0
-      readinessTimeoutSeconds: 5
-      livenessInitialDelaySeconds: 300
-      systemProperties: |-
-        https.proxyHost=http://45.61.187.67
-        https.proxyPort=4000
-        http.proxyHost=http://45.61.187.67
-        http.proxyPort=4000
-        http.nonProxyHosts=localhost|127.0.0.1|10.0.0.0/8|172.16.0.0/12|192.168.0.0/16|*.svc.cluster.local|*.eks.amazonaws.com|*.cloudbees.com|*.jenkins.io|*.pscbdemos.com
-      readinessInitialDelaySeconds: 30
-      clusterEndpointId: default
-      disk: 50
-      readinessFailureThreshold: 100
-      livenessTimeoutSeconds: 10
-      domain: remotetest
+      storageClassName: efs-sc
+      domain: ha
       livenessPeriodSeconds: 10
       javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
         -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
       yaml: |-
-        apiVersion: "networking.k8s.io/v1"
-        kind: "Ingress"
-        metadata:
-          annotations:
-            nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-            nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-            #kubernetes.io/ingress.class: "nginx"
-            cert-manager.io/cluster-issuer: letsencrypt
-          labels:
-            type: "master"
-            tenant: "${name}"
-            com.cloudbees.pse.type: "master"
-            com.cloudbees.cje.type: "master"
-            com.cloudbees.pse.tenant: "${name}"
-            com.cloudbees.cje.tenant: "${name}"
-          name: "${name}"
-        spec:
-          tls:
-            - secretName: tls-secret
-              hosts:
-                - cjoc.acaternberg.pscbdemos.com
         ---
-        apiVersion: "v1"
-        kind: "Service"
+        kind: Service
+        apiVersion: v1
         metadata:
-          annotations:
-            prometheus.io/path: /prometheus
-            prometheus.io/port: "80"
-            prometheus.io/scrape: "true"
-          labels:
-            app.kubernetes.io/component: Managed-Master
-            app.kubernetes.io/instance: ${name}
-            app.kubernetes.io/managed-by: CloudBees-Core-Cloud-Operations-Center
-            app.kubernetes.io/name: ${name}
-        name: "remotetest"
-        namespace: "cloudbees-core"
+            labels:
+                my-label: my-value
   description: ''
-  displayName: remotetest
+  displayName: ha
+  groups:
+  - members:
+      users:
+      - 1devw6hwnlq!uk
+    roles:
+    - name: develop
+      grantedAt: current
+    name: ha-dev
+  - members:
+      users:
+      - 1devw6hwnlq!uk
+    roles:
+    - name: develop
+      grantedAt: current
+    name: developers
   properties:
-  - configurationAsCode:
-      bundle: controller-dev-parent
+  - configurationAsCode: {}
   - sharedHeaderLabelOptIn:
       optIn: true
   - healthReporting:
       enabled: true
+  - enforceControllerExecutors:
+      count: 2
+  - optOutProperty:
+      securityEnforcerOptOutMode:
+        optOutNone: {}
   - owner:
       delay: 5
       owners: ''
@@ -231,135 +182,13 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
+- kind: backupAndRestore
+  name: restore
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  disabled: false
+  displayName: restore
 - kind: folder
   name: Teams
   displayName: Teams
-- kind: managedController
-  name: testcontroller
-  configuration:
-    kubernetes:
-      allowExternalAgents: false
-      terminationGracePeriodSeconds: 1200
-      image: CloudBees CI - Managed Controller - 2.387.1.2
-      memory: 3072
-      fsGroup: '1000'
-      cpus: 1.0
-      readinessTimeoutSeconds: 5
-      livenessInitialDelaySeconds: 300
-      readinessInitialDelaySeconds: 30
-      clusterEndpointId: default
-      disk: 50
-      readinessFailureThreshold: 100
-      livenessTimeoutSeconds: 10
-      domain: testcontroller
-      livenessPeriodSeconds: 10
-      javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+UseG1GC -XX:+DisableExplicitGC
-        -XX:+ParallelRefProcEnabled -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-      yaml: ''
-  description: ''
-  displayName: testcontroller
-  properties:
-  - configurationAsCode:
-      bundle: controller-dev-child-1
-  - sharedHeaderLabelOptIn:
-      optIn: true
-  - healthReporting:
-      enabled: true
-  - owner:
-      delay: 5
-      owners: ''
-  - envelopeExtension:
-      allowExceptions: false
-  - sharedConfigurationOptOut:
-      optOut: false
-- kind: clusterOpProject
-  name: upgrade plugins
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: upgrade plugins
-  operations:
-  - managedMasterClusterOperation:
-      failureMode: IMMEDIATELY
-      clusterOpSteps:
-      - refreshUpdateCenterMetadataClusterOpStep: {}
-      - upgradePluginsClusterOpStep:
-          force: false
-      timeoutSeconds: 0
-      itemSource:
-        parameterItemSource: {}
-      inParallel: 0
-      noRetries: 0
-  parameters:
-  - itemParameterDefinition:
-      name: controllers
-      itemSource:
-        jenkinsRootItemSource: {}
-      filters:
-      - isManagedMasterFilter: {}
-  scm:
-    none: {}
-  scmCheckoutStrategy:
-    standard: {}
-- kind: clusterOpProject
-  name: upgradecontroller
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: upgradecontroller
-  operations:
-  - managedMasterClusterOperation:
-      failureMode: IMMEDIATELY
-      clusterOpSteps:
-      - updateDockerImageClusterOpStep:
-          image: CloudBees CI - Managed Controller - 2.387.1.2
-          failOnError: false
-      - reprovisionClusterOpStep:
-          force: true
-          failOnError: false
-      timeoutSeconds: 180
-      itemSource:
-        parameterItemSource: {}
-      filters:
-      - isMasterOnlineFilter: {}
-      inParallel: 0
-      noRetries: 0
-  parameters:
-  - itemParameterDefinition:
-      name: controller
-      itemSource:
-        jenkinsRootItemSource: {}
-      filters:
-      - isManagedMasterFilter: {}
-  scm:
-    none: {}
-  scmCheckoutStrategy:
-    standard: {}
-- kind: clusterOpProject
-  name: upgradeControllers
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: true
-  description: ''
-  disabled: false
-  displayName: upgradeControllers
-  operations:
-  - managedMasterClusterOperation:
-      failureMode: IMMEDIATELY
-      clusterOpSteps:
-      - updateDockerImageClusterOpStep:
-          image: CloudBees CI - Managed Controller - 2.387.1.2
-          failOnError: false
-      timeoutSeconds: 0
-      itemSource:
-        parameterItemSource: {}
-      inParallel: 0
-      noRetries: 0
-  scm:
-    none: {}
-  scmCheckoutStrategy:
-    standard: {}

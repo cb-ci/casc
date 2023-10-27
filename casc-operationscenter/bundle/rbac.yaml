@@ -1,15 +1,17 @@
 removeStrategy:
   rbac: SYNC
 roles:
-- name: authenticated
+- permissions:
+  - hudson.model.Hudson.Read
+  name: authenticated
 - permissions:
   - com.cloudbees.opscenter.server.model.SharedCloud.Disconnect
   - hudson.model.Computer.Connect
   - hudson.model.Hudson.UploadPlugins
   - jenkins.metrics.api.Metrics.View
   - com.cloudbees.opscenter.server.model.SharedCloud.Connect
-  - com.cloudbees.opscenter.server.model.ClientMaster.Lifecycle
   - com.cloudbees.opscenter.server.model.SharedSlave.Configure
+  - com.cloudbees.opscenter.server.model.ClientMaster.Lifecycle
   - com.cloudbees.plugins.updatecenter.UpdateCenter.Upload
   - com.cloudbees.opscenter.server.model.SharedCloud.Configure
   - hudson.model.Hudson.ConfigureUpdateCenter
@@ -68,7 +70,7 @@ roles:
   - com.cloudbees.plugins.updatecenter.UpdateCenter.Promote
   name: administer
 - name: anonymous
-- filterable: 'true'
+- filterable: true
   permissions:
   - hudson.model.Item.Cancel
   - hudson.model.Item.Build
@@ -90,7 +92,7 @@ roles:
   - hudson.model.Item.Delete
   - hudson.model.Item.Request
   name: develop
-- filterable: 'true'
+- filterable: true
   permissions:
   - hudson.model.Item.Read
   - hudson.model.Item.Discover
@@ -100,15 +102,12 @@ roles:
 groups:
 - members:
     users:
-    - admin
+    - adminw6hwnlq!uk
   roles:
   - name: administer
     grantedAt: current
   name: Administrators
-- members:
-    users:
-    - dev1
-  roles:
+- roles:
   - name: develop
     grantedAt: current
   name: Developers

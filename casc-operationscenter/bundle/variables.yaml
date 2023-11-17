@@ -1,5 +1,5 @@
 variables:
-  - cascVersionMessage: CasC Version 2
+  - cascVersion: CasC Version 2
   - myKey: myvalue
   - key: value
   - long_text: |-

@@ -344,6 +344,8 @@ unclassified:
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
     url: "https://ci.acaternberg.pscbdemos.com/cjoc/"
+  headerLabel:
+    text: "CasC Version ${cascVersion}"
   mailer:
     charset: "UTF-8"
     useSsl: false

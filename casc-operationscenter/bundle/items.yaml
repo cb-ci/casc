@@ -182,13 +182,3 @@ items:
       allowExceptions: false
   - sharedConfigurationOptOut:
       optOut: false
-- kind: backupAndRestore
-  name: restore
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  concurrentBuild: false
-  disabled: false
-  displayName: restore
-- kind: folder
-  name: Teams
-  displayName: Teams

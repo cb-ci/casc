@@ -1,5 +1,6 @@
 variables:
-  -  systemMessage: CasC Version 56
+  - cascVersion: CasC Version 2
+  - myKey: myvalue
   - key: value
   - long_text: |-
       multiline string without

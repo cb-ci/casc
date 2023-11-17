@@ -2,358 +2,118 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: backupAndRestore
-  name: backup
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  buildersList:
-  - backupBuilder:
-      subjects:
-      - buildRecordSubject: {}
-      - jobConfigurationSubject: {}
-      format:
-        tarGzFormat: {}
-      exclusive: true
-      store:
-        s3Store:
-          bucketName: backup.cjoc.acaternberg.pscbdemos.com
-          sse: true
-          bucketFolder: controllers
-          credentialsId: aws-credentials
-          region: us-east-1
-      retentionPolicy:
-        upToNRetentionPolicy:
-          n: 2
-      safeDelaySeconds: 0
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: backup
-- kind: folder
-  name: folder-one
-  description: ''
-  displayName: folder-one
-  filteredRoles:
-  - browser
-  - developer
-  groups:
-  - members:
-      users:
-      - dev1
-    roles:
-    - name: developer
-      grantedAt: current
-    name: developer
-  healthMetrics:
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
-  items:
-  - kind: organizationFolder
-    name: GHOrg
-    displayName: GHOrg
-    healthMetrics:
-    - jobStatusHealthMetric:
-        unstable: true
-        countVirginJobs: false
-        failure: true
-        success: true
-        unbuilt: true
-    navigators:
-    - github:
-        apiUri: https://api.github.com
-        traits:
-        - gitHubBranchDiscovery:
-            strategyId: 3
-        - gitHubPullRequestDiscovery:
-            strategyId: 2
-        - gitHubForkDiscovery:
-            trust:
-              gitHubTrustEveryone: {}
-            strategyId: 1
-        - cloudBeesSCMReporting:
-            visibleLinesOnly: false
-            handlers:
-            - endBuildError:
-                maxLogLines: 100
-            - stage:
-                verbosity:
-                  all: {}
-            - junit: {}
-            - warningsNG: {}
-        repoOwner: org-folderscan-example
-        credentialsId: github-user-accesstoken
-    orphanedItemStrategy:
-      defaultOrphanedItemStrategy:
-        pruneDeadBranches: true
-        daysToKeep: -1
-        numToKeep: -1
-        abortBuilds: false
-    projectFactories:
-    - customMultiBranchProjectFactory:
-        factory:
-          customBranchProjectFactory:
-            marker: pom.xml
-            definition:
-              cpsScmFlowDefinition:
-                scriptPath: templates/multibranchPipeline/Jenkinsfile
-                scm:
-                  gitSCM:
-                    userRemoteConfigs:
-                    - userRemoteConfig:
-                        credentialsId: github-user-ssh
-                        url: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
-                    branches:
-                    - branchSpec:
-                        name: '*/master'
-                lightweight: false
-    properties:
-    - organizationChildHealthMetricsProperty:
-        templates:
-        - worstChildHealthMetric:
-            recursive: true
-        - averageChildHealthMetric: {}
-        - jobStatusHealthMetric:
-            unstable: true
-            countVirginJobs: false
-            failure: true
-            success: true
-            unbuilt: true
-        - projectEnabledHealthMetric: {}
-    - organizationChildOrphanedItemsProperty:
-        strategy:
-          inherit: {}
-    - organizationChildTriggersProperty:
-        templates:
-        - periodicFolderTrigger:
-            interval: 1d
-    - folderCredentialsProperty:
-        folderCredentials:
-        - credentials:
-          - gitHubAppCredentials:
-              privateKey: '{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}'
-              apiUri: https://api.github.com
-              appID: '229527'
-              scope: GLOBAL
-              description: https://github.com/apps/ghapp-ci-org-folderscan-example
-              id: 92cbb8ac-be3d-4132-9e63-befc1b862d95
-          domain: {}
-    - envVars: {}
-    - folderLibraries:
-        libraries:
-        - libraryConfiguration:
-            implicit: true
-            allowVersionOverride: true
-            retriever:
-              modernSCM:
-                scm:
-                  git:
-                    traits:
-                    - gitBranchDiscovery: {}
-                    credentialsId: github-user-ssh
-                    id: c40e5e4f-69ea-4a60-9baf-576f7b1c4785
-                    remote: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
-            name: _github.com_pipeline-demo-caternberg_pipeline_examples
-            cachingConfiguration:
-              libraryCachingConfiguration:
-                excludedVersionsStr: ''
-                refreshTimeMinutes: 0
-            defaultVersion: master
-            includeInChangesets: true
-    - folderVaultConfiguration:
-        configuration:
-          vaultConfiguration:
-            skipSslVerification: false
-            failIfNotFound: true
-            timeout: 60
-    - suppressFolderAutomaticTriggering:
-        strategy: NONE
-        branches: .*
-    strategy:
-      allBranchesSame: {}
-    trigger:
-      periodicFolderTrigger:
-        interval: 1d
-  - kind: cloudbeesTemplatedJob
-    catalog: Pipeline Template Catalog Examples
-    name: HW
-    model: Pipeline-Tem.c3qk18.log-Examples/helloWorld
-    attributes:
-    - value: Andreas
-      key: firstname
-    - value: HW
-      key: name
-  - kind: multibranch
-    name: MBSpringBoot
-    description: ''
-    displayName: MBSpringBoot
-    healthMetrics:
-    - jobStatusHealthMetric:
-        unstable: true
-        countVirginJobs: true
-        failure: true
-        success: true
-        unbuilt: true
-    orphanedItemStrategy:
-      defaultOrphanedItemStrategy:
-        pruneDeadBranches: true
-        daysToKeep: -1
-        numToKeep: -1
-        abortBuilds: false
-    projectFactory:
-      customBranchProjectFactory:
-        marker: pom.xml
-        definition:
-          cpsScmFlowDefinition:
-            scriptPath: templates/multibranchPipeline/Jenkinsfile
-            scm:
-              gitSCM:
-                userRemoteConfigs:
-                - userRemoteConfig:
-                    credentialsId: github-user-accesstoken
-                    url: https://github.com/pipeline-demo-caternberg/pipeline-examples.git
-                branches:
-                - branchSpec:
-                    name: '*/master'
-            lightweight: true
-    properties:
-    - envVars: {}
-    - folderVaultConfiguration:
-        configuration:
-          vaultConfiguration:
-            skipSslVerification: false
-            failIfNotFound: true
-            timeout: 60
-    sourcesList:
-    - branchSource:
-        source:
-          git:
-            traits:
-            - gitBranchDiscovery: {}
-            credentialsId: github-user-accesstoken
-            id: ae07811d-63e8-4a53-b2ef-1d7a487c7bcb
-            remote: https://github.com/org-folderscan-example/spring-boot-demo.git
-        strategy:
-          allBranchesSame: {}
-    trigger:
-      periodicFolderTrigger:
-        interval: 5m
-  - kind: pipeline
-    name: podagentfromSharedLibExample
-    concurrentBuild: true
-    definition:
-      cpsFlowDefinition:
-        sandbox: true
-        script: |
-          library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
-          def mavenPod = libraryResource 'podtemplates/podTemplate-maven.yaml'
-          // Uses Declarative syntax to run commands inside a container.
-          pipeline {
-              agent {
-                  kubernetes {
-                      //#deprectatedlabel 'mavenPod'
-                      defaultContainer "maven"
-                      yaml mavenPod
-                  }
-              }
-              stages {
-                  stage('Hello') {
-                      steps {
-                          sh 'hostname'
-                          helloWorld "Andreas"
-                      }
-                  }
-                  stage('Hello 2') {
-                      steps {
-                          sh 'hostname'
-                          helloWorld ""
-                      }
-                  }
-              }
-          }
-    description: ''
-    disabled: false
-    displayName: podagentfromSharedLibExample
-    resumeBlocked: false
+- kind: organizationFolder
+  name: GHOrg
+  displayName: GHOrg
+  navigators:
+  - github:
+      apiUri: https://api.github.com
+      traits:
+      - gitHubBranchDiscovery:
+          strategyId: 1
+      - gitHubPullRequestDiscovery:
+          strategyId: 2
+      - gitHubForkDiscovery:
+          trust:
+            gitHubTrustPermissions: {}
+          strategyId: 2
+      repoOwner: org-folderscan-example
+      credentialsId: ghorg-app
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+      abortBuilds: false
+  projectFactories:
+  - customMultiBranchProjectFactory:
+      factory:
+        customBranchProjectFactory:
+          marker: pom.xml
+          definition:
+            cpsFlowDefinition:
+              sandbox: true
+              script: |
+                // Uses Declarative syntax to run commands inside a container.
+                pipeline {
+                    agent {
+                        kubernetes {
+                            // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
+                            // Or, to avoid YAML:
+                            // containerTemplate {
+                            //     name 'shell'
+                            //     image 'ubuntu'
+                            //     command 'sleep'
+                            //     args 'infinity'
+                            // }
+                            yaml '''
+                apiVersion: v1
+                kind: Pod
+                spec:
+                  containers:
+                  - name: shell
+                    image: ubuntu
+                    command:
+                    - sleep
+                    args:
+                    - infinity
+                '''
+                            // Can also wrap individual steps:
+                            // container('shell') {
+                            //     sh 'hostname'
+                            // }
+                            defaultContainer 'shell'
+                        }
+                    }
+                    stages {
+                        stage('Main') {
+                            steps {
+                                sh 'hostname'
+                            }
+                        }
+                    }
+                }
   properties:
+  - organizationChildHealthMetricsProperty:
+      templates:
+      - worstChildHealthMetric:
+          recursive: true
+      - averageChildHealthMetric: {}
+      - jobStatusHealthMetric:
+          unstable: true
+          countVirginJobs: false
+          failure: true
+          success: true
+          unbuilt: true
+      - projectEnabledHealthMetric: {}
+  - organizationChildOrphanedItemsProperty:
+      strategy:
+        inherit: {}
+  - organizationChildTriggersProperty:
+      templates:
+      - periodicFolderTrigger:
+          interval: 1d
   - envVars: {}
-  - folderVaultConfiguration:
-      configuration:
-        vaultConfiguration:
-          skipSslVerification: false
-          failIfNotFound: true
-          timeout: 60
-  - itemRestrictions:
-      filter: false
-- kind: folder
-  name: folder-two
-  description: ''
-  displayName: folder-two
-  filteredRoles:
-  - browser
-  - developer
-  groups:
-  - members:
-      users:
-      - dev2
-    roles:
-    - name: developer
-      grantedAt: current
-    name: developer
-  healthMetrics:
-  - jobStatusHealthMetric:
-      unstable: true
-      countVirginJobs: false
-      failure: true
-      success: true
-      unbuilt: true
-  properties:
-  - envVars: {}
-  - itemRestrictions:
-      allowedTypes:
-      - org.jenkinsci.plugins.workflow.job.WorkflowJob
-      - Pipeline-Tem.c3qk18.log-Examples/parametrizedPipeline
-      - Pipeline-Tem.c3qk18.log-Examples/helloWorldGo
-      - jenkins.branch.OrganizationFolder
-      - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-      - Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-      - Pipeline-Tem.c3qk18.log-Examples/helloWorld
-      filter: true
-- kind: cloudbeesTemplatedJob
-  catalog: Pipeline Template Catalog Examples
-  name: mytest
-  model: Pipeline-Tem.c3qk18.log-Examples/multibranchPipeline
-  attributes:
-  - value: github-user-accesstoken
-    key: githubToken
-  - value: pipeline-demo-caternberg
-    key: organsisation
-  - value: spring-boot-demo
-    key: repoName
-  - value: mytest
-    key: name
+  - suppressFolderAutomaticTriggering:
+      strategy: NONE
+      branches: .*
+  strategy:
+    allBranchesSame: {}
+  trigger:
+    periodicFolderTrigger:
+      interval: 1d
 - kind: pipeline
-  name: testdocker
+  name: hellworld
   concurrentBuild: true
   definition:
-    cpsScmFlowDefinition:
-      scriptPath: Jenkinsfile3
-      scm:
-        gitSCM:
-          userRemoteConfigs:
-          - userRemoteConfig:
-              credentialsId: github-user-ssh
-              url: git@github.com:pipeline-demo-caternberg/kaniko-parallel-pipeline.git
-          branches:
-          - branchSpec:
-              name: '*/main'
-      lightweight: false
+    cpsFlowDefinition:
+      sandbox: true
+      script: "\npipeline {\n    agent none\n    stages {\n        stage('Main') {\n\
+        \            steps {\n                echo \"Hello world\"\n             \
+        \   sleep 5\n            }\n        }\n    }\n}\n        "
   description: ''
   disabled: false
-  displayName: testdocker
+  displayName: hellworld
   properties:
   - buildDiscarder:
       strategy:
@@ -361,75 +121,79 @@ items:
           artifactDaysToKeep: -1
           artifactNumToKeep: -1
           daysToKeep: -1
-          numToKeep: 5
+          numToKeep: 10
   - durabilityHint:
-      hint: PERFORMANCE_OPTIMIZED
+      hint: MAX_SURVIVABILITY
+  - rateLimitBuilds:
+      throttle:
+        throttle:
+          count: 32
+          userBoost: true
+          durationName: second
   resumeBlocked: false
+- kind: folder
+  name: myfolder
+  description: ''
+  displayName: myfolder
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      filter: false
+- kind: folder
+  name: ANDREAS
+  description: ''
+  displayName: ANDREAS
+  properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+- kind: backupAndRestore
+  name: restore
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  disabled: false
+  displayName: restore
 - kind: pipeline
-  name: testmatrix
+  name: stressController
   concurrentBuild: true
   definition:
     cpsFlowDefinition:
       sandbox: true
-      script: |
-        library '_github.com_pipeline-demo-caternberg_pipeline_examples' _
-        def kanikoPod = libraryResource 'podtemplates/podTemplate-kaniko.yaml'
-
-
-        //git show --name-only --pretty="" --oneline HEAD
-
-        //def dockerfiles = env.DOCKERFILES.split(",").findAll { it }.collect { it.trim() }
-        //def dockerfiles =  ["Dockerfile1","Dockerfile2]
-
-
-            stage('run-parallel') {
-               // def files = findFiles glob: '**/Dockerfile*'
-                def files =  ["Dockerfile1","Dockerfile2"]
-                files.each { file -> println file }
-                def parallelBranches = files.collectEntries { n ->
-                    [(n): {
-                         podTemplate(label: "mylabel-$n",yaml: '''
-                             apiVersion: v1
-                             kind: Pod
-                             metadata:
-                               name: kaniko
-                             spec:
-                               containers:
-                                 - name: kaniko
-                                   image: gcr.io/kaniko-project/executor:debug
-                                   imagePullPolicy: Always
-                                   command:
-                                     - /busybox/cat
-                                   tty: true
-                                   volumeMounts:
-                                     - name: jenkins-docker-cfg
-                                       mountPath: /kaniko/.docker
-                               volumes:
-                                 - name: jenkins-docker-cfg
-                                   projected:
-                                     sources:
-                                       - secret:
-                                           name: docker-credentials
-                                           items:
-                                             - key: .dockerconfigjson
-                                               path: config.json
-                             ''') {
-                             node("mylabel-$n") {
-                                 stage ("build"){
-                               container('kaniko') {
-                                 echo POD_CONTAINER // displays 'kaniko'
-                                 sh 'hostname'
-                               }
-                                 }
-                             }
-                         }
-                    }]
+      script: |-
+        //To simulate some stress on the controller withgout using sress-ng
+        //The Controller requires to have at least 1 executor assigend
+        pipeline {
+            agent any
+            stages {
+                stage('Generate Load') {
+                    steps {
+                        // Start the 'yes' command in the background to generate load.
+                        sh '''
+                                yes > /dev/null &
+                                echo $! > yes.pid
+                            '''
+                        // stress cpu see https://www.baeldung.com/linux/cpu-spike-bash
+                        sh '''
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null |
+                              dd if=/dev/zero of=/dev/null &
+                            '''
+                        echo "Tip run now: watch kubectl top pod"
+                        // Sleep for a specified duration, e.g., 1 hour.
+                        sleep time: 1, unit: 'HOURS'
+                        //input id: 'Input', message: 'abort', ok: 'continue'
+                        sh '''
+                                kill $(cat yes.pid)
+                                rm -f yes.pid
+                                killall dd
+                            '''
+                    }
                 }
-
-                parallel parallelBranches
-
             }
+        }
   description: ''
   disabled: false
-  displayName: testmatrix
+  displayName: stressController
   resumeBlocked: false

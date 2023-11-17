@@ -1,3 +1,13 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - file:
+          description: "jenkins-agents"
+          fileName: "test-sa"
+          id: "jenkins-agents"
+          scope: GLOBAL
+          secretBytes: "{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}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -5,12 +15,31 @@ jenkins:
   - "OperationsCenter2"
   - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      credentialsId: "jenkins-agents"
+      jenkinsUrl: "https://cjoc.acaternberg.pscbdemos.com/remotetest"
+      name: "agents"
+      namespace: "cloudbees-agents"
+      useJenkinsProxy: true
+      webSocket: true
+  - "operationsCenterAgentProvisioningService"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: true
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
+  log:
+    recorders:
+    - loggers:
+      - level: "ALL"
+        name: "io.jenkins.plugins.kubernetes"
+      - level: "ALL"
+        name: "org.csanchez.jenkins.plugins.kubernetes"
+      name: "k8s"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -20,6 +49,18 @@ jenkins:
     all:
       name: "all"
   projectNamingStrategy: "standard"
+  proxy:
+    name: "45.61.187.67"
+    noProxyHost: |-
+      127.0.0.1
+      *.svc.cluster.local
+      6E51FA982570CED8EDB092EF90CE688A.gr7.us-east-1.eks.amazonaws.com
+      jenkins-updates.cloudbees.com
+      *.jenkins.io
+      cjoc.acaternberg.pscbdemos.com
+    port: 4000
+    secretPassword: "{AQAAABAAAABAVieHPlxK2mEicl96CceGLjnI7PuJ7mK1waMq9uESRwu8NDPADtc4xF83e6W/zWzGMOG0Lq6+4bTLPRy2T25IhqrKn+AQpj2hrPKCISQXYiI=}"
+    testUrl: "https://github.com"
   quietPeriod: 5
   remotingSecurity:
     enabled: true
@@ -104,8 +145,13 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  globalJobDslSecurityConfiguration:
+    useScriptSecurity: true
   sSHD:
     port: -1
 unclassified:
@@ -114,6 +160,11 @@ unclassified:
     - "jobBuildDiscarder"
   cloudBeesSCMReporting:
     enabled: true
+  cloudbeesPrometheus:
+    collectingMetricsPeriodInSeconds: 30
+    defaultNamespace: "cloudbees-core"
+    path: "metrics"
+    useAuthenticatedEndpoint: false
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
@@ -123,6 +174,7 @@ unclassified:
       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
       Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
@@ -130,6 +182,11 @@ unclassified:
     maxAttachmentSizeMb: -1
     precedenceBulk: false
     watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
   experimentalPlugins:
     enabled: false
   fingerprints:
@@ -139,7 +196,50 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "https://cjoc.acaternberg.pscbdemos.com/controller-dev1/github-webhook/"
-  gitSCM:
+  headerLabel:
+    text: "CasC Version 3"
+  hibernationConfiguration:
+    activities:
+    - "build"
+    - "web"
+    enabled: false
+    gracePeriod: 120
+  injectionConfig:
+    allowUntrusted: false
+    enabled: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  headerLabel:
+    text: "${systemMessage}"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/casc/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+  prometheusConfiguration:
+    appendParamLabel: true
+    appendStatusLabel: true
+    collectDiskUsage: true
+    collectingMetricsPeriodInSeconds: 5
+    countAbortedBuilds: true
+    countFailedBuilds: true
+    countNotBuiltBuilds: true
+    countSuccessfulBuilds: true
+    countUnstableBuilds: true
+    defaultNamespace: "cloudbees-core"
+    fetchTestResults: true
+    jobAttributeName: "jenkins_job"
+    path: "metrics"
+    perBuildMetrics: false
+    processingDisabledBuilds: true
+    useAuthenticatedEndpoint: false
+  scmGit:
     addGitTagAction: false
     allowSecondFetch: false
     createAccountBasedOnEmail: false
@@ -147,17 +247,6 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
-  junitTestResultStorage:
-    storage: "file"
-  location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://cjoc.acaternberg.pscbdemos.com/mobile-studio-controller0/"
-  mailer:
-    charset: "UTF-8"
-    useSsl: false
-    useTls: false
-  pollSCM:
-    pollingThreadCount: 10
   usageStatisticsCloudBees:
     disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true

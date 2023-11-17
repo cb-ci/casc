@@ -5,9 +5,7 @@ roles:
 - permissions:
   - hudson.model.Computer.Connect
   - hudson.model.Hudson.UploadPlugins
-  - hudson.model.Computer.ViewOwners
   - jenkins.metrics.api.Metrics.View
-  - com.cloudbees.pipeline.governance.templates.catalog.TemplateCatalogAction.ManageCatalogs
   - hudson.model.Hudson.ConfigureUpdateCenter
   - nectar.plugins.rbac.groups.Group.Manage
   - hudson.model.Hudson.Administer
@@ -21,7 +19,6 @@ roles:
   - hudson.model.Item.Create
   - com.cloudbees.jenkins.plugin.metrics.views.Alerter.Mute
   - com.cloudbees.plugins.credentials.CredentialsProvider.Delete
-  - hudson.model.Run.Replay
   - jenkins.metrics.api.Metrics.ThreadDump
   - hudson.model.Hudson.RunScripts
   - hudson.model.View.Create
@@ -41,7 +38,6 @@ roles:
   - hudson.model.Item.Read
   - jenkins.metrics.api.Metrics.HealthCheck
   - nectar.plugins.rbac.groups.Group.Create
-  - com.cloudbees.pipeline.governance.templates.catalog.TemplateCatalogAction.ViewCatalogs
   - hudson.scm.SCM.Tag
   - hudson.model.Item.Discover
   - hudson.model.Hudson.Read
@@ -64,7 +60,6 @@ roles:
   - hudson.model.Item.Build
   - hudson.model.Item.Move
   - hudson.model.Item.Create
-  - hudson.model.Run.Replay
   - hudson.model.View.Create
   - hudson.model.Run.Update
   - hudson.model.View.Delete
@@ -88,23 +83,3 @@ roles:
   - hudson.model.Hudson.Read
   - hudson.model.View.Read
   name: browse
-groups:
-- members:
-    users:
-    - admin
-    - dev1
-  roles:
-  - name: administer
-    grantedAt: current
-  name: Administrators
-- members:
-    users:
-    - dev1
-  roles:
-  - name: develop
-    grantedAt: current
-  name: Developers
-- roles:
-  - name: browse
-    grantedAt: current
-  name: Browsers

@@ -1,0 +1,111 @@
+type: "plugin-catalog"
+version: "1"
+name: "my-plugin-catalog"
+displayName: "My Plugin Catalog"
+configurations:
+  - description: "These are Non-CAP plugins for version 2.414.1.4"
+    prerequisites:
+      productVersion: "[2.414.1.4]"
+    includePlugins:
+      amazon-ecr:
+        version: "1.114.vfd22430621f5"
+      apache-httpcomponents-client-5-api:
+        version: "5.2.1-1.0"
+      aws-java-sdk:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-cloudformation:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-codebuild:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-ecr:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-ecs:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-efs:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-iam:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-kinesis:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-logs:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-sns:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-sqs:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      aws-java-sdk-ssm:
+        version: "1.12.481-392.v8b_291cfcda_09"
+      bitbucket:
+        version: "223.vd12f2bca5430"
+      blueocean-autofavorite:
+        version: "1.2.5"
+      cloud-stats:
+        version: "320.v96b_65297a_4b_b_"
+      conditional-buildstep:
+        version: "1.4.3"
+      delivery-pipeline-plugin:
+        version: "1.4.2"
+      deployit-plugin:
+        version: "23.2.0"
+      docker-java-api:
+        version: "3.3.1-79.v20b_53427e041"
+      docker-plugin:
+        version: "1.4"
+      envinject:
+        version: "2.908.v66a_774b_31d93"
+      envinject-api:
+        version: "1.199.v3ce31253ed13"
+      extended-choice-parameter:
+        version: "376.v2e02857547b_a_"
+      generic-webhook-trigger:
+        version: "1.87.0"
+      groovy:
+        version: "453.vcdb_a_c5c99890"
+      h2-api:
+        version: "11.1.4.199-12.v9f4244395f7a_"
+      http_request:
+        version: "1.18"
+      jersey2-api:
+        version: "2.40-1"
+      jira:
+        version: "3.10"
+      jira-steps:
+        version: "2.0.165.v8846cf59f3db"
+      jquery:
+        version: "1.12.4-1"
+      keycloak:
+        version: "2.3.2"
+      lockable-resources:
+        version: "1185.v0c528656ce04"
+      mercurial:
+        version: "1260.vdfb_723cdcc81"
+      oic-auth:
+        version: "2.6"
+      parameter-separator:
+        version: "87.va_1816d0b_39d1"
+      parameterized-trigger:
+        version: "2.46"
+      pipeline-aws:
+        version: "1.43"
+      pipeline-maven:
+        version: "1331.v003efa_fd6e81"
+      pipeline-utility-steps:
+        version: "2.16.0"
+      rebuild:
+        version: "320.v5a_0933a_e7d61"
+      resource-disposer:
+        version: "0.23"
+      role-strategy:
+        version: "689.v731678c3e0eb_"
+      run-condition:
+        version: "1.7"
+      snsnotify:
+        version: "2.0"
+      stashNotifier:
+        version: "1.425.vfa_8919581685"
+      uno-choice:
+        version: "2.7.2"
+      ws-cleanup:
+        version: "0.45"
+      xray-connector:
+        version: "2.6.1"

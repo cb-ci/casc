@@ -11,6 +11,7 @@ plugins:
 - id: blueocean-commons
 - id: blueocean-rest
 - id: bluesteel-cjoc
+- id: bootstrap5-api
 - id: bouncycastle-api
 - id: caffeine-api
 - id: cloudbees-administrative-monitors
@@ -44,6 +45,7 @@ plugins:
 - id: display-url-api
 - id: docker-commons
 - id: durable-task
+- id: font-awesome-api
 - id: git
 - id: git-client
 - id: handy-uri-templates-2-api
@@ -91,6 +93,8 @@ plugins:
 - id: operations-center-sso
 - id: operations-center-updatecenter
 - id: plain-credentials
+- id: plugin-util-api
+- id: prism-api
 - id: pubsub-light
 - id: saml
 - id: scm-api

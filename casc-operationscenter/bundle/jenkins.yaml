@@ -7,14 +7,14 @@ credentials:
           description: "awsbackup"
           id: "awsbackup"
           scope: GLOBAL
-          secretKey: "{AQAAABAAAAAwPzmMMLgRq/lu9N4Uj5erKLTk1/BSDrhVs5GlGDpISbokKEUN3zuLoYgnRGWrnIuu2CYcceXpn809RIF0JSK2fQ==}"
+          secretKey: "{AQAAABAAAAAwcPQo3pxL66bX61W3H65jBPyhF0L6CBMUX2sj8LpaCPwCMNGY8Ydnevcxsl/Ae0eQ+onx64dRdyBUzwaLZUZuMg==}"
       - aws:
           description: "awsbackup2"
           iamExternalId: "324005994172"
           iamRoleArn: "arn:aws:iam::324005994172:role/acaternberg-s3-backup-rome"
           id: "awsbackup2"
           scope: GLOBAL
-          secretKey: "{AQAAABAAAAAQTOo0gXKAmZfphZ/IqDei8G6+qEbQ57rT/HNak3+PCBE=}"
+          secretKey: "{AQAAABAAAAAQ9GsrZb2P9eYUXrjo0LfUszOJ+hXFtLmI8uUlzoaVa0o=}"
       - basicSSHUserPrivateKey:
           description: "gh-ssh"
           id: "gh-ssh"
@@ -77,9 +77,7 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-oc-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-oc"
+    - id: "virtual-cap-core-oc"
       url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
   views:
   - masters:
@@ -287,6 +285,8 @@ unclassified:
     enabled: false
   pollSCM:
     pollingThreadCount: 10
+  prismConfiguration:
+    theme: PRISM
   scmGit:
     addGitTagAction: false
     allowSecondFetch: false

@@ -1,5 +1,5 @@
 variables:
-  - cascVersion: Controller CasC Version 9
+  - cascVersion: Controller CasC Version 10
   - key: value
   - long_text: |-
       multiline string without

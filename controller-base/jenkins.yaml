@@ -1,0 +1,351 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              description: "ghtoken"
+              id: "ghtoken"
+              password: "{AQAAABAAAABwZgtEddfjXr292DxMhkWK2yS+f4LXbdFQxGizrWBNtVBPNuRhm3bjzf6Xz99PSAr82fsNBmZmKK4riH6LOiK3kXHRT1cxFqhIrfY7KqMFjj+JHHNtarPhWoK46a7I8Eg7MtFIEC20++S1uBHg9bpVP/j5JGqDAJ78Fa15cToM+w8=}"
+              scope: GLOBAL
+              username: "cccaternberg"
+          - string:
+              description: "ghtokensecret"
+              id: "ghtokensecret"
+              scope: GLOBAL
+              secret: "{AQAAABAAAABwRBALCoX19FwmqzXgrm6STmn8C/aG2/1jPvohQqE7R6BCsI1Rui++2cx1a2vrgrx4m6YjEGfwB1qomhFW2vTsfdfWWTjcNqDsQHiLbdR4mLoSVLdKJQ9yYrig0Y1Sj/IsHo531lizlXgzR/5LzPCp7zNSqArKGuY6+kYt7kc6gOc=}"
+          - gitHubApp:
+              appID: "410830"
+              description: "ghorg-app"
+              id: "ghorg-app"
+              privateKey: "{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}"
+jenkins:
+  agentProtocols:
+    - "Diagnostic-Ping"
+    - "JNLP4-connect"
+    - "JNLP4-connect-proxy"
+    - "OperationsCenter2"
+    - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+    - "hudson.util.DoubleLaunchChecker"
+  labelAtoms:
+    - name: "built-in"
+  log:
+    recorders:
+      - loggers:
+          - level: "ALL"
+            name: " org.jenkinsci.plugins.github"
+          - level: "ALL"
+            name: "com.cloudbees.jenkins.GitHubWebHook"
+          - level: "ALL"
+            name: "org.jenkinsci.plugins.github.webhook.WebhookManager"
+        name: "git"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  noUsageStatistics: true
+  numExecutors: 0
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm: "operationsCenter"
+  slaveAgentPort: 50000
+  updateCenter:
+    sites:
+      - id: "virtual-cap-core-mm"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+  views:
+    - all:
+        name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: true
+highAvailability:
+  highAvailabilityConfiguration:
+    developerMode: true
+  highAvailabilityQueueThrottler:
+    maximumLoad: 0
+support:
+  automatedBundleConfiguration:
+    componentIds:
+      - "CloudBeesAssuranceSupport"
+      - "ReplicasComponent"
+      - "AgentsConfigFile"
+      - "ConfigFileComponent"
+      - "OtherConfigFilesComponent"
+      - "AboutBrowser"
+      - "AboutJenkins"
+      - "AboutUser"
+      - "AdministrativeMonitors"
+      - "AgentProtocols"
+      - "BuildQueue"
+      - "CustomLogs"
+      - "DumpExportTable"
+      - "EnvironmentVariables"
+      - "FileDescriptorLimit"
+      - "GCLogs"
+      - "HeapUsageHistogram"
+      - "ItemsContent"
+      - "AgentsJVMProcessSystemMetricsContents"
+      - "MasterJVMProcessSystemMetricsContents"
+      - "JenkinsLogs"
+      - "LoadStats"
+      - "LoggerManager"
+      - "Metrics"
+      - "NetworkInterfaces"
+      - "NodeExecutors"
+      - "NodeMonitors"
+      - "OtherLogs"
+      - "ReverseProxy"
+      - "RootCAs"
+      - "RunningBuilds"
+      - "SlaveCommandStatistics"
+      - "SlaveLaunchLogs"
+      - "SlaveLogs"
+      - "AgentsSystemConfiguration"
+      - "MasterSystemConfiguration"
+      - "SystemProperties"
+      - "TaskLogs"
+      - "ThreadDumps"
+      - "UpdateCenter"
+      - "UserCount"
+      - "ComponentImpl"
+      - "SlowRequestComponent"
+      - "HighLoadComponent"
+      - "DeadlockRequestComponent"
+      - "OperationsCenterSupportComponent"
+      - "UserActivityComponent"
+      - "PipelineInternalCalls"
+      - "PipelineTimings"
+      - "PipelineThreadDump"
+    enabled: true
+    period: 1
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  anonymizeSupportBundle:
+    enabled: false
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+  scriptApproval:
+    approvedScriptHashes:
+      - "SHA512:3f205299bef2fe3329258a42f2c60d332cc35ccb41a3ca0512d7869c6aff4561ff708c48123b4f7c3dec33ccca30d54fb8b9b51b5bc7070f96236d11a3f0bdcb"
+    approvedSignatures:
+      - "method java.net.InetAddress getCanonicalHostName"
+      - "staticMethod java.net.InetAddress getLocalHost"
+unclassified:
+  ansiColorBuildWrapper:
+    colorMaps:
+      - black: "#000000"
+        blackB: "#4C4C4C"
+        blue: "#1E90FF"
+        blueB: "#4682B4"
+        cyan: "#00CDCD"
+        cyanB: "#00FFFF"
+        green: "#00CD00"
+        greenB: "#00FF00"
+        magenta: "#CD00CD"
+        magentaB: "#FF00FF"
+        name: "xterm"
+        red: "#CD0000"
+        redB: "#FF0000"
+        white: "#E5E5E5"
+        whiteB: "#FFFFFF"
+        yellow: "#CDCD00"
+        yellowB: "#FFFF00"
+      - black: "#000000"
+        blackB: "#555555"
+        blue: "#0000AA"
+        blueB: "#5555FF"
+        cyan: "#00AAAA"
+        cyanB: "#55FFFF"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#00AA00"
+        greenB: "#55FF55"
+        magenta: "#AA00AA"
+        magentaB: "#FF55FF"
+        name: "vga"
+        red: "#AA0000"
+        redB: "#FF5555"
+        white: "#AAAAAA"
+        whiteB: "#FFFFFF"
+        yellow: "#AA5500"
+        yellowB: "#FFFF55"
+      - black: "black"
+        blackB: "black"
+        blue: "blue"
+        blueB: "blue"
+        cyan: "cyan"
+        cyanB: "cyan"
+        green: "green"
+        greenB: "green"
+        magenta: "magenta"
+        magentaB: "magenta"
+        name: "css"
+        red: "red"
+        redB: "red"
+        white: "white"
+        whiteB: "white"
+        yellow: "yellow"
+        yellowB: "yellow"
+      - black: "#2E3436"
+        blackB: "#2E3436"
+        blue: "#3465A4"
+        blueB: "#3465A4"
+        cyan: "#06989A"
+        cyanB: "#06989A"
+        defaultBackground: 0
+        defaultForeground: 7
+        green: "#4E9A06"
+        greenB: "#4E9A06"
+        magenta: "#75507B"
+        magentaB: "#75507B"
+        name: "gnome-terminal"
+        red: "#CC0000"
+        redB: "#CC0000"
+        white: "#D3D7CF"
+        whiteB: "#D3D7CF"
+        yellow: "#C4A000"
+        yellowB: "#C4A000"
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+  bundleUpdateTiming:
+    automaticReload: true
+    automaticRestart: false
+    rejectWarnings: false
+    reloadAlwaysOnRestart: false
+    skipNewVersions: false
+  cascItemsConfiguration:
+    variableInterpolationEnabledForAdmin: false
+    variableInterpolationEnabledForNonAdmin: false
+  cloudBeesSCMReporting:
+    enabled: true
+  cloudbeesPipelineExplorer:
+    autoPollingEnabled: true
+    autoPollingIntervalSeconds: 10
+    enabled: true
+  headerLabel:
+    text: "CasC Version ${cascVersion}"
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  experimentalPlugins:
+    enabled: false
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    configs:
+      - credentialsId: "ghtokensecret"
+        name: "github"
+    hookUrl: "https://ci.acaternberg.pscbdemos.com/ha/github-webhook/"
+  globalLibraries:
+    libraries:
+      - allowVersionOverride: false
+        defaultVersion: "master"
+        name: "_github.com_pipeline-demo-caternberg_pipeline_examples"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                credentialsId: "ghtoken"
+                id: "ca58fb17-53a2-45fb-bb9f-7a5f901d4469"
+                remote: "https://github.com/pipeline-demo-caternberg/pipeline-examples.git"
+                traits:
+                  - "gitBranchDiscovery"
+  injectionConfig:
+    allowUntrusted: false
+    checkForBuildAgentErrors: false
+    enabled: false
+    enforceUrl: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "https://ci.acaternberg.pscbdemos.com/casc/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  pollSCM:
+    pollingThreadCount: 10
+  prismConfiguration:
+    theme: PRISM
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+  usageStatisticsCloudBees:
+    disabledJenkinsUsageStatistics: true
+    usageStatisticsCollected: true
+  validationVisualization:
+    quiet: false
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true
+  git:
+    installations:
+      - home: "git"
+        name: "Default"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"

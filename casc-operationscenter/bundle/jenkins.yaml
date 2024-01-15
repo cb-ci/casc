@@ -68,7 +68,7 @@ jenkins:
   securityRealm:
     mock:
       data: |-
-        admin123
+        acaternberg
         adminw6HWnLQ!uk
         1devw6HWnLQ!uk
         2devw6HWnLQ!uk

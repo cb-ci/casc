@@ -103,6 +103,7 @@ groups:
 - members:
     users:
     - adminw6hwnlq!uk
+    - acaternberg
   roles:
   - name: administer
     grantedAt: current

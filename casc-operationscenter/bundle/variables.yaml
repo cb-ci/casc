@@ -1,5 +1,5 @@
 variables:
-  - cascVersion: CjoC CasC Version 6
+  - cascVersion: CjoC CasC Version 7
   - myKey: myvalue
   - key: value
   - long_text: |-

@@ -2,11 +2,1815 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
+- kind: folder
+  name: admin
+  description: ''
+  displayName: admin
+  items:
+  - kind: backupAndRestore
+    name: backup
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - backupBuilder:
+        subjects:
+        - jobConfigurationSubject: {}
+        - systemConfigurationSubject:
+            omitMasterKey: false
+        format:
+          tarGzFormat: {}
+        exclusive: false
+        store:
+          s3Store:
+            bucketName: backup.cjoc.acaternberg.pscbdemos.com
+            sse: false
+            bucketFolder: controllers
+            credentialsId: aws-s3
+            region: us-east-1
+        retentionPolicy:
+          upToNRetentionPolicy:
+            n: 2
+        safeDelaySeconds: 0
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: backup
+    label: built-in
+  properties:
+  - envVars: {}
+  - kubernetes: {}
+  - itemRestrictions:
+      filter: false
+- kind: pipeline
+  name: CBPipeline
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: Pipeline.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              credentialsId: github-user-ssh
+              url: git@github.com:org-caternberg/custom-sharedlib.git
+          branches:
+          - branchSpec:
+              name: '*/dev'
+      lightweight: false
+  description: ''
+  disabled: false
+  displayName: CBPipeline
+  properties:
+  - buildDiscarder:
+      strategy:
+        logRotator:
+          artifactDaysToKeep: -1
+          artifactNumToKeep: -1
+          daysToKeep: 7
+          numToKeep: 25
+  resumeBlocked: false
+- kind: folder
+  name: ci-templates-demo
+  description: ''
+  displayName: ci-templates-demo
+  items:
+  - kind: folder
+    name: Customerforum-2
+    description: ''
+    displayName: Customerforum-2
+    items:
+    - kind: folder
+      name: Example-Failfast
+      description: ''
+      displayName: Example-Failfast
+      items:
+      - kind: pipeline
+        name: Declarative-FailFast
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: "pipeline {\n    agent none\n\n    stages {\n        stage(\"\
+              Build\") {\n            steps {\n                echo \"Some code compilation\
+              \ here...\"\n                sleep 20 \n            }\n        }\n\n\
+              \        stage(\"Test\") {\n            steps {\n                echo\
+              \ \"The follwoing echo step can be triggered only with the String parameter,\
+              \ so we get the error before the whole Pieline gets executed. This is\
+              \ called *fail fast*\"\n                echo 1\n            }\n    \
+              \    }\n    }\n}"
+        description: ''
+        disabled: false
+        displayName: Declarative-FailFast
+        resumeBlocked: false
+      - kind: pipeline
+        name: Scripted-NotFailFast
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: |-
+              node ("built-in-node") {
+                  stage("Build") {
+                      echo "Some code compilation here..."
+                      sleep 20
+                  }
+                  stage("Test") {
+                      echo "This scripted Pipeline exetutes first the previous stage until it failes below. This is called *Not fail fast*"
+                      echo 1
+                  }
+              }
+        description: ''
+        disabled: false
+        displayName: Scripted-NotFailFast
+        resumeBlocked: false
+      properties:
+      - envVars: {}
+      - kubernetes: {}
+      - mavenConfigFolderOverrideProperty:
+          override: false
+      - itemRestrictions:
+          filter: false
+    - kind: folder
+      name: Example-RestartFromStage
+      displayName: Example-RestartFromStage
+      items:
+      - kind: pipeline
+        name: Declarative
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: "pipeline {\n    agent none\n\n    stages {\n        stage(\"\
+              Build\") {\n            steps {\n                echo \"Some code compilation\
+              \ here...\"\n                sleep 20 \n            }\n        }\n\n\
+              \        stage(\"Test\") {\n            steps {\n                echo\
+              \ \"´test\"\n            }\n        }\n    }\n}"
+        description: As you can see, Jenkins skipped the Build stage (it used the
+          workspace from the previous build) and started the next pipeline execution
+          from the Test stage. It might be useful when you execute some external tests
+          and they fail because of some issues with the remote environment. You can
+          fix the problem with the test environment and re-run the stage again, without
+          the need to rebuild all artifacts. (The code of the app hasn’t changed in
+          such a case.)
+        disabled: false
+        displayName: Declarative
+        resumeBlocked: false
+      - kind: pipeline
+        name: Scripted
+        concurrentBuild: true
+        definition:
+          cpsFlowDefinition:
+            sandbox: true
+            script: |-
+              node ("built-in-node") {
+                  stage("Build") {
+                      echo "Some code compilation here..."
+                      sleep 10
+                  }
+                  stage("Test") {
+                      echo "test"
+                  }
+              }
+        description: "No restart option as you can see. \r\n\r\n"
+        disabled: false
+        displayName: Scripted
+        resumeBlocked: false
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: DEMO-CrossTeamEvent
+    description: ''
+    displayName: DEMO-CrossTeamEvent
+    items:
+    - kind: pipeline
+      name: DSL
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent {
+                    kubernetes {
+                        yaml '''
+                    apiVersion: v1
+                    kind: Pod
+                    spec:
+                      containers:
+                      - name: shell
+                        image: ubuntu
+                        command:
+                        - sleep
+                        args:
+                        - infinity
+                    '''
+                        defaultContainer 'shell'
+                    }
+                }
+                stages {
+                    stage('SeedDSL') {
+                        steps {
+
+                                withCredentials([string(credentialsId: 'githubaccesstoken', variable: 'GH_ACCESS_TOKEN')]) {
+                                    echo sh(script: 'env|sort', returnStdout: true)
+                                    jobDsl targets: ['resources/groovy/Seed.groovy'].join('\n'),
+                                            removedJobAction: 'DELETE',
+                                            removedViewAction: 'DELETE',
+                                            lookupStrategy: 'SEED_JOB',
+                                            additionalParameters: [credentials: "^${GH_ACCESS_TOKEN}"]
+                                }
+
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: DSL
+      resumeBlocked: false
+    - kind: pipeline
+      name: eventPublisher
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |-
+            pipeline {
+                agent none
+                stages {
+
+                    stage("notify") {
+                        steps {
+                           publishEvent event:jsonEvent('{"event":"helloWorld","myparameters":{"key1":"val1"}}'), verbose: true
+
+                          //  publishEvent event: jsonEvent('{"event":"com.example:supply-chain-webapp:1.2-SNAPSHOT:war","mavenArtifact":{"groupId":"com.example", "artifactId":"cloudbees-jar", "version":"0.5-SNAPSHOT"}} '), verbose: true
+
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: eventPublisher
+      resumeBlocked: false
+    - kind: pipeline
+      name: eventTrigger
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent none
+                triggers {
+                    eventTrigger jmespathQuery("event == 'helloWorld'")
+                }
+
+                stages {
+                    stage('Hello') {
+                        steps {
+                            echo 'Hello World'
+                            script {
+                                def eventCause = currentBuild.getBuildCauses("com.cloudbees.jenkins.plugins.pipeline.events.EventTriggerCause")
+                                println eventCause[0].event.myparameters
+                                def myParams = eventCause[0].event.myparameters
+                                echo "parameters[0]=^${myParams}"
+                            }
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: eventTrigger
+      properties:
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      - pipelineTriggers:
+          triggers:
+          - eventTrigger:
+              condition:
+                jmespathQuery:
+                  query: event == 'helloWorld'
+      resumeBlocked: false
+    - kind: pipeline
+      name: eventTrigger-2
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent none
+                triggers {
+                    eventTrigger jmespathQuery("event == 'helloWorld'")
+                }
+
+                stages {
+                    stage('Hello') {
+                        steps {
+                            echo 'Hello World'
+                            script {
+                                def eventCause = currentBuild.getBuildCauses("com.cloudbees.jenkins.plugins.pipeline.events.EventTriggerCause")
+                                println eventCause[0].event.myparameters
+                                def myParams = eventCause[0].event.myparameters
+                                echo "parameters[0]=^${myParams}"
+                            }
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: eventTrigger-2
+      properties:
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      - pipelineTriggers:
+          triggers:
+          - eventTrigger:
+              condition:
+                jmespathQuery:
+                  query: event == 'helloWorld'
+      resumeBlocked: false
+    - kind: pipeline
+      name: eventTriggerParemterizedPipeline
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: "def getParamValues(){\n        echo \"INITVALUES \"\n        def\
+            \ eventCause = currentBuild.getBuildCauses(\"com.cloudbees.jenkins.plugins.pipeline.events.EventTriggerCause\"\
+            )\n        println eventCause[0].event.myparameters\n        def myParams\
+            \ = eventCause[0].event.myparameters\n        echo \"parameters[0]=^${myParams}\"\
+            \n        def result = []\n        myParams.each {key,value ->\n     \
+            \       result.add(value)\n            \n        }\n        return result\n\
+            }\ndef p=getParamValues()\n/*\ndef eventCause = currentBuild.getBuildCauses(\"\
+            com.cloudbees.jenkins.plugins.pipeline.events.EventTriggerCause\")\nprintln\
+            \ eventCause[0].event.myparameters\ndef myParams = eventCause[0].event.myparameters\n\
+            echo \"parameters[0]=^${myParams}\"\n*/\n\nproperties([parameters([extendedChoice(bindings:\
+            \ '', groovyClasspath: '', groovyScript: 'return p', multiSelectDelimiter:\
+            \ ',', name: 'MYECPARAM', quoteValue: false, saveJSONParameterToFile:\
+            \ false, type: 'PT_SINGLE_SELECT', visibleItemCount: 5)]), [$class: 'JobLocalConfiguration',\
+            \ changeReasonComment: '']])\npipeline {\n    agent none\n    triggers\
+            \ {\n        eventTrigger jmespathQuery(\"event == 'helloWorld'\")\n \
+            \   }\n    stages {\n        stage('Hello') {\n            steps {\n \
+            \               echo 'Hello World'\n                /*script {\n     \
+            \               getParamValues ()\n                }\n               \
+            \ */\n            }\n        }\n    }\n}\n"
+      description: ''
+      disabled: false
+      displayName: eventTriggerParemterizedPipeline
+      properties:
+      - pipelineTriggers:
+          triggers:
+          - eventTrigger:
+              condition:
+                jmespathQuery:
+                  query: event == 'helloWorld'
+      - parameters:
+          parameterDefinitions:
+          - extendedChoice:
+              groovyClasspath: ''
+              saveJSONParameterToFile: false
+              groovyScript: return p
+              bindings: ''
+              name: MYECPARAM
+              multiSelectDelimiter: ','
+              type: PT_SINGLE_SELECT
+              visibleItemCount: 5
+              quoteValue: false
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      resumeBlocked: false
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: DEMO-ParameterUsage
+    description: ''
+    displayName: DEMO-ParameterUsage
+    items:
+    - kind: pipeline
+      name: ActivceChoiceFolderCredentials
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: false
+          script: "properties([parameters(\n        [activeChoice(choiceType: 'PT_SINGLE_SELECT',\n\
+            \                filterLength: 1, filterable: false,\n               \
+            \ name: 'mychoice',\n                randomName: 'choice-parameter-2381968702490339',\n\
+            \                script: groovyScript(\n                        fallbackScript:\
+            \ [classpath: [],\n                                         oldScript:\
+            \ '',\n                                         sandbox  : false, script:\
+            \ 'return \"false\"'],\n                        script: [classpath: [],\n\
+            \                                 oldScript: '',\n                   \
+            \              sandbox  : false, script: '''\n                       \
+            \                 import jenkins.model.*\n                           \
+            \             import com.cloudbees.hudson.plugins.folder.*\n         \
+            \                               import com.cloudbees.plugins.credentials.*\n\
+            \                                        def folderName = 'ci-templates-demo'\n\
+            \                                        def credentialsID = \"jenkins-token\"\
+            \n                                        AbstractFolder myFolder = Jenkins.instance.getAllItems(AbstractFolder.class).find{\
+            \ (it.name == folderName) }\n                                        def\
+            \ creds = CredentialsProvider.lookupCredentials(Credentials.class, myFolder)\n\
+            \                                        def cred=creds.find{(it.id ==\
+            \ credentialsID)}.getSecret().getPlainText()\n                       \
+            \                 def hostUrl= Jenkins.getInstance().getRootUrl().replace(\"\
+            https://\",\"https://\"+ cred + \"@\")\n                             \
+            \           def url = hostUrl + \"job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+            \n                                        def result = [\"/bin/bash\"\
+            , \"-c\", \"curl -L \" + url].execute().text.tokenize();\n           \
+            \                             return result\n                        \
+            \            ''']\n                )\n        )\n        ]\n),\n     \
+            \       [$class: 'JobLocalConfiguration', changeReasonComment: '']])\n\
+            pipeline {\n    agent {\n        kubernetes {\n            yaml '''\n\
+            \                apiVersion: v1\n                kind: Pod\n         \
+            \       spec:\n                  containers:\n                  - name:\
+            \ shell\n                    image: caternberg/curl-yq-jq\n          \
+            \          command:\n                      - cat\n                   \
+            \ tty: true\n                    workingDir: \"/home/jenkins/agent\"\n\
+            \                    securityContext:\n                      runAsUser:\
+            \ 1000            \n                '''\n            defaultContainer\
+            \ 'shell'\n        }\n    }\n    stages {\n        stage('PrintParam')\
+            \ {\n            steps {\n                container(\"shell\") {\n   \
+            \                 echo \"Hello ^${mychoice}\"\n                }\n   \
+            \         }\n        }\n    }\n}\n"
+      description: ''
+      disabled: false
+      displayName: ActivceChoiceFolderCredentials
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - activeChoice:
+              choiceType: PT_SINGLE_SELECT
+              filterable: false
+              name: mychoice
+              filterLength: 1
+              script:
+                groovyScript:
+                  fallbackScript:
+                    secureGroovyScript:
+                      oldScript: ''
+                      sandbox: false
+                      script: return "false"
+                  script:
+                    secureGroovyScript:
+                      oldScript: ''
+                      sandbox: false
+                      script: "\n                                        import jenkins.model.*\n\
+                        \                                        import com.cloudbees.hudson.plugins.folder.*\n\
+                        \                                        import com.cloudbees.plugins.credentials.*\n\
+                        \                                        def folderName =\
+                        \ 'ci-templates-demo'\n                                  \
+                        \      def credentialsID = \"jenkins-token\"\n           \
+                        \                             AbstractFolder myFolder = Jenkins.instance.getAllItems(AbstractFolder.class).find{\
+                        \ (it.name == folderName) }\n                            \
+                        \            def creds = CredentialsProvider.lookupCredentials(Credentials.class,\
+                        \ myFolder)\n                                        def cred=creds.find{(it.id\
+                        \ == credentialsID)}.getSecret().getPlainText()\n        \
+                        \                                def hostUrl= Jenkins.getInstance().getRootUrl().replace(\"\
+                        https://\",\"https://\"+ cred + \"@\")\n                 \
+                        \                       def url = hostUrl + \"job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+                        \n                                        def result = [\"\
+                        /bin/bash\", \"-c\", \"curl -L \" + url].execute().text.tokenize();\n\
+                        \                                        return result\n \
+                        \                                   "
+              randomName: choice-parameter-2381968702490339
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      resumeBlocked: false
+    - kind: pipeline
+      name: ActiveChoiceSystemCredential
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: false
+          script: "package examples\n\nproperties([parameters(\n        [activeChoice(choiceType:\
+            \ 'PT_SINGLE_SELECT',\n                filterLength: 1, filterable: false,\n\
+            \                name: 'mychoice',\n                randomName: 'choice-parameter-2381968702490339',\n\
+            \                script: groovyScript(\n                        fallbackScript:\
+            \ [classpath: [],\n                                         oldScript:\
+            \ '',\n                                         sandbox  : false, script:\
+            \ 'return  false'],\n                        script: [classpath: [],\n\
+            \                                 oldScript: '',\n                   \
+            \              sandbox  : false, script: '''\n                       \
+            \                      import jenkins.model.*\n                      \
+            \                       import com.cloudbees.plugins.credentials.domains.Domain\n\
+            \                                             import com.cloudbees.plugins.credentials.SystemCredentialsProvider\n\
+            \                                             def CREDENTIAL_ID = \"jenkins-token\"\
+            \n                                             def cred = SystemCredentialsProvider.getInstance().getStore().getCredentials(Domain.global()).find\
+            \ { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()\n  \
+            \                                           def hostUrl = Jenkins.getInstance().getRootUrl().replace(\"\
+            https://\",\"https://\"+ cred + \"@\")\n                             \
+            \                def url = hostUrl + \"job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+            \n                                             def result = [\"/bin/bash\"\
+            , \"-c\", \"curl -L \" + url].execute().text.tokenize();\n           \
+            \                                  return result\n                   \
+            \                 ''']\n                )\n        )\n        ]\n),\n\
+            \            [$class: 'JobLocalConfiguration', changeReasonComment: '']])\n\
+            pipeline {\n    agent {\n        kubernetes {\n            yaml '''\n\
+            \                apiVersion: v1\n                kind: Pod\n         \
+            \       spec:\n                  containers:\n                  - name:\
+            \ shell\n                    image: caternberg/curl-yq-jq\n          \
+            \          command:\n                      - cat\n                   \
+            \ tty: true\n                    workingDir: \"/home/jenkins/agent\"\n\
+            \                    securityContext:\n                      runAsUser:\
+            \ 1000            \n                '''\n            defaultContainer\
+            \ 'shell'\n        }\n    }\n    stages {\n        stage('PrintParam')\
+            \ {\n            steps {\n                container(\"shell\") {\n   \
+            \                 echo \"Hello ^${mychoice}\"\n                }\n   \
+            \         }\n        }\n    }\n}\n"
+      description: ''
+      disabled: false
+      displayName: ActiveChoiceSystemCredential
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - activeChoice:
+              choiceType: PT_SINGLE_SELECT
+              filterable: false
+              name: mychoice
+              filterLength: 1
+              script:
+                groovyScript:
+                  fallbackScript:
+                    secureGroovyScript:
+                      oldScript: ''
+                      sandbox: false
+                      script: return  false
+                  script:
+                    secureGroovyScript:
+                      oldScript: ''
+                      sandbox: false
+                      script: "\n                                             import\
+                        \ jenkins.model.*\n                                      \
+                        \       import com.cloudbees.plugins.credentials.domains.Domain\n\
+                        \                                             import com.cloudbees.plugins.credentials.SystemCredentialsProvider\n\
+                        \                                             def CREDENTIAL_ID\
+                        \ = \"jenkins-token\"\n                                  \
+                        \           def cred = SystemCredentialsProvider.getInstance().getStore().getCredentials(Domain.global()).find\
+                        \ { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()\n\
+                        \                                             def hostUrl\
+                        \ = Jenkins.getInstance().getRootUrl().replace(\"https://\"\
+                        ,\"https://\"+ cred + \"@\")\n                           \
+                        \                  def url = hostUrl + \"job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+                        \n                                             def result\
+                        \ = [\"/bin/bash\", \"-c\", \"curl -L \" + url].execute().text.tokenize();\n\
+                        \                                             return result\n\
+                        \                                    "
+              randomName: choice-parameter-2381968702490339
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      resumeBlocked: false
+    - kind: pipeline
+      name: UpdateParams-by-ActiveChoice-Script
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile-ActiveChoice-GroovyScript.groovy
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  url: https://github.com/cb-ci-templates/ci-poc-params-update.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: UpdateParams-by-ActiveChoice-Script
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - activeChoice:
+              choiceType: PT_SINGLE_SELECT
+              filterable: false
+              name: mychoice
+              filterLength: 1
+              script:
+                groovyScript:
+                  fallbackScript:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: return  false
+                  script:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: "\n                                                \
+                        \    def CREDENTIAL_ID = \"gh-token-ci-templates-repo-classic\"\
+                        \n                                                    def\
+                        \ SECRET = com.cloudbees.plugins.credentials.SystemCredentialsProvider.getInstance().getStore().getCredentials(com.cloudbees.plugins.credentials.domains.Domain.global()).find\
+                        \ { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()\n\
+                        \                                                    def URL\
+                        \ = \"https://\" + SECRET + \"@github.com/cb-ci-templates/ci-poc-params-update.git\"\
+                        \n                                                    //def\
+                        \ result = [\"/bin/bash\", \"-c\", \"git ls-remote -h \" +\
+                        \ URL + \" | sed 's/.*refs\\/heads\\/\\(.*\\)/\\1/'\"].execute().text.tokenize();\n\
+                        \                                                    def result\
+                        \ = [\"/bin/bash\", \"-c\", \"git ls-remote -h \" + URL +\
+                        \ \" | sed 's#.*refs/heads/##'\"].execute().text.tokenize();\n\
+                        \                                                    return\
+                        \ result                                       \n        \
+                        \                            "
+              randomName: choice-parameter-2381968702490339
+      resumeBlocked: false
+    - kind: pipeline
+      name: UpdateParams-by-ActiveChoice-Script-from-Other-Job
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: "properties([parameters(\n        [activeChoice(choiceType: 'PT_SINGLE_SELECT',\n\
+            \                filterLength: 1, filterable: false,\n               \
+            \ name: 'mychoice',\n                randomName: 'choice-parameter-2381968702490339',\n\
+            \                script: groovyScript(\n                        fallbackScript:\
+            \ [classpath: [],\n                                         oldScript:\
+            \ '',\n                                         sandbox  : false, script:\
+            \ 'return  false'],\n                                script: [classpath:\
+            \ [],\n                                         oldScript: '',\n     \
+            \                                    sandbox  : false, script: '''\n \
+            \                                            def CREDENTIAL_ID = \"jenkins-token\"\
+            \n                                             def SECRET = com.cloudbees.plugins.credentials.SystemCredentialsProvider.getInstance().getStore().getCredentials(com.cloudbees.plugins.credentials.domains.Domain.global()).find\
+            \ { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()\n  \
+            \                                           def url = \"https://\"+ SECRET\
+            \ + \"@sda.acaternberg.flow-training.beescloud.com/sb/job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+            \n                                             println url\n         \
+            \                                    def result = [\"/bin/bash\", \"-c\"\
+            , \"curl -L \" + url].execute().text.tokenize();\n                   \
+            \                          println result\n                          \
+            \                   return result\n                                  \
+            \  ''']\n                                )\n                    )\n  \
+            \      ]\n),\n            [$class: 'JobLocalConfiguration', changeReasonComment:\
+            \ '']])\npipeline {\n    agent {\n        kubernetes {\n            yaml\
+            \ '''\n                apiVersion: v1\n                kind: Pod\n   \
+            \             spec:\n                  containers:\n                 \
+            \ - name: shell\n                    image: caternberg/curl-yq-jq\n  \
+            \                  command:\n                      - cat\n           \
+            \         tty: true\n                    workingDir: \"/home/jenkins/agent\"\
+            \n                    securityContext:\n                      runAsUser:\
+            \ 1000            \n                '''\n            defaultContainer\
+            \ 'shell'\n        }\n    }\n    stages {\n        stage('PrintParam')\
+            \ {\n            steps {\n                container(\"shell\") {\n   \
+            \                 echo \"Hello ^${mychoice}\"\n                }\n   \
+            \         }\n        }\n    }\n}\n"
+      description: ''
+      disabled: false
+      displayName: UpdateParams-by-ActiveChoice-Script-from-Other-Job
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - activeChoice:
+              choiceType: PT_SINGLE_SELECT
+              filterable: false
+              name: mychoice
+              filterLength: 1
+              script:
+                groovyScript:
+                  fallbackScript:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: return  false
+                  script:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: "\n                                              def\
+                        \ CREDENTIAL_ID = \"jenkins-token\"\n                    \
+                        \                         def SECRET = com.cloudbees.plugins.credentials.SystemCredentialsProvider.getInstance().getStore().getCredentials(com.cloudbees.plugins.credentials.domains.Domain.global()).find\
+                        \ { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()\n\
+                        \                                             def url = \"\
+                        https://\"+ SECRET + \"@sda.acaternberg.flow-training.beescloud.com/sb/job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+                        \n                                             println url\n\
+                        \                                             def result =\
+                        \ [\"/bin/bash\", \"-c\", \"curl -L \" + url].execute().text.tokenize();\n\
+                        \                                             println result\n\
+                        \                                             return result\n\
+                        \                                    "
+              randomName: choice-parameter-2381968702490339
+      resumeBlocked: false
+    - kind: pipeline
+      name: UpdateParams-by-CasC
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile-updateParameters-CasC.groovy
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  url: https://github.com/cb-ci-templates/ci-poc-params-update.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: UpdateParams-by-CasC
+      resumeBlocked: false
+    - kind: pipeline
+      name: UpdateParams-by-Groovy
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile-updateParameters-Groovy.groovy
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  url: https://github.com/cb-ci-templates/ci-poc-params-update.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: UpdateParams-by-Groovy
+      resumeBlocked: false
+    - kind: pipeline
+      name: UpdateParams-by-JobDSL
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile-updateParameters-DSL.groovy
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  url: https://github.com/cb-ci-templates/ci-poc-params-update.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: UpdateParams-by-JobDSL
+      resumeBlocked: false
+    - kind: pipeline
+      name: example-pipeline
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: false
+          script: |-
+            pipeline {
+                            agent none
+                            stages {
+                                stage('selectedOption') {
+                                    steps {
+                                        echo "OPTION SELECTED: ^${OPTION}"
+                                    }
+                                }
+                            }
+                        }
+      description: Updated by Job-DSL
+      disabled: false
+      displayName: example-pipeline
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - choice:
+              name: OPTION
+              choices:
+              - main
+      resumeBlocked: false
+    - kind: pipeline
+      name: initData
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            // Uses Declarative syntax to run commands inside a container.
+            pipeline {
+                agent {
+                    kubernetes {
+                        yaml '''
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: shell
+                image: ubuntu
+                command:
+                - sleep
+                args:
+                - infinity
+            '''
+                        defaultContainer 'shell'
+                    }
+                }
+                stages {
+                    stage('Main') {
+                        steps {
+                            sh 'echo "one\ntwo\nthree\nfour\n" > newparams.txt'
+                            sh "cat newparams.txt"
+                            archiveArtifacts artifacts: 'newparams.txt', fingerprint: true, followSymlinks: false
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: initData
+      properties:
+      - jobLocalConfiguration:
+          changeReasonComment: ''
+      resumeBlocked: false
+    - kind: pipeline
+      name: test
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent any
+                stages {
+                    stage('Hello') {
+                        steps {
+                            echo 'Hello World'
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: test
+      properties:
+      - parameters:
+          parameterDefinitions:
+          - activeChoice:
+              choiceType: PT_SINGLE_SELECT
+              filterable: false
+              name: mychoice
+              filterLength: 1
+              script:
+                groovyScript:
+                  fallbackScript:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: return  false
+                  script:
+                    secureGroovyScript:
+                      sandbox: false
+                      script: "                                                def\
+                        \ content=new URL (\"https://raw.githubusercontent.com/cb-ci-templates/ci-poc-params-update/main/resources/choices.txt\"\
+                        ).getText()\n                                            \
+                        \    def values = []\n                                   \
+                        \             for(def line : content.split('\\n')) {\n   \
+                        \                                                 values.add(line.trim())\n\
+                        \                                                }\n     \
+                        \                                           return values\
+                        \        \n\n"
+              randomName: choice-parameter-2381968702490339
+      resumeBlocked: false
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        filter: false
+  - kind: organizationFolder
+    name: GHOrgtemp
+    displayName: GHOrgtemp
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactories:
+    - workflowMultiBranchProjectFactory:
+        scriptPath: Jenkinsfile
+    properties:
+    - organizationChildTriggersProperty:
+        templates:
+        - periodicFolderTrigger:
+            interval: 1d
+    - organizationChildOrphanedItemsProperty:
+        strategy:
+          inherit: {}
+    strategy:
+      allBranchesSame: {}
+    trigger:
+      periodicFolderTrigger:
+        interval: 1d
+  - kind: organizationFolder
+    name: GitHub-Organisation-Folder
+    buildStrategies:
+    - skipInitialBuildOnFirstIndexingResetRevision: {}
+    displayName: GitHub-Organisation-Folder
+    navigators:
+    - github:
+        enableAvatar: true
+        apiUri: https://api.github.com
+        traits:
+        - teamSlugFilter:
+            teamSlug: developer-1
+        - gitHubBranchDiscovery:
+            strategyId: 1
+        - gitHubPullRequestDiscovery:
+            strategyId: 2
+        - gitHubForkDiscovery:
+            trust:
+              gitHubTrustPermissions: {}
+            strategyId: 2
+        repoOwner: cb-ci-templates
+        credentialsId: gh-user-token-ci-templates-repo-classic
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactories:
+    - customMultiBranchProjectFactory:
+        factory:
+          customBranchProjectFactory:
+            marker: pom.xml
+            definition:
+              cpsScmFlowDefinition:
+                scriptPath: templates/mavenMutilBranch/Jenkinsfile
+                scm:
+                  scmGit:
+                    userRemoteConfigs:
+                    - userRemoteConfig:
+                        credentialsId: github-user-ssh
+                        url: git@github.com:cb-ci-templates/ci-templates.git
+                    branches:
+                    - branchSpec:
+                        name: '*/main'
+                lightweight: true
+    properties:
+    - organizationChildHealthMetricsProperty:
+        templates:
+        - worstChildHealthMetric:
+            recursive: true
+        - averageChildHealthMetric: {}
+        - jobStatusHealthMetric:
+            unstable: true
+            countVirginJobs: false
+            failure: true
+            success: true
+            unbuilt: true
+        - projectEnabledHealthMetric: {}
+    - organizationChildOrphanedItemsProperty:
+        strategy:
+          inherit: {}
+    - organizationChildTriggersProperty:
+        templates:
+        - periodicFolderTrigger:
+            interval: 1d
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - suppressFolderAutomaticTriggering:
+        strategy: NONE
+        branches: .*
+    strategy:
+      allBranchesSame:
+        props:
+        - buildRetention:
+            buildDiscarder:
+              logRotator:
+                artifactDaysToKeep: -1
+                artifactNumToKeep: -1
+                daysToKeep: -1
+                numToKeep: 2
+    trigger:
+      periodicFolderTrigger:
+        interval: 1d
+  - kind: multibranch
+    name: MBTemplate
+    description: ''
+    displayName: MBTemplate
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactory:
+      customBranchProjectFactory:
+        marker: ci-config.properties
+        definition:
+          cpsScmFlowDefinition:
+            scriptPath: templates/simpleMultiBranch/Jenkinsfile
+            scm:
+              scmGit:
+                userRemoteConfigs:
+                - userRemoteConfig:
+                    url: https://github.com/cb-ci-templates/ci-templates.git
+                branches:
+                - branchSpec:
+                    name: '*/main'
+            lightweight: true
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    sourcesList:
+    - branchSource:
+        source:
+          git:
+            traits:
+            - gitBranchDiscovery: {}
+            credentialsId: github-user-accesstoken
+            id: 0b087f75-b9ba-4ac5-b5b7-c1211cc84dd3
+            remote: https://github.com/cb-ci-templates/sample-app-helloworld.git
+        strategy:
+          allBranchesSame: {}
+  - kind: folder
+    name: OldJobTemplateDemo
+    description: ''
+    displayName: OldJobTemplateDemo
+    items:
+    - kind: pipeline
+      name: Pipeline
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent any
+
+                stages {
+                    stage('Hello') {
+                        steps {
+                            echo 'Hello World "^${env.Key1}"'
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: Pipeline
+      resumeBlocked: false
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: PipelineTemplaceCatalogJobs
+    description: ''
+    displayName: PipelineTemplaceCatalogJobs
+    items:
+    - kind: cloudbeesTemplatedJob
+      catalog: Pipeline Template Catalog Examples
+      name: HelloWorldMB
+      model: Pipeline-Tem.c3qk18.log-Examples/helloWorldSimple
+      attributes:
+      - type: string
+        value: Andreas
+        key: firstName
+      - type: string
+        value: Caternberg
+        key: lastName
+      - type: string
+        value: podTemplate-curl.yaml
+        key: k8_agent_yaml
+      - type: string
+        value: HelloWorldMB
+        key: name
+    - kind: cloudbeesTemplatedJob
+      catalog: Pipeline Template Catalog Examples
+      name: SimpleMB
+      model: Pipeline-Tem.c3qk18.log-Examples/simpleMultiBranch
+      attributes:
+      - type: credentials
+        value: gh-user-token-ci-templates-repo-classic
+        key: githubToken
+      - type: string
+        value: cb-ci-templates
+        key: organsisation
+      - type: string
+        value: sample-app-helloworld
+        key: repoName
+      - type: string
+        value: SimpleMB
+        key: name
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        allowedTypes:
+        - Pipeline-Tem.c3qk18.log-Examples/mavenMutilBranch
+        - Pipeline-Tem.c3qk18.log-Examples/helloWorldSimple
+        - Pipeline-Tem.c3qk18.log-Examples/helloWorldMultiBranch
+        - Pipeline-Tem.c3qk18.log-Examples/simpleMultiBranch
+        - com.cloudbees.pipeline.governance.templates.classic.multibranch.GovernanceMultibranchPipelineTemplate
+        filter: true
+  - kind: pipeline
+    name: TestGitPush
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          // Uses Declarative syntax to run commands inside a container.
+          pipeline {
+              agent {
+                  kubernetes {
+                      yaml '''
+          kind: Pod
+          metadata:
+            name: cloudbees-core
+          spec:
+            containers:
+              - name: git
+                image: bravissimolabs/alpine-git
+                command:
+                  - cat
+                tty: true
+                workingDir: "/home/jenkins/agent"
+                securityContext:
+                  runAsUser: 0
+                      '''
+                      defaultContainer 'git'
+                  }
+              }
+              stages {
+                  stage('Main') {
+                      steps {
+                          git branch: 'main', changelog: false, credentialsId: 'github-user-ssh', poll: false, url: 'git@github.com:org-caternberg/custom-sharedlib.git'
+                          withCredentials([sshUserPrivateKey(credentialsId: 'github-user-ssh', keyFileVariable: 'CERT')]) {
+                              sh """
+                              mkdir -p ~/.ssh && chmod 700 ~/.ssh &&  cp -prf $CERT ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+                              git config --global user.email \"acaternberg@cloudbees.com\"
+                              git config --global user.name \"cccaternberg\"
+                              eval `ssh-agent -s`  && ssh-add ~/.ssh/id_rsa
+                              ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+                              cat ci.yaml
+                              sed -i -e 's#bool1#bool5#g' ci.yaml
+                              cat ci.yaml
+                              git add ci.yaml
+                              git commit -m \"update value\"
+                              git push origin main
+                              """
+                          }
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: TestGitPush
+    resumeBlocked: false
+  - kind: folder
+    name: demo-MB-branch-protection
+    description: ''
+    displayName: demo-MB-branch-protection
+    items:
+    - kind: multibranch
+      name: MBDevBranches
+      description: ''
+      displayName: MBDevBranches
+      filteredRoles:
+      - view-items
+      - develop
+      - login
+      - browse
+      groups:
+      - members:
+          internal_groups:
+          - sb-developers
+        roles:
+        - name: develop
+          grantedAt: current
+        name: MBDevBranches
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        customBranchProjectFactory:
+          marker: ci-config.properties
+          definition:
+            cpsScmFlowDefinition:
+              scriptPath: marker-templates/simple/Jenkinsfile.groovy
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      url: https://github.com/cb-ci-templates/ci-templates.git
+                  branches:
+                  - branchSpec:
+                      name: '*/main'
+              lightweight: false
+      properties:
+      - envVars: {}
+      - kubernetes: {}
+      - mavenConfigFolderOverrideProperty:
+          override: false
+      sourcesList:
+      - branchSource:
+          source:
+            git:
+              traits:
+              - gitBranchDiscovery: {}
+              - headRegexFilter:
+                  regex: dev
+              credentialsId: ''
+              id: 9915b0b5-c00e-43e3-a716-f5e330fa6129
+              remote: https://github.com/cb-ci-templates/sample-app-helloworld.git
+          strategy:
+            allBranchesSame: {}
+    - kind: multibranch
+      name: MBProdBranches
+      description: ''
+      displayName: MBProdBranches
+      filteredRoles:
+      - view-items
+      - develop
+      - login
+      - browse
+      groups:
+      - members:
+          internal_groups:
+          - sb-prod
+        roles:
+        - name: administer
+          grantedAt: current
+        - name: develop
+          grantedAt: current
+        name: MBProdBranches
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        customBranchProjectFactory:
+          marker: ci-config.properties
+          definition:
+            cpsScmFlowDefinition:
+              scriptPath: marker-templates/simple/Jenkinsfile.groovy
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      url: https://github.com/cb-ci-templates/ci-templates.git
+                  branches:
+                  - branchSpec:
+                      name: '*/main'
+              lightweight: false
+      properties:
+      - envVars: {}
+      - kubernetes: {}
+      - mavenConfigFolderOverrideProperty:
+          override: false
+      sourcesList:
+      - branchSource:
+          source:
+            git:
+              traits:
+              - gitBranchDiscovery: {}
+              - headRegexFilter:
+                  regex: main
+              credentialsId: ''
+              id: 9915b0b5-c00e-43e3-a716-f5e330fa6129
+              remote: https://github.com/cb-ci-templates/sample-app-helloworld.git
+          strategy:
+            allBranchesSame: {}
+    properties:
+    - envVars: {}
+    - kubernetes: {}
+    - mavenConfigFolderOverrideProperty:
+        override: false
+    - itemRestrictions:
+        filter: false
+  - kind: pipeline
+    name: readYamlProperties
+    concurrentBuild: false
+    definition:
+      cpsScmFlowDefinition:
+        scriptPath: PipelineReadConfig.groovy
+        scm:
+          scmGit:
+            userRemoteConfigs:
+            - userRemoteConfig:
+                url: https://github.com/org-caternberg/custom-sharedlib.git
+            branches:
+            - branchSpec:
+                name: '*/main'
+        lightweight: true
+    description: ''
+    disabled: false
+    displayName: readYamlProperties
+    properties:
+    - buildDiscarder:
+        strategy:
+          logRotator:
+            artifactDaysToKeep: -1
+            artifactNumToKeep: -1
+            daysToKeep: 2
+            numToKeep: 2
+    - parameters:
+        parameterDefinitions:
+        - booleanParam:
+            defaultValue: false
+            name: bool5
+        - booleanParam:
+            defaultValue: false
+            name: bool4
+    - rateLimitBuilds: {}
+    resumeBlocked: false
+  - kind: pipeline
+    name: sharedLibHelloWorld
+    concurrentBuild: true
+    definition:
+      cpsScmFlowDefinition:
+        scriptPath: Jenkinsfile-helloWorld.groovy
+        scm:
+          scmGit:
+            userRemoteConfigs:
+            - userRemoteConfig:
+                url: https://github.com/cb-ci-templates/ci-shared-library.git
+            branches:
+            - branchSpec:
+                name: '*/main'
+        lightweight: true
+    description: ''
+    disabled: false
+    displayName: sharedLibHelloWorld
+    properties:
+    - parameters:
+        parameterDefinitions:
+        - string:
+            trim: false
+            defaultValue: Hello World
+            name: greeting
+            description: How should I greet the world?
+    resumeBlocked: false
+  - kind: pipeline
+    name: testGetFolder
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: "def folderName = '/ci-templates-demo'\ndef workspace = pwd() \ndef\
+          \ myFolder = Jenkins.instance.getItemByFullName(workspace + folderName).name.tokenize()\
+          \                                            \nprintln myFolder        \
+          \            "
+    description: ''
+    disabled: false
+    displayName: testGetFolder
+    properties:
+    - jobLocalConfiguration:
+        changeReasonComment: ''
+    resumeBlocked: false
+  - kind: pipeline
+    name: testParallel
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |-
+          // Example function that would return an array of regions to deploy
+          def getRegionsToDeploy() {
+            return ["One","Two","Three"]
+          }
+
+          // Convert array of regions to map of stages
+          def getDeployStages() {
+            return getRegionsToDeploy().collectEntries { region ->
+              [
+                (region): {
+                  stage("Deploy region ^${region}") {
+                    echo  "sample command ^${region}"
+                  }
+                }
+              ]
+            }
+          }
+
+          pipeline {
+            agent any
+            stages {
+              // other stages...
+              stage('Deploy') {
+                steps {
+                  script {
+                    // Directly pass the map of stages to `parallel`
+                    parallel getDeployStages()
+                  }
+                }
+              }
+            }
+          }
+    description: ''
+    disabled: false
+    displayName: testParallel
+    resumeBlocked: false
+  - kind: pipeline
+    name: tmpBranchScan
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          pipeline {
+              agent any
+
+              stages {
+                  stage('Hello') {
+                      steps {
+                          script {
+          def CREDENTIAL_ID = "gh-token-ci-templates-repo-classic"
+          def SECRET = com.cloudbees.plugins.credentials.SystemCredentialsProvider.getInstance().getStore().getCredentials(com.cloudbees.plugins.credentials.domains.Domain.global()).find { it.getId().equals(CREDENTIAL_ID) }.getSecret().getPlainText()
+          def URL = "https://github.com/cb-ci-templates/ci-poc-params-update.git"
+          def REPO = "http://$SECRET@$URL"
+          def result = ["/bin/bash", "-c", "git ls-remote -h " + REPO + " | sed 's/.*refs\\/heads\\/\\(.*\\)/\\1/'"].execute().text.tokenize();
+          println result
+                          }
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: tmpBranchScan
+    resumeBlocked: false
+  properties:
+  - folderCredentialsProperty:
+      folderCredentials:
+      - credentials:
+        - stringCredentialsImpl:
+            description: github-token
+            id: github-token
+            secret: '{AQAAABAAAAAwCmFkjWn/rTb12BIWYrOJSoRllFZIt6P5inCU82rFv7qnP3EdbmkLRkk/eBIhmvmoG9CX1jU+IhcyMsjsZJ5pyA==}'
+        - stringCredentialsImpl:
+            description: jenkins-user-11f84596b9220b6bdf413d9e21504d456a
+            id: jenkins-token
+            secret: '{AQAAABAAAAAwjF4HcmIvJCsam5g5NPTcMwuU6YBLmyWS7N3NopwB6MtvstssgYEzGT8H+OIUCD4sTq+rcKYEl1CgpTZRHnSExw==}'
+        domain: {}
+  - envVars: {}
+  - kubernetes: {}
+  - mavenConfigFolderOverrideProperty:
+      override: false
+  - itemRestrictions:
+      filter: false
+- kind: pipeline
+  name: cmscripts
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |+
+        pipeline {
+            agent {
+                kubernetes {
+                    defaultContainer 'build'
+                    yaml """
+                apiVersion: v1
+                kind: Pod
+                metadata:
+                  labels:
+                    some-label: some-label-value
+                spec:
+                  containers:
+                  - name: build
+                    #image: maven:3.6.3-jdk-11
+                    #custom image
+                    image: caternberg/ci-toolbox
+                    command:
+                    - cat
+                    tty: true
+                    volumeMounts:
+                    - name: config-volume
+                      mountPath: /usr/local/bin
+                  volumes:
+                    #https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap
+                    - name: config-volume
+                      configMap:
+                        # Provide the name of the ConfigMap containing the files you want
+                        # to add to the container
+                        name: pod-build-scripts
+                        defaultMode: 0744
+                  """
+                }
+            }
+            stages {
+                stage('Stage') {
+                    environment {
+                        WORLD = "Stockholm!!"
+                    }
+                    steps {
+                        sh "helloworld.sh"
+                        sh "jq-sample-step.sh"
+
+                        //will fail because mvn is not installed yet
+                       //sh "mvn-version.sh"
+                    }
+                }
+                stage('Stage-Sequence-Wrapper') {
+                    environment {
+                        WORLD = "Berlin"
+                    }
+                    steps {
+                        sh "stage-sequence.sh"
+        //              sh '''
+        //                  find /usr/local/bin  -type f -name "*.sh" -exec bash {} \\;
+        //                '''
+                    }
+                }
+            }
+        }
+
+  description: ''
+  disabled: false
+  displayName: cmscripts
+  resumeBlocked: false
+- kind: folder
+  name: creds
+  description: ''
+  displayName: creds
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      filter: false
+  - folderCredentialsProperty:
+      folderCredentials:
+      - credentials:
+        - usernamePassword:
+            password: '{AQAAABAAAAAQ5Tk6Qi869/E99KGARHrdzj4KiqkeFvJjjuVvbXi8CMU=}'
+            description: test
+            id: test
+            usernameSecret: false
+            username: test
+        domain: {}
+- kind: pipeline
+  name: docker-kaniko
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "pipeline {\n    agent {\n        kubernetes {\n            yaml '''\n\
+        \    apiVersion: v1\n    kind: Pod\n    spec:\n      containers:\n      -\
+        \ name: maven\n        image: maven:3.8.1-jdk-8\n        command:\n      \
+        \  - sleep\n        args:\n        - 99d\n      - name: kaniko\n        image:\
+        \ gcr.io/kaniko-project/executor:debug\n        command:\n        - sleep\n\
+        \        args:\n        - 9999999\n        volumeMounts:\n        - name:\
+        \ kaniko-secret\n          mountPath: /kaniko/.docker\n      restartPolicy:\
+        \ Never\n      volumes:\n      - name: kaniko-secret\n        secret:\n  \
+        \          secretName: saas-credentials\n            items:\n            -\
+        \ key: .dockerconfigjson\n              path: config.json\n'''\n\n       \
+        \ }\n    }\n\n    stages {\n            stage ('Clone') {\n              \
+        \  steps {container('maven')  {\n                    git url: 'https://github.com/scriptcamp/kubernetes-kaniko.git',\
+        \ branch: 'main'\n                }\n            }\n\n            }\n\n\n\n\
+        \        stage('Exec Kaniko') {\n            steps {\n                container('kaniko')\
+        \ {\n                    sh '''\n            cat /kaniko/.docker/config.json\n\
+        \            /kaniko/executor --context `pwd` --destination caternberg1.jfrog.io/docker/hello-world:latest\
+        \ --image-name-with-digest-file=image-file \n\n          '''\n           \
+        \     }\n            }\n        }\n    }\n}"
+  description: ''
+  disabled: false
+  displayName: docker-kaniko
+  resumeBlocked: false
+- kind: pipeline
+  name: execresources
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: jobs/Jenkinsfile-sharedlib-loadresource-script.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              url: https://github.com/pipeline-demo-caternberg/pipeline-examples.git
+          branches:
+          - branchSpec:
+              name: '*/master'
+      lightweight: true
+  description: ''
+  disabled: false
+  displayName: execresources
+  resumeBlocked: false
+- kind: freeStyle
+  name: FJ
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  concurrentBuild: false
+  disabled: false
+  displayName: FJ
+  scm:
+    none: {}
+  scmCheckoutStrategy:
+    standard: {}
+- kind: pipeline
+  name: hw
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "// Uses Declarative syntax to run commands inside a container.\npipeline\
+        \ {\n    agent {\n        kubernetes {\n            yaml '''\napiVersion:\
+        \ v1\nkind: Pod\nspec:\n  containers:\n  - name: shell\n    image: ubuntu\n\
+        \    command:\n    - sleep\n    args:\n    - infinity\n'''\n            //\
+        \ Can also wrap individual steps:\n            // container('shell') {\n \
+        \           //     sh 'hostname'\n            // }\n            defaultContainer\
+        \ 'shell'\n        }\n    }\n\n    \n\n    stages {\n        stage('Main')\
+        \ {\n            steps {\n                script {\n                    properties(\n\
+        \                        [\n                            buildDiscarder(\n\
+        \                                logRotator(\n                           \
+        \         daysToKeepStr: '7',\n                                    numToKeepStr:\
+        \ '25'\n                                )\n                            )\n\
+        \                        ]\n                    )\n                }\n   \
+        \            // input \"wait\"\n                sleep 1000000000\n       \
+        \         \n                sh 'hostname'\n            }\n        }\n    }\n\
+        }\n"
+  description: ''
+  disabled: false
+  displayName: hw
+  properties:
+  - buildDiscarder:
+      strategy:
+        logRotator:
+          artifactDaysToKeep: -1
+          artifactNumToKeep: -1
+          daysToKeep: 4
+          numToKeep: 25
+  resumeBlocked: false
+- kind: pipeline
+  name: master
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "node ('built-in-node') {\n    sh \"ls -l\"\n    sh \"uname -a\"\n \
+        \   sh \"env |sort\"\n    \n}"
+  description: ''
+  disabled: false
+  displayName: master
+  resumeBlocked: false
+- kind: multibranch
+  name: MB
+  description: maven
+  displayName: MB
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+      abortBuilds: false
+  projectFactory:
+    customBranchProjectFactory:
+      marker: pom.xml
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            pipeline {
+                agent none
+
+                stages {
+                    stage('Hello') {
+                        steps {
+                            echo 'Hello World'
+                        }
+                    }
+                }
+            }
+  properties:
+  - envVars: {}
+  - kubernetes: {}
+  sourcesList:
+  - branchSource:
+      source:
+        github:
+          apiUri: https://api.github.com
+          traits:
+          - gitHubBranchDiscovery:
+              strategyId: 1
+          - gitHubPullRequestDiscovery:
+              strategyId: 2
+          - gitHubForkDiscovery:
+              trust:
+                gitHubTrustPermissions: {}
+              strategyId: 2
+          repoOwner: org-caternberg
+          credentialsId: ghusertoken
+          id: 8627b50a-cc96-4b04-95bc-ce5102d8391e
+          repository: spring-boot-demo
+          configuredByUrl: true
+          repositoryUrl: https://github.com/org-caternberg/spring-boot-demo.git
+      strategy:
+        allBranchesSame: {}
+- kind: pipeline
+  name: myJob
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        import hudson.model.Job
+        import hudson.model.ParametersDefinitionProperty
+        import hudson.model.StringParameterDefinition
+        import jenkins.model.Jenkins
+
+        /**
+         * Add a parameter. Override if it does already exist.
+         * "comment" : "Update the definition of Job Parameters (update or override existing)",
+         "parameters" : [ "jobName" , "paramName" , "paramDefaultValue"],
+         */
+        def updateParam(String jobName, String paramName,String paramDefaultValue) {
+            //Retrieve the Job by name
+            Job job = Jenkins.instance.getAllItems(Job.class).find { job -> jobName == job.name }
+            //Retrieve the ParametersDefinitionProperty that contains the list of parameters.
+            ParametersDefinitionProperty jobProp = job.getProperty(ParametersDefinitionProperty.class)
+            if (jobProp != null) {
+                //Retrieve the ParameterDefinition by name
+                def param = jobProp.getParameterDefinition(paramName)
+                //If the parameter exists, remove it
+                if (param) {
+                    println("--- Parameter ^${paramName} already exists, removing it ---")
+                    jobProp.getParameterDefinitions().remove(param)
+                }
+                //Add the parameter (here a StringParameter)
+                println("--- Add Parameter(key=^${jobName}, defaultValue=^${paramName})  ---")
+                jobProp.getParameterDefinitions().add(new StringParameterDefinition(paramName, paramDefaultValue))
+                //Save the job
+                job.save()
+            }
+        }
+
+
+
+
+
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+            agent {
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                          containers:
+                          - name: shell
+                            image: ubuntu
+                            command:
+                            - sleep
+                            args:
+                            - infinity
+                        '''
+                    defaultContainer 'shell'
+                }
+            }
+            parameters {
+                string(name: 'myparam', defaultValue: 'Hello',
+                        description: 'How should I greet the world?')
+            }
+            stages {
+                stage('Main') {
+                    steps {
+                        script {
+                            updateParam("myJob","myparam","myNewValue111")
+                        }
+                        echo  "PARAM: ^${params.myparam}"
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: myJob
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - string:
+          trim: false
+          defaultValue: myNewValue
+          name: myparam
+  resumeBlocked: false
 - kind: organizationFolder
-  name: GHOrg
-  displayName: GHOrg
+  name: myorg
+  displayName: myorg
   navigators:
   - github:
+      enableAvatar: true
       apiUri: https://api.github.com
       traits:
       - gitHubBranchDiscovery:
@@ -18,7 +1822,7 @@ items:
             gitHubTrustPermissions: {}
           strategyId: 2
       repoOwner: org-folderscan-example
-      credentialsId: ghorg-app
+      credentialsId: ghusertoken
   orphanedItemStrategy:
     defaultOrphanedItemStrategy:
       pruneDeadBranches: true
@@ -29,50 +1833,37 @@ items:
   - customMultiBranchProjectFactory:
       factory:
         customBranchProjectFactory:
+          marker: JenkinsfileCD
+          definition:
+            cpsScmFlowDefinition:
+              scriptPath: Jenkinsfile-readTrusted-k8s
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: github-user-ssh
+                      url: git@github.com:pipeline-demo-caternberg/custom-marker-files.git
+                  branches:
+                  - branchSpec:
+                      name: '*/master'
+              lightweight: true
+  - customMultiBranchProjectFactory:
+      factory:
+        customBranchProjectFactory:
           marker: pom.xml
           definition:
-            cpsFlowDefinition:
-              sandbox: true
-              script: |
-                // Uses Declarative syntax to run commands inside a container.
-                pipeline {
-                    agent {
-                        kubernetes {
-                            // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
-                            // Or, to avoid YAML:
-                            // containerTemplate {
-                            //     name 'shell'
-                            //     image 'ubuntu'
-                            //     command 'sleep'
-                            //     args 'infinity'
-                            // }
-                            yaml '''
-                apiVersion: v1
-                kind: Pod
-                spec:
-                  containers:
-                  - name: shell
-                    image: ubuntu
-                    command:
-                    - sleep
-                    args:
-                    - infinity
-                '''
-                            // Can also wrap individual steps:
-                            // container('shell') {
-                            //     sh 'hostname'
-                            // }
-                            defaultContainer 'shell'
-                        }
-                    }
-                    stages {
-                        stage('Main') {
-                            steps {
-                                sh 'hostname'
-                            }
-                        }
-                    }
-                }
+            cpsScmFlowDefinition:
+              scriptPath: templates/multibranchPipeline/Jenkinsfile
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: github-user-ssh
+                      url: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
+                  branches:
+                  - branchSpec:
+                      name: '*/master'
+              lightweight: true
   properties:
   - organizationChildHealthMetricsProperty:
       templates:
@@ -94,6 +1885,79 @@ items:
       - periodicFolderTrigger:
           interval: 1d
   - envVars: {}
+  - kubernetes: {}
+  - suppressFolderAutomaticTriggering:
+      strategy: NONE
+      branches: .*
+  strategy:
+    allBranchesSame: {}
+  trigger:
+    periodicFolderTrigger:
+      interval: 1d
+- kind: organizationFolder
+  name: myorg-springboot-kaniko
+  displayName: myorg-springboot-kaniko
+  navigators:
+  - github:
+      enableAvatar: true
+      apiUri: https://api.github.com
+      traits:
+      - gitHubBranchDiscovery:
+          strategyId: 1
+      - gitHubPullRequestDiscovery:
+          strategyId: 2
+      - gitHubForkDiscovery:
+          trust:
+            gitHubTrustPermissions: {}
+          strategyId: 2
+      repoOwner: org-folderscan-example
+      credentialsId: ghusertoken
+  orphanedItemStrategy:
+    defaultOrphanedItemStrategy:
+      pruneDeadBranches: true
+      daysToKeep: -1
+      numToKeep: -1
+      abortBuilds: false
+  projectFactories:
+  - customMultiBranchProjectFactory:
+      factory:
+        customBranchProjectFactory:
+          marker: pom.xml
+          definition:
+            cpsScmFlowDefinition:
+              scriptPath: templates/multibranchPipeline/Jenkinsfile
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: github-user-ssh
+                      url: git@github.com:pipeline-demo-caternberg/pipeline-examples.git
+                  branches:
+                  - branchSpec:
+                      name: '*/master'
+              lightweight: true
+  properties:
+  - organizationChildHealthMetricsProperty:
+      templates:
+      - worstChildHealthMetric:
+          recursive: true
+      - averageChildHealthMetric: {}
+      - jobStatusHealthMetric:
+          unstable: true
+          countVirginJobs: false
+          failure: true
+          success: true
+          unbuilt: true
+      - projectEnabledHealthMetric: {}
+  - organizationChildOrphanedItemsProperty:
+      strategy:
+        inherit: {}
+  - organizationChildTriggersProperty:
+      templates:
+      - periodicFolderTrigger:
+          interval: 1d
+  - envVars: {}
+  - kubernetes: {}
   - suppressFolderAutomaticTriggering:
       strategy: NONE
       branches: .*
@@ -103,50 +1967,93 @@ items:
     periodicFolderTrigger:
       interval: 1d
 - kind: pipeline
-  name: hellworld
+  name: ParamHelloWorld
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: JenkinsfileHelloWorld.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              url: https://github.com/pipeline-demo-caternberg/pipeline-helloworld.git
+          branches:
+          - branchSpec:
+              name: '*/main'
+      lightweight: false
+  description: ''
+  disabled: false
+  displayName: ParamHelloWorld
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - extendedChoice:
+          propertyKey: mychoice_values
+          propertyFile: ./extended_choice_params.properties
+          saveJSONParameterToFile: false
+          name: myparam
+          multiSelectDelimiter: ','
+          type: PT_SINGLE_SELECT
+          visibleItemCount: 5
+          quoteValue: false
+  resumeBlocked: false
+- kind: pipeline
+  name: pipeline-hello
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: jobs/Jenkinsfile-sharedlib-simple.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              url: https://github.com/pipeline-demo-caternberg/pipeline-examples.git
+          branches:
+          - branchSpec:
+              name: '*/master'
+      lightweight: true
+  description: ''
+  disabled: false
+  displayName: pipeline-hello
+  resumeBlocked: false
+- kind: pipeline
+  name: pipelinetemplatesb
   concurrentBuild: true
   definition:
     cpsFlowDefinition:
       sandbox: true
-      script: "\npipeline {\n    agent none\n    stages {\n        stage('Main') {\n\
-        \            steps {\n                echo \"Hello world\"\n             \
-        \   sleep 5\n            }\n        }\n    }\n}\n        "
+      script: "pipeline {\n    agent any\n        stages {\n            stage('Init'){\n\
+        \                steps {\n                    script {\n                 \
+        \       properties([parameters([string(defaultValue: 'value2', description:\
+        \ 'desc1', name: 'param1', trim: true)])])\n                    }\n      \
+        \          }\n            }\n        }   \n}"
   description: ''
   disabled: false
-  displayName: hellworld
+  displayName: pipelinetemplatesb
   properties:
-  - buildDiscarder:
-      strategy:
-        logRotator:
-          artifactDaysToKeep: -1
-          artifactNumToKeep: -1
-          daysToKeep: -1
-          numToKeep: 10
-  - durabilityHint:
-      hint: MAX_SURVIVABILITY
-  - rateLimitBuilds:
-      throttle:
-        throttle:
-          count: 32
-          userBoost: true
-          durationName: second
+  - parameters:
+      parameterDefinitions:
+      - string:
+          trim: true
+          defaultValue: value2
+          name: param1
+          description: desc1
   resumeBlocked: false
-- kind: folder
-  name: myfolder
+- kind: pipeline
+  name: policytest
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "pipeline {\n  agent none \n  options {\n    timeout(time: 15, unit:\
+        \ 'SECONDS')\n  }\n  \n  stages {\n      stage('Deploy') {\n          agent\
+        \ any \n          steps {\n             timeout(time: 15, unit: 'SECONDS')\
+        \ {\n                  sleep 20\n                  sh 'echo Building artifact'\n\
+        \             }\n          }\n      }\n  }\n}"
   description: ''
-  displayName: myfolder
-  properties:
-  - envVars: {}
-  - itemRestrictions:
-      filter: false
-- kind: folder
-  name: ANDREAS
-  description: ''
-  displayName: ANDREAS
-  properties:
-    - envVars: {}
-    - itemRestrictions:
-        filter: false
+  disabled: false
+  displayName: policytest
+  resumeBlocked: false
 - kind: backupAndRestore
   name: restore
   blockBuildWhenDownstreamBuilding: false
@@ -154,46 +2061,848 @@ items:
   concurrentBuild: false
   disabled: false
   displayName: restore
+- kind: backupAndRestore
+  name: restore1
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  buildersList:
+  - restoreBuilder:
+      ignoreConfirmationFile: true
+      preserveJenkinsHome: false
+      ignoreDigestCheck: false
+      store:
+        s3Store:
+          bucketName: ''
+          sse: true
+          bucketFolder: ''
+          credentialsId: ''
+          region: us-east-1
+      restoreDirectory: ''
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: restore1
 - kind: pipeline
-  name: stressController
+  name: shared-lib
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: Jenkinsfile.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              credentialsId: github-user-ssh
+              url: git@github.com:org-caternberg/custom-sharedlib.git
+          branches:
+          - branchSpec:
+              name: '*/dev'
+      lightweight: true
+  description: ''
+  disabled: false
+  displayName: shared-lib
+  resumeBlocked: false
+- kind: pipeline
+  name: TestActiveChoice
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "// Uses Declarative syntax to run commands inside a container.\npipeline\
+        \ {\n    agent {\n        kubernetes {\n            // Rather than inline\
+        \ YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'\n\
+        \            // Or, to avoid YAML:\n            // containerTemplate {\n \
+        \           //     name 'shell'\n            //     image 'ubuntu'\n     \
+        \       //     command 'sleep'\n            //     args 'infinity'\n     \
+        \       // }\n            yaml '''\napiVersion: v1\nkind: Pod\nspec:\n  containers:\n\
+        \  - name: shell\n    image: ubuntu\n    command:\n    - sleep\n    args:\n\
+        \    - infinity\n'''\n            // Can also wrap individual steps:\n   \
+        \         // container('shell') {\n            //     sh 'hostname'\n    \
+        \        // }\n            defaultContainer 'shell'\n        }\n    }\n\n\n\
+        \    stages {\n        stage('Main') {\n            steps {\n            \
+        \    script {\n                    properties([\n                    parameters([\n\
+        \                        [$class: 'ChoiceParameter', \n                  \
+        \          choiceType: 'PT_SINGLE_SELECT', \n                            description:\
+        \ 'Select the Env Name from the Dropdown List', \n                       \
+        \     filterLength: 1, \n                            filterable: true, \n\
+        \                            name: 'Env', \n                            randomName:\
+        \ 'choice-parameter-5631314439613978', \n                            script:\
+        \ [\n                                $class: 'GroovyScript', \n          \
+        \                      fallbackScript: [\n                               \
+        \     classpath: [], \n                                    sandbox: false,\
+        \ \n                                    script: \n                       \
+        \                 'return[\\'Could not get Env\\']'\n                    \
+        \            ], \n                                script: [\n            \
+        \                        classpath: [], \n                               \
+        \     sandbox: false, \n                                    script: \n   \
+        \                                     'return[\"Dev\",\"QA\",\"Stage\",\"\
+        Prod\"]'\n                                ]\n                            ]\n\
+        \                        ], \n                        [$class: 'CascadeChoiceParameter',\
+        \ \n                            choiceType: 'PT_CHECKBOX', \n            \
+        \                description: 'Select Servers', \n                       \
+        \     filterLength: 1, \n                            filterable: true, \n\
+        \                            name: 'Server', \n                          \
+        \  randomName: 'choice-parameter-5631314456178619', \n                   \
+        \         referencedParameters: 'Env', \n                            script:\
+        \ [\n                                $class: 'GroovyScript', \n          \
+        \                      fallbackScript: [\n                               \
+        \     classpath: [], \n                                    sandbox: false,\
+        \ \n                                    script: \n                       \
+        \                 'return[\\'Could not get Environment from Env Param\\']'\n\
+        \                                ], \n                                script:\
+        \ [\n                                    classpath: [], \n               \
+        \                     sandbox: false, \n                                 \
+        \   script: \n                                        ''' if (Env.equals(\"\
+        Dev\")){\n                                                return[\"devaaa001\"\
+        ,\"devaaa002\",\"devbbb001\",\"devbbb002\",\"devccc001\",\"devccc002\"]\n\
+        \                                            }\n                         \
+        \                   else if(Env.equals(\"QA\")){\n                       \
+        \                         return[\"qaaaa001\",\"qabbb002\",\"qaccc003\"]\n\
+        \                                            }\n                         \
+        \                   else if(Env.equals(\"Stage\")){\n                    \
+        \                            return[\"staaa001\",\"stbbb002\",\"stccc003\"\
+        ]\n                                            }\n                       \
+        \                     else if(Env.equals(\"Prod\")){\n                   \
+        \                             return[\"praaa001\",\"prbbb002\",\"prccc003\"\
+        ]\n                                            }\n                       \
+        \                 '''\n                                ]\n               \
+        \             ]\n                        ]\n                    ])\n     \
+        \           }\n                echo  \"PARAM: ^${params.mytestparam}\"\n \
+        \           }\n        }\n    }\n}\n"
+  description: ''
+  disabled: false
+  displayName: TestActiveChoice
+  resumeBlocked: false
+- kind: pipeline
+  name: testagent
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "// Uses Declarative syntax to run commands inside a container.\npipeline\
+        \ {\n    agent {\n        kubernetes {\n            // Rather than inline\
+        \ YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'\n\
+        \            // Or, to avoid YAML:\n            // containerTemplate {\n \
+        \           //     name 'shell'\n            //     image 'ubuntu'\n     \
+        \       //     command 'sleep'\n            //     args 'infinity'\n     \
+        \       // }\n            yaml '''\napiVersion: v1\nkind: Pod\nmetadata:\n\
+        \  name: test-pd\nspec:\n  containers:\n    #- image: registry.k8s.io/test-webserver\n\
+        \    # https://hub.docker.com/r/gregorysprenger/kraken\n    - image: gregorysprenger/kraken:v1.1.1-8gb-db\n\
+        \    #- image: gregorysprenger/kraken:v1.1.1-4gb-db\n      name: test-container\n\
+        \      command:\n      - sleep\n      args:\n      - infinity\n'''\n     \
+        \       // Can also wrap individual steps:\n            // container('shell')\
+        \ {\n            //     sh 'hostname'\n            // }\n            defaultContainer\
+        \ 'test-container'\n        }\n    }\n    stages {\n        stage('Main')\
+        \ {\n            steps {\n             timeout(2) {\n               sh \"\
+        slepp 1000000\"\n               sh 'hostname'\n            }   \n \n     \
+        \       }\n        }\n    }\n}\n"
+  description: ''
+  disabled: false
+  displayName: testagent
+  resumeBlocked: false
+- kind: pipeline
+  name: testcred-agent
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "//library '_github.com_pipeline-demo-caternberg_pipeline_examples'\
+        \ _\nlibrary identifier: 'custom-lib@master', retriever: modernSCM(\n  [$class:\
+        \ 'GitSCMSource',\n   remote: 'https://github.com/pipeline-demo-caternberg/pipeline-examples.git'])\n\
+        \npipeline {\n    agent {\n        kubernetes {\n            yaml '''\napiVersion:\
+        \ v1\nkind: Pod\nspec:\n  containers:\n  - name: shell\n    image: alpine/k8s:1.25.11\n\
+        \    command:\n    - sleep\n    args:\n    - infinity\n'''\n            defaultContainer\
+        \ 'shell'\n        }\n    }\n    stages {\n        stage('Main') {\n     \
+        \       steps {\n               printCreds ()\n                //sh \"ls -la\
+        \ $JENKINS_HOME\"\n                //-->  //ls: /var/jenkins_home: No such\
+        \ file or directory\n                //sh 'kubectl version'\n            \
+        \    //sh 'kubectl get all'\n           /*     script {\n                \
+        \    def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(\n\
+        \                        com.cloudbees.plugins.credentials.Credentials.class\n\
+        \                    )\n                    for (c in creds) {\n         \
+        \           println(c.id)\n                    if (c.properties.description)\
+        \ {\n                        println(\"   description: \" + c.description)\n\
+        \                    }\n                    if (c.properties.username) {\n\
+        \                        println(\"   username: \" + c.username)\n       \
+        \             }\n                    if (c.properties.password) {\n      \
+        \                  println(\"   password: \" + c.password)\n             \
+        \       }\n                    if (c.properties.passphrase) {\n          \
+        \              println(\"   passphrase: \" + c.passphrase)\n             \
+        \       }\n                    if (c.properties.secret) {\n              \
+        \          println(\"   secret: \" + c.secret)\n                    }\n  \
+        \                  if (c.properties.secretBytes) {\n                     \
+        \   println(\"    secretBytes: \")\n                        println(\"\\n\"\
+        \ + new String(c.secretBytes.getPlainData()))\n                        println(\"\
+        \")\n                    }\n                    if (c.properties.privateKeySource)\
+        \ {\n                        println(\"   privateKey: \" + c.getPrivateKey())\n\
+        \                    }\n                    if (c.properties.apiToken) {\n\
+        \                        println(\"   apiToken: \" + c.apiToken)\n       \
+        \             }\n                    if (c.properties.token) {\n         \
+        \               println(\"   token: \" + c.token)\n                    }\n\
+        \                    if (c.properties.subscriptionId) {\n                \
+        \        println(\"   subscriptionId: \" + c.subscriptionId)\n           \
+        \         }\n                    if (c.properties.clientId) {\n          \
+        \              println(\"   clientId: \" + c.clientId)\n                 \
+        \   }\n                    if (c.properties.tenant) {\n                  \
+        \      println(\"   tenant: \" + c.tenant)\n                    }\n      \
+        \              if (c.properties.clientSecret) {\n                        println(\"\
+        \   clientSecret: \" + c.clientSecret)\n                    }\n          \
+        \          if (c.properties.plainClientSecret) {\n                       \
+        \ println(\"   plainClientSecret: \" + c.plainClientSecret)\n            \
+        \        }\n                      println(\"\")}\n                    \n \
+        \               }\n                */\n            }\n        }\n    }\n}\n"
+  description: ''
+  disabled: false
+  displayName: testcred-agent
+  resumeBlocked: false
+- kind: pipeline
+  name: testcred-master
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: false
+      script: |-
+        node ("master"){
+            sh "ls -la $JENKINS_HOME"
+            def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+                                com.cloudbees.plugins.credentials.Credentials.class
+                            )
+                            for (c in creds) {
+                            println(c.id)
+                            if (c.properties.description) {
+                                println("   description: " + c.description)
+                            }
+                            if (c.properties.username) {
+                                println("   username: " + c.username)
+                            }
+                            if (c.properties.password) {
+                                println("   password: " + c.password)
+                            }
+                            if (c.properties.passphrase) {
+                                println("   passphrase: " + c.passphrase)
+                            }
+                            if (c.properties.secret) {
+                                println("   secret: " + c.secret)
+                            }
+                            if (c.properties.secretBytes) {
+                                println("    secretBytes: ")
+                                println("\n" + new String(c.secretBytes.getPlainData()))
+                                println("")
+                            }
+                            if (c.properties.privateKeySource) {
+                                println("   privateKey: " + c.getPrivateKey())
+                            }
+                            if (c.properties.apiToken) {
+                                println("   apiToken: " + c.apiToken)
+                            }
+                            if (c.properties.token) {
+                                println("   token: " + c.token)
+                            }
+                            if (c.properties.subscriptionId) {
+                                println("   subscriptionId: " + c.subscriptionId)
+                            }
+                            if (c.properties.clientId) {
+                                println("   clientId: " + c.clientId)
+                            }
+                            if (c.properties.tenant) {
+                                println("   tenant: " + c.tenant)
+                            }
+                            if (c.properties.clientSecret) {
+                                println("   clientSecret: " + c.clientSecret)
+                            }
+                            if (c.properties.plainClientSecret) {
+                                println("   plainClientSecret: " + c.plainClientSecret)
+                            }
+                              println("")}
+        }
+  description: ''
+  disabled: false
+  displayName: testcred-master
+  resumeBlocked: false
+- kind: pipeline
+  name: TestExtendeChoiceParamPiplineNew
   concurrentBuild: true
   definition:
     cpsFlowDefinition:
       sandbox: true
       script: |-
-        //To simulate some stress on the controller withgout using sress-ng
-        //The Controller requires to have at least 1 executor assigend
+        import com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition
+
+        //see https://support.cloudbees.com/hc/en-us/articles/115003891391-Pipeline-Snippet-Generator-return-the-name-of-the-object-instead-of-the-object-with-the-parameters
+        //see https://support.cloudbees.com/hc/en-us/articles/115003895271-How-to-do-a-multiselect-input-in-a-pipeline
+        def checkBox(String name, String values, String defaultValue, String propertyFile, String propertyKey,
+                     int visibleItemCnt = 0, String description = '', String delimiter = ',') {
+
+            // default same as number of values
+            visibleItemCnt = visibleItemCnt ?: values.split(',').size()
+            return new ExtendedChoiceParameterDefinition(
+                    name, //name,
+                    "PT_CHECKBOX", //type
+                    values, //value
+                    "", //projectName
+                    "", //propertyFile
+                    """
+                        def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'
+                        def response = new URL(url).getText()
+                        def json = new groovy.json.JsonSlurper().parseText(response)
+                        def valueList = []
+                        json.each{key,value ->  valueList.add(value) }
+                        return valueList
+                    """, //groovyScript
+                    "", //groovyScriptFile
+                    "", //bindings
+                    "", //groovyClasspath
+                    propertyKey, //propertyKey
+                    defaultValue, //defaultValue
+                    "", //defaultPropertyFile
+                    "", //defaultGroovyScript
+                    "", //defaultGroovyScriptFile
+                    "", //defaultBindings
+                    "", //defaultGroovyClasspath
+                    "", //defaultPropertyKey
+                    "", //descriptionPropertyValue
+                    "", //descriptionPropertyFile
+                    "", //descriptionGroovyScript
+                    "", //descriptionGroovyScriptFile
+                    "", //descriptionBindings
+                    "", //descriptionGroovyClasspath
+                    "", //descriptionPropertyKey
+                    "", //javascriptFile
+                    "", //javascript
+                    false, //saveJSONParameterToFile
+                    false, //quoteValue
+                    visibleItemCnt, //visibleItemCount
+                    description, //description
+                    delimiter //multiSelectDelimiter
+            )
+        }
+
+        def testParam = checkBox("images", // name
+                "", // values
+                "", //default value
+                "https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/properties/extended_choice_params.properties",//Absolute Path or Network URL to propertyFile, http://..../property.properties
+                "images",//propertyKey
+                10, //visible item cnt
+                "Multi-select", // description
+        )
+
+        properties(
+                [parameters([testParam])]
+        )
+        node {
+            echo "^${params.images}"
+        }
         pipeline {
-            agent any
+            agent none
             stages {
-                stage('Generate Load') {
+                stage("params") {
                     steps {
-                        // Start the 'yes' command in the background to generate load.
-                        sh '''
-                                yes > /dev/null &
-                                echo $! > yes.pid
-                            '''
-                        // stress cpu see https://www.baeldung.com/linux/cpu-spike-bash
-                        sh '''
-                              dd if=/dev/zero of=/dev/null |
-                              dd if=/dev/zero of=/dev/null |
-                              dd if=/dev/zero of=/dev/null |
-                              dd if=/dev/zero of=/dev/null &
-                            '''
-                        echo "Tip run now: watch kubectl top pod"
-                        // Sleep for a specified duration, e.g., 1 hour.
-                        sleep time: 1, unit: 'HOURS'
-                        //input id: 'Input', message: 'abort', ok: 'continue'
-                        sh '''
-                                kill $(cat yes.pid)
-                                rm -f yes.pid
-                                killall dd
-                            '''
+                        echo "^${params.images}"
+                    }
+
+                }
+            }
+
+        }
+  description: ''
+  disabled: false
+  displayName: TestExtendeChoiceParamPiplineNew
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - extendedChoice:
+          groovyClasspath: ''
+          saveJSONParameterToFile: false
+          groovyScript: "\n                def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'\n\
+            \                def response = new URL(url).getText()\n             \
+            \   def json = new groovy.json.JsonSlurper().parseText(response)\n   \
+            \             def valueList = []\n                json.each{key,value\
+            \ ->  valueList.add(value) }\n                return valueList\n     \
+            \       "
+          bindings: ''
+          name: images
+          description: Multi-select
+          multiSelectDelimiter: ','
+          type: PT_CHECKBOX
+          visibleItemCount: 10
+          quoteValue: false
+  resumeBlocked: false
+- kind: pipeline
+  name: TestExtendeChoiceParamPiplineNew1
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        node {
+            properties([
+                    parameters([
+                            [$class: 'ChoiceParameter',
+                             choiceType: 'PT_SINGLE_SELECT',
+                             description: 'The names',
+                             filterLength: 1,
+                             filterable: true,
+                             name: 'Name',
+                             randomName: 'choice-parameter-5631314439613972',
+                             script: [
+                                     $class: 'GroovyScript',
+                                     script: [
+                                             classpath: [],
+                                             sandbox: false,
+                                             script: '''
+                                    def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'
+                                    def response = new URL(url).getText()
+                                    def json = new groovy.json.JsonSlurper().parseText(response)
+                                    def valueList = []
+                                    json.each{key,value ->  valueList.add(value) }
+                                    println valueList
+                                    return valueList
+                                '''
+                                     ]
+                             ]
+                            ],
+                    ])
+            ])
+        }
+        pipeline {
+            agent {
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        spec:
+                          containers:
+                          - name: shell
+                            image: ubuntu
+                            command:
+                            - sleep
+                            args:
+                            - infinity
+                        '''
+                    defaultContainer 'shell'
+                }
+            }
+
+            stages {
+                stage('Main') {
+                    steps {
+                        sh 'hostname'
                     }
                 }
             }
         }
   description: ''
   disabled: false
-  displayName: stressController
+  displayName: TestExtendeChoiceParamPiplineNew1
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - activeChoice:
+          choiceType: PT_SINGLE_SELECT
+          filterable: true
+          name: Name
+          description: The names
+          filterLength: 1
+          script:
+            groovyScript:
+              script:
+                secureGroovyScript:
+                  sandbox: false
+                  script: "\n                            def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'\n\
+                    \                            def response = new URL(url).getText()\n\
+                    \                            def json = new groovy.json.JsonSlurper().parseText(response)\n\
+                    \                            def valueList = []\n            \
+                    \                json.each{key,value ->  valueList.add(value)\
+                    \ }\n                            println valueList\n         \
+                    \                   return valueList\n                        "
+          randomName: choice-parameter-5631314439613972
+  resumeBlocked: false
+- kind: freeStyle
+  name: TestExtendedChoiceFS
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  builders:
+  - shell:
+      command: 'echo "MYPARAM: $MYPARAM"'
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: TestExtendedChoiceFS
+  parameters:
+  - extendedChoice:
+      groovyClasspath: ''
+      saveJSONParameterToFile: false
+      groovyScript: |-
+        def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'
+        def response = new URL(url).getText()
+        def json = new groovy.json.JsonSlurper().parseText(response)
+        def valueList = []
+        json.each{key,value ->  valueList.add(value) }
+        println valueList
+        return valueList
+      bindings: ''
+      name: MYPARAM
+      multiSelectDelimiter: ','
+      type: PT_SINGLE_SELECT
+      projectName: TestExtendedChoiceFS
+      visibleItemCount: 5
+      quoteValue: false
+  scm:
+    none: {}
+  scmCheckoutStrategy:
+    standard: {}
+- kind: pipeline
+  name: TestExtendedChoicePipeline
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "node {\n    properties([\n        parameters([\n            [$class:\
+        \ 'ChoiceParameter', \n                choiceType: 'PT_SINGLE_SELECT', \n\
+        \                description: 'The names', \n                filterLength:\
+        \ 1, \n                filterable: true, \n                name: 'mytestparam',\
+        \ \n                randomName: \"choice-parameter-$BUILD_ID\", \n       \
+        \         script: [\n                    $class: 'GroovyScript', \n      \
+        \              script: [\n                        classpath: [], \n      \
+        \                  sandbox: false, \n                        script: '''\n\
+        println \"Call script\"\ndef url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'\n\
+        def response = new URL(url).getText()\ndef json = new groovy.json.JsonSlurper().parseText(response)\n\
+        def valueList = []\njson.each{key,value ->  valueList.add(value) }\nprintln\
+        \ valueList\nreturn valueList'''\n                    ]\n                ]\n\
+        \            ], \n        ])\n    ])\n}\n\n// Uses Declarative syntax to run\
+        \ commands inside a container.\npipeline {\n    agent {\n        kubernetes\
+        \ {\n            // Rather than inline YAML, in a multibranch Pipeline you\
+        \ could use: yamlFile 'jenkins-pod.yaml'\n            // Or, to avoid YAML:\n\
+        \            // containerTemplate {\n            //     name 'shell'\n   \
+        \         //     image 'ubuntu'\n            //     command 'sleep'\n    \
+        \        //     args 'infinity'\n            // }\n            yaml '''\n\
+        apiVersion: v1\nkind: Pod\nspec:\n  containers:\n  - name: shell\n    image:\
+        \ ubuntu\n    command:\n    - sleep\n    args:\n    - infinity\n'''\n    \
+        \        // Can also wrap individual steps:\n            // container('shell')\
+        \ {\n            //     sh 'hostname'\n            // }\n            defaultContainer\
+        \ 'shell'\n        }\n    }\n    stages {\n        stage('Main') {\n     \
+        \       steps {\n                echo  \"PARAM: ^${params.mytestparam}\"\n\
+        \            }\n        }\n    }\n}\n"
+  description: ''
+  disabled: false
+  displayName: TestExtendedChoicePipeline
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - activeChoice:
+          choiceType: PT_SINGLE_SELECT
+          filterable: true
+          name: mytestparam
+          description: The names
+          filterLength: 1
+          script:
+            groovyScript:
+              script:
+                secureGroovyScript:
+                  sandbox: false
+                  script: |2-
+
+                    println "Call script"
+                    def url = 'https://raw.githubusercontent.com/cb-ci-templates/ci-shared-library/main/resources/json/test.json'
+                    def response = new URL(url).getText()
+                    def json = new groovy.json.JsonSlurper().parseText(response)
+                    def valueList = []
+                    json.each{key,value ->  valueList.add(value) }
+                    println valueList
+                    return valueList
+          randomName: choice-parameter-35
+  resumeBlocked: false
+- kind: folder
+  name: testfolder
+  description: ''
+  displayName: testfolder
+  groups:
+  - roles:
+    - name: browse
+      grantedAt: current
+    name: dev
+  items:
+  - kind: pipeline
+    name: testTemplateGW
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          library identifier: 'custom-lib@main', retriever: modernSCM(
+            [$class: 'GitSCMSource',
+             remote: 'git@github.com:cb-ci-templates/ci-shared-library.git',
+             credentialsId: 'github-user-ssh'])
+
+          def agentPod = libraryResource 'podtemplates/podTemplate-curl.yaml'
+          pipeline {
+              agent {
+                  kubernetes {
+                      defaultContainer "custom-agent"
+                      yaml agentPod
+                  }
+              }
+              stages {
+                  stage('Hello') {
+                      steps {
+                          sh 'hostname'
+                          helloWorld "^${firstname}"
+                          helloWorld "^${testName}"
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: testTemplateGW
+    resumeBlocked: false
+  - kind: pipeline
+    name: testlib
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: |
+          library 'shared-lib' _
+          pipeline {
+              agent {
+                  kubernetes {
+                      defaultContainer 'build'
+                      yaml """
+                  apiVersion: v1
+                  kind: Pod
+                  metadata:
+                    labels:
+                      some-label: some-label-value
+                  spec:
+                    containers:
+                    - name: tools
+                      image: caternberg/ci-toolbox:latest
+                      imagePullPolicy: Always
+                      command:
+                      - cat
+                      tty: true
+                      volumeMounts:
+                      - name: config-volume
+                        mountPath: /usr/local/bin
+                    - name: sonar-scanner-cli
+                      image: sonarsource/sonar-scanner-cli
+                      imagePullPolicy: Always
+                      command:
+                      - cat
+                      tty: true
+                      volumeMounts:
+                      - name: config-volume
+                        mountPath: /usr/local/bin
+                    - name: build
+                      image: maven:3.6.3-jdk-11
+                      imagePullPolicy: Always
+                      command:
+                      - cat
+                      tty: true
+                      volumeMounts:
+                      - name: config-volume
+                        mountPath: /usr/local/bin
+                    volumes:
+                      #https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap
+                      - name: config-volume
+                        configMap:
+                          # Provide the name of the ConfigMap containing the files you want
+                          # to add to the container
+                          name: pod-build-scripts
+                          defaultMode: 0744
+                    """
+                  }
+              }
+              stages {
+                  stage('helloworld') {
+                      steps {
+                          container("tools") {
+                              helloworld "World"
+                          }
+                      }
+                  }
+                  stage('clone') {
+                      //The cloneAndCheckoutBranch.sh scripts expects the following environment variables
+                      environment {
+                          REPO_URL = "https://github.com/pipeline-demo-caternberg/maven-executable-jar-example.git"
+                          REPO_BRANCH = "master"
+                          GIT_USERNAME = "xxx"
+                          GIT_PASSWORD = "XXX"
+                          GIT_CLONE_DIR = ".app"
+                          GIT_SHALLOW_DEPTH = "1"
+                      }
+                      steps {
+                          container("tools") {
+                              sh "cloneAndCheckoutBranch.sh"
+                          }
+                      }
+                  }
+
+                  stage('build') {
+                      steps {
+                          container("build") {
+                              dir(".app"){
+                                  stepsBuildMaven ()
+                              }
+                          }
+                          container("tools") {
+                              dir(".app"){
+                                  bbResponseHandlerJQ ()
+                              }
+                          }
+                      }
+                  }
+                  stage('QA') {
+                      steps {
+                          container("sonar-scanner-cli") {
+                              //could be wrapped
+                              sh "sonar-scanner -v"
+                              //add more steps for QA
+                          }
+                          //container(...)
+                      }
+                  }
+              }
+          }
+    description: ''
+    disabled: false
+    displayName: testlib
+    resumeBlocked: false
+  properties:
+  - envVars: {}
+  - folderLibraries:
+      libraries:
+      - libraryConfiguration:
+          implicit: true
+          allowVersionOverride: true
+          retriever:
+            modernSCM:
+              clone: false
+              scm:
+                git:
+                  traits:
+                  - gitBranchDiscovery: {}
+                  credentialsId: github-user-ssh
+                  id: 606a5316-f0a1-43f4-a294-b43e6d79f7e7
+                  remote: git@github.com:org-caternberg/custom-sharedlib.git
+          name: shared-lib
+          defaultVersion: dev
+          includeInChangesets: true
+  - kubernetes:
+      permittedClouds:
+      - customtest
+  - itemRestrictions:
+      filter: false
+- kind: pipeline
+  name: testGetFolderCredentials
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: "String folderName = 'ci-templates-demo'\nString credentialsID = \"\
+        jenkins-token\"\ncom.cloudbees.hudson.plugins.folder.AbstractFolder myFolder\
+        \ = Jenkins.instance.getAllItems(com.cloudbees.hudson.plugins.folder.AbstractFolder.class).find{\
+        \ (it.name == folderName) }\nprintln \"Folder : \" + myFolder.name \n/*works\
+        \ also \ndef myFolder = Jenkins.instance.getItemByFullName(myFolder.name)\n\
+        println \"Folder : \" + myFolder.name\n*/\ndef creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(com.cloudbees.plugins.credentials.Credentials.class,\
+        \ myFolder)\nprint creds\ndef cred=creds.find{ (it.id == credentialsID)}\n\
+        println cred\nprintln cred.getSecret().getPlainText()\ndef SECRET = cred.getSecret().getPlainText()\n\
+        def url = \"https://\"+ SECRET + \"@sda.acaternberg.flow-training.beescloud.com/sb/job/ci-templates-demo/job/DEMO-ParameterUsage/job/initData/lastSuccessfulBuild/artifact/newparams.txt/*view*/\"\
+        \nprintln url\ndef result = [\"/bin/bash\", \"-c\", \"curl -L \" + url].execute().text.tokenize();\n\
+        println result\nreturn result"
+  description: ''
+  disabled: false
+  displayName: testGetFolderCredentials
+  properties:
+  - jobLocalConfiguration:
+      changeReasonComment: ''
+  resumeBlocked: false
+- kind: pipeline
+  name: testGitBranches
+  concurrentBuild: true
+  definition:
+    cpsScmFlowDefinition:
+      scriptPath: jobs/Jenkinsfile-ExtendedChoiceParamsGitBranches.groovy
+      scm:
+        scmGit:
+          userRemoteConfigs:
+          - userRemoteConfig:
+              url: https://github.com/pipeline-demo-caternberg/pipeline-examples.git
+          branches:
+          - branchSpec:
+              name: '*/master'
+      lightweight: true
+  description: ''
+  disabled: false
+  displayName: testGitBranches
+  resumeBlocked: false
+- kind: pipeline
+  name: testtemplate
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+        agent {
+          label 'mypod'
+        }
+
+            stages {
+                stage('Main') {
+                    steps {
+                        sh 'pwd && ls -ls '
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: testtemplate
+  resumeBlocked: false
+- kind: pipeline
+  name: testtmp
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+            agent {
+                kubernetes {
+                    yaml '''
+                        apiVersion: v1
+                        kind: Pod
+                        metadata:
+                          labels:
+                            app: my-app
+                        spec:
+                          containers:
+                          - name: maven
+                            image: maven:3.8.4-jdk-11
+                            command:
+                            - cat
+                            tty: true
+        '''
+                    defaultContainer 'maven'
+                }
+            }
+            stages {
+                stage('Main') {
+                    steps {
+                        sh 'hostname'
+                        sleep 1000000
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: testtmp
+  properties:
+  - jobLocalConfiguration:
+      changeReasonComment: ''
   resumeBlocked: false

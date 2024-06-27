@@ -1,0 +1,124 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: backupAndRestore
+  name: backup
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  buildersList:
+  - backupBuilder:
+      subjects:
+      - jobConfigurationSubject: {}
+      - systemConfigurationSubject:
+          omitMasterKey: false
+      format:
+        tarGzFormat: {}
+      exclusive: false
+      store:
+        localFileStore:
+          dir: /backup/controller-0
+      retentionPolicy:
+        noRetentionPolicy: {}
+      safeDelaySeconds: 0
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: backup
+- kind: backupAndRestore
+  name: restore
+  blockBuildWhenDownstreamBuilding: false
+  blockBuildWhenUpstreamBuilding: false
+  buildersList:
+  - restoreBuilder:
+      ignoreConfirmationFile: true
+      preserveJenkinsHome: false
+      ignoreDigestCheck: false
+      store:
+        localFileStore:
+          dir: /backup/controller-0
+      restoreDirectory: ''
+  concurrentBuild: false
+  description: ''
+  disabled: false
+  displayName: restore
+- kind: pipeline
+  name: testAgentNodePool
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+            agent {
+                kubernetes {
+                    // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
+                    // Or, to avoid YAML:
+                    // containerTemplate {
+                    //     name 'shell'
+                    //     image 'ubuntu'
+                    //     command 'sleep'
+                    //     args 'infinity'
+                    // }
+                    yaml '''
+        ---
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: test-agent-node-pool
+          labels:
+            node: test-node-agent-pool
+        spec:
+          nodeSelector:
+            cloudbees.custom.agent: agent
+          affinity:
+            podAntiAffinity:
+              preferredDuringSchedulingIgnoredDuringExecution:
+                - podAffinityTerm:
+                    labelSelector:
+                      matchExpressions:
+                        - key: "com.cloudbees.cje.type"
+                          operator: "In"
+                          values:
+                            - "master"
+                            - "cjoc"
+                    topologyKey: "kubernetes.io/hostname"
+                  weight: 1
+            nodeAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                nodeSelectorTerms:
+                  - matchExpressions:
+                      - key: cloudbees.custom.agent
+                        operator: In
+                        values:
+                          - "agent"
+          containers:
+            - name: shell
+              image: ubuntu
+              command:
+                - sleep
+              args:
+                - infinity
+
+        '''
+                    // Can also wrap individual steps:
+                    // container('shell') {
+                    //     sh 'hostname'
+                    // }
+                    defaultContainer 'shell'
+                    retries 2
+                }
+            }
+            stages {
+                stage('Main') {
+                    steps {
+                        sh 'hostname'
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: testAgentNodePool
+  resumeBlocked: false

@@ -4,6 +4,7 @@ jenkins:
   - "JNLP4-connect"
   - "OperationsCenter2"
   - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
@@ -48,6 +49,24 @@ jenkins:
   remotingSecurity:
     enabled: true
   scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        properties:
+        - "apiToken"
+        - "consoleUrlProvider"
+        - "blueSteelRedirectOptOutProperty"
+        - "myView"
+        - preferredProvider:
+            providerId: "default"
+        - "timezone"
+        - "experimentalFlags"
+        - mailer:
+            emailAddress: "acaternberg@cloudbees.com"
   slaveAgentPort: 50000
   updateCenter:
     sites:

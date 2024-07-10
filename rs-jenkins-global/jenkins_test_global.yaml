@@ -126,7 +126,7 @@ jenkins:
   nodes:
   - permanent:
       launcher:
-        jnlp:
+        inbound:
           workDirSettings:
             disabled: false
             failIfWorkDirIsMissing: false
@@ -194,7 +194,7 @@ jenkins:
   - permanent:
       labelString: "Windows"
       launcher:
-        jnlp:
+        inbound:
           workDirSettings:
             disabled: false
             failIfWorkDirIsMissing: false

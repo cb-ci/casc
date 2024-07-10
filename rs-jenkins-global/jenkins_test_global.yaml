@@ -76,10 +76,13 @@ jenkins:
   agentProtocols:
   - "JNLP4-connect"
   - "Ping"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "Oefklocjen001d.adwin.renesas.com"
   - name: "Windows"
@@ -117,7 +120,7 @@ jenkins:
         name: "hudson.plugins.build_timeout"
       name: "Custom for Debug"
   markupFormatter: "plainText"
-  mode: EXCLUSIVE
+  mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
   nodes:
@@ -211,36 +214,87 @@ jenkins:
   remotingSecurity:
     enabled: true
   scmCheckoutRetryCount: 0
-  securityRealm:
-    ldap:
-      configurations:
-      - groupSearchBase: "OU=Groups,OU=5370,OU=RenesasSystemObject"
-        groupSearchFilter: "(objectCategory=Group)"
-        inhibitInferRootDN: false
-        managerDN: "user@renesas"
-        managerPasswordSecret: "{***}"
-        rootDN: "DC=adwin,DC=renesas,DC=com"
-        server: "ldap://ree-dusdc0.adwin.renesas.com:389"
-        userSearch: "(&(objectCategory=Person)(userPrincipalName={0}))"
-        userSearchBase: "OU=People,OU=AccountManager"
-      disableMailAddressResolver: false
-      disableRolePrefixing: true
-      groupIdStrategy: "caseInsensitive"
-      userIdStrategy: "caseInsensitive"
+  securityRealm: "operationsCenter"
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "default"
-      url: "https://updates.jenkins.io/update-center.json"
+    - id: "core-mm-offline"
+      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+    - id: "cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
   - all:
       name: "all"
   viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: true
+support:
+  automatedBundleConfiguration:
+    componentIds:
+    - "CloudBeesAssuranceSupport"
+    - "AgentsConfigFile"
+    - "ConfigFileComponent"
+    - "OtherConfigFilesComponent"
+    - "AboutBrowser"
+    - "AboutJenkins"
+    - "AboutUser"
+    - "AdministrativeMonitors"
+    - "AgentProtocols"
+    - "BuildQueue"
+    - "CustomLogs"
+    - "DumpExportTable"
+    - "EnvironmentVariables"
+    - "FileDescriptorLimit"
+    - "GCLogs"
+    - "HeapUsageHistogram"
+    - "ItemsContent"
+    - "AgentsJVMProcessSystemMetricsContents"
+    - "MasterJVMProcessSystemMetricsContents"
+    - "JenkinsLogs"
+    - "LoadStats"
+    - "LoggerManager"
+    - "Metrics"
+    - "NetworkInterfaces"
+    - "NodeExecutors"
+    - "NodeMonitors"
+    - "OtherLogs"
+    - "ReverseProxy"
+    - "RootCAs"
+    - "RunningBuilds"
+    - "SlaveCommandStatistics"
+    - "SlaveLaunchLogs"
+    - "SlaveLogs"
+    - "AgentsSystemConfiguration"
+    - "MasterSystemConfiguration"
+    - "SystemProperties"
+    - "TaskLogs"
+    - "ThreadDumps"
+    - "UpdateCenter"
+    - "UserCount"
+    - "ComponentImpl"
+    - "SlowRequestComponent"
+    - "HighLoadComponent"
+    - "DeadlockRequestComponent"
+    - "OperationsCenterSupportComponent"
+    - "UserActivityComponent"
+    - "PipelineInternalCalls"
+    - "PipelineTimings"
+    - "PipelineThreadDump"
+    enabled: true
+    period: 1
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"
     typeFilter: "none"
 security:
+  anonymizeSupportBundle:
+    enabled: false
   apiToken:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false

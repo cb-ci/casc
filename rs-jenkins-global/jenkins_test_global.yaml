@@ -350,9 +350,9 @@ unclassified:
     - "jobBuildDiscarder"
   buildStepOperation:
     enabled: false
-  cacheConfig:
-    cacheGetJobs: false
-    cacheGetJobsMinutes: 0
+#  cacheConfig:
+#    cacheGetJobs: false
+#    cacheGetJobsMinutes: 0
   casCGlobalConfig:
     configurationPath: "/jenkins/JCasC/jenkins_test_global.yaml"
   email-ext:
@@ -397,8 +397,8 @@ unclassified:
     enforceUrl: false
     injectCcudExtension: false
     injectMavenExtension: false
-  jFrogPlatformBuilder:
-    allowHttpConnections: false
+#  jFrogPlatformBuilder:
+#    allowHttpConnections: false
   junitTestResultStorage:
     storage: "file"
   klocworkWrapper:
@@ -450,8 +450,8 @@ unclassified:
     hideCredentials: false
     showEntireCommitSummaryInChanges: false
     useExistingAccountWithSameEmail: false
-  sonarGlobalConfiguration:
-    buildWrapperEnabled: false
+ # sonarGlobalConfiguration:
+ #   buildWrapperEnabled: false
   timestamper:
     allPipelines: false
     elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"

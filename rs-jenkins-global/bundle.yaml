@@ -7,6 +7,7 @@ jcasc:
   - "jenkins_test_global.yaml"
 plugins:
   - "plugins.yaml"
+  - "plugins-parent.yaml"
 #catalog:
 #  - "plugin-catalog.yaml"
 #rbac:

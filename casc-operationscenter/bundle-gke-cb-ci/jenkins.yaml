@@ -272,7 +272,7 @@ unclassified:
     path: "prometheus"
     useAuthenticatedEndpoint: false
   headerLabel:
-    text: "OC CasC ${cascVersion}"
+    text: "${cascVersion}"
   experimentalPlugins:
     enabled: false
   fingerprints:

@@ -1,5 +1,5 @@
 variables:
-  - cascVersion: |-
-      Operatioms Centert CasC Version
-      V4
-  - myKey: myvalue
+  - myTestKey: |-
+      myMultiline1
+      myMultiline2
+  - cascVersion: Operatioms Centert CasC Version V5

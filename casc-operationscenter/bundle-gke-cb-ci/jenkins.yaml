@@ -1,3 +1,22 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - basicSSHUserPrivateKey:
+          description: "gh-ssh"
+          id: "gh-ssh"
+          privateKeySource:
+            directEntry:
+              privateKey: "{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}"
+          scope: GLOBAL
+          username: "cccaternberg"
+      - usernamePassword:
+          description: "GH-user-token"
+          id: "GH-user-token"
+          password: "{AQAAABAAAAAw6AKPydA0gXvrNUl2CcVgrgQry1uey8SIyJ4uD6jQQYfKVx36nIgl0HxneLUPnHbPxABSRzAGNwpRXoKTGoEYNA==}"
+          scope: GLOBAL
+          username: "cccaternberg"
+          usernameSecret: true
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -44,6 +63,7 @@ jenkins:
       - "queueSizeViewColumn"
       - "jenkinsVersionViewColumn"
       - "listSelectionColumn"
+      - "cascViewColumn"
       jobFilters:
       - "connectedMasterViewFilter"
       name: "Controllers"
@@ -91,6 +111,7 @@ jenkins:
       - "queueSizeViewColumn"
       - "jenkinsVersionViewColumn"
       - "listSelectionColumn"
+      - "cascViewColumn"
       jobFilters:
       - "connectedMasterViewFilter"
       name: "Controllers"
@@ -252,8 +273,8 @@ unclassified:
     pollingPeriod: 120
     purgeOnDeactivation: false
   bundleUpdateTiming:
-    automaticReload: false
-    automaticRestart: false
+    automaticReload: true
+    automaticRestart: true
     rejectWarnings: false
     reloadAlwaysOnRestart: false
     skipNewVersions: false
@@ -271,8 +292,6 @@ unclassified:
     defaultNamespace: "cb_ci"
     path: "prometheus"
     useAuthenticatedEndpoint: false
-  headerLabel:
-    text: "${cascVersion}"
   experimentalPlugins:
     enabled: false
   fingerprints:
@@ -280,6 +299,8 @@ unclassified:
     storage: "file"
   gitHubPluginConfig:
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
+  headerLabel:
+    text: "Operatioms Centert CasC Version ${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:

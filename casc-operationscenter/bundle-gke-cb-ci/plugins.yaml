@@ -50,6 +50,7 @@ plugins:
 - id: docker-commons
 - id: durable-task
 - id: echarts-api
+- id: eddsa-api
 - id: font-awesome-api
 - id: git
 - id: git-client
@@ -105,6 +106,7 @@ plugins:
 - id: operations-center-server
 - id: operations-center-sso
 - id: operations-center-updatecenter
+- id: operations-center-webhooks
 - id: plain-credentials
 - id: plugin-util-api
 - id: popper2-api

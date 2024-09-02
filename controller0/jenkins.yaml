@@ -55,6 +55,16 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+  - branchOrTag: "main"
+    scm:
+      git:
+        credentialsId: "ci-template-gh-app"
+        id: "0bcc6b4a-bf1f-4549-af9a-27f5eff23e1d"
+        remote: "https://github.com/cb-ci-templates/ci-templates.git"
+    updateInterval: "1d"
+
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -160,6 +170,7 @@ unclassified:
       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
       Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
@@ -180,27 +191,28 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/mytmp/github-webhook/"
+    configs:
+    - credentialsId: "ghtoken"
+      name: "ghapp"
+    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
   injectionConfig:
     allowUntrusted: false
     checkForBuildAgentErrors: false
     enabled: false
     enforceUrl: false
+    gradleCaptureTaskInputFiles: true
     injectCcudExtension: false
     injectMavenExtension: false
+    mavenCaptureGoalInputFiles: true
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/mytmp/"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/"
   mailer:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-  operationsCenterRootAction:
-    connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAA/x2NWQ7CMAxE75JvkpBuwr0GJ0gcl80lVRYQQtwdw89Ib/RG81an7O9VzQrAeed8\r\
-      \nr4cRogRNGmIAPfVdOGBYRtoPaqcuUdxOr6+6boIts/C51m22Fq8JDXJqMRAVjSmTKY9f1UqlbDih\r\
-      \n579lZfqkcEx4IzlfPBf6fAESTShajAAAAA==\r\n----- END CONNECTION DETAILS -----\n"
   pollSCM:
     pollingThreadCount: 10
   scmGit:

@@ -2,12 +2,9 @@ removeStrategy:
   rbac: SYNC
 roles:
 - name: authenticated
-- filterable: true
-  permissions:
-  - hudson.model.Item.Read
-  name: view-items
 - permissions:
   - hudson.model.Computer.Connect
+  - com.cloudbees.jenkins.plugins.casc.permissions.CascPermission.Item
   - hudson.model.Hudson.UploadPlugins
   - jenkins.metrics.api.Metrics.View
   - hudson.model.Hudson.ConfigureUpdateCenter
@@ -80,10 +77,6 @@ roles:
   - hudson.model.Item.Delete
   - hudson.model.Item.Request
   name: develop
-- filterable: true
-  permissions:
-  - hudson.model.Hudson.Read
-  name: login
 - filterable: true
   permissions:
   - hudson.model.Item.Read

@@ -1,4 +1,4 @@
-#! /bin/bash
+C#! /bin/bash
 
 #https://docs.cloudbees.com/docs/cloudbees-ci-api/latest/bundle-management-api
 

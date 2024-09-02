@@ -7,8 +7,10 @@ jenkins:
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
-      excludeClientIPFromCrumb: true
+      excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
   markupFormatter: "plainText"
@@ -16,20 +18,20 @@ jenkins:
   myViewsTabBar: "standard"
   noUsageStatistics: true
   nodeMonitors:
-    - "architecture"
-    - "clock"
-    - diskSpace:
-        freeSpaceThreshold: "1GiB"
-        freeSpaceWarningThreshold: "2GiB"
-    - "swapSpace"
-    - tmpSpace:
-        freeSpaceThreshold: "1GiB"
-        freeSpaceWarningThreshold: "2GiB"
-    - "responseTime"
-    - ? ''
-        : ignored: true
-    - ? ''
-        : ignored: true
+  - "architecture"
+  - "clock"
+  - diskSpace:
+      freeSpaceThreshold: "1GiB"
+      freeSpaceWarningThreshold: "2GiB"
+  - "swapSpace"
+  - tmpSpace:
+      freeSpaceThreshold: "1GiB"
+      freeSpaceWarningThreshold: "2GiB"
+  - "responseTime"
+  - ? ''
+    : ignored: true
+  - ? ''
+    : ignored: true
   numExecutors: 0
   primaryView:
     all:
@@ -138,14 +140,14 @@ unclassified:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
   bundleUpdateTiming:
-    automaticReload: false
-    automaticRestart: false
+    automaticReload: true
+    automaticRestart: true
     rejectWarnings: false
     reloadAlwaysOnRestart: false
     skipNewVersions: false
   cascItemsConfiguration:
-    variableInterpolationEnabledForAdmin: false
-    variableInterpolationEnabledForNonAdmin: false
+    variableInterpolationEnabledForAdmin: true
+    variableInterpolationEnabledForNonAdmin: true
   cloudBeesSCMReporting:
     enabled: true
   cloudbeesPipelineExplorer:
@@ -184,8 +186,7 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     configs:
-    - credentialsId: "ghtoken"
-      name: "ghapp"
+    - name: "ghapp"
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
   injectionConfig:
     allowUntrusted: false
@@ -200,7 +201,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/test-casc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

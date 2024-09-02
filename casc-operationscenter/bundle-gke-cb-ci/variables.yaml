@@ -1,0 +1,5 @@
+variables:
+  - cascVersion: |-
+      Operatioms Centert CasC Version
+      V4
+  - myKey: myvalue

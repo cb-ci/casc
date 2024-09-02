@@ -55,16 +55,6 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
-globalCloudBeesPipelineTemplateCatalog:
-  catalogs:
-  - branchOrTag: "main"
-    scm:
-      git:
-        credentialsId: "ci-template-gh-app"
-        id: "0bcc6b4a-bf1f-4549-af9a-27f5eff23e1d"
-        remote: "https://github.com/cb-ci-templates/ci-templates.git"
-    updateInterval: "1d"
-
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -139,8 +129,6 @@ security:
     allowedOnController: false
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
-  sSHD:
-    port: -1
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:

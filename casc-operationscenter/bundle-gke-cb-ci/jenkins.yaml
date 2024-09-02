@@ -279,11 +279,11 @@ unclassified:
     duration: 60
     fireAndForget: true
     initialDelay: 15
-    provisionControllerOnCreation: false
+    provisionControllerOnCreation: true
     timeout: 600
   cascItemsConfiguration:
-    variableInterpolationEnabledForAdmin: false
-    variableInterpolationEnabledForNonAdmin: false
+    variableInterpolationEnabledForAdmin: true
+    variableInterpolationEnabledForNonAdmin: true
   cloudbeesPrometheus:
     collectingMetricsPeriodInSeconds: 120
     defaultNamespace: "cb_ci"

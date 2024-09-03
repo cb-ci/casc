@@ -300,7 +300,7 @@ unclassified:
   gitHubPluginConfig:
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:
-    text: "Operatioms Centert CasC Version ${cascVersion}"
+    text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:

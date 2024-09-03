@@ -188,6 +188,8 @@ unclassified:
     configs:
     - name: "ghapp"
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
+  headerLabel:
+    text: "${cascVersion}"
   injectionConfig:
     allowUntrusted: false
     checkForBuildAgentErrors: false

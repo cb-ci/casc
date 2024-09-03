@@ -26,27 +26,3 @@ items:
   description: ''
   disabled: false
   displayName: backup
-- kind: backupAndRestore
-  name: backup2
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  buildersList:
-    - backupBuilder:
-        subjects:
-          - jobConfigurationSubject:
-              excludes: jobs/**/archive/*
-          - systemConfigurationSubject:
-              omitMasterKey: false
-        format:
-          tarGzFormat: {}
-        exclusive: false
-        store:
-          localFileStore:
-            dir: /backup/controller-0
-        retentionPolicy:
-          noRetentionPolicy: {}
-        safeDelaySeconds: 0
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: backup

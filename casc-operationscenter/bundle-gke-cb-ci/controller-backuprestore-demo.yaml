@@ -50,7 +50,7 @@ items:
     displayName: demo-backuprestore
     properties:
       - configurationAsCode:
-          bundle: master/controller-0
+          bundle: master/controller0
       - customWebhookData: {
       }
       - sharedHeaderLabelOptIn:

@@ -3,7 +3,7 @@ removeStrategy:
   items: NONE
 items:
   - kind: managedController
-    name: demo-backupRestore
+    name: demo-backuprestore
     configuration:
       kubernetes:
         allowExternalAgents: false
@@ -23,7 +23,7 @@ items:
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
         storageClassName: ssd-cloudbees-ci-cloudbees-core
-        domain: demo-backupRestore
+        domain: demo-backuprestore
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
@@ -46,8 +46,8 @@ items:
                   - name: backup
                     persistentVolumeClaim:
                       claimName: backup-pvc
-    description: 'demo-backupRestore'
-    displayName: demo-backupRestore
+    description: 'demo-backuprestore'
+    displayName: demo-backuprestore
     properties:
       - configurationAsCode: { }
       - sharedHeaderLabelOptIn:

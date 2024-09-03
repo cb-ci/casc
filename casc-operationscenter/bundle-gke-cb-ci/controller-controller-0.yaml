@@ -1,0 +1,94 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+  - kind: managedController
+    name: controller-0
+    configuration:
+      kubernetes:
+        allowExternalAgents: true
+        terminationGracePeriodSeconds: 1200
+        image: CloudBees CI - Managed Controller - latest
+        memory: 3072
+        fsGroup: '1000'
+        cpus: 1.0
+        readinessTimeoutSeconds: 5
+        livenessInitialDelaySeconds: 300
+        readinessInitialDelaySeconds: 30
+        clusterEndpointId: default
+        disk: 50
+        readinessFailureThreshold: 100
+        livenessTimeoutSeconds: 10
+        storageClassName: ssd-cloudbees-ci-cloudbees-core
+        domain: controller-0
+        livenessPeriodSeconds: 10
+        javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
+          -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
+        nodeSelectors: cloudbees.custom.controller=controller
+        yaml: |
+          ---
+          apiVersion: "apps/v1"
+          kind: "StatefulSet"
+          spec:
+            template:
+              metadata:
+                annotations:
+                  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+              spec:
+                affinity:
+                  nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                      nodeSelectorTerms:
+                      - matchExpressions:
+                        - key: "kubernetes.io/os"
+                          operator: "In"
+                          values:
+                          - "linux"
+                        - key: "cloudbees.custom.controller"
+                          operator: "In"
+                          values:
+                          - "controller"
+                  podAntiAffinity:
+                    preferredDuringSchedulingIgnoredDuringExecution:
+                    - podAffinityTerm:
+                        labelSelector:
+                          matchExpressions:
+                          - key: "com.cloudbees.cje.type"
+                            operator: "In"
+                            values:
+                            - "cjoc"
+                        topologyKey: "kubernetes.io/hostname"
+                      weight: 1
+                    - podAffinityTerm:
+                        labelSelector:
+                          matchExpressions:
+                          - key: "jenkins"
+                            operator: "In"
+                            values:
+                            - "slave"
+                        topologyKey: "kubernetes.io/hostname"
+                      weight: 1
+                containers:
+                  - name: "jenkins"
+                    volumeMounts:
+                      - name: "backup"
+                        mountPath: "/backup"
+                volumes:
+                  - name: backup
+                    persistentVolumeClaim:
+                      claimName: backup-pvc
+    description: ''
+    displayName: controller-0
+    properties:
+      - configurationAsCode: { }
+      - sharedHeaderLabelOptIn:
+          optIn: true
+      - healthReporting:
+          enabled: true
+      - owner:
+          delay: 5
+          owners: ''
+      - envelopeExtension:
+          allowExceptions: false
+      - sharedConfigurationOptOut:
+          optOut: false

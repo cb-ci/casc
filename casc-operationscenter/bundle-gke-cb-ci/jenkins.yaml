@@ -60,8 +60,8 @@ jenkins:
       enableCaptcha: false
       users:
       - id: "admin"
-        password: "your_secure_password"  # replace with your desired password
-        name: ${readFile:${SECRETS}/ocLogin}
+        password: ${readFile:${SECRETS}/ocLogin}  # replace with your desired password
+        name: "admin"
         properties:
         - "apiToken"
         - "consoleUrlProvider"

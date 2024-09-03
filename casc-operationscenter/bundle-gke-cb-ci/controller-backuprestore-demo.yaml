@@ -49,7 +49,10 @@ items:
     description: 'demo-backuprestore'
     displayName: demo-backuprestore
     properties:
-      - configurationAsCode: { }
+      - configurationAsCode:
+          bundle: master/controller-0
+      - customWebhookData: {
+      }
       - sharedHeaderLabelOptIn:
           optIn: true
       - healthReporting:

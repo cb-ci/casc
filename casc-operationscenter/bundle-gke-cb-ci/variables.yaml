@@ -2,4 +2,4 @@ variables:
   - myTestKey: |-
       myMultiline1
       myMultiline2
-  - cascVersion: OC CasC Version V3
+  - cascVersion: OC CasC Version V1

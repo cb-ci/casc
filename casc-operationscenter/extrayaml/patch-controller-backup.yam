@@ -1,0 +1,18 @@
+---
+apiVersion: "apps/v1"
+kind: "StatefulSet"
+spec:
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    spec:
+      containers:
+        - name: "jenkins"
+          volumeMounts:
+            - name: "backup"
+              mountPath: "/backup"
+      volumes:
+        - name: backup
+          persistentVolumeClaim:
+            claimName: backup-pvc

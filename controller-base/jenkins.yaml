@@ -184,10 +184,10 @@ unclassified:
     storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    configs:
-    - name: "ghapp"
-    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
+#  gitHubPluginConfig:
+#    configs:
+#    - name: "ghapp"
+#    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
   injectionConfig:
@@ -201,9 +201,9 @@ unclassified:
     mavenCaptureGoalInputFiles: true
   junitTestResultStorage:
     storage: "file"
-  location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/test-casc/"
+#  location:
+#    adminAddress: "address not configured yet <nobody@nowhere>"
+#    url: "https://sda.acaternberg.flow-training.beescloud.com/test-casc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

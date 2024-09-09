@@ -1,7 +1,10 @@
 removeStrategy:
   rbac: SYNC
 groups:
-  - roles:
+  - members:
+      users:
+        - dev1
+    roles:
       - name: develop
         grantedAt: current
     name: Controller-developers

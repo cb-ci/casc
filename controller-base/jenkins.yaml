@@ -134,7 +134,7 @@ security:
     allowedOnAgents: false
     allowedOnController: false
   gitHostKeyVerificationConfiguration:
-    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+    sshHostKeyVerificationStrategy: "noHostKeyVerificationStrategy"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:

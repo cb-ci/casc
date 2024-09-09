@@ -2,7 +2,6 @@ plugins:
 - id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
 - id: asm-api
-- id: beer
 - id: authentication-tokens
 - id: aws-credentials
 - id: aws-java-sdk-ec2
@@ -40,6 +39,7 @@ plugins:
 - id: cloudbees-view-creation-filter
 - id: cloudbees-workflow-template
 - id: command-launcher
+- id: commons-compress-api
 - id: commons-lang3-api
 - id: commons-text-api
 - id: configuration-as-code
@@ -48,6 +48,7 @@ plugins:
 - id: display-url-api
 - id: durable-task
 - id: echarts-api
+- id: eddsa-api
 - id: email-ext
 - id: font-awesome-api
 - id: git
@@ -105,6 +106,7 @@ plugins:
 - id: pipeline-model-extensions
 - id: pipeline-stage-step
 - id: pipeline-stage-tags-metadata
+- id: pipeline-utility-steps
 - id: plain-credentials
 - id: plugin-util-api
 - id: prism-api

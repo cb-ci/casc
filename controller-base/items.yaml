@@ -2,46 +2,6 @@ removeStrategy:
   rbac: SYNC
   items: NONE
 items:
-- kind: backupAndRestore
-  name: backup
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  buildersList:
-  - backupBuilder:
-      subjects:
-      - jobConfigurationSubject: {}
-      - systemConfigurationSubject:
-          omitMasterKey: false
-      format:
-        tarGzFormat: {}
-      exclusive: false
-      store:
-        localFileStore:
-          dir: /backup/controller-0
-      retentionPolicy:
-        noRetentionPolicy: {}
-      safeDelaySeconds: 0
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: backup
-- kind: backupAndRestore
-  name: restore
-  blockBuildWhenDownstreamBuilding: false
-  blockBuildWhenUpstreamBuilding: false
-  buildersList:
-  - restoreBuilder:
-      ignoreConfirmationFile: true
-      preserveJenkinsHome: false
-      ignoreDigestCheck: false
-      store:
-        localFileStore:
-          dir: /backup/controller-0
-      restoreDirectory: ''
-  concurrentBuild: false
-  description: ''
-  disabled: false
-  displayName: restore
 - kind: pipeline
   name: testAgentNodePool
   concurrentBuild: true

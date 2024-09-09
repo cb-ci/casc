@@ -1,3 +1,4 @@
+# Those plugins manually installed (not using a CasC bundle) might not be installable using the exported CasC bundle if they were uploaded instead of installed through the Plugin Manager
 plugins:
 - id: ace-editor
 - id: antisamy-markup-formatter
@@ -56,6 +57,7 @@ plugins:
 - id: git-client
 - id: github
 - id: github-api
+- id: github-oauth
 - id: gson-api
 - id: handy-uri-templates-2-api
 - id: infradna-backup

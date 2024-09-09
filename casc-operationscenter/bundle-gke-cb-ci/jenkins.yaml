@@ -129,6 +129,11 @@ controllerLifecycleNotifications:
   authenticator: "none"
   enabled: false
   ignoreTlsConnectionErrors: false
+license:
+  certificate: |
+     ${readFile:${SECRETS}/licenseCert}
+  key: |
+     ${readFile:${SECRETS}/licenseKey}
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
@@ -142,6 +147,7 @@ masterprovisioning:
       serviceExposure:
         ingress:
           ingressClass: "nginx"
+      storageClassName: "ssd-cloudbees-ci-cloudbees-core"
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
@@ -231,6 +237,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  cps:
+    hideSandbox: false
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -291,6 +299,8 @@ unclassified:
   fingerprints:
     fingerprintCleanupDisabled: false
     storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:

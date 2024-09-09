@@ -101,6 +101,17 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
+advisor:
+  acceptToS: true
+  ccs:
+  - "andreas.caternberg@gmail.com"
+  - "rjheli39@gmail.com"
+  - "andreas.caternberg@gmail.com"
+  email: "andreas.caternberg@gmail.com"
+  excludedComponents:
+  - "RootCAs"
+  - "HeapUsageHistogram"
+  nagDisabled: false
 beekeeper:
   enabled: true
   securityWarnings:
@@ -224,14 +235,15 @@ security:
     allowedOnAgents: false
     allowedOnController: false
   gitHostKeyVerificationConfiguration:
-    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+    sshHostKeyVerificationStrategy: "noHostKeyVerificationStrategy"
   sSHD:
     port: -1
   securitySettingsEnforcement:
     global:
       realmAndAuthorization:
         canCustomMapping: false
-        canOverride: false
+        canOverride: true
+        crumbIssuer: false
         defaultMappingFactory: "restrictedEquivalentRAMF"
 unclassified:
   buildDiscarders:
@@ -271,7 +283,7 @@ unclassified:
     variableInterpolationEnabledForNonAdmin: true
   cloudbeesPrometheus:
     collectingMetricsPeriodInSeconds: 120
-    defaultNamespace: "cb_ci"
+    defaultNamespace: "cloudbees-core"
     path: "prometheus"
     useAuthenticatedEndpoint: false
   experimentalPlugins:

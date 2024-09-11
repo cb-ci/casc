@@ -1,5 +1,12 @@
 removeStrategy:
   rbac: SYNC
+roles:
+  - filterable: true
+    permissions:
+      - hudson.model.Item.Discover
+      - hudson.model.Hudson.Read
+      - hudson.model.View.Read
+    name: browse
 groups:
   - members:
       users:

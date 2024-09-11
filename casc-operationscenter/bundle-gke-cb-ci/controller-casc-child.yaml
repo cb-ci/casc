@@ -24,7 +24,26 @@ items:
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-        yaml: ''
+        #yaml: ''
+        yaml: |
+          ---
+          apiVersion: "apps/v1"
+          kind: "StatefulSet"
+          spec:
+            template:
+              metadata:
+                annotations:
+                  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+              spec:
+                containers:
+                  - name: "jenkins"
+                    volumeMounts:
+                      - name: "backup"
+                        mountPath: "/backup"
+                volumes:
+                  - name: backup
+                    persistentVolumeClaim:
+                      claimName: backup-pvc
     description: ''
     displayName: controller-child
     properties:

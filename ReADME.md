@@ -1,33 +1,44 @@
+# CloudBees CI Configuratin as Conde (CasC)
 
-# Convert to yaml
-```
-cat jenkins0.yaml |cut -d " " -f 1  | sed "s/^/- id: /g" > plugins.yaml
+This repo has some samples about casc. 
+See 
+* https://docs.cloudbees.com/docs/cloudbees-ci/latest/casc-oc/casc-landing-page
+* https://docs.cloudbees.com/docs/cloudbees-ci/latest/casc-oc/casc-intro
+
+
+Private Notes
+
+
+
+## Convert to yaml
 ```
 
-# Define plugin.yaml
+cat jenkins-plugins.txt |cut -d " " -f 1  | sed "s/^/- id: /g" > plugins.yaml
+```
+
+## Define plugin.yaml
 
 ```
-RS_PLUGINS_1=rs-jenkins-global/plugins_all.yaml
-RS_PLUGINS_2=rs-jenkins0/plugins_all.yaml
+PLUGINS_BASE=controller-base/plugins.yaml
+PLUGINS_CHILD=controller-child/plugins.yaml
 ```
-# Find common lines using process substitution
+## Find common lines using process substitution
 
 ```
-common_lines=$(comm -12 <(sort $RS_PLUGINS_1) <(sort $RS_PLUGINS_2))
-common_lines=$(comm -12 <(sort rs-jenkins-global/plugins.yaml) <(sort rs-jenkins0/plugins.yaml))
+common_lines=$(comm -12 <(sort $PLUGINS_BASE) <(sort $PLUGINS_CHILD))
+common_lines=$(comm -12 <(sort controller-base/plugins.yaml) <(sort controller-child/plugins.yaml))
 # Print the list of common lines/ PRINT COMMON PLUGINS FOR BASE BUNDLE
 echo "$common_lines"
 ```
 
 
-
-# Find lines unique to file2.txt using process substitution
+## Find lines unique to file2.txt using process substitution
 
 ```
-unique_to_file2=$(comm -13 <(sort $RS_PLUGINS_1) <(sort $RS_PLUGINS_2))
-unique_to_file1=$(comm -13 <(sort $RS_PLUGINS_2) <(sort $RS_PLUGINS_1))
+unique_to_file2=$(comm -13 <(sort $PLUGINS_1) <(sort $PLUGINS_2))
+unique_to_file1=$(comm -13 <(sort $PLUGINS_2) <(sort $PLUGINS_1))
 ```
 
-# Print the list of lines unique to 
+## Print the list of lines unique to 
 > echo "$unique_to_file2"
 echo "$unique_to_file1"

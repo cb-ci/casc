@@ -6,7 +6,7 @@
 #Download jq, if not present
 #curl -sLo /tmp/jq https://stedolan.github.io/jq/download/linux64/jq
 #chmod 755 /tmp/jq
-CJOC_URL=https://cjoc.acaternberg.pscbdemos.com
+
 curl -s -X GET -u admin:admin ${CJOC_URL}/cjoc/casc-bundle-mgnt/check-bundle-update > check-bundle-update.json
 cat check-bundle-update.json | jq
 updateAvailable=$(jq '."update-available"' check-bundle-update.json)

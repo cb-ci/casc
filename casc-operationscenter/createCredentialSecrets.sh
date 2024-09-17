@@ -22,4 +22,6 @@ kubectl create secret generic oc-secrets -n "$CBCI_NS" \
     --from-literal=githubToken="$(yq '.githubToken' secrets/cbci-secrets.yaml )" \
     --from-literal=gitHubSSHpriv="$(yq '.gitHubSSHpriv' secrets/cbci-secrets.yaml )" \
     --from-literal=licenseCert="$(yq '.licenseCert' secrets/cbci-secrets.yaml )" \
-    --from-literal=licenseKey="$(yq '.licenseKey' secrets/cbci-secrets.yaml )"
+    --from-literal=licenseKey="$(yq '.licenseKey' secrets/cbci-secrets.yaml )" \
+    --from-literal=awsAccessKey="$(yq '.awsAccessKey' secrets/cbci-secrets.yaml )" \
+    --from-literal=awsSecretKey="$(yq '.awsSecretKey' secrets/cbci-secrets.yaml )"

@@ -24,7 +24,29 @@ items:
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-        yaml: ''
+        yaml: |
+          ---
+          apiVersion: "apps/v1"
+          kind: "StatefulSet"
+          spec:
+            template:
+              metadata:
+                annotations:
+                  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+              spec:
+                containers:
+                  - name: "jenkins"
+                    volumeMounts:
+                      - name: "backup"
+                        mountPath: "/backup"
+                      - name: controller-secrets
+                        mountPath: /var/run/secrets/controller
+                        readOnly: true
+                volumes:
+                  - name: controller-secrets
+                    secret:
+                      defaultMode: 420
+                      secretName: controller-secrets
     description: ''
     displayName: casc-base
     properties:

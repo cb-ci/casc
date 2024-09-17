@@ -38,12 +38,14 @@ items:
                 containers:
                   - name: "jenkins"
                     volumeMounts:
-                      - name: "backup"
-                        mountPath: "/backup"
+                      - name: controller-secrets
+                        mountPath: /var/run/secrets/controller
+                        readOnly: true
                 volumes:
-                  - name: backup
-                    persistentVolumeClaim:
-                      claimName: backup-pvc
+                  - name: controller-secrets
+                    secret:
+                      defaultMode: 420
+                      secretName: controller-secrets
     description: ''
     displayName: controller-child
     properties:

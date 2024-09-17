@@ -37,8 +37,6 @@ items:
                 containers:
                   - name: "jenkins"
                     volumeMounts:
-                      - name: "backup"
-                        mountPath: "/backup"
                       - name: controller-secrets
                         mountPath: /var/run/secrets/controller
                         readOnly: true

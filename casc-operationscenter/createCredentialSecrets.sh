@@ -28,6 +28,6 @@ kubectl create secret generic oc-secrets -n "$CBCI_NS" \
     --from-literal=awsSecretKey="$(yq '.awsSecretKey' secrets/cbci-secrets.yaml )"
 
 kubectl create secret generic controller-secrets -n "$CBCI_NS" \
-    --from-literal=ghAppId="$(yq '.ghAppId' secrets/cbci-secrets.yaml )" \
+    --from-literal=gitHubAppId="$(yq '.gitHubAppId' secrets/cbci-secrets.yaml )" \
     --from-literal=gitHubAppPrivateKey="$(yq '.gitHubAppPrivateKey' secrets/cbci-secrets.yaml )"
 

@@ -117,10 +117,6 @@ jenkins:
   viewsTabBar: "standard"
 advisor:
   acceptToS: true
-  ccs:
-  - "andreas.caternberg@gmail.com"
-  - "rjheli39@gmail.com"
-  - "andreas.caternberg@gmail.com"
   email: "andreas.caternberg@gmail.com"
   excludedComponents:
   - "RootCAs"

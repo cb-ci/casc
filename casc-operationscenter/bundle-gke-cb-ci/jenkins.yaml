@@ -255,10 +255,9 @@ security:
     port: -1
   securitySettingsEnforcement:
     global:
-      realmAndAuthorization:
+      realmOnly:
         canCustomMapping: false
         canOverride: true
-        crumbIssuer: false
         defaultMappingFactory: "restrictedEquivalentRAMF"
 unclassified:
   buildDiscarders:
@@ -311,7 +310,7 @@ unclassified:
   gitHubPluginConfig:
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:
-    text: "OC CasC Version V1"
+    text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:

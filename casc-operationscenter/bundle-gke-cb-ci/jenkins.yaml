@@ -27,9 +27,6 @@ jenkins:
     - tmpSpace:
         freeSpaceThreshold: "1GiB"
         freeSpaceWarningThreshold: "2GiB"
-    - "responseTime"
-    - ? ''
-        : ignored: true
   numExecutors: 2
   primaryView:
     masters:

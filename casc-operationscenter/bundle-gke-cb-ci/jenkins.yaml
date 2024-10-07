@@ -1,52 +1,52 @@
 jenkins:
   agentProtocols:
-  - "Diagnostic-Ping"
-  - "JNLP4-connect"
-  - "OperationsCenter2"
-  - "Ping"
+    - "Diagnostic-Ping"
+    - "JNLP4-connect"
+    - "OperationsCenter2"
+    - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   disabledAdministrativeMonitors:
-  - "hudson.util.DoubleLaunchChecker"
+    - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
-  - name: "built-in"
+    - name: "built-in"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
   nodeMonitors:
-  - "architecture"
-  - "clock"
-  - diskSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "swapSpace"
-  - tmpSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "responseTime"
-  - ? ''
-    : ignored: true
+    - "architecture"
+    - "clock"
+    - diskSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "swapSpace"
+    - tmpSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "responseTime"
+    - ? ''
+        : ignored: true
   numExecutors: 2
   primaryView:
     masters:
       columns:
-      - "status"
-      - "weather"
-      - "jobName"
-      - "manageMaster"
-      - "masterPodStatusViewColumn"
-      - "masterConfigurationStaleViewColumn"
-      - "totalJobsViewColumn"
-      - "queueSizeViewColumn"
-      - "jenkinsVersionViewColumn"
-      - "listSelectionColumn"
-      - "cascViewColumn"
+        - "status"
+        - "weather"
+        - "jobName"
+        - "manageMaster"
+        - "masterPodStatusViewColumn"
+        - "masterConfigurationStaleViewColumn"
+        - "totalJobsViewColumn"
+        - "queueSizeViewColumn"
+        - "jenkinsVersionViewColumn"
+        - "listSelectionColumn"
+        - "cascViewColumn"
       jobFilters:
-      - "connectedMasterViewFilter"
+        - "connectedMasterViewFilter"
       name: "Controllers"
       recurse: true
   projectNamingStrategy: "standard"
@@ -90,37 +90,37 @@ jenkins:
   slaveAgentPort: 50000
   updateCenter:
     sites:
-    - id: "core-oc-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-oc"
-      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
+      - id: "core-oc-offline"
+        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+      - id: "cap-core-oc"
+        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
   views:
-  - masters:
-      columns:
-      - "status"
-      - "weather"
-      - "jobName"
-      - "manageMaster"
-      - "masterPodStatusViewColumn"
-      - "masterConfigurationStaleViewColumn"
-      - "totalJobsViewColumn"
-      - "queueSizeViewColumn"
-      - "jenkinsVersionViewColumn"
-      - "listSelectionColumn"
-      - "cascViewColumn"
-      jobFilters:
-      - "connectedMasterViewFilter"
-      name: "Controllers"
-      recurse: true
-  - all:
-      name: "all"
+    - masters:
+        columns:
+          - "status"
+          - "weather"
+          - "jobName"
+          - "manageMaster"
+          - "masterPodStatusViewColumn"
+          - "masterConfigurationStaleViewColumn"
+          - "totalJobsViewColumn"
+          - "queueSizeViewColumn"
+          - "jenkinsVersionViewColumn"
+          - "listSelectionColumn"
+          - "cascViewColumn"
+        jobFilters:
+          - "connectedMasterViewFilter"
+        name: "Controllers"
+        recurse: true
+    - all:
+        name: "all"
   viewsTabBar: "standard"
 advisor:
   acceptToS: true
   email: "andreas.caternberg@gmail.com"
   excludedComponents:
-  - "RootCAs"
-  - "HeapUsageHistogram"
+    - "RootCAs"
+    - "HeapUsageHistogram"
   nagDisabled: false
 beekeeper:
   enabled: true
@@ -147,17 +147,17 @@ license:
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
-    - imageTag: "cloudbees/cloudbees-core-mm:latest"
-      name: "CloudBees CI - Managed Controller - latest"
+      - imageTag: "cloudbees/cloudbees-core-mm:latest"
+        name: "CloudBees CI - Managed Controller - latest"
   kubernetes:
     clusterEndpoints:
-    - id: "default"
-      jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
-      name: "kubernetes"
-      serviceExposure:
-        ingress:
-          ingressClass: "nginx"
-      storageClassName: "ssd-cloudbees-ci-cloudbees-core"
+      - id: "default"
+        jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
+        name: "kubernetes"
+        serviceExposure:
+          ingress:
+            ingressClass: "nginx"
+        storageClassName: "ssd-cloudbees-ci-cloudbees-core"
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
@@ -168,7 +168,7 @@ masterprovisioning:
       \ -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName=\"\
       cjoc\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled\
-      \ -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0"
+      \ -XX:+UseStringDeduplication -XX:+AlwaysActAsServerClassMachine -Dhudson.slaves.NodeProvisioner.initialDelay=0"
     livenessInitialDelaySeconds: 300
     livenessPeriodSeconds: 10
     livenessTimeoutSeconds: 10
@@ -181,56 +181,56 @@ masterprovisioning:
 support:
   automatedBundleConfiguration:
     componentIds:
-    - "CloudBeesAssuranceSupport"
-    - "CascScmRetrieverSupport"
-    - "CloudBeesCasCUpdateLogBundlesSupport"
-    - "AgentsConfigFile"
-    - "ConfigFileComponent"
-    - "OtherConfigFilesComponent"
-    - "AboutBrowser"
-    - "AboutJenkins"
-    - "AboutUser"
-    - "AdministrativeMonitors"
-    - "AgentProtocols"
-    - "BuildQueue"
-    - "CustomLogs"
-    - "DumpExportTable"
-    - "EnvironmentVariables"
-    - "FileDescriptorLimit"
-    - "GCLogs"
-    - "HeapUsageHistogram"
-    - "ItemsContent"
-    - "AgentsJVMProcessSystemMetricsContents"
-    - "MasterJVMProcessSystemMetricsContents"
-    - "JenkinsLogs"
-    - "LoadStats"
-    - "LoggerManager"
-    - "Metrics"
-    - "NetworkInterfaces"
-    - "NodeExecutors"
-    - "NodeMonitors"
-    - "OtherLogs"
-    - "ReverseProxy"
-    - "RootCAs"
-    - "RunningBuilds"
-    - "SlaveCommandStatistics"
-    - "SlaveLaunchLogs"
-    - "SlaveLogs"
-    - "AgentsSystemConfiguration"
-    - "MasterSystemConfiguration"
-    - "SystemProperties"
-    - "TaskLogs"
-    - "ThreadDumps"
-    - "UpdateCenter"
-    - "UserCount"
-    - "ComponentImpl"
-    - "SlowRequestComponent"
-    - "HighLoadComponent"
-    - "DeadlockRequestComponent"
-    - "KubernetesMasterLogs"
-    - "KubernetesMasterManifests"
-    - "ConnectedMasterSupportComponent"
-    - "UserActivityComponent"
+      - "CloudBeesAssuranceSupport"
+      - "CascScmRetrieverSupport"
+      - "CloudBeesCasCUpdateLogBundlesSupport"
+      - "AgentsConfigFile"
+      - "ConfigFileComponent"
+      - "OtherConfigFilesComponent"
+      - "AboutBrowser"
+      - "AboutJenkins"
+      - "AboutUser"
+      - "AdministrativeMonitors"
+      - "AgentProtocols"
+      - "BuildQueue"
+      - "CustomLogs"
+      - "DumpExportTable"
+      - "EnvironmentVariables"
+      - "FileDescriptorLimit"
+      - "GCLogs"
+      - "HeapUsageHistogram"
+      - "ItemsContent"
+      - "AgentsJVMProcessSystemMetricsContents"
+      - "MasterJVMProcessSystemMetricsContents"
+      - "JenkinsLogs"
+      - "LoadStats"
+      - "LoggerManager"
+      - "Metrics"
+      - "NetworkInterfaces"
+      - "NodeExecutors"
+      - "NodeMonitors"
+      - "OtherLogs"
+      - "ReverseProxy"
+      - "RootCAs"
+      - "RunningBuilds"
+      - "SlaveCommandStatistics"
+      - "SlaveLaunchLogs"
+      - "SlaveLogs"
+      - "AgentsSystemConfiguration"
+      - "MasterSystemConfiguration"
+      - "SystemProperties"
+      - "TaskLogs"
+      - "ThreadDumps"
+      - "UpdateCenter"
+      - "UserCount"
+      - "ComponentImpl"
+      - "SlowRequestComponent"
+      - "HighLoadComponent"
+      - "DeadlockRequestComponent"
+      - "KubernetesMasterLogs"
+      - "KubernetesMasterManifests"
+      - "ConnectedMasterSupportComponent"
+      - "UserActivityComponent"
     enabled: true
     period: 1
 globalCredentialsConfiguration:
@@ -266,23 +266,23 @@ security:
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
-    - "jobBuildDiscarder"
+      - "jobBuildDiscarder"
   bundleStorageService:
     activated: true
     bundles:
-    - name: "controllers"
-      retriever:
-        SCM:
-          ghChecksActivated: false
-          scmSource:
-            git:
-              credentialsId: "gh-ssh"
-              id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
-              remote: "git@github.com:cb-ci/casc.git"
-              traits:
-              - "gitBranchDiscovery"
+      - name: "controllers"
+        retriever:
+          SCM:
+            ghChecksActivated: false
+            scmSource:
+              git:
+                credentialsId: "gh-ssh"
+                id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
+                remote: "git@github.com:cb-ci/casc.git"
+                traits:
+                  - "gitBranchDiscovery"
     checkOutTimeout: 600
-    pollingPeriod: 120
+    pollingPeriod: 60
     purgeOnDeactivation: false
   bundleUpdateTiming:
     automaticReload: true
@@ -314,7 +314,7 @@ unclassified:
   gitHubPluginConfig:
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:
-    text: "${cascVersion}"
+    text: "OC CasC Version V1"
   junitTestResultStorage:
     storage: "file"
   location:
@@ -346,8 +346,8 @@ tool:
     enabled: true
   git:
     installations:
-    - home: "git"
-      name: "Default"
+      - home: "git"
+        name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

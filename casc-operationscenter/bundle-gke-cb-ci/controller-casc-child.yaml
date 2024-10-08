@@ -47,10 +47,10 @@ items:
                       defaultMode: 420
                       secretName: controller-secrets
     description: ''
-    displayName: controller-child
+    displayName: casc-child
     properties:
       - configurationAsCode:
-          bundle: master/casc-child
+          bundle: master/controller-child
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

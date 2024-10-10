@@ -1,3 +1,3 @@
 plugins:
 - id: jira
-- id: beer
+#- id: beer

@@ -84,7 +84,7 @@ jenkins:
           - "experimentalFlags"
           - mailer:
               emailAddress: "acaternberg@cloudbees.com"
-  slaveAgentPort: 50000
+  slaveAgentPort: -1
   updateCenter:
     sites:
       - id: "core-oc-offline"

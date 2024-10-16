@@ -42,7 +42,7 @@ jenkins:
     enabled: true
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
-  slaveAgentPort: 50000
+  slaveAgentPort: -1
   updateCenter:
     sites:
     - id: "core-mm-offline"

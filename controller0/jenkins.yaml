@@ -1,3 +1,23 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - gitHubApp:
+          appID: "982330"
+          description: "ci-template-gh-app"
+          id: "ci-template-gh-app"
+          privateKey: "{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}"
+      - usernamePassword:
+          description: "ghtoken-classic"
+          id: "ghtoken-classic"
+          password: "{AQAAABAAAAAw9AC+DfsjO709HI4mIj9koHdkmhX4Fx+04s7tpj339hZW9DT5/Cv8pe5aVXg4avBr6uorvNAxOMouxbxLNcs4hw==}"
+          scope: GLOBAL
+          username: "cccaternberg"
+      - string:
+          description: "ghtoken"
+          id: "ghtoken"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwr4THNIiUVAjIabf+5hBNDe2HDxovAgBI2XwRHeUe9Md2+gS6p9/5WokgvmxJlo6uNOgRJDLMiXYHmMRM1PcsLg==}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -28,11 +48,10 @@ jenkins:
       freeSpaceThreshold: "1GiB"
       freeSpaceWarningThreshold: "2GiB"
   - "responseTime"
-  - ? ''
-    : ignored: true
-  - ? ''
-    : ignored: true
-  numExecutors: 0
+  nodeProperties:
+  - securityTokens:
+      acceptTasksWithoutOwningItem: false
+  numExecutors: 1
   primaryView:
     all:
       name: "all"
@@ -61,6 +80,15 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+  - branchOrTag: "main"
+    scm:
+      git:
+        credentialsId: "ci-template-gh-app"
+        id: "0bcc6b4a-bf1f-4549-af9a-27f5eff23e1d"
+        remote: "https://github.com/cb-ci-templates/ci-templates.git"
+    updateInterval: "1d"
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -130,6 +158,8 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  cps:
+    hideSandbox: false
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
@@ -186,7 +216,8 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     configs:
-    - name: "ghapp"
+    - credentialsId: "ghtoken"
+      name: "ghapp"
     hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
@@ -203,7 +234,7 @@ unclassified:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/test-casc/"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/"
   mailer:
     charset: "UTF-8"
     useSsl: false

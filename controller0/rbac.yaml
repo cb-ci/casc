@@ -1,7 +1,9 @@
 removeStrategy:
   rbac: SYNC
 roles:
-- name: authenticated
+- permissions:
+  - hudson.model.Hudson.Read
+  name: authenticated
 - permissions:
   - hudson.model.Computer.Connect
   - com.cloudbees.jenkins.plugins.casc.permissions.CascPermission.Item
@@ -11,8 +13,8 @@ roles:
   - nectar.plugins.rbac.groups.Group.Manage
   - hudson.model.Hudson.Administer
   - hudson.model.Item.Cancel
-  - com.cloudbees.plugins.credentials.CredentialsProvider.View
   - com.cloudbees.jenkins.plugin.metrics.views.Alerter.View
+  - com.cloudbees.plugins.credentials.CredentialsProvider.View
   - hudson.model.Computer.Delete
   - hudson.model.Item.Build
   - hudson.model.Item.Move
@@ -29,10 +31,10 @@ roles:
   - hudson.model.Run.Update
   - hudson.model.View.Delete
   - hudson.model.Run.Delete
-  - hudson.model.Computer.Create
   - com.cloudbees.plugins.credentials.CredentialsProvider.ManageDomains
-  - hudson.model.View.Configure
+  - hudson.model.Computer.Create
   - hudson.model.Item.Promote
+  - hudson.model.View.Configure
   - com.cloudbees.jenkins.support.SupportPlugin.DownloadBundle
   - hudson.model.Computer.Build
   - hudson.model.Item.Configure
@@ -65,8 +67,8 @@ roles:
   - hudson.model.Run.Update
   - hudson.model.View.Delete
   - hudson.model.Run.Delete
-  - hudson.model.View.Configure
   - hudson.model.Item.Promote
+  - hudson.model.View.Configure
   - hudson.model.Item.Configure
   - hudson.model.Item.Read
   - hudson.scm.SCM.Tag
@@ -84,3 +86,11 @@ roles:
   - hudson.model.Hudson.Read
   - hudson.model.View.Read
   name: browse
+groups:
+- members:
+    users:
+    - dev1
+  roles:
+  - name: develop
+    grantedAt: current
+  name: proddeployer

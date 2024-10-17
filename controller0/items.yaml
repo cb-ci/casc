@@ -1,0 +1,772 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: folder
+  name: admin
+  description: ''
+  displayName: admin
+  items:
+  - kind: backupAndRestore
+    name: backup
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - backupBuilder:
+        subjects:
+        - jobConfigurationSubject:
+            excludes: jobs/**/archive/*
+        - systemConfigurationSubject:
+            omitMasterKey: false
+        format:
+          tarGzFormat: {}
+        exclusive: false
+        store:
+          localFileStore:
+            dir: /backup/controller-0
+        retentionPolicy:
+          noRetentionPolicy: {}
+        safeDelaySeconds: 0
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: backup
+  - kind: backupAndRestore
+    name: backupS3
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - backupBuilder:
+        subjects:
+        - jobConfigurationSubject: {}
+        - systemConfigurationSubject:
+            omitMasterKey: false
+        format:
+          tarGzFormat: {}
+        exclusive: true
+        store:
+          s3Store:
+            bucketName: backup.cjoc.acaternberg.pscbdemos.com
+            sse: true
+            bucketFolder: backup-sda.acaternberg.flow-training.beescloud.com-controller-0
+            credentialsId: aws
+            region: us-east-1
+        retentionPolicy:
+          upToNRetentionPolicy:
+            n: 2
+        safeDelaySeconds: 0
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: backupS3
+  - kind: backupAndRestore
+    name: restore
+    blockBuildWhenDownstreamBuilding: false
+    blockBuildWhenUpstreamBuilding: false
+    buildersList:
+    - restoreBuilder:
+        ignoreConfirmationFile: true
+        preserveJenkinsHome: false
+        ignoreDigestCheck: false
+        store:
+          localFileStore:
+            dir: /backup/controller-0
+        restoreDirectory: ''
+    concurrentBuild: false
+    description: ''
+    disabled: false
+    displayName: restore
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      filter: false
+- kind: folder
+  name: Pipeline-Demo
+  description: ''
+  displayName: Pipeline-Demo
+  items:
+  - kind: multibranch
+    name: MultiBranch
+    description: maven
+    displayName: MultiBranch
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactory:
+      customBranchProjectFactory:
+        marker: ci-config.yaml
+        definition:
+          cpsScmFlowDefinition:
+            scriptPath: Jenkinsfile-InitAgentDynamic
+            scm:
+              scmGit:
+                userRemoteConfigs:
+                - userRemoteConfig:
+                    credentialsId: ghusertoken
+                    url: https://github.com/cb-ci-templates/ci-shared-library.git
+                branches:
+                - branchSpec:
+                    name: '*/main'
+            lightweight: true
+    properties:
+    - envVars: {}
+    sourcesList:
+    - branchSource:
+        source:
+          github:
+            apiUri: https://api.github.com
+            traits:
+            - gitHubBranchDiscovery:
+                strategyId: 1
+            - gitHubPullRequestDiscovery:
+                strategyId: 2
+            - gitHubForkDiscovery:
+                trust:
+                  gitHubTrustPermissions: {}
+                strategyId: 2
+            repoOwner: cb-ci-templates
+            credentialsId: ci-template-gh-app
+            id: 3eaf5a0b-3aa2-48d6-a490-4aa151eb6b0c
+            repository: sample-app-spring-boot-maven
+            configuredByUrl: true
+            repositoryUrl: https://github.com/cb-ci-templates/sample-app-spring-boot-maven.git
+        strategy:
+          namedBranchesDifferent:
+            defaultProperties:
+            - suppressAutomaticTriggering:
+                triggeredBranchesRegex: ^.*$
+                strategy: INDEXING
+            namedExceptions:
+            - named:
+                name: PR-\d+
+                props:
+                - suppressAutomaticTriggering:
+                    triggeredBranchesRegex: ''
+                    strategy: NONE
+  - kind: cloudbeesTemplatedJob
+    catalog: Pipeline Template Catalog Examples
+    name: MyPTJob
+    model: Pipeline-Tem.c3qk18.log-Examples/helloWorldSimple
+    attributes:
+    - type: string
+      value: Andreas
+      key: firstname
+    - type: string
+      value: MyPTJob
+      key: name
+    - type: string
+      value: Test
+      key: lastname
+  - kind: organizationFolder
+    name: OrgFolder
+    displayName: OrgFolder
+    navigators:
+    - github:
+        enableAvatar: true
+        apiUri: https://api.github.com
+        traits:
+        - gitHubTopicsFilter:
+            topicList: maven
+        - gitHubBranchDiscovery:
+            strategyId: 1
+        - gitHubPullRequestDiscovery:
+            strategyId: 2
+        - gitHubForkDiscovery:
+            trust:
+              gitHubTrustPermissions: {}
+            strategyId: 2
+        repoOwner: cb-ci-templates
+        credentialsId: ci-template-gh-app
+    orphanedItemStrategy:
+      defaultOrphanedItemStrategy:
+        pruneDeadBranches: true
+        daysToKeep: -1
+        numToKeep: -1
+        abortBuilds: false
+    projectFactories:
+    - customMultiBranchProjectFactory:
+        factory:
+          customBranchProjectFactory:
+            marker: ci-config.yaml
+            definition:
+              cpsScmFlowDefinition:
+                scriptPath: Jenkinsfile-InitAgentDynamic
+                scm:
+                  scmGit:
+                    userRemoteConfigs:
+                    - userRemoteConfig:
+                        credentialsId: ci-template-gh-app
+                        url: https://github.com/cb-ci-templates/ci-shared-library.git
+                    branches:
+                    - branchSpec:
+                        name: '*/main'
+                lightweight: true
+    properties:
+    - organizationChildHealthMetricsProperty:
+        templates:
+        - worstChildHealthMetric:
+            recursive: true
+        - averageChildHealthMetric: {}
+        - jobStatusHealthMetric:
+            unstable: true
+            countVirginJobs: false
+            failure: true
+            success: true
+            unbuilt: true
+        - projectEnabledHealthMetric: {}
+    - organizationChildOrphanedItemsProperty:
+        strategy:
+          inherit: {}
+    - organizationChildTriggersProperty:
+        templates:
+        - periodicFolderTrigger:
+            interval: 1d
+    - envVars: {}
+    - suppressFolderAutomaticTriggering:
+        strategy: NONE
+        branches: .*
+    strategy:
+      allBranchesSame: {}
+    trigger:
+      periodicFolderTrigger:
+        interval: 1d
+  - kind: folder
+    name: PipelinesSamples
+    description: ''
+    displayName: PipelinesSamples
+    items:
+    - kind: pipeline
+      name: BAD-ShowGroovyRunsOnController
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |-
+            /*
+            We import the JsonSlurper to simulate some workload on the Controller.
+            JsonSlurper is NOT recommended to be used in production Pipelines. It can slow down the performance!
+            */
+            import groovy.json.JsonOutput
+            import groovy.json.JsonSlurper
+            // Uses Declarative syntax to run commands inside a container.
+            pipeline {
+                agent {
+                    kubernetes {
+                        yaml '''
+                            apiVersion: v1
+                            kind: Pod
+                            spec:
+                              containers:
+                              - name: shell
+                                image: busybox
+                                command:
+                                - sleep
+                                args:
+                                - infinity
+                            '''
+                        defaultContainer 'shell'
+                    }
+                }
+                stages {
+                    stage('controller-groovy') {
+                        steps {
+                            /*
+                            Groovy inside scripts tag will be executed on the Controller!, regardless is inside an agent context
+                            */
+                            script {
+                            // Avoid this! see https://docs.cloudbees.com/docs/cloudbees-ci/latest/pipelines/pipeline-best-practices#_reduce_the_amount_of_groovy_code_executed_by_pipelines
+                                def jsonSlurper = new JsonSlurper()
+                                def objectJson = jsonSlurper.parseText('{ "myList": [4, 8, 15, 16, 23, 42] }')
+                                print objectJson
+                                /*This requires 2 script approvals under https://CONTROLLER_URL/anage/scriptApproval/
+                                * method java.net.InetAddress getCanonicalHostName
+                                * staticMethod java.net.InetAddress getLocalHost
+                                */
+                                println("Running on Controller Host : " + InetAddress.localHost.canonicalHostName)
+                            }
+                            echo "Tip run: watch kubectl top pod --containers"
+                            //sleep 1000
+                            //sh 'echo Running on AGENT-HOST: $(hostname)'
+                        }
+                    }
+                    stage('agent') {
+                        steps {
+                            sh 'echo Running on AGENT-HOST: $(hostname)'
+                        }
+                    }
+                }
+            }
+      description: https://github.com/pipeline-demo-caternberg/pipeline-examples/blob/master/jobs/Jenkinsfile-scriptStepGroovyOnControllerDemo.groovy
+      disabled: false
+      displayName: BAD-ShowGroovyRunsOnController
+      resumeBlocked: false
+    - kind: pipeline
+      name: GitChanglog
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  credentialsId: gh-user-token
+                  url: https://github.com/cb-ci/test.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: GitChanglog
+      resumeBlocked: false
+    - kind: pipeline
+      name: myInitPipeline
+      concurrentBuild: true
+      definition:
+        cpsScmFlowDefinition:
+          scriptPath: Jenkinsfile-InitAgentDynamic
+          scm:
+            scmGit:
+              userRemoteConfigs:
+              - userRemoteConfig:
+                  url: https://github.com/cb-ci-templates/ci-shared-library.git
+              branches:
+              - branchSpec:
+                  name: '*/main'
+          lightweight: true
+      description: ''
+      disabled: false
+      displayName: myInitPipeline
+      resumeBlocked: false
+    - kind: pipeline
+      name: simpleDynamicPodImage
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            def agentimage=""
+            pipeline {
+                agent {
+                    kubernetes {
+                        yaml '''
+                            apiVersion: v1
+                            kind: Pod
+                            spec:
+                              containers:
+                              - name: shell
+                                image: ubuntu
+                                command:
+                                - sleep
+                                args:
+                                - infinity
+                            '''
+                        defaultContainer 'shell'
+                        retries 2
+                    }
+                }
+                stages {
+                    stage('Init') {
+                        steps {
+                            script {
+                                agentimage = "busybox"
+                            }
+                            sh 'hostname'
+                        }
+                    }
+                    stage('CI') {
+             //           parallel {
+            //                stage ("runci"){
+                              agent {
+                                kubernetes {
+                                    yaml """
+                                        apiVersion: v1
+                                        kind: Pod
+                                        spec:
+                                          containers:
+                                          - name: ci
+                                            image: ^${agentimage}
+                                            command:
+                                            - sleep
+                                            args:
+                                            - infinity
+                                        """
+                                    defaultContainer 'ci'
+                                    retries 2
+                                }
+                                }
+                                stages {
+                                    stage("build") {
+                                        steps {
+                                            sh "echo build "
+                                        }
+                                    }
+                                    stage("deploy") {
+                                        steps {
+                                            sh "echo deploy "
+                                        }
+                                    }
+              //                  }
+            //                }
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: simpleDynamicPodImage
+      resumeBlocked: false
+    - kind: pipeline
+      name: testAgentNodePool
+      concurrentBuild: true
+      definition:
+        cpsFlowDefinition:
+          sandbox: true
+          script: |
+            // Uses Declarative syntax to run commands inside a container.
+            pipeline {
+                agent {
+                    kubernetes {
+                        // Rather than inline YAML, in a multibranch Pipeline you could use: yamlFile 'jenkins-pod.yaml'
+                        // Or, to avoid YAML:
+                        // containerTemplate {
+                        //     name 'shell'
+                        //     image 'ubuntu'
+                        //     command 'sleep'
+                        //     args 'infinity'
+                        // }
+                        yaml '''
+            ---
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: test-agent-node-pool
+              labels:
+                node: test-node-agent-pool
+            spec:
+              nodeSelector:
+                cloudbees.custom.agent: agent
+              affinity:
+                podAntiAffinity:
+                  preferredDuringSchedulingIgnoredDuringExecution:
+                    - podAffinityTerm:
+                        labelSelector:
+                          matchExpressions:
+                            - key: "com.cloudbees.cje.type"
+                              operator: "In"
+                              values:
+                                - "master"
+                                - "cjoc"
+                        topologyKey: "kubernetes.io/hostname"
+                      weight: 1
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: cloudbees.custom.agent
+                            operator: In
+                            values:
+                              - "agent"
+              containers:
+                - name: shell
+                  image: ubuntu
+                  command:
+                    - sleep
+                  args:
+                    - infinity
+
+            '''
+                        // Can also wrap individual steps:
+                        // container('shell') {
+                        //     sh 'hostname'
+                        // }
+                        defaultContainer 'shell'
+                        retries 2
+                    }
+                }
+                stages {
+                    stage('Main') {
+                        steps {
+                            sh 'hostname'
+                        }
+                    }
+                }
+            }
+      description: ''
+      disabled: false
+      displayName: testAgentNodePool
+      resumeBlocked: false
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+  - kind: folder
+    name: tmp
+    description: ''
+    displayName: tmp
+    items:
+    - kind: multibranch
+      name: MultiBranch
+      description: maven
+      displayName: MultiBranch
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        customBranchProjectFactory:
+          marker: ci-config.yaml
+          definition:
+            cpsScmFlowDefinition:
+              scriptPath: Jenkinsfile-InitAgentDynamic
+              scm:
+                scmGit:
+                  userRemoteConfigs:
+                  - userRemoteConfig:
+                      credentialsId: ghusertoken
+                      url: https://github.com/cb-ci-templates/ci-shared-library.git
+                  branches:
+                  - branchSpec:
+                      name: '*/main'
+              lightweight: true
+      properties:
+      - envVars: {}
+      sourcesList:
+      - branchSource:
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              repoOwner: cb-ci-templates
+              credentialsId: ci-template-gh-app
+              id: 3eaf5a0b-3aa2-48d6-a490-4aa151eb6b0c
+              repository: sample-app-spring-boot-maven
+              configuredByUrl: true
+              repositoryUrl: https://github.com/cb-ci-templates/sample-app-spring-boot-maven.git
+          strategy:
+            namedBranchesDifferent:
+              defaultProperties:
+              - suppressAutomaticTriggering:
+                  triggeredBranchesRegex: ^.*$
+                  strategy: INDEXING
+              namedExceptions:
+              - named:
+                  name: PR-\d+
+                  props:
+                  - suppressAutomaticTriggering:
+                      triggeredBranchesRegex: ''
+                      strategy: NONE
+    - kind: cloudbeesTemplatedJob
+      catalog: Pipeline Template Catalog Examples
+      name: PTC
+      model: Pipeline-Tem.c3qk18.log-Examples/simpleMultiBranch
+      attributes:
+      - type: credentials
+        value: ci-template-gh-app
+        key: githubToken
+      - type: string
+        value: cb-ci-templates
+        key: organsisation
+      - type: string
+        value: sample-app-helloworld
+        key: repoName
+      - type: string
+        value: PTC
+        key: name
+    - kind: cloudbeesTemplatedJob
+      catalog: Pipeline Template Catalog Examples
+      name: PTC3
+      model: Pipeline-Tem.c3qk18.log-Examples/simpleMultiBranch
+      attributes:
+      - type: credentials
+        value: ci-template-gh-app
+        key: githubToken
+      - type: string
+        value: cb-ci-templates
+        key: organsisation
+      - type: string
+        value: sample-app-helloworld
+        key: repoName
+      - type: string
+        value: PTC3
+        key: name
+    - kind: cloudbeesTemplatedJob
+      catalog: Pipeline Template Catalog Examples
+      name: PTCHW
+      model: Pipeline-Tem.c3qk18.log-Examples/helloWorldSimple
+      attributes:
+      - type: string
+        value: A
+        key: firstname
+      - type: string
+        value: PTCHW
+        key: name
+      - type: string
+        value: B
+        key: lastname
+    - kind: multibranch
+      name: TestMB
+      description: spring-boot-maven
+      displayName: TestMB
+      orphanedItemStrategy:
+        defaultOrphanedItemStrategy:
+          pruneDeadBranches: true
+          daysToKeep: -1
+          numToKeep: -1
+          abortBuilds: false
+      projectFactory:
+        customBranchProjectFactory:
+          marker: ci-config.yaml
+          definition:
+            cpsFlowDefinition:
+              sandbox: true
+              script: |
+                pipeline {
+                    agent none
+
+                    stages {
+                        stage('Hello') {
+                            steps {
+                                echo 'Hello World'
+                            }
+                        }
+                    }
+                }
+      properties:
+      - envVars: {}
+      sourcesList:
+      - branchSource:
+          source:
+            github:
+              apiUri: https://api.github.com
+              traits:
+              - gitHubBranchDiscovery:
+                  strategyId: 1
+              - gitHubPullRequestDiscovery:
+                  strategyId: 2
+              - gitHubForkDiscovery:
+                  trust:
+                    gitHubTrustPermissions: {}
+                  strategyId: 2
+              repoOwner: cb-ci-templates
+              credentialsId: ci-template-gh-app
+              id: 8c8ac576-3ff2-41e3-87ad-c36d056aac18
+              repository: sample-app-spring-boot-maven
+              configuredByUrl: true
+              repositoryUrl: https://github.com/cb-ci-templates/sample-app-spring-boot-maven.git
+          strategy:
+            namedBranchesDifferent:
+              defaultProperties:
+              - suppressAutomaticTriggering:
+                  triggeredBranchesRegex: ^.*$
+                  strategy: INDEXING
+              namedExceptions:
+              - named:
+                  name: PR-\d+
+                  props:
+                  - suppressAutomaticTriggering:
+                      triggeredBranchesRegex: ''
+                      strategy: NONE
+    properties:
+    - envVars: {}
+    - itemRestrictions:
+        filter: false
+  properties:
+  - folderCredentialsProperty:
+      folderCredentials:
+      - credentials:
+        - usernamePassword:
+            password: '{AQAAABAAAAAwkq8jYxohIph+ebppkuz+/wFrcqwNfqwm+3dRhhL5NA+qQgcoRB0GbibZh00ocVs7La+0go1szTLGAbJt+gqW/A==}'
+            description: gh-token-ci-templates-repo-classic
+            id: gh-token-ci-templates-repo-classic
+            usernameSecret: false
+            username: cccaternberg
+        domain: {}
+  - envVars: {}
+  - itemRestrictions:
+      allowedTypes:
+      - org.jenkinsci.plugins.workflow.job.WorkflowJob
+      - Pipeline-Tem.c3qk18.log-Examples/helloWorldSimple
+      - Pipeline-Tem.c3qk18.log-Examples/mavenMultiBranch
+      - jenkins.branch.OrganizationFolder
+      - Pipeline-Tem.c3qk18.log-Examples/helloWorldMultiBranch
+      - Pipeline-Tem.c3qk18.log-Examples/simpleMultiBranch
+      - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+      - com.cloudbees.hudson.plugins.folder.Folder
+      filter: true
+- kind: pipeline
+  name: testPipeline
+  concurrentBuild: true
+  definition:
+    cpsFlowDefinition:
+      sandbox: true
+      script: |
+        // Uses Declarative syntax to run commands inside a container.
+        pipeline {
+            agent {
+                kubernetes {
+                    yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: shell
+            image: ubuntu
+            command:
+            - sleep
+            args:
+            - infinity
+            securityContext:
+              # ubuntu runs as root by default, it is recommended or even mandatory in some environments (such as pod security admission "restricted") to run as a non-root user.
+              runAsUser: 1000
+        '''
+
+                    defaultContainer 'shell'
+                    retries 2
+                }
+            }
+            stages {
+                stage('Main') {
+                    steps {
+                        sh 'hostname'
+                        echo "^${params.env}"
+                    }
+                }
+            }
+        }
+  description: ''
+  disabled: false
+  displayName: testPipeline
+  filteredRoles:
+  - develop
+  - browse
+  properties:
+  - parameters:
+      parameterDefinitions:
+      - choice:
+          name: env
+          choices:
+          - dev
+          - val
+          - prod
+      - booleanParam:
+          defaultValue: true
+          name: webhook
+      - string:
+          trim: false
+          name: repo
+  resumeBlocked: false

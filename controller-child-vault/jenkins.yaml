@@ -1,0 +1,75 @@
+credentials:
+  cloudbeesHashicorpVault:
+    domainCredentials:
+    - credentials:
+      - vaultUsernamePassword:
+          description: "vault-cloudbees-login"
+          id: "vault-cloudbees-login"
+          passwordKey: "password"
+          usernameKey: "username"
+          vaultSecretEngine:
+            genericKV1SecretEngine:
+              authenticationId: "vault"
+              path: "secret/cloudbees-login"
+jenkins:
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+  - "operationsCenterAgentProvisioningService"
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
+  labelAtoms:
+  - name: "built-in"
+  securityRealm: "operationsCenter"
+  slaveAgentPort: -1
+  updateCenter:
+    sites:
+    - id: "core-mm-offline"
+      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
+    - id: "cap-core-mm"
+      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+beekeeper:
+  enabled: true
+  securityWarnings:
+    enabledForCore: true
+    enabledForPlugins: true
+  upgrades:
+    autoDowngradePlugins: false
+    autoUpgradePlugins: true
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+  vaultGlobalConfiguration:
+    authentications:
+    - appRoleAuthentication:
+        id: "vault"
+        roleId: "88d69714-0e7f-7a6d-e188-81a14d773d09"
+        secretId: "{AQAAABAAAAAwHJCfm8lzs3muZTn4qL8nYsJ2oIf7piwr2VRx88jNna5HmEGn4LLkInvy7Z2boPjJXV/mihEhfueLVeYl4Msq0g==}"
+    skipSslVerification: true
+    url: "http://vault.vault.svc.cluster.local:8200"
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  bundleUpdateTiming:
+    automaticReload: true
+    automaticRestart: true
+    rejectWarnings: false
+    reloadAlwaysOnRestart: false
+    skipNewVersions: false
+  cascItemsConfiguration:
+    variableInterpolationEnabledForAdmin: true
+    variableInterpolationEnabledForNonAdmin: true
+  cloudBeesSCMReporting:
+    enabled: true
+  experimentalPlugins:
+    enabled: false
+  headerLabel:
+    text: "${cascVersion}"
+tool:
+  cloudbeesPluginUsageAnalyzer:
+    enabled: true

@@ -1,0 +1,12 @@
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+  vaultGlobalConfiguration:
+    authentications:
+      - appRoleAuthentication:
+          id: "vault"
+          roleId: b260296a-7b01-d76a-9e20-935f086f7659
+          secretId: 2d27b079-ed94-ece6-f6a4-73ff9a017d38
+    skipSslVerification: true
+    url: "http://vault.vault.svc.cluster.local:8200"

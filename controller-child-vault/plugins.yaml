@@ -71,7 +71,6 @@ plugins:
 - id: jaxb
 - id: jdk-tool
 - id: jjwt-api
-- id: job-dsl
 - id: joda-time-api
 - id: jquery3-api
 - id: json-api

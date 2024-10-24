@@ -3,7 +3,7 @@ removeStrategy:
   items: NONE
 items:
   - kind: pipeline
-    name: vaultTest
+    name: testVault
     concurrentBuild: true
     definition:
       cpsFlowDefinition:
@@ -35,7 +35,7 @@ items:
               stages {
                   stage('Main') {
                       steps {
-                          withCredentials([usernamePassword(credentialsId: 'vault-cloudbees-login', passwordVariable: 'pw', usernameVariable: 'user')]) {
+                          withCredentials([usernamePassword(credentialsId: 'vault-kv1-mysecret', passwordVariable: 'pw', usernameVariable: 'user')]) {
                                 echo "$user"
                                 echo "$pw"
                               }
@@ -45,6 +45,8 @@ items:
           }
     description: ''
     disabled: false
-    displayName: vaultTest
-    properties: {}
+    displayName: testVault
+    properties:
+    - jiraProjectProperty: {
+        }
     resumeBlocked: false

@@ -31,14 +31,6 @@ jenkins:
   - all:
       name: "all"
   viewsTabBar: "standard"
-beekeeper:
-  enabled: true
-  securityWarnings:
-    enabledForCore: true
-    enabledForPlugins: true
-  upgrades:
-    autoDowngradePlugins: false
-    autoUpgradePlugins: true
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"

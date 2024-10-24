@@ -35,7 +35,7 @@ items:
               stages {
                   stage('Main') {
                       steps {
-                          withCredentials([usernamePassword(credentialsId: 'vault-kv1-mysecret', passwordVariable: 'pw', usernameVariable: 'user')]) {
+                          withCredentials([usernamePassword(credentialsId: 'vault-cloudbees-login', passwordVariable: 'pw', usernameVariable: 'user')]) {
                                 echo "$user"
                                 echo "$pw"
                               }

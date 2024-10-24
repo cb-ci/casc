@@ -39,8 +39,8 @@ globalCredentialsConfiguration:
     authentications:
     - appRoleAuthentication:
         id: "vault"
-        roleId: "88d69714-0e7f-7a6d-e188-81a14d773d09"
-        secretId: "{AQAAABAAAAAwHJCfm8lzs3muZTn4qL8nYsJ2oIf7piwr2VRx88jNna5HmEGn4LLkInvy7Z2boPjJXV/mihEhfueLVeYl4Msq0g==}"
+        roleId: "b260296a-7b01-d76a-9e20-935f086f7659"
+        secretId: "861e10e7-1c78-fa58-033f-1044290a7e1c"
     skipSslVerification: true
     url: "http://vault.vault.svc.cluster.local:8200"
 unclassified:

@@ -9,7 +9,7 @@ items:
       cpsFlowDefinition:
         sandbox: true
         script: |
-          // Uses Declarative syntax to run commands inside a container.
+         // Uses Declarative syntax to run commands inside a container.
           pipeline {
               agent {
                   kubernetes {
@@ -36,9 +36,13 @@ items:
                   stage('Main') {
                       steps {
                           withCredentials([usernamePassword(credentialsId: 'vault-cloudbees-login', passwordVariable: 'pw', usernameVariable: 'user')]) {
-                                echo "$user"
-                                echo "$pw"
-                              }
+                              echo "$user"
+                              echo "$pw"
+                          }
+                          withCredentials([usernamePassword(credentialsId: 'vault-kv2-cloudbees-login', passwordVariable: 'pw', usernameVariable: 'user')]) {
+                              echo "$user"
+                              echo "$pw"
+                          }
                       }
                   }
               }

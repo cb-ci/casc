@@ -108,14 +108,15 @@ groups:
   - name: administer
     grantedAt: current
   name: Administrators
+- roles:
+  - name: develop
+    grantedAt: current
+  name: Developers
 - members:
     users:
     - dev1
   roles:
-  - name: develop
-    grantedAt: current
-  name: Developers
-- roles:
   - name: browse
     grantedAt: current
+    propagates: false
   name: Browsers

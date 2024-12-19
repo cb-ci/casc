@@ -1,0 +1,36 @@
+removeStrategy:
+  rbac: SYNC
+  items: NONE
+items:
+- kind: folder
+  name: project-a
+  description: ''
+  displayName: project-a
+  groups:
+  - members:
+      internal_groups:
+      - oc-developers
+    roles:
+    - name: administer
+      grantedAt: current
+    name: prject-a-admin
+  items:
+  - kind: pipeline
+    name: test
+    concurrentBuild: true
+    definition:
+      cpsFlowDefinition:
+        sandbox: true
+        script: ''
+    description: ''
+    disabled: false
+    displayName: test
+    resumeBlocked: false
+  properties:
+  - envVars: {}
+  - itemRestrictions:
+      allowedTypes:
+      - org.jenkinsci.plugins.workflow.job.WorkflowJob
+      - jenkins.branch.OrganizationFolder
+      - org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
+      filter: true

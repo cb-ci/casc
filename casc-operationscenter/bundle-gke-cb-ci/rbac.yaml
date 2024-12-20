@@ -115,6 +115,7 @@ groups:
 - members:
     users:
     - dev1
+    - controlleradmin
   roles:
   - name: browse
     grantedAt: current

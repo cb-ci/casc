@@ -86,7 +86,7 @@ jenkins:
               emailAddress: "acaternberg@cloudbees.com"
       - id: "controlleradmin"
         password: ${readFile:${SECRETS}/ocLoginPassword}  # replace with your desired password
-        name: "dev1"
+        name: "controlleradmin"
         properties:
           - "apiToken"
           - "consoleUrlProvider"

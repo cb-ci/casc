@@ -26,6 +26,7 @@ plugins:
 - id: cloudbees-jenkins-advisor
 - id: cloudbees-license
 - id: cloudbees-monitoring
+- id: cloudbees-prometheus
 - id: cloudbees-nodes-plus
 - id: cloudbees-pipeline-explorer
 - id: cloudbees-platform-common

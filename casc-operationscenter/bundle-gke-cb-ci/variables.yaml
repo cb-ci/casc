@@ -4,3 +4,4 @@ variables:
       myMultiline2
   - cascVersion: OC CasC Version V1
   - cjocName: cjoc1
+  - environment: dev

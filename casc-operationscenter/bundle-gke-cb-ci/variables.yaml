@@ -2,6 +2,6 @@ variables:
   - myTestKey: |-
       myMultiline1
       myMultiline2
-  - cascVersion: OC CasC Version V1
-  - cjocName: cjoc1
+  - cascVersion: OC CasC Version V2
+  - cjocName: cjoc
   - environment: dev

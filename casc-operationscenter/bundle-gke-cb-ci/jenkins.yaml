@@ -163,7 +163,7 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
       - id: "default"
-        jenkinsUrl: "http://cjoc.${environment}.svc.cluster.local/cjoc/"
+        jenkinsUrl: "http://cjoc.cjoc1.svc.cluster.local/cjoc/"
         name: "kubernetes"
         serviceExposure:
           ingress:

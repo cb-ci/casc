@@ -163,12 +163,12 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
       - id: "default"
-        jenkinsUrl: "http://cjoc.cloudbees-core.svc.cluster.local/cjoc/"
+        jenkinsUrl: "http://${cjocName}.${cjocName}.svc.cluster.local"
         name: "kubernetes"
         serviceExposure:
           ingress:
             ingressClass: "nginx"
-        storageClassName: "ssd-cloudbees-ci-cloudbees-core"
+        storageClassName: "ssd-cloudbees-ci-${cjocName}"
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
@@ -177,7 +177,7 @@ masterprovisioning:
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
       https\" -Dcom.cloudbees.networking.hostname=\"sda.acaternberg.flow-training.beescloud.com\"\
       \ -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName=\"\
-      cjoc\""
+      ${cjocName}\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled\
       \ -XX:+UseStringDeduplication -XX:+AlwaysActAsServerClassMachine -Dhudson.slaves.NodeProvisioner.initialDelay=0"
     livenessInitialDelaySeconds: 300
@@ -322,14 +322,14 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
+    hookUrl: "https://${cjocName}.sda.acaternberg.flow-training.beescloud.com/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://sda.acaternberg.flow-training.beescloud.com/cjoc/"
+    url: "https://${cjocName}.sda.acaternberg.flow-training.beescloud.com"
   mailer:
     charset: "UTF-8"
     useSsl: false

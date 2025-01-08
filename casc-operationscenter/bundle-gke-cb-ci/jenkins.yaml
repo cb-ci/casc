@@ -163,7 +163,7 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
       - id: "default"
-        jenkinsUrl: "http://${cjocName}.${cjocName}.svc.cluster.local"
+        jenkinsUrl: "http://cjoc.${cjocName}.svc.cluster.local/${cjocName}/"
         name: "kubernetes"
         serviceExposure:
           ingress:
@@ -322,14 +322,14 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://${cjocName}.sda.acaternberg.flow-training.beescloud.com/github-webhook/"
+    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/${cjocName}/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://${cjocName}.sda.acaternberg.flow-training.beescloud.com"
+    url: "https://sda.acaternberg.flow-training.beescloud.com/${cjocName}/"
   mailer:
     charset: "UTF-8"
     useSsl: false

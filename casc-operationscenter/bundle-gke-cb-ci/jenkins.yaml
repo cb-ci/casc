@@ -163,12 +163,12 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
       - id: "default"
-        jenkinsUrl: "http://cjoc.cjoc1.svc.cluster.local/cjoc/"
+        jenkinsUrl: "http://cjoc.${namespace}.svc.cluster.local/cjoc/"
         name: "kubernetes"
         serviceExposure:
           ingress:
             ingressClass: "nginx"
-        storageClassName: "ssd-cloudbees-ci-cjoc1"
+        storageClassName: "ssd-cloudbees-ci-${namespace}"
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
@@ -187,7 +187,7 @@ masterprovisioning:
     readinessFailureThreshold: 100
     readinessInitialDelaySeconds: 30
     readinessTimeoutSeconds: 5
-    storageClassName: "ssd-cloudbees-ci-cloudbees-core"
+    storageClassName: "ssd-cloudbees-ci-${namespace}"
     terminationGracePeriodSeconds: 1200
 support:
   automatedBundleConfiguration:
@@ -311,7 +311,7 @@ unclassified:
     variableInterpolationEnabledForNonAdmin: true
   cloudbeesPrometheus:
     collectingMetricsPeriodInSeconds: 120
-    defaultNamespace: "cloudbees-core"
+    defaultNamespace: "${namespace}"
     path: "prometheus"
     useAuthenticatedEndpoint: false
   experimentalPlugins:

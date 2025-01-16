@@ -175,7 +175,7 @@ masterprovisioning:
     globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
-      https\" -Dcom.cloudbees.networking.hostname=\"${environment}sda.acaternberg.flow-training.beescloud.com\"\
+      https\" -Dcom.cloudbees.networking.hostname=\"${stage}sda.acaternberg.flow-training.beescloud.com\"\
       \ -Dcom.cloudbees.networking.port=443 -Dcom.cloudbees.networking.operationsCenterName=\"\
       cjoc\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled\
@@ -322,14 +322,14 @@ unclassified:
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
-    hookUrl: "https://${environment}sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
+    hookUrl: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://${environment}sda.acaternberg.flow-training.beescloud.com/cjoc/"
+    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

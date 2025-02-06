@@ -1,9 +1,10 @@
 jenkins:
-  agentProtocols:
-  - "Diagnostic-Ping"
-  - "JNLP4-connect"
-  - "OperationsCenter2"
-  - "Ping"
+# DEPRECATED!?
+#  agentProtocols:
+#  - "Diagnostic-Ping"
+#  - "JNLP4-connect"
+#  - "OperationsCenter2"
+#  - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:

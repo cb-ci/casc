@@ -37,6 +37,11 @@ items:
               spec:
                 containers:
                   - name: "jenkins"
+                    env:
+                    - name: STAGE
+                      value: ${stage}
+                    - name: NAMESPACE
+                      value: ${namespace}
                     volumeMounts:
                       - name: "backup"
                         mountPath: "/backup"

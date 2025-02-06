@@ -55,7 +55,7 @@ items:
     displayName: casc-child
     properties:
       - configurationAsCode:
-          bundle: master/controller-child
+          bundle: ${stage}/controller-child
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

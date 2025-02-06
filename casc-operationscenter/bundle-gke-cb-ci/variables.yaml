@@ -2,7 +2,7 @@ variables:
   - myTestKey: |-
       myMultiline1
       myMultiline2
-  - cascVersion: OC CasC Version V6
+  - cascVersion: OC CasC Version V1
  # - environment: dev
   - stage: ${STAGE}
   - namespace: ${NAMESPACE}

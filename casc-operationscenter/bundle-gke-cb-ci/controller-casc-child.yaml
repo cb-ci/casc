@@ -37,6 +37,11 @@ items:
               spec:
                 containers:
                   - name: "jenkins"
+                    env:
+                    - name: STAGE
+                      value: ${stage}
+                    - name: NAMESPACE
+                      value: ${namespace}
                     volumeMounts:
                       - name: "backup"
                         mountPath: "/backup"
@@ -55,7 +60,7 @@ items:
     displayName: casc-child
     properties:
       - configurationAsCode:
-          bundle: master/controller-child
+          bundle: ${stage}/controller-child
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

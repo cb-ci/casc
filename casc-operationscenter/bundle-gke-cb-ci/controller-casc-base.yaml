@@ -49,7 +49,7 @@ items:
     displayName: casc-base
     properties:
       - configurationAsCode:
-          bundle: master/controller-base
+          bundle: ${stage}/controller-base
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

@@ -1,9 +1,4 @@
 jenkins:
-  agentProtocols:
-    - "Diagnostic-Ping"
-    - "JNLP4-connect"
-    - "OperationsCenter2"
-    - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:

@@ -19,11 +19,6 @@ credentials:
           scope: GLOBAL
           secret: "{AQAAABAAAAAwr4THNIiUVAjIabf+5hBNDe2HDxovAgBI2XwRHeUe9Md2+gS6p9/5WokgvmxJlo6uNOgRJDLMiXYHmMRM1PcsLg==}"
 jenkins:
-  agentProtocols:
-  - "Diagnostic-Ping"
-  - "JNLP4-connect"
-  - "OperationsCenter2"
-  - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:

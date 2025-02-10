@@ -1,9 +1,4 @@
 jenkins:
-  agentProtocols:
-    - "Diagnostic-Ping"
-    - "JNLP4-connect"
-    - "OperationsCenter2"
-    - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   crumbIssuer:
     standard:
@@ -48,8 +43,6 @@ jenkins:
       recurse: true
   projectNamingStrategy: "standard"
   quietPeriod: 5
-  remotingSecurity:
-    enabled: true
   scmCheckoutRetryCount: 0
   securityRealm:
     local:

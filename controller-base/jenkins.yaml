@@ -1,5 +1,5 @@
 jenkins:
-# DEPRECATED!?
+# DEPRECATED!
 #  agentProtocols:
 #  - "Diagnostic-Ping"
 #  - "JNLP4-connect"

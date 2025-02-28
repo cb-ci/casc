@@ -1,4 +1,4 @@
-# CloudBees CI Configuratin as Conde (CasC)
+# CloudBees CI Configuration as Conde (CasC)
 
 This repo has some samples about casc. 
 See 
@@ -8,6 +8,25 @@ See
 
 Private Notes
 
+## Things to remove from casc export 
+cleaning jenkins.yaml after export
+remove info unique to instance (delete whole keys/children from jenkins.yaml)
+location property (instance URL)
+credentials (???)
+connection details to the operations center
+operationsCenterRootAction property
+licence (certificate + key)
+gitHubPluginConfig-hookUrl
+rbac (if you manage this on OC, remove from controller)
+remove info coming from OC
+labelAtoms
+authorizationStrategy
+updateCenter
+remove default config (anything that you haven’t configured yourself)
+agentProtocols
+beekeeper
+globalCredentialsConfiguration
+remotingSecurity
 
 
 ## Convert to yaml

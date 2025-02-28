@@ -1,0 +1,16 @@
+---
+apiVersion: "apps/v1"
+kind: "StatefulSet"
+spec:
+  template:
+    metadata:
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    spec:
+      containers:
+        - name: "jenkins"
+          env:
+            - name: STAGE
+              value: dev.
+            - name: NAMESPACE
+              value: cjoc1

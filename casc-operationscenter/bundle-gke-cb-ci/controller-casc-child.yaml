@@ -60,7 +60,7 @@ items:
     displayName: casc-child
     properties:
       - configurationAsCode:
-          bundle: ${controller-casc-branch}/controller-child
+          bundle: ${controllerCasCBranch}/controller-child
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

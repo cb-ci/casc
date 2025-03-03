@@ -5,6 +5,7 @@ jenkins:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   disabledAdministrativeMonitors:
+    - "RemovedControllerBundleMonitor"
     - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
     - name: "built-in"
@@ -36,6 +37,7 @@ jenkins:
         - "queueSizeViewColumn"
         - "jenkinsVersionViewColumn"
         - "listSelectionColumn"
+        - "cascViewColumn"
         - "cascViewColumn"
       jobFilters:
         - "connectedMasterViewFilter"
@@ -260,6 +262,8 @@ security:
     sshHostKeyVerificationStrategy: "noHostKeyVerificationStrategy"
   sSHD:
     port: -1
+  scriptApproval:
+    forceSandbox: false
   securitySettingsEnforcement:
     global:
       realmOnly:
@@ -284,6 +288,8 @@ unclassified:
                 remote: "git@github.com:cb-ci/casc.git"
                 traits:
                   - "gitBranchDiscovery"
+                #  - headRegexFilter:
+                #      regex: "^${stage}$"
     checkOutTimeout: 600
     pollingPeriod: 60
     purgeOnDeactivation: false

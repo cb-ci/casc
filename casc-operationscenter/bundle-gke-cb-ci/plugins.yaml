@@ -1,7 +1,6 @@
 # Those plugins manually installed (not using a CasC bundle) might not be installable using the exported CasC bundle if they were uploaded instead of installed through the Plugin Manager
 plugins:
 - id: ace-editor
-- id: azure-keyvault
 - id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
 - id: asm-api

@@ -1,9 +1,5 @@
 variables:
-  - cascVersion: CasC Version V2
-  - key: value
-  - long_text: |-
-      multiline string without
-      quotes
+  - cascVersion: CasC Version v3
   - another: text
   - team_name: Team Alpha
   - team_group: alpha

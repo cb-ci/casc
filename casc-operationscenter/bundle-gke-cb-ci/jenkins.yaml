@@ -320,8 +320,6 @@ unclassified:
     storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    hookUrl: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/github-webhook/"
   headerLabel:
     text: "${cascVersion}"
   junitTestResultStorage:

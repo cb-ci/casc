@@ -289,7 +289,7 @@ unclassified:
                 traits:
                   - "gitBranchDiscovery"
                   - headRegexFilter:
-                      regex: "^${controllerCascBranch}$"
+                      regex: "^${controllerCasCBranch}$"
     checkOutTimeout: 600
     pollingPeriod: 60
     purgeOnDeactivation: false

@@ -2,8 +2,8 @@ variables:
   - myTestKey: |-
       myMultiline1
       myMultiline2
-  - cascVersion: OC CasC Version V4
+  - cascVersion: OC CasC Version V1
  # - environment: dev
   - stage: ${STAGE}
   - namespace: ${NAMESPACE}
-  - controller-casc-branch: ${CONTROLLER_CASC_BRANCH}
+  - controllerCascBranch: ${CONTROLLER_CASC_BRANCH}

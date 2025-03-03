@@ -288,8 +288,8 @@ unclassified:
                 remote: "git@github.com:cb-ci/casc.git"
                 traits:
                   - "gitBranchDiscovery"
-                  - headRegexFilter:
-                      regex: "^${controllerCasCBranch}"
+                 # - headRegexFilter:
+                 #     regex: '^${controllerCasCBranch}'
     checkOutTimeout: 600
     pollingPeriod: 60
     purgeOnDeactivation: false

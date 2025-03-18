@@ -1,5 +1,5 @@
 variables:
-  - cascVersion: OC CasC Version V1
+  - cascVersion: OC CasC Version V3
  # - environment: dev
   - stage: ${STAGE}
   - namespace: ${NAMESPACE}

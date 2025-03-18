@@ -3,7 +3,7 @@ removeStrategy:
   items: NONE
 items:
   - kind: managedController
-    name: casc-child1
+    name: casc-child-tmp
     configuration:
       kubernetes:
         allowExternalAgents: false
@@ -20,7 +20,7 @@ items:
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
         storageClassName: ssd-cloudbees-ci-cloudbees-core
-        domain: casc-child1
+        domain:  casc-child-tmp
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
@@ -57,7 +57,7 @@ items:
                       defaultMode: 420
                       secretName: controller-secrets
     description: ''
-    displayName: casc-child1
+    displayName:  casc-child-tmp
     properties:
       - configurationAsCode:
           bundle: ${controllerCasCBranch}/controller-child

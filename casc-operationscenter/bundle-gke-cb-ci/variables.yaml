@@ -1,8 +1,8 @@
 variables:
-  - cascVersion: OC CasC Version V3
+  - cascVersion: OC CasC Version V4
  # - environment: dev
   - stage: ${STAGE}
   - namespace: ${NAMESPACE}
   - controllerCasCBranch: ${CONTROLLER_CASC_BRANCH}
-  - controllerVersion: 2.492.1.3
-  #- controllerVersion: latest
+  #- controllerVersion: 2.492.1.3
+  - controllerVersion: latest

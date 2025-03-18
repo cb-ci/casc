@@ -326,9 +326,9 @@ unclassified:
     text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
-  location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
+#  location:
+#    adminAddress: "address not configured yet <nobody@nowhere>"
+#    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

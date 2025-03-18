@@ -4,3 +4,4 @@ variables:
   - stage: ${STAGE}
   - namespace: ${NAMESPACE}
   - controllerCasCBranch: ${CONTROLLER_CASC_BRANCH}
+  - controllerVersion: 2.492.1.3

@@ -68,7 +68,7 @@ items:
           enabled: true
       - optOutProperty:
           securityEnforcerOptOutMode:
-            authorizationOptOutMode: {
+            optOutNone: {
             }
       - owner:
           delay: 5

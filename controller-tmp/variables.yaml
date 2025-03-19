@@ -1,0 +1,6 @@
+variables:
+  - cascVersion: CasC Version v3
+  - another: text
+  - team_name: Team Alpha
+  - team_group: alpha
+  - external_admin_group: ldap-cb-admins

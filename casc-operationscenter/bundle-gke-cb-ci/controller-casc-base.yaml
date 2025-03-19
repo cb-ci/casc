@@ -19,7 +19,7 @@ items:
         disk: 50
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
-        storageClassName: ssd-cloudbees-ci-cloudbees-core
+        storageClassName: ssd-cloudbees-ci-${namespace}
         domain: casc-base
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled

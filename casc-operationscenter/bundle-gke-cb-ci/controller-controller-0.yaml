@@ -19,7 +19,7 @@ items:
         disk: 50
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
-        storageClassName: ssd-cloudbees-ci-cloudbees-core
+        storageClassName: ssd-cloudbees-ci-${namespace}
         domain: controller-0
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
@@ -71,15 +71,10 @@ items:
                 containers:
                   - name: "jenkins"
                     volumeMounts:
-                      - name: "backup"
-                        mountPath: "/backup"
                       - name: controller-secrets
                         mountPath: /var/run/secrets/controller
                         readOnly: true
                 volumes:
-                  - name: backup
-                    persistentVolumeClaim:
-                      claimName: backup-pvc
                   - name: controller-secrets
                     secret:
                       defaultMode: 420

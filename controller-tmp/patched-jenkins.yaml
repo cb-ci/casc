@@ -1,38 +1,34 @@
 jenkins:
-# DEPRECATED!
-#  agentProtocols:
-#  - "Diagnostic-Ping"
-#  - "JNLP4-connect"
-#  - "OperationsCenter2"
-#  - "Ping"
   authorizationStrategy: "cloudBeesRoleBasedAccessControl"
+  clouds:
+    - "operationsCenterAgentProvisioningService"
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   disabledAdministrativeMonitors:
-  - "hudson.util.DoubleLaunchChecker"
-  labelAtoms:
-  - name: "built-in"
+    - "hudson.util.DoubleLaunchChecker"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
   noUsageStatistics: true
   nodeMonitors:
-  - "architecture"
-  - "clock"
-  - diskSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "swapSpace"
-  - tmpSpace:
-      freeSpaceThreshold: "1GiB"
-      freeSpaceWarningThreshold: "2GiB"
-  - "responseTime"
-  - ? ''
-    : ignored: true
-  - ? ''
-    : ignored: true
+    - "architecture"
+    - "clock"
+    - diskSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "swapSpace"
+    - tmpSpace:
+        freeSpaceThreshold: "1GiB"
+        freeSpaceWarningThreshold: "2GiB"
+    - "responseTime"
+    - '':
+        ignored: true
+    - '':
+        ignored: true
+    - '':
+        ignored: true
   numExecutors: 0
   primaryView:
     all:
@@ -41,16 +37,9 @@ jenkins:
   quietPeriod: 5
   scmCheckoutRetryCount: 0
   securityRealm: "operationsCenter"
-  slaveAgentPort: -1
-  updateCenter:
-    sites:
-    - id: "core-mm-offline"
-      url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-    - id: "cap-core-mm"
-      url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-mm/update-center.json"
   views:
-  - all:
-      name: "all"
+    - all:
+        name: "all"
   viewsTabBar: "standard"
 beekeeper:
   enabled: true
@@ -60,59 +49,84 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
+kube:
+  podTemplatesConfiguration:
+    templates:
+      - agentContainer: "shell"
+        containers:
+          - args: "9999999"
+            command: "sleep"
+            image: "amazonlinux"
+            livenessProbe:
+              failureThreshold: 0
+              initialDelaySeconds: 0
+              periodSeconds: 0
+              successThreshold: 0
+              timeoutSeconds: 0
+            name: "tools"
+            workingDir: "/home/jenkins/agent"
+        id: "ba4f5228-e796-47ad-99a0-6649d2a76c9b"
+        label: "tools"
+        name: "tools"
+        volumes:
+          - persistentVolumeClaim:
+              claimName: "tools-pvc"
+              mountPath: "/tools"
+              readOnly: true
+        yamlMergeStrategy: "override"
 support:
   automatedBundleConfiguration:
     componentIds:
-    - "CloudBeesAssuranceSupport"
-    - "CloudBeesCasCUpdateLogBundlesSupport"
-    - "AgentsConfigFile"
-    - "ConfigFileComponent"
-    - "OtherConfigFilesComponent"
-    - "AboutBrowser"
-    - "AboutJenkins"
-    - "AboutUser"
-    - "AdministrativeMonitors"
-    - "AgentProtocols"
-    - "BuildQueue"
-    - "CustomLogs"
-    - "DumpExportTable"
-    - "EnvironmentVariables"
-    - "FileDescriptorLimit"
-    - "GCLogs"
-    - "HeapUsageHistogram"
-    - "ItemsContent"
-    - "AgentsJVMProcessSystemMetricsContents"
-    - "MasterJVMProcessSystemMetricsContents"
-    - "JenkinsLogs"
-    - "LoadStats"
-    - "LoggerManager"
-    - "Metrics"
-    - "NetworkInterfaces"
-    - "NodeExecutors"
-    - "NodeMonitors"
-    - "OtherLogs"
-    - "ReverseProxy"
-    - "RootCAs"
-    - "RunningBuilds"
-    - "SlaveCommandStatistics"
-    - "SlaveLaunchLogs"
-    - "SlaveLogs"
-    - "AgentsSystemConfiguration"
-    - "MasterSystemConfiguration"
-    - "SystemProperties"
-    - "TaskLogs"
-    - "ThreadDumps"
-    - "UpdateCenter"
-    - "UserCount"
-    - "ComponentImpl"
-    - "SlowRequestComponent"
-    - "HighLoadComponent"
-    - "DeadlockRequestComponent"
-    - "OperationsCenterSupportComponent"
-    - "UserActivityComponent"
-    - "PipelineInternalCalls"
-    - "PipelineTimings"
-    - "PipelineThreadDump"
+      - "CloudBeesAssuranceSupport"
+      - "CloudBeesCasCUpdateLogBundlesSupport"
+      - "AgentsConfigFile"
+      - "ConfigFileComponent"
+      - "OtherConfigFilesComponent"
+      - "AboutBrowser"
+      - "AboutJenkins"
+      - "AboutUser"
+      - "AdministrativeMonitors"
+      - "AgentProtocols"
+      - "BuildQueue"
+      - "CustomLogs"
+      - "DumpExportTable"
+      - "EnvironmentVariables"
+      - "FileDescriptorLimit"
+      - "GCLogs"
+      - "HeapUsageHistogram"
+      - "ItemsContent"
+      - "AgentsJVMProcessSystemMetricsContents"
+      - "MasterJVMProcessSystemMetricsContents"
+      - "JenkinsLogs"
+      - "LoadStats"
+      - "LoggerManager"
+      - "Metrics"
+      - "NetworkInterfaces"
+      - "NodeExecutors"
+      - "NodeMonitors"
+      - "OtherLogs"
+      - "ReverseProxy"
+      - "RootCAs"
+      - "RunningBuilds"
+      - "SlaveCommandStatistics"
+      - "SlaveLaunchLogs"
+      - "SlaveLogs"
+      - "AgentsSystemConfiguration"
+      - "MasterSystemConfiguration"
+      - "SystemProperties"
+      - "TaskLogs"
+      - "ThreadDumps"
+      - "UpdateCenter"
+      - "UserCount"
+      - "ComponentImpl"
+      - "SlowRequestComponent"
+      - "HighLoadComponent"
+      - "DeadlockRequestComponent"
+      - "OperationsCenterSupportComponent"
+      - "UserActivityComponent"
+      - "PipelineInternalCalls"
+      - "PipelineTimings"
+      - "PipelineThreadDump"
     enabled: true
     period: 1
 globalCredentialsConfiguration:
@@ -120,6 +134,11 @@ globalCredentialsConfiguration:
     providerFilter: "none"
     typeFilter: "none"
 appearance:
+  loginTheme:
+    footer: "<p>TestHead</p>"
+    head: "<p>TestHead</p>"
+    header: "<p>TestHead</p>"
+    useDefaultTheme: false
   prism:
     theme: PRISM
 security:
@@ -129,15 +148,19 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  cps:
+    hideSandbox: false
   gitHooks:
     allowedOnAgents: false
     allowedOnController: false
   gitHostKeyVerificationConfiguration:
     sshHostKeyVerificationStrategy: "noHostKeyVerificationStrategy"
+  scriptApproval:
+    forceSandbox: false
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
-    - "jobBuildDiscarder"
+      - "jobBuildDiscarder"
   bundleUpdateTiming:
     automaticReload: true
     automaticRestart: true
@@ -154,6 +177,11 @@ unclassified:
     autoPollingIntervalSeconds: 10
     enabled: true
     searchMaxIndexSize: 1000
+  cloudbeesPrometheus:
+    collectingMetricsPeriodInSeconds: 120
+    defaultNamespace: "cb_ci"
+    path: "prometheus"
+    useAuthenticatedEndpoint: false
   email-ext:
     adminRequiredForTemplateTesting: false
     allowUnregisteredEnabled: false
@@ -166,10 +194,11 @@ unclassified:
     defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
-    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+      - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
     maxAttachmentSize: -1
     maxAttachmentSizeMb: -1
     precedenceBulk: false
+    throttlingEnabled: false
     watchingEnabled: false
   enrichedSummaryConfig:
     enrichedSummaryEnabled: false
@@ -183,12 +212,10 @@ unclassified:
     storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
-#  gitHubPluginConfig:
-#    configs:
-#    - name: "ghapp"
-#    hookUrl: "https://sda.acaternberg.flow-training.beescloud.com/controller-0/github-webhook/"
+  gitHubPluginConfig:
+    hookUrl: "https://dev.sda.acaternberg.flow-training.beescloud.com/casc-child/github-webhook/"
   headerLabel:
-    text: "${cascVersion}"
+    text: "CasC Version v3"
   injectionConfig:
     allowUntrusted: false
     checkForBuildAgentErrors: false
@@ -200,9 +227,6 @@ unclassified:
     mavenCaptureGoalInputFiles: true
   junitTestResultStorage:
     storage: "file"
-#  location:
-#    adminAddress: "address not configured yet <nobody@nowhere>"
-#    url: "https://sda.acaternberg.flow-training.beescloud.com/test-casc/"
   mailer:
     charset: "UTF-8"
     useSsl: false
@@ -227,8 +251,8 @@ tool:
     enabled: true
   git:
     installations:
-    - home: "git"
-      name: "Default"
+      - home: "git"
+        name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"

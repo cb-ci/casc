@@ -155,6 +155,8 @@ masterprovisioning:
     images:
       - imageTag: "cloudbees/cloudbees-core-mm:latest"
         name: "CloudBees CI - Managed Controller - latest"
+      - imageTag: "cloudbees/cloudbees-core-mm:2.492.1.3"
+        name: "CloudBees CI - Managed Controller - 2.492.1.3"
   kubernetes:
     clusterEndpoints:
       - id: "default"
@@ -324,9 +326,9 @@ unclassified:
     text: "${cascVersion}"
   junitTestResultStorage:
     storage: "file"
-  location:
-    adminAddress: "address not configured yet <nobody@nowhere>"
-    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
+#  location:
+#    adminAddress: "address not configured yet <nobody@nowhere>"
+#    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

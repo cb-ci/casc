@@ -212,8 +212,6 @@ unclassified:
     storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
-  gitHubPluginConfig:
-    hookUrl: "https://dev.sda.acaternberg.flow-training.beescloud.com/casc-child/github-webhook/"
   headerLabel:
     text: "CasC Version v3"
   injectionConfig:

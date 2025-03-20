@@ -9,24 +9,27 @@ See
 Private Notes
 
 ## Things to remove from casc export 
-cleaning jenkins.yaml after export
-remove info unique to instance (delete whole keys/children from jenkins.yaml)
-location property (instance URL)
-credentials (???)
-connection details to the operations center
-operationsCenterRootAction property
-licence (certificate + key)
-gitHubPluginConfig-hookUrl
-rbac (if you manage this on OC, remove from controller)
-remove info coming from OC
-labelAtoms
-authorizationStrategy
-updateCenter
-remove default config (anything that you haven’t configured yourself)
-agentProtocols
-beekeeper
-globalCredentialsConfiguration
-remotingSecurity
+
+see also [patch.sh](patch.sh) 
+
+* cleaning jenkins.yaml after export
+* remove info unique to instance (delete whole keys/children from jenkins.yaml)
+* location property (instance URL)
+* credentials (update to external secrets)
+* connection details to the operations center
+* operationsCenterRootAction property
+* licence (certificate + key)
+* gitHubPluginConfig-hookUrl
+* rbac (if you manage this on OC, remove from controller)
+* remove info coming from OC
+* labelAtoms
+* authorizationStrategy
+* updateCenter
+* remove default config (anything that you haven’t configured yourself)
+* agentProtocols
+* beekeeper ??
+* globalCredentialsConfiguration
+* remotingSecurity
 
 
 ## Convert to yaml
@@ -58,6 +61,17 @@ unique_to_file2=$(comm -13 <(sort $PLUGINS_1) <(sort $PLUGINS_2))
 unique_to_file1=$(comm -13 <(sort $PLUGINS_2) <(sort $PLUGINS_1))
 ```
 
-## Print the list of lines unique to 
-> echo "$unique_to_file2"
+## Print the list of lines unique to  
+
+```
+echo "$unique_to_file2"
 echo "$unique_to_file1"
+```
+
+## Validate bundle by CLI/REST
+Using Jenkins CLI.
+java -jar jenkins-cli.jar casc-pre-validate-bundle < bundle.zip
+Using HTTP endpoints.
+curl -s -H ‘Accept: application/json’ -H ‘Content-Type: application/zip;charset=utf-8’ --user [USER] --data-binary @[PATH_TO_ZIP] -XPOST $JENKINS_URL/casc-bundle/pre-validate-bundle
+
+

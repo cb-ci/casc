@@ -1,4 +1,4 @@
-# CloudBees CI Configuration as Conde (CasC)
+# CloudBees CI Configuration as Code (CasC)
 
 This repo has some samples about casc. 
 See 
@@ -6,7 +6,7 @@ See
 * https://docs.cloudbees.com/docs/cloudbees-ci/latest/casc-oc/casc-intro
 
 
-Private Notes
+# Private Notes
 
 ## Things to remove from casc export 
 

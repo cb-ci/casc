@@ -197,6 +197,27 @@ masterprovisioning:
     readinessTimeoutSeconds: 5
     storageClassName: "ssd-cloudbees-ci-${namespace}"
     terminationGracePeriodSeconds: 1200
+    yaml: |-
+      ---
+      apiVersion: "apps/v1"
+      kind: "StatefulSet"
+      spec:
+        template:
+          metadata:
+            annotations:
+              cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+          spec:
+            containers:
+              - name: "jenkins"
+                volumeMounts:
+                  - name: controller-secrets
+                    mountPath: /var/run/secrets/controller
+                    readOnly: true
+            volumes:
+              - name: controller-secrets
+                secret:
+                  defaultMode: 420
+                  secretName: controller-secrets
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"

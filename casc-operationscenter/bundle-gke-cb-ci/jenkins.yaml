@@ -29,8 +29,6 @@ jenkins:
     noProxyHost: |-
       localhost
       127.0.0.1
-      10.0.0.0/14
-      34.118.224.0/20
       *.svc.cluster.local
       *.flow-training.beescloud.com
     port: 3128

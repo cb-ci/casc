@@ -24,6 +24,16 @@ jenkins:
         freeSpaceThreshold: "1GiB"
         freeSpaceWarningThreshold: "2GiB"
   numExecutors: 2
+  proxy:
+    name: "squid-dev-proxy.squid.svc.cluster.local"
+    noProxyHost: |-
+      localhost
+      127.0.0.1
+      10.0.0.0/14
+      34.118.224.0/20
+      *.svc.cluster.local
+      *.flow-training.beescloud.com
+    port: 3128
   primaryView:
     masters:
       columns:
@@ -94,12 +104,6 @@ jenkins:
           - mailer:
               emailAddress: "acaternberg@cloudbees.com"
   slaveAgentPort: -1
-  updateCenter:
-    sites:
-      - id: "core-oc-offline"
-        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-      - id: "cap-core-oc"
-        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
   views:
     - masters:
         columns:
@@ -169,6 +173,13 @@ masterprovisioning:
     cpus: "1.0"
     disk: 50
     fsGroup: "1000"
+    envVars: |-
+      http_proxy=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      https_proxy=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      no_proxy=localhost,127.0.0.1,10.0.0.0/14,34.118.224.0/20,.svc.cluster.local,.flow-training.beescloud.com
+      HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
+      NO_PROXY=localhost,127.0.0.1,10.0.0.0/14,34.118.224.0/20,.svc.cluster.local,.flow-training.beescloud.com
     globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
@@ -186,61 +197,6 @@ masterprovisioning:
     readinessTimeoutSeconds: 5
     storageClassName: "ssd-cloudbees-ci-${namespace}"
     terminationGracePeriodSeconds: 1200
-support:
-  automatedBundleConfiguration:
-    componentIds:
-      - "CloudBeesAssuranceSupport"
-      - "CascScmRetrieverSupport"
-      - "CloudBeesCasCUpdateLogBundlesSupport"
-      - "AgentsConfigFile"
-      - "ConfigFileComponent"
-      - "OtherConfigFilesComponent"
-      - "AboutBrowser"
-      - "AboutJenkins"
-      - "AboutUser"
-      - "AdministrativeMonitors"
-      - "AgentProtocols"
-      - "BuildQueue"
-      - "CustomLogs"
-      - "DumpExportTable"
-      - "EnvironmentVariables"
-      - "FileDescriptorLimit"
-      - "GCLogs"
-      - "HeapUsageHistogram"
-      - "ItemsContent"
-      - "AgentsJVMProcessSystemMetricsContents"
-      - "MasterJVMProcessSystemMetricsContents"
-      - "JenkinsLogs"
-      - "LoadStats"
-      - "LoggerManager"
-      - "Metrics"
-      - "NetworkInterfaces"
-      - "NodeExecutors"
-      - "NodeMonitors"
-      - "OtherLogs"
-      - "ReverseProxy"
-      - "RootCAs"
-      - "RunningBuilds"
-      - "SlaveCommandStatistics"
-      - "SlaveLaunchLogs"
-      - "SlaveLogs"
-      - "AgentsSystemConfiguration"
-      - "MasterSystemConfiguration"
-      - "SystemProperties"
-      - "TaskLogs"
-      - "ThreadDumps"
-      - "UpdateCenter"
-      - "UserCount"
-      - "ComponentImpl"
-      - "SlowRequestComponent"
-      - "HighLoadComponent"
-      - "DeadlockRequestComponent"
-      - "KubernetesMasterLogs"
-      - "KubernetesMasterManifests"
-      - "ConnectedMasterSupportComponent"
-      - "UserActivityComponent"
-    enabled: true
-    period: 1
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"
@@ -249,12 +205,6 @@ appearance:
   prism:
     theme: PRISM
 security:
-  anonymizeSupportBundle:
-    enabled: false
-  apiToken:
-    creationOfLegacyTokenEnabled: false
-    tokenGenerationOnCreationEnabled: false
-    usageStatisticsEnabled: true
   cps:
     hideSandbox: false
   gitHooks:
@@ -265,7 +215,7 @@ security:
   sSHD:
     port: -1
   scriptApproval:
-    forceSandbox: false
+    forceSandbox: true
   securitySettingsEnforcement:
     global:
       realmOnly:
@@ -276,25 +226,37 @@ unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
       - "jobBuildDiscarder"
-  bundleStorageService:
-    activated: true
-    bundles:
-      - name: "controllers"
-        retriever:
-          SCM:
-            ghChecksActivated: false
-            scmSource:
-              git:
-                credentialsId: "gh-ssh"
-                id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
-                remote: "git@github.com:cb-ci/casc.git"
-                traits:
-                  - "gitBranchDiscovery"
-                 # - headRegexFilter:
-                 #     regex: '^${controllerCasCBranch}'
-    checkOutTimeout: 600
-    pollingPeriod: 60
-    purgeOnDeactivation: false
+    bundleStorageService:
+      activated: true
+      bundles:
+        - name: "controllers"
+          retriever:
+            SCM:
+              ghChecksActivated: false
+              scmSource:
+                git:
+                  credentialsId: "gh-ssh"
+                  id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
+                  remote: "https://github.com/cb-ci/casc.git"
+                  traits:
+                    - "gitBranchDiscovery"
+                    - headWildcardFilter:
+                        includes: ${controllerCasCBranch}
+        - name: "ci-templates"
+          retriever:
+            SCM:
+              ghChecksActivated: false
+              scmSource:
+                git:
+                  id: "7180ef34-e6f7-48cd-ba13-e4046ef84e91"
+                  remote: "https://github.com/cb-ci-templates/ci-templates.git"
+                  traits:
+                    - "gitBranchDiscovery"
+                    - headWildcardFilter:
+                        includes: "main"
+      checkOutTimeout: 600
+      pollingPeriod: 60
+      purgeOnDeactivation: false
   bundleUpdateTiming:
     automaticReload: true
     automaticRestart: true
@@ -317,18 +279,10 @@ unclassified:
     useAuthenticatedEndpoint: false
   experimentalPlugins:
     enabled: false
-  fingerprints:
-    fingerprintCleanupDisabled: false
-    storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   headerLabel:
     text: "${cascVersion}"
-  junitTestResultStorage:
-    storage: "file"
-#  location:
-#    adminAddress: "address not configured yet <nobody@nowhere>"
-#    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

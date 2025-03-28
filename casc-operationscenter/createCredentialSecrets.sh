@@ -1,7 +1,8 @@
 #! /bin/bash
 
 
-export CBCI_NS=cloudbees-core
+#export CBCI_NS=cloudbees-core
+export CBCI_NS=cjoc1
 
 
 #kubectl create secret generic oc-secrets -n "$CBCI_NS" \
@@ -39,9 +40,6 @@ kubectl create secret generic controller-secrets -n "$CBCI_NS" \
     --from-literal=gitHubAppId="$(yq '.gitHubAppId' secrets/cbci-secrets.yaml )" \
     --from-literal=gitHubAppPrivateKey="$(yq '.gitHubAppPrivateKey' secrets/cbci-secrets.yaml )" \
     --from-literal=dockerConfigJson="$(yq '.gitHubAppdockerConfigJson' secrets/cbci-secrets.yaml )"
-
-kubectl delete secret controller-secrets -n cloudbees-controllers
-
 
 kubectl delete secret  controller-secrets  -n cloudbees-controllers
 kubectl create secret generic controller-secrets -n cloudbees-controllers \

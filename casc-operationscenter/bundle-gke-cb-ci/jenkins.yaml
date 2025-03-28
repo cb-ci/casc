@@ -104,12 +104,6 @@ jenkins:
           - mailer:
               emailAddress: "acaternberg@cloudbees.com"
   slaveAgentPort: -1
-  updateCenter:
-    sites:
-      - id: "core-oc-offline"
-        url: "file:/tmp/jenkins/war/WEB-INF/plugins/update-center.json"
-      - id: "cap-core-oc"
-        url: "https://jenkins-updates.cloudbees.com/update-center/envelope-core-oc/update-center.json"
   views:
     - masters:
         columns:
@@ -196,61 +190,6 @@ masterprovisioning:
     readinessTimeoutSeconds: 5
     storageClassName: "ssd-cloudbees-ci-${namespace}"
     terminationGracePeriodSeconds: 1200
-support:
-  automatedBundleConfiguration:
-    componentIds:
-      - "CloudBeesAssuranceSupport"
-      - "CascScmRetrieverSupport"
-      - "CloudBeesCasCUpdateLogBundlesSupport"
-      - "AgentsConfigFile"
-      - "ConfigFileComponent"
-      - "OtherConfigFilesComponent"
-      - "AboutBrowser"
-      - "AboutJenkins"
-      - "AboutUser"
-      - "AdministrativeMonitors"
-      - "AgentProtocols"
-      - "BuildQueue"
-      - "CustomLogs"
-      - "DumpExportTable"
-      - "EnvironmentVariables"
-      - "FileDescriptorLimit"
-      - "GCLogs"
-      - "HeapUsageHistogram"
-      - "ItemsContent"
-      - "AgentsJVMProcessSystemMetricsContents"
-      - "MasterJVMProcessSystemMetricsContents"
-      - "JenkinsLogs"
-      - "LoadStats"
-      - "LoggerManager"
-      - "Metrics"
-      - "NetworkInterfaces"
-      - "NodeExecutors"
-      - "NodeMonitors"
-      - "OtherLogs"
-      - "ReverseProxy"
-      - "RootCAs"
-      - "RunningBuilds"
-      - "SlaveCommandStatistics"
-      - "SlaveLaunchLogs"
-      - "SlaveLogs"
-      - "AgentsSystemConfiguration"
-      - "MasterSystemConfiguration"
-      - "SystemProperties"
-      - "TaskLogs"
-      - "ThreadDumps"
-      - "UpdateCenter"
-      - "UserCount"
-      - "ComponentImpl"
-      - "SlowRequestComponent"
-      - "HighLoadComponent"
-      - "DeadlockRequestComponent"
-      - "KubernetesMasterLogs"
-      - "KubernetesMasterManifests"
-      - "ConnectedMasterSupportComponent"
-      - "UserActivityComponent"
-    enabled: true
-    period: 1
 globalCredentialsConfiguration:
   configuration:
     providerFilter: "none"
@@ -259,12 +198,6 @@ appearance:
   prism:
     theme: PRISM
 security:
-  anonymizeSupportBundle:
-    enabled: false
-  apiToken:
-    creationOfLegacyTokenEnabled: false
-    tokenGenerationOnCreationEnabled: false
-    usageStatisticsEnabled: true
   cps:
     hideSandbox: false
   gitHooks:
@@ -275,7 +208,7 @@ security:
   sSHD:
     port: -1
   scriptApproval:
-    forceSandbox: false
+    forceSandbox: true
   securitySettingsEnforcement:
     global:
       realmOnly:
@@ -327,18 +260,10 @@ unclassified:
     useAuthenticatedEndpoint: false
   experimentalPlugins:
     enabled: false
-  fingerprints:
-    fingerprintCleanupDisabled: false
-    storage: "file"
   gitHubConfiguration:
     apiRateLimitChecker: ThrottleForNormalize
   headerLabel:
     text: "${cascVersion}"
-  junitTestResultStorage:
-    storage: "file"
-#  location:
-#    adminAddress: "address not configured yet <nobody@nowhere>"
-#    url: "https://${stage}sda.acaternberg.flow-training.beescloud.com/cjoc/"
   mailer:
     charset: "UTF-8"
     useSsl: false

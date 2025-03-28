@@ -9,9 +9,6 @@ plugins:
 - id: aws-java-sdk-ec2
 - id: aws-java-sdk-elasticbeanstalk
 - id: aws-java-sdk-minimal
-- id: blueocean-commons
-- id: blueocean-rest
-- id: bluesteel-cjoc
 - id: bootstrap5-api
 - id: bouncycastle-api
 - id: caffeine-api

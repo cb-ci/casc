@@ -1,5 +1,5 @@
 variables:
-  - cascVersion: CasC Version v3
+  - cascVersion: CasC Version v1
   - another: text
   - team_name: Team Alpha
   - team_group: alpha

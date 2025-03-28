@@ -20,13 +20,13 @@ items:
         readinessFailureThreshold: 100
         livenessTimeoutSeconds: 10
         storageClassName: ssd-cloudbees-ci-${namespace}
-        domain: casc-child
+        domain: casc-pipeline-templates
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
         yaml: ''
     description: ''
-    displayName: casc-child
+    displayName: casc-pipeline-templates
     properties:
       - configurationAsCode:
           bundle: main/controller-ci-templates

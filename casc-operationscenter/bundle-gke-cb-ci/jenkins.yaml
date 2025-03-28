@@ -241,7 +241,7 @@ unclassified:
                   traits:
                     - "gitBranchDiscovery"
                     - headWildcardFilter:
-                        includes: "dev"
+                        includes: ${controllerCasCBranch}
         - name: "ci-templates"
           retriever:
             SCM:

@@ -172,6 +172,7 @@ masterprovisioning:
     disk: 50
     fsGroup: "1000"
     envVars: |-
+      MASTER_GLOBAL_JAVA_OPTIONS=-Djenkins.security.ManagePermission=true -Djenkins.security.SystemReadPermission=true
       http_proxy=http://squid-dev-proxy.squid.svc.cluster.local:3128
       https_proxy=http://squid-dev-proxy.squid.svc.cluster.local:3128
       no_proxy=localhost,127.0.0.1,10.0.0.0/14,34.118.224.0/20,.svc.cluster.local,.flow-training.beescloud.com

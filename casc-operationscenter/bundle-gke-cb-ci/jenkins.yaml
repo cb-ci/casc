@@ -208,6 +208,13 @@ masterprovisioning:
           spec:
             containers:
               - name: "jenkins"
+                env:
+                - name: SECRETS
+                  value: /var/run/secrets/controller
+                - name: STAGE
+                  value: ${stage}
+                - name: NAMESPACE
+                  value: ${namespace}
                 volumeMounts:
                   - name: controller-secrets
                     mountPath: /var/run/secrets/controller

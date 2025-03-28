@@ -24,32 +24,12 @@ items:
         livenessPeriodSeconds: 10
         javaOptions: -XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled
           -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0
-        yaml: |
-          ---
-          apiVersion: "apps/v1"
-          kind: "StatefulSet"
-          spec:
-            template:
-              metadata:
-                annotations:
-                  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
-              spec:
-                containers:
-                  - name: "jenkins"
-                    volumeMounts:
-                      - name: controller-secrets
-                        mountPath: /var/run/secrets/controller
-                        readOnly: true
-                volumes:
-                  - name: controller-secrets
-                    secret:
-                      defaultMode: 420
-                      secretName: controller-secrets
+        yaml: ''
     description: ''
     displayName: casc-base
     properties:
       - configurationAsCode:
-          bundle: ${stage}/controller-base
+          bundle: ${controllerCasCBranch}/controller-base
       - customWebhookData: {}
       - sharedHeaderLabelOptIn:
           optIn: true

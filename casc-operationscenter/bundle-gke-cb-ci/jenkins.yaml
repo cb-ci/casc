@@ -226,37 +226,37 @@ unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
       - "jobBuildDiscarder"
-    bundleStorageService:
-      activated: true
-      bundles:
-        - name: "controllers"
-          retriever:
-            SCM:
-              ghChecksActivated: false
-              scmSource:
-                git:
-                  credentialsId: "gh-ssh"
-                  id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
-                  remote: "https://github.com/cb-ci/casc.git"
-                  traits:
-                    - "gitBranchDiscovery"
-                    - headWildcardFilter:
-                        includes: ${controllerCasCBranch}
-        - name: "ci-templates"
-          retriever:
-            SCM:
-              ghChecksActivated: false
-              scmSource:
-                git:
-                  id: "7180ef34-e6f7-48cd-ba13-e4046ef84e91"
-                  remote: "https://github.com/cb-ci-templates/ci-templates.git"
-                  traits:
-                    - "gitBranchDiscovery"
-                    - headWildcardFilter:
-                        includes: "main"
-      checkOutTimeout: 600
-      pollingPeriod: 60
-      purgeOnDeactivation: false
+  bundleStorageService:
+    activated: true
+    bundles:
+      - name: "controllers"
+        retriever:
+          SCM:
+            ghChecksActivated: false
+            scmSource:
+              git:
+                credentialsId: "gh-ssh"
+                id: "2473388f-e8cb-4f67-b4f4-d88bdd8842cc"
+                remote: "https://github.com/cb-ci/casc.git"
+                traits:
+                  - "gitBranchDiscovery"
+                  - headWildcardFilter:
+                      includes: ${controllerCasCBranch}
+      - name: "ci-templates"
+        retriever:
+          SCM:
+            ghChecksActivated: false
+            scmSource:
+              git:
+                id: "7180ef34-e6f7-48cd-ba13-e4046ef84e91"
+                remote: "https://github.com/cb-ci-templates/ci-templates.git"
+                traits:
+                  - "gitBranchDiscovery"
+                  - headWildcardFilter:
+                      includes: "main"
+    checkOutTimeout: 600
+    pollingPeriod: 60
+    purgeOnDeactivation: false
   bundleUpdateTiming:
     automaticReload: true
     automaticRestart: true

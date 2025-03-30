@@ -175,7 +175,7 @@ masterprovisioning:
       MASTER_GLOBAL_JAVA_OPTIONS=-Djenkins.security.ManagePermission=true -Djenkins.security.SystemReadPermission=true
       HTTP_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
       HTTPS_PROXY=http://squid-dev-proxy.squid.svc.cluster.local:3128
-      NO_PROXY=localhost,127.0.0.1,*.svc.cluster.local,*.flow-training.beescloud.com
+      NO_PROXY=localhost,127.0.0.1,.svc.cluster.local,.flow-training.beescloud.com
     globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:latest\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
